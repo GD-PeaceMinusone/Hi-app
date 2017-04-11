@@ -35,7 +35,7 @@
     self.userInteractionEnabled = YES;
     
     [self.layer setMasksToBounds:YES];
-    [self.layer setCornerRadius:10.0f];
+    [self.layer setCornerRadius:2.0f];
     [self.layer setShouldRasterize:YES];
     [self.layer setRasterizationScale:[[UIScreen mainScreen] scale]];
     
@@ -43,7 +43,7 @@
     self.backgroundColor = [UIColor colorWithRed:scaleBackgroud green:scaleBackgroud blue:scaleBackgroud alpha:1];
     
     CGFloat scaleBorder = 176.0f / 255.0f;
-    [self.layer setBorderWidth:.45];
+    [self.layer setBorderWidth:1.0];
     [self.layer setBorderColor:[UIColor colorWithRed:scaleBorder green:scaleBorder blue:scaleBorder alpha:1].CGColor];
 }
 

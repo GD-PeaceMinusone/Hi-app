@@ -68,7 +68,6 @@
 -(void)publish: (UIButton*)button {
 
 //    WSILoginViewController *loginVc = [WSILoginViewController new];
-//    
 //    [self presentViewController:loginVc animated:YES completion:nil];
     
     CodeViewController *codeVc = [CodeViewController new];
@@ -78,6 +77,7 @@
 -(void)goMe {
     
     [ShareApp.drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+    
 }
 
 -(void)setupSegment {
@@ -111,6 +111,7 @@
 
     self.scrollView = [[UIScrollView alloc]init];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.scrollView.bounces = NO;
     self.scrollView.frame = self.view.bounds;
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsVerticalScrollIndicator = NO;
@@ -152,25 +153,6 @@
     [self addChildVcView];
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @end

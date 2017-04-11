@@ -20,6 +20,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    [self setupWindow];
+    
+    return YES;
+}
+
+-(void)setupWindow {
+
     WSIMeViewController *meVc = [[WSIMeViewController alloc]initWithNibName:@"WSIMeViewController" bundle:[NSBundle mainBundle]];
     WSIMainViewController *mainVc = [WSIMainViewController new];
     
@@ -31,9 +38,8 @@
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = self.drawer;
+    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
-    return YES;
 }
 
 

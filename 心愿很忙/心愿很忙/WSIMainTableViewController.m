@@ -9,10 +9,6 @@
 #import "WSIMainTableViewController.h"
 #import "DemoCell.h"
 
-#define kCloseCellHeight    179.f
-#define kOpenCellHeight     488.f
-#define kRowsCount          10
-
 @interface WSIMainTableViewController ()
 <
 UITableViewDelegate,

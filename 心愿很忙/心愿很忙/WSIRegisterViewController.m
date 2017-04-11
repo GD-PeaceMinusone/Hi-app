@@ -9,7 +9,10 @@
 #import "WSIRegisterViewController.h"
 
 @interface WSIRegisterViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *closeButton;
+@property (weak, nonatomic) IBOutlet UIButton *codeButton;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
+@property (weak, nonatomic) IBOutlet UIView *registerView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -17,7 +20,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [self setupConerRadius];
+    [self setupImageView];
+}
+
+-(void)setupConerRadius {
+
+    [self.registerView.layer setCornerRadius:4.0f];
+    [self.codeButton.layer setCornerRadius:3.0f];
+    [self.registerButton.layer setCornerRadius:3.0f];
+    
+}
+
+/*对imageView进行半透明处理**/
+
+-(void)setupImageView {
+    
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
+    effectView.frame = [UIScreen mainScreen].bounds;
+    [self.imageView addSubview:effectView];
+    
+    UIVibrancyEffect *vibrancyView = [UIVibrancyEffect effectForBlurEffect:effect];
+    UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:vibrancyView];
+    visualEffectView.translatesAutoresizingMaskIntoConstraints = NO;
+    [effectView.contentView addSubview:visualEffectView];
+}
+
+- (IBAction)closeButton:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,9 +58,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)closeView:(id)sender {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 @end

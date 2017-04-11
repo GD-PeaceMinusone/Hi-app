@@ -11,7 +11,6 @@
 		531AEA491E992AB90037CA16 /* WSIRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 531AEA471E992AB80037CA16 /* WSIRegisterViewController.m */; };
 		531AEA4A1E992AB90037CA16 /* WSIRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 531AEA481E992AB80037CA16 /* WSIRegisterViewController.xib */; };
 		531AEABC1E9A0C830037CA16 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 531AEABB1E9A0C830037CA16 /* Podfile */; };
-		531AEABE1E9A24B00037CA16 /* 版本.png in Resources */ = {isa = PBXBuildFile; fileRef = 531AEABD1E9A24B00037CA16 /* 版本.png */; };
 		531AEADB1E9A69B50037CA16 /* WSIMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 531AEAD71E9A69B50037CA16 /* WSIMainTableViewController.m */; };
 		531AEADC1E9A69B50037CA16 /* DemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 531AEAD91E9A69B50037CA16 /* DemoCell.m */; };
 		531AEADD1E9A69B50037CA16 /* DemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 531AEADA1E9A69B50037CA16 /* DemoCell.xib */; };
@@ -68,7 +67,6 @@
 		531AEA471E992AB80037CA16 /* WSIRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIRegisterViewController.m; sourceTree = "<group>"; };
 		531AEA481E992AB80037CA16 /* WSIRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSIRegisterViewController.xib; sourceTree = "<group>"; };
 		531AEABB1E9A0C830037CA16 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		531AEABD1E9A24B00037CA16 /* 版本.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "版本.png"; sourceTree = "<group>"; };
 		531AEAD61E9A69B50037CA16 /* WSIMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIMainTableViewController.h; sourceTree = "<group>"; };
 		531AEAD71E9A69B50037CA16 /* WSIMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIMainTableViewController.m; sourceTree = "<group>"; };
 		531AEAD81E9A69B50037CA16 /* DemoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoCell.h; sourceTree = "<group>"; };
@@ -278,7 +276,6 @@
 				531AEADA1E9A69B50037CA16 /* DemoCell.xib */,
 				531D50D51E98C0EB00B17598 /* XMGConst.h */,
 				531D50D61E98C0EB00B17598 /* XMGConst.m */,
-				531AEABD1E9A24B00037CA16 /* 版本.png */,
 				5373E7521E9670A900819DCD /* Assets.xcassets */,
 				5373E7541E9670A900819DCD /* LaunchScreen.storyboard */,
 				5373E7571E9670A900819DCD /* Info.plist */,
@@ -404,7 +401,6 @@
 				531AEB6C1E9B29E10037CA16 /* liked@2x.png in Resources */,
 				531AEB6B1E9B29E10037CA16 /* image_9.jpg in Resources */,
 				5373E7531E9670A900819DCD /* Assets.xcassets in Resources */,
-				531AEABE1E9A24B00037CA16 /* 版本.png in Resources */,
 				531AEB681E9B29E10037CA16 /* image_6.jpg in Resources */,
 				531AEB621E9B29E10037CA16 /* XibViewController.xib in Resources */,
 				531AEB631E9B29E10037CA16 /* image_1.jpg in Resources */,
@@ -618,7 +614,10 @@
 				GCC_PREFIX_HEADER = "/Users/jackeylove/Movies/心愿很忙(Beta)/心愿很忙/心愿很忙/PrefixHeader.pch";
 				INFOPLIST_FILE = "心愿很忙/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-all_load";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Jackeylove.----";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -633,7 +632,10 @@
 				GCC_PREFIX_HEADER = "/Users/jackeylove/Movies/心愿很忙(Beta)/心愿很忙/心愿很忙/PrefixHeader.pch";
 				INFOPLIST_FILE = "心愿很忙/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-all_load";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"$(inherited)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Jackeylove.----";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
