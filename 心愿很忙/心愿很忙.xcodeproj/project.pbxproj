@@ -58,6 +58,7 @@
 		5373E79E1E967C0400819DCD /* NSCalendar+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7961E967C0400819DCD /* NSCalendar+XMGExtension.m */; };
 		5373E8731E97E25300819DCD /* WSISmallTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E8711E97E25300819DCD /* WSISmallTableViewController.m */; };
 		5373E8781E97E27500819DCD /* WSIBigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E8761E97E27500819DCD /* WSIBigTableViewController.m */; };
+		53FB50931E9DD795002B305D /* HUDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FB50921E9DD795002B305D /* HUDUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +144,8 @@
 		5373E8711E97E25300819DCD /* WSISmallTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSISmallTableViewController.m; sourceTree = "<group>"; };
 		5373E8751E97E27500819DCD /* WSIBigTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIBigTableViewController.h; sourceTree = "<group>"; };
 		5373E8761E97E27500819DCD /* WSIBigTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIBigTableViewController.m; sourceTree = "<group>"; };
+		53FB50911E9DD795002B305D /* HUDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDUtils.h; sourceTree = "<group>"; };
+		53FB50921E9DD795002B305D /* HUDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDUtils.m; sourceTree = "<group>"; };
 		AB92A249E80C0D5ED4ED72A2 /* libPods-心愿很忙.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-心愿很忙.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -266,6 +269,8 @@
 				531AEA461E992AB80037CA16 /* WSIRegisterViewController.h */,
 				531AEA471E992AB80037CA16 /* WSIRegisterViewController.m */,
 				531AEA481E992AB80037CA16 /* WSIRegisterViewController.xib */,
+				53FB50911E9DD795002B305D /* HUDUtils.h */,
+				53FB50921E9DD795002B305D /* HUDUtils.m */,
 				531AEADE1E9A6A0A0037CA16 /* WSIMeViewController.h */,
 				531AEADF1E9A6A0A0037CA16 /* WSIMeViewController.m */,
 				531AEAE01E9A6A0A0037CA16 /* WSIMeViewController.xib */,
@@ -473,6 +478,7 @@
 				5373E79A1E967C0400819DCD /* UIButton+XMGExtension.m in Sources */,
 				5373E79C1E967C0400819DCD /* NSString+XMGExtension.m in Sources */,
 				531AEB611E9B29E10037CA16 /* XibViewController.m in Sources */,
+				53FB50931E9DD795002B305D /* HUDUtils.m in Sources */,
 				531AEB701E9B29E10037CA16 /* CCDraggableContainer.m in Sources */,
 				5373E79E1E967C0400819DCD /* NSCalendar+XMGExtension.m in Sources */,
 				531AEB601E9B29E10037CA16 /* MainViewController.m in Sources */,

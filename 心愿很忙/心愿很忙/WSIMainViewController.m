@@ -67,11 +67,11 @@
 
 -(void)publish: (UIButton*)button {
 
-//    WSILoginViewController *loginVc = [WSILoginViewController new];
-//    [self presentViewController:loginVc animated:YES completion:nil];
+    WSILoginViewController *loginVc = [WSILoginViewController new];
+    [self presentViewController:loginVc animated:YES completion:nil];
     
-    CodeViewController *codeVc = [CodeViewController new];
-    [self presentViewController:codeVc animated:YES completion:nil];
+//    CodeViewController *codeVc = [CodeViewController new];
+//    [self presentViewController:codeVc animated:YES completion:nil];
 }
 
 -(void)goMe {

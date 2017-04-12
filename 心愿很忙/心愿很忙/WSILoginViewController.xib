@@ -12,10 +12,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WSILoginViewController">
             <connections>
                 <outlet property="closeButton" destination="lVf-dL-i4h" id="6GR-Ag-7iQ"/>
+                <outlet property="forgot" destination="FKU-TI-u9q" id="lq7-Kq-MQW"/>
                 <outlet property="imageView" destination="hQv-4F-goB" id="l2S-vn-anM"/>
                 <outlet property="loginButton" destination="oXZ-1k-wHo" id="dUs-ju-7RO"/>
                 <outlet property="loginView" destination="KFI-sB-6eL" id="2Bt-Yg-nUS"/>
-                <outlet property="textField" destination="7sr-1o-Bzw" id="4Ns-wg-li2"/>
+                <outlet property="passWordTF" destination="iDd-En-Lvc" id="OX3-YD-nvg"/>
+                <outlet property="usernameTF" destination="7sr-1o-Bzw" id="8zI-xq-FDq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -57,7 +59,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="登录"/>
                             <connections>
-                                <action selector="register:" destination="-1" eventType="touchUpInside" id="8nW-Iv-dDt"/>
+                                <action selector="loginButton:" destination="-1" eventType="touchUpInside" id="lBt-Yi-bpZ"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ya8-o4-Xnh" userLabel="qq">
@@ -101,6 +103,16 @@
                             </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用其他账号登录/注册" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYX-OP-vay">
+                            <rect key="frame" x="84" y="361" width="162" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="Y49-o6-Mwx"/>
+                                <constraint firstAttribute="width" constant="162" id="mJG-ie-70Y"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1i-x7-pyr">
                             <rect key="frame" x="0.0" y="60" width="330" height="1"/>
                             <color key="backgroundColor" red="0.94509803921568625" green="0.94901960784313721" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
@@ -121,7 +133,7 @@
                             </constraints>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         </textField>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="input33" translatesAutoresizingMaskIntoConstraints="NO" id="bEi-9T-06f" userLabel="用户名视图">
                             <rect key="frame" x="50" y="129" width="239" height="35"/>
@@ -129,7 +141,7 @@
                                 <constraint firstAttribute="height" constant="35" id="63q-Pf-rFm"/>
                             </constraints>
                         </imageView>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" 用户名或手机号" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="7sr-1o-Bzw">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" 用户名/邮箱或手机号" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="7sr-1o-Bzw">
                             <rect key="frame" x="84" y="129" width="205" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="VV1-rM-lJo"/>
@@ -164,16 +176,18 @@
                                 <constraint firstAttribute="height" constant="30" id="Fjc-xW-1Tu"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用其他账号登录/注册" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYX-OP-vay">
-                            <rect key="frame" x="84" y="361" width="162" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="Y49-o6-Mwx"/>
-                                <constraint firstAttribute="width" constant="162" id="mJG-ie-70Y"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKU-TI-u9q">
+                            <rect key="frame" x="231" y="181" width="52" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.92941176470588238" green="0.93333333333333335" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <state key="normal" title="忘记密码">
+                                <color key="titleColor" red="0.6588235294117647" green="0.6588235294117647" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="forgotButton:" destination="-1" eventType="touchUpInside" id="Rva-Qs-Cl8"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>

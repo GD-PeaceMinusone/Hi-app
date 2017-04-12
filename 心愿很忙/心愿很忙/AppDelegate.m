@@ -10,6 +10,7 @@
 #import "WSIMainViewController.h"
 #import "WSIMeViewController.h"
 #import <MMDrawerController.h>
+#import <BmobSDK/Bmob.h>
 
 @interface AppDelegate ()
 
@@ -21,6 +22,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     [self setupWindow];
+    
+    [Bmob registerWithAppKey:@"1b06e7519038aac91f3ec8f8437034c9"];
     
     return YES;
 }
