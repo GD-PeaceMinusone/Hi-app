@@ -44,6 +44,12 @@
 #define kCloseCellHeight    179.f
 #define kOpenCellHeight     488.f
 #define kRowsCount          10
+#define WSIMargin 10
+#define WSIMarginDouble 20
+
+#define TextViewSize CGSizeMake(250, 50)
+#define imageViewSize CGSizeMake(10, 10)
+#define buttonSize CGSizeMake(20, 20)
 
 #endif
 #endif /* PrefixHeader_pch */
