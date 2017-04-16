@@ -28,7 +28,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self defaultStyle];
+    
 }
+
 
 - (void)defaultStyle {
     
@@ -43,7 +45,7 @@
     self.backgroundColor = [UIColor colorWithRed:scaleBackgroud green:scaleBackgroud blue:scaleBackgroud alpha:1];
     
     CGFloat scaleBorder = 176.0f / 255.0f;
-    [self.layer setBorderWidth:1.0];
+    [self.layer setBorderWidth:0];
     [self.layer setBorderColor:[UIColor colorWithRed:scaleBorder green:scaleBorder blue:scaleBorder alpha:1].CGColor];
 }
 

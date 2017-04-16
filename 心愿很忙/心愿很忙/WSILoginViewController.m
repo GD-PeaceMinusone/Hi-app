@@ -37,7 +37,6 @@
     
     [self setupImageView];
     [self setupConerRadius];
-    
 }
 
 -(void)setupConerRadius {

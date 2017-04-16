@@ -48,12 +48,13 @@
 }
 
 - (void)cc_layoutSubviews  {    
-    self.imageView.frame   = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 64);
+    self.imageView.frame   = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     self.titleLabel.frame = CGRectMake(0, self.frame.size.height - 64, self.frame.size.width, 64);
 }
 
 - (void)installData:(NSDictionary *)element {
     self.imageView.image  = [UIImage imageNamed:element[@"image"]];
+    self.imageView.backgroundColor = XMGRandomColor;
     self.imageView.transform = CGAffineTransformIdentity;
     self.titleLabel.text = element[@"title"];
     self.titleLabel.transform = CGAffineTransformIdentity;

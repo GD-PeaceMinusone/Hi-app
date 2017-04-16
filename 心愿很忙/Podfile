@@ -6,4 +6,7 @@ pod 'MMDrawerController'
 pod 'SVProgressHUD'
 pod 'Masonry'
 pod 'BmobSDK'
+pod 'YYText'
+pod 'SDWebImage'
+pod 'TZImagePickerController'
 end

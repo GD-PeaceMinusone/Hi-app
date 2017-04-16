@@ -12,8 +12,10 @@
 #import "WSILoginViewController.h"
 #import "WSIMeViewController.h"
 #import "CodeViewController.h"
+#import <BmobSDK/Bmob.h>
 #import "AppDelegate.h"
 #import "DemoCell.h"
+
 
 @interface WSIMainViewController () <UIScrollViewDelegate>
 @property(nonatomic,weak)UIView *navLine;
@@ -26,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setupView];
     [self setupChildViewControllers];
     [self setScrollView];
     [self setupNavigationBar];
@@ -36,17 +39,19 @@
     
 }
 
+-(void)setupView {
+
+    self.view.backgroundColor = [UIColor colorWithRed:241.0/255 green:242.0/255 blue:244.0/255 alpha:1];
+
+}
+
 -(void)setupNavigationBar {
     
     UIImage *image = [UIImage imageNamed:@"头像"];
     image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage: image style:UIBarButtonItemStylePlain target:self action:@selector(goMe)];
     
-    
-    self.navigationController.navigationBar.translucent = YES;
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"BG2"] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[UIImage imageNamed:@"BG2"]];
-
+    [self.navigationController.navigationBar.subviews firstObject].hidden = YES;
 }
 
 -(void)setupPublishButton {
@@ -66,12 +71,22 @@
 }
 
 -(void)publish: (UIButton*)button {
+    
+    if ([BmobUser currentUser]) {
+        
+        CodeViewController *codeVc = [CodeViewController new];
+        [self presentViewController:codeVc animated:YES completion:nil];
+        
+    }else {
 
     WSILoginViewController *loginVc = [WSILoginViewController new];
     [self presentViewController:loginVc animated:YES completion:nil];
     
-//    CodeViewController *codeVc = [CodeViewController new];
-//    [self presentViewController:codeVc animated:YES completion:nil];
+    }
+    
+//    WSILoginViewController *loginVc = [WSILoginViewController new];
+//    [self presentViewController:loginVc animated:YES completion:nil];
+    
 }
 
 -(void)goMe {
@@ -142,16 +157,17 @@
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     
         [self addChildVcView];
-    
+ 
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     
     NSInteger index = self.scrollView.contentOffset.x / self.scrollView.xmg_width;
     self.segment.selectedSegmentIndex = index;
-    
+
+        
     [self addChildVcView];
-    
+
 }
 
 

@@ -106,6 +106,8 @@
 //发送验证码
 - (IBAction)codeButton:(id)sender {
     
+    [self.registerView endEditing:YES];
+    
     [BmobSMS requestSMSCodeInBackgroundWithPhoneNumber:self.userNameTF.text andTemplate:@"test" resultBlock:^(int number, NSError *error) {
         
         if (error) {
@@ -126,6 +128,8 @@
 
 
 - (IBAction)registerButton:(id)sender {
+    
+    [self.registerView endEditing:YES];
     
     if ([self validateMobile:self.userNameTF.text]) {//用户输入为手机号
         
@@ -160,7 +164,12 @@
                 NSLog(@"邮件发送成功");
                 
                 [HUDUtils setupSuccessWithStatus:@"邮件已发送" WithDelay:1.5f completion:nil];
-                [self dismissViewControllerAnimated:YES completion:nil];
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                     [self dismissViewControllerAnimated:YES completion:nil];
+                });;
+               
                 
                 BmobUser *user = [BmobUser currentUser];
                 //应用开启了邮箱验证功能
@@ -193,7 +202,12 @@
                 
                 NSLog(@"用户名注册成功");
                 [HUDUtils setupSuccessWithStatus:@"注册成功" WithDelay:1.5f completion:nil];
-                [self dismissViewControllerAnimated:YES completion:nil];
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                });
+                
             }else {
             
                 NSLog(@"用户名注册失败--%@",error);
