@@ -7,10 +7,10 @@
 //
 
 #import "AppDelegate.h"
-#import "WSIMainViewController.h"
 #import "WSIMeViewController.h"
 #import <MMDrawerController.h>
 #import <BmobSDK/Bmob.h>
+#import "WSIMainTableViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,15 +23,20 @@
 
     [self setupWindow];
     
-    [Bmob registerWithAppKey:@"1b06e7519038aac91f3ec8f8437034c9"];
+    [self setupBmob];
     
     return YES;
+}
+
+-(void)setupBmob {
+
+    [Bmob registerWithAppKey:@"1b06e7519038aac91f3ec8f8437034c9"];
 }
 
 -(void)setupWindow {
 
     WSIMeViewController *meVc = [[WSIMeViewController alloc]initWithNibName:@"WSIMeViewController" bundle:[NSBundle mainBundle]];
-    WSIMainViewController *mainVc = [WSIMainViewController new];
+    WSIMainTableViewController *mainVc = [WSIMainTableViewController new];
     
     UINavigationController *navigationVc = [[UINavigationController alloc]initWithRootViewController:mainVc];
     self.drawer = [[MMDrawerController alloc]initWithCenterViewController:navigationVc leftDrawerViewController:meVc];

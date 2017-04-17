@@ -15,6 +15,7 @@
 
     self.foregroundView.layer.cornerRadius = 10;
     self.foregroundView.layer.masksToBounds = YES;
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -25,8 +26,7 @@
 
 - (void)setNumber:(NSInteger)number
 {
-    self.openNumberLabel.text = @(number).stringValue;
-    self.closeNumberLabel.text = @(number).stringValue;
+    
 }
 
 - (NSTimeInterval)animationDurationWithItemIndex:(NSInteger)itemIndex animationType:(AnimationType)type

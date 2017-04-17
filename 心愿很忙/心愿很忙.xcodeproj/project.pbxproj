@@ -50,7 +50,6 @@
 		5373E7511E9670A900819DCD /* ____.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5373E74F1E9670A900819DCD /* ____.xcdatamodeld */; };
 		5373E7531E9670A900819DCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5373E7521E9670A900819DCD /* Assets.xcassets */; };
 		5373E7561E9670A900819DCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5373E7541E9670A900819DCD /* LaunchScreen.storyboard */; };
-		5373E76F1E9678ED00819DCD /* WSIMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E76D1E9678ED00819DCD /* WSIMainViewController.m */; };
 		5373E7981E967C0400819DCD /* UIView+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E78A1E967C0400819DCD /* UIView+XMGExtension.m */; };
 		5373E7991E967C0400819DCD /* UIBarButtonItem+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E78C1E967C0400819DCD /* UIBarButtonItem+XMGExtension.m */; };
 		5373E79A1E967C0400819DCD /* UIButton+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E78E1E967C0400819DCD /* UIButton+XMGExtension.m */; };
@@ -58,8 +57,7 @@
 		5373E79C1E967C0400819DCD /* NSString+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7921E967C0400819DCD /* NSString+XMGExtension.m */; };
 		5373E79D1E967C0400819DCD /* NSDate+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7941E967C0400819DCD /* NSDate+XMGExtension.m */; };
 		5373E79E1E967C0400819DCD /* NSCalendar+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7961E967C0400819DCD /* NSCalendar+XMGExtension.m */; };
-		5373E8731E97E25300819DCD /* WSISmallTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E8711E97E25300819DCD /* WSISmallTableViewController.m */; };
-		5373E8781E97E27500819DCD /* WSIBigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E8761E97E27500819DCD /* WSIBigTableViewController.m */; };
+		53900E4A1EA4A690009FEC41 /* XWScanImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 53900E491EA4A690009FEC41 /* XWScanImage.m */; };
 		53FB50931E9DD795002B305D /* HUDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FB50921E9DD795002B305D /* HUDUtils.m */; };
 /* End PBXBuildFile section */
 
@@ -129,8 +127,6 @@
 		5373E7521E9670A900819DCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5373E7551E9670A900819DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5373E7571E9670A900819DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5373E76C1E9678ED00819DCD /* WSIMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIMainViewController.h; sourceTree = "<group>"; };
-		5373E76D1E9678ED00819DCD /* WSIMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIMainViewController.m; sourceTree = "<group>"; };
 		5373E7891E967C0400819DCD /* UIView+XMGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XMGExtension.h"; sourceTree = "<group>"; };
 		5373E78A1E967C0400819DCD /* UIView+XMGExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XMGExtension.m"; sourceTree = "<group>"; };
 		5373E78B1E967C0400819DCD /* UIBarButtonItem+XMGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+XMGExtension.h"; sourceTree = "<group>"; };
@@ -146,10 +142,8 @@
 		5373E7951E967C0400819DCD /* NSCalendar+XMGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+XMGExtension.h"; sourceTree = "<group>"; };
 		5373E7961E967C0400819DCD /* NSCalendar+XMGExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+XMGExtension.m"; sourceTree = "<group>"; };
 		5373E79F1E967D8600819DCD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		5373E8701E97E25300819DCD /* WSISmallTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSISmallTableViewController.h; sourceTree = "<group>"; };
-		5373E8711E97E25300819DCD /* WSISmallTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSISmallTableViewController.m; sourceTree = "<group>"; };
-		5373E8751E97E27500819DCD /* WSIBigTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIBigTableViewController.h; sourceTree = "<group>"; };
-		5373E8761E97E27500819DCD /* WSIBigTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIBigTableViewController.m; sourceTree = "<group>"; };
+		53900E481EA4A690009FEC41 /* XWScanImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWScanImage.h; sourceTree = "<group>"; };
+		53900E491EA4A690009FEC41 /* XWScanImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWScanImage.m; sourceTree = "<group>"; };
 		53FB50911E9DD795002B305D /* HUDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDUtils.h; sourceTree = "<group>"; };
 		53FB50921E9DD795002B305D /* HUDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDUtils.m; sourceTree = "<group>"; };
 		AB92A249E80C0D5ED4ED72A2 /* libPods-心愿很忙.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-心愿很忙.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,7 +173,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		531AEB331E9B20120037CA16 /* CCFoldCell */ = {
+		531AEB331E9B20120037CA16 /* WSIFoldCell */ = {
 			isa = PBXGroup;
 			children = (
 				531AEB341E9B20120037CA16 /* CCFoldCell.h */,
@@ -189,12 +183,14 @@
 				531AEB381E9B20120037CA16 /* UIView+Snapshot.h */,
 				531AEB391E9B20120037CA16 /* UIView+Snapshot.m */,
 			);
+			name = WSIFoldCell;
 			path = CCFoldCell;
 			sourceTree = "<group>";
 		};
 		531AEB411E9B29E10037CA16 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				53900E471EA4A690009FEC41 /* XWScanImage */,
 				531AEB421E9B29E10037CA16 /* CodeViewController.h */,
 				531AEB431E9B29E10037CA16 /* CodeViewController.m */,
 				532887041EA3AF8800672978 /* ListObject.h */,
@@ -231,7 +227,7 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		531AEB581E9B29E10037CA16 /* CCDraggableCard */ = {
+		531AEB581E9B29E10037CA16 /* WSIDraggableCard */ = {
 			isa = PBXGroup;
 			children = (
 				531AEB591E9B29E10037CA16 /* CCDraggableCardView.h */,
@@ -240,6 +236,7 @@
 				531AEB5C1E9B29E10037CA16 /* CCDraggableContainer.h */,
 				531AEB5D1E9B29E10037CA16 /* CCDraggableContainer.m */,
 			);
+			name = WSIDraggableCard;
 			path = CCDraggableCard;
 			sourceTree = "<group>";
 		};
@@ -267,12 +264,6 @@
 			children = (
 				5373E7461E9670A900819DCD /* AppDelegate.h */,
 				5373E7471E9670A900819DCD /* AppDelegate.m */,
-				5373E76C1E9678ED00819DCD /* WSIMainViewController.h */,
-				5373E76D1E9678ED00819DCD /* WSIMainViewController.m */,
-				5373E8701E97E25300819DCD /* WSISmallTableViewController.h */,
-				5373E8711E97E25300819DCD /* WSISmallTableViewController.m */,
-				5373E8751E97E27500819DCD /* WSIBigTableViewController.h */,
-				5373E8761E97E27500819DCD /* WSIBigTableViewController.m */,
 				531D50D81E98C8A400B17598 /* WSILoginViewController.h */,
 				531D50D91E98C8A400B17598 /* WSILoginViewController.m */,
 				531D50DA1E98C8A400B17598 /* WSILoginViewController.xib */,
@@ -297,8 +288,8 @@
 				5373E74F1E9670A900819DCD /* ____.xcdatamodeld */,
 				531AEB411E9B29E10037CA16 /* Class */,
 				531AEB4B1E9B29E10037CA16 /* Resources */,
-				531AEB581E9B29E10037CA16 /* CCDraggableCard */,
-				531AEB331E9B20120037CA16 /* CCFoldCell */,
+				531AEB581E9B29E10037CA16 /* WSIDraggableCard */,
+				531AEB331E9B20120037CA16 /* WSIFoldCell */,
 				5373E7431E9670A900819DCD /* Supporting Files */,
 			);
 			path = "心愿很忙";
@@ -334,6 +325,15 @@
 			);
 			name = Categary;
 			path = "../../../BSBDJ/百思不得姐2/百思不得姐/classes/Other/Categary";
+			sourceTree = "<group>";
+		};
+		53900E471EA4A690009FEC41 /* XWScanImage */ = {
+			isa = PBXGroup;
+			children = (
+				53900E481EA4A690009FEC41 /* XWScanImage.h */,
+				53900E491EA4A690009FEC41 /* XWScanImage.m */,
+			);
+			path = XWScanImage;
 			sourceTree = "<group>";
 		};
 		6D3E656E835DAFB534EB3AD0 /* Pods */ = {
@@ -492,7 +492,6 @@
 				531AEB701E9B29E10037CA16 /* CCDraggableContainer.m in Sources */,
 				5373E79E1E967C0400819DCD /* NSCalendar+XMGExtension.m in Sources */,
 				531AEB601E9B29E10037CA16 /* MainViewController.m in Sources */,
-				5373E8731E97E25300819DCD /* WSISmallTableViewController.m in Sources */,
 				531AEAE11E9A6A0A0037CA16 /* WSIMeViewController.m in Sources */,
 				5373E7981E967C0400819DCD /* UIView+XMGExtension.m in Sources */,
 				5373E79B1E967C0400819DCD /* UITextField+XMGExtension.m in Sources */,
@@ -512,10 +511,9 @@
 				531AEADC1E9A69B50037CA16 /* DemoCell.m in Sources */,
 				531AEA491E992AB90037CA16 /* WSIRegisterViewController.m in Sources */,
 				531AEADB1E9A69B50037CA16 /* WSIMainTableViewController.m in Sources */,
-				5373E8781E97E27500819DCD /* WSIBigTableViewController.m in Sources */,
 				5373E79D1E967C0400819DCD /* NSDate+XMGExtension.m in Sources */,
 				5373E7451E9670A900819DCD /* main.m in Sources */,
-				5373E76F1E9678ED00819DCD /* WSIMainViewController.m in Sources */,
+				53900E4A1EA4A690009FEC41 /* XWScanImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,10 +629,12 @@
 				DEVELOPMENT_TEAM = QT76YECB7N;
 				GCC_PREFIX_HEADER = "/Users/jackeylove/Movies/心愿很忙(Beta)/心愿很忙/心愿很忙/PrefixHeader.pch";
 				INFOPLIST_FILE = "心愿很忙/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"$(inherited)",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Jackeylove.----";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -649,10 +649,12 @@
 				DEVELOPMENT_TEAM = QT76YECB7N;
 				GCC_PREFIX_HEADER = "/Users/jackeylove/Movies/心愿很忙(Beta)/心愿很忙/心愿很忙/PrefixHeader.pch";
 				INFOPLIST_FILE = "心愿很忙/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"$(inherited)",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Jackeylove.----";
 				PRODUCT_NAME = "$(TARGET_NAME)";

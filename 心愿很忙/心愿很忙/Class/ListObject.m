@@ -29,6 +29,10 @@
     [bObj setObject:self.titlePagePath forKey:@"titlePagePath"];
     [bObj setObject:self.imagePaths forKey:@"imagePaths"];
     
+    BmobUser *user = [BmobUser currentUser];
+    
+    [bObj setObject:user forKey:@"user"];
+    
     [bObj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
             

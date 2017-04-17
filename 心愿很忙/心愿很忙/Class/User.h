@@ -23,7 +23,7 @@
 -(instancetype)initWithBmobUser:(BmobUser *)bUser;
 
 
-+(User *)currentUser;
++(User *)getCurrentUser;
 
 -(void)update;
 

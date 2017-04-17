@@ -9,4 +9,5 @@ pod 'BmobSDK'
 pod 'YYText'
 pod 'SDWebImage'
 pod 'TZImagePickerController'
+pod 'HUPhotoBrowser'
 end

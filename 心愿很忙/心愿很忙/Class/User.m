@@ -11,9 +11,9 @@
 static User *_user;
 @implementation User
 
-+(User *)currentUser{
++(User *)getCurrentUser{
     if (!_user) {
-        _user = [[User alloc]initWithBmobUser:[BmobUser getCurrentUser]];
+        _user = [[User alloc]initWithBmobUser:[BmobUser currentUser]];
     }
     
     return _user;

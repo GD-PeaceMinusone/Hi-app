@@ -7,6 +7,11 @@
 //
 
 #import "WSIMainTableViewController.h"
+#import "WSILoginViewController.h"
+#import "WSIMeViewController.h"
+#import "CodeViewController.h"
+#import <BmobSDK/Bmob.h>
+#import "AppDelegate.h"
 #import "DemoCell.h"
 
 @interface WSIMainTableViewController ()
@@ -25,13 +30,77 @@ UITableViewDataSource
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    [self.view addSubview:self.tableView];
     
+    [self.view addSubview:self.tableView];
     [self createCellHeightsArray];
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
+    
+    [self setupTableView];
+    [self setupNavigationBar];
+    [self setupPublishButton];
     
 }
+
+//设置view
+-(void)setupTableView {
+    
+   self.tableView.backgroundColor = [UIColor colorWithRed:237.0/255 green:239.0/255 blue:241.0/255 alpha:0.7];
+    
+}
+
+//设置导航栏样式
+-(void)setupNavigationBar {
+    
+    UIImage *image = [UIImage imageNamed:@"头像"];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage: image style:UIBarButtonItemStylePlain target:self action:@selector(goMe)];
+    
+    [self.navigationController.navigationBar.subviews firstObject].hidden = YES;
+}
+
+-(void)setupPublishButton {
+    
+    UIButton *publishButton = [UIButton new];
+    [publishButton setImage:[UIImage imageNamed:@"发布"] forState:UIControlStateNormal];
+    
+    CGFloat buttonW = 75;
+    CGFloat buttonH = 40;
+    CGFloat buttonX = (self.view.xmg_width - buttonW)*0.5;
+    CGFloat buttonY = self.view.xmg_height - XMGMargin - buttonH;
+    
+    publishButton.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
+    [publishButton addTarget:self action:@selector(publish:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:publishButton];
+}
+
+
+//设置发布按钮
+-(void)publish: (UIButton*)button {
+    
+    if ([BmobUser currentUser]) {
+        
+        CodeViewController *codeVc = [CodeViewController new];
+        [self presentViewController:codeVc animated:YES completion:nil];
+        
+    }else {
+        
+        WSILoginViewController *loginVc = [WSILoginViewController new];
+        [self presentViewController:loginVc animated:YES completion:nil];
+        
+    }
+    
+    //    WSILoginViewController *loginVc = [WSILoginViewController new];
+    //    [self presentViewController:loginVc animated:YES completion:nil];
+    
+}
+
+//监听按钮响应
+-(void)goMe {
+    
+    [ShareApp.drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+    
+}
+
 
 - (void)createCellHeightsArray
 {
@@ -39,6 +108,7 @@ UITableViewDataSource
         [self.cellHeights addObject:@(kCloseCellHeight)];
     }
 }
+
 
 #pragma mark - UITableViewDelegate && UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

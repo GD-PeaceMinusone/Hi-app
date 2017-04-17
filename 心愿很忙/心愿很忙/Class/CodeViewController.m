@@ -15,6 +15,10 @@
 #import <TZImagePickerController.h>
 #import "ListObject.h"
 #import <TZImageManager.h>
+#import <HUPhotoBrowser.h>
+#import "XWScanImage.h"
+
+//#import "XLPhotoBrowser.h"
 
 @interface CodeViewController ()
 <
@@ -72,8 +76,11 @@ TZImagePickerControllerDelegate
 @property(nonatomic,strong)UILabel *label10;
 @property(nonatomic,strong)NSString *headerUrl;
 @property(nonatomic,strong) NSMutableArray*imagePaths;
+@property(nonatomic,strong)NSMutableArray *BigPictures;
 //@property(nonatomic,strong)UIImageView *contentIv1;
 //@property(nonatomic,strong)UIImageView *contentIv2;
+
+
 @end
 
 @implementation CodeViewController
@@ -967,7 +974,11 @@ TZImagePickerControllerDelegate
             case 2:
                 
             {
-                
+                for (UIImage *image in photos) {
+                    self.BigPictures = [NSMutableArray array];;
+                    [self.BigPictures addObject:image];
+                }
+                self.images = photos;
                 //拿到选择图片的url地址
                 
                 for (NSDictionary *dict in infos) {
@@ -977,6 +988,7 @@ TZImagePickerControllerDelegate
                     
                 }
                 
+                
                 if (_selectedCount == 0) {//第一次选择图片
                     
                     self.selectedCount +=1;
@@ -985,6 +997,8 @@ TZImagePickerControllerDelegate
                         
                             //设置显示图片的imageView
                             [self setupContentWithNumber:i];
+                        
+//                        [XLPhotoBrowser showPhotoBrowserWithImages:self.imagePaths currentImageIndex:0];
                         
                             //设置输入框约束
                             [self setupLayoutWithNumber:i + 1];
@@ -1021,6 +1035,10 @@ TZImagePickerControllerDelegate
                                 imageView.contentMode =  UIViewContentModeScaleAspectFill;
                                 imageView.clipsToBounds  = YES;
                                 [self.scrollView addSubview:imageView];
+                            
+                                //添加手势
+                            UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+                                [imageView addGestureRecognizer:tap];
                                 
                                 UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
                                 [imageView addSubview:button];
@@ -1126,12 +1144,25 @@ TZImagePickerControllerDelegate
     
 }
 
+#pragma mark - 手势方法
+
+-(void)tap:(UITapGestureRecognizer *)tap{
+    
+    UIImageView *clickedImageView = (UIImageView *)tap.view;
+    [XWScanImage scanBigImageWithImageView:clickedImageView];
+    
+}
+
 #pragma mark - 抽取
 -(void)setupContentWithNumber: (NSInteger)number {
 
     UIImageView *imageView = [UIImageView new];
+    
     imageView.image = self.images[number];
     imageView.userInteractionEnabled = YES;
+    UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+    [imageView addGestureRecognizer:tap];
+    
     
     //设置imageView的裁剪方式
     imageView.contentMode =  UIViewContentModeScaleAspectFill;
@@ -1187,6 +1218,7 @@ TZImagePickerControllerDelegate
     object.textArr = @[self.tv1.text,self.tv2.text,self.tv3.text,self.tv4.text];
     object.titlePagePath = self.headerUrl;
     object.imagePaths = self.imagePaths;
+    object.user = [User getCurrentUser];
     
     [object saveWithCallback:nil];
 }
