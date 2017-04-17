@@ -13,6 +13,8 @@
 #import <Masonry.h>
 #import <UIImageView+WebCache.h>
 #import <TZImagePickerController.h>
+#import "ListObject.h"
+#import <TZImageManager.h>
 
 @interface CodeViewController ()
 <
@@ -38,6 +40,7 @@ TZImagePickerControllerDelegate
 @property(nonatomic,strong)UIView *slider1;
 @property(nonatomic,strong)UIImageView *circleImageView;
 @property(nonatomic,strong)UIImageView *circleImageView2;
+@property(nonatomic,strong)UIImageView *circleImageView3;
 @property(nonatomic,strong)UILabel *label1;
 @property(nonatomic,strong)UIView *view3;
 @property(nonatomic,strong)UITextView *textView;
@@ -66,6 +69,9 @@ TZImagePickerControllerDelegate
 @property(nonatomic,strong)UIView *tv4View;
 @property(nonatomic,strong)UITextView *tv4;
 @property(nonatomic,strong)UILabel *label7;
+@property(nonatomic,strong)UILabel *label10;
+@property(nonatomic,strong)NSString *headerUrl;
+@property(nonatomic,strong) NSMutableArray*imagePaths;
 //@property(nonatomic,strong)UIImageView *contentIv1;
 //@property(nonatomic,strong)UIImageView *contentIv2;
 @end
@@ -140,12 +146,22 @@ TZImagePickerControllerDelegate
  
  */
 
+-(NSMutableArray *)imagePaths {//初始化可变数组
+
+    if (!_imagePaths) {
+        
+        _imagePaths = [NSMutableArray array];
+    }
+    
+    return _imagePaths;
+}
+
 -(UILabel *)label7 {
     
     if (!_label7) {
         
         _label7 = [UILabel new];
-        _label7.text = @"更多心愿_";
+        _label7.text = @"更多...";
         _label7.font = [UIFont systemFontOfSize:13];
         _label7.textColor = [UIColor lightGrayColor];
         [self.scrollView addSubview:_label7];
@@ -182,7 +198,7 @@ TZImagePickerControllerDelegate
     if (!_label6) {
         
         _label6 = [UILabel new];
-        _label6.text = @"相对她/他说的事";
+        _label6.text = @"她和他_";
         _label6.font = [UIFont systemFontOfSize:13];
         _label6.textColor = [UIColor lightGrayColor];
         [self.scrollView addSubview:_label6];
@@ -329,7 +345,7 @@ TZImagePickerControllerDelegate
     
     //内容视图
     self.scrollView = [[UIScrollView alloc]init];
-    self.scrollView.contentSize = CGSizeMake(0, 1500);
+    self.scrollView.contentSize = CGSizeMake(0, 3000);
     self.scrollView.delegate= self;
     //底部栏
     self.view1 = [UIView new];
@@ -352,10 +368,10 @@ TZImagePickerControllerDelegate
     
     //发布按钮
     self.publishButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.publishButton addTarget:self action:@selector(publish) forControlEvents:UIControlEventTouchUpInside];
+    [self.publishButton addTarget:self action:@selector(publishWish) forControlEvents:UIControlEventTouchUpInside];
     
     //按钮视图
-    UIImage *image2 = [UIImage imageNamed:@"心愿单"];
+    UIImage *image2 = [UIImage imageNamed:@"愿望墙hover"];
     self.imageView = [[UIImageView alloc]initWithImage:image2];
     
     //分割线1
@@ -370,6 +386,22 @@ TZImagePickerControllerDelegate
     UIImage *image4 = [UIImage imageNamed:@"圆圈"];
     self.circleImageView2 = [[UIImageView alloc]initWithImage:image4];
     
+    /**
+     UIImage *image4 = [UIImage imageNamed:@"圆圈"];
+     self.circleImageView2 = [[UIImageView alloc]initWithImage:image4];
+     
+     self.label1 = [UILabel new];
+     [self.label1 setText:@"封面"];
+     [self.label1 setFont:[UIFont systemFontOfSize:15]];
+     */
+    
+    UIImage *image6 = [UIImage imageNamed:@"圆圈"];
+    self.circleImageView3 = [[UIImageView alloc]initWithImage:image6];
+    
+    self.label10 = [UILabel new];
+    [self.label10 setText:@"东西"];
+    [self.label10 setFont:[UIFont systemFontOfSize:15]];
+    
     //封面
     self.label1 = [UILabel new];
     [self.label1 setText:@"封面"];
@@ -380,7 +412,7 @@ TZImagePickerControllerDelegate
     [self setupShadowWithObj:self.view3];
     
     //输入框
-    UITextView *textView = [[UITextView alloc]init];
+    self.textView = [[UITextView alloc]init];
 
     //输入框下划线
     UIView *view4 = [UIView new];
@@ -397,6 +429,8 @@ TZImagePickerControllerDelegate
     
     //内部view
     self.view6 = [UIImageView new];
+    self.view6.contentMode =  UIViewContentModeScaleAspectFill;
+    self.view6.clipsToBounds  = YES;
     self.view6.backgroundColor = [UIColor colorWithRed:237.0/255 green:239.0/255 blue:241.0/255 alpha:1.0];
     
     //封面图片
@@ -412,12 +446,12 @@ TZImagePickerControllerDelegate
     
     //事情
     self.label3 = [UILabel new];
-    [self.label3 setText:@"事情"];
+    [self.label3 setText:@"心愿"];
     [self.label3 setFont:[UIFont systemFontOfSize:15]];
     
     //title
     self.label4 = [UILabel new];
-    self.label4.text = @"遗憾和自责的事";
+    self.label4.text = @"遗憾和失意_";
     self.label4.font = [UIFont systemFontOfSize:13];
     self.label4.textColor = [UIColor lightGrayColor];
     
@@ -450,7 +484,7 @@ TZImagePickerControllerDelegate
 
     //title
     self.label5 = [UILabel new];
-    self.label5.text = @"不管怎么样一定会去实现的事";
+    self.label5.text = @"梦话和心里话_";
     self.label5.font = [UIFont systemFontOfSize:13];
     self.label5.textColor = [UIColor lightGrayColor];
     
@@ -459,9 +493,11 @@ TZImagePickerControllerDelegate
     [self.scrollView addSubview:self.circleImageView];
     [self.scrollView addSubview:self.self.circleImageView2];
     [self.scrollView addSubview:self.label1];
+    [self.scrollView addSubview:self.self.circleImageView3];
+    [self.scrollView addSubview:self.label10];
     [self.scrollView addSubview:self.view3];
     [self.scrollView addSubview:self.button4];
-    [self.view3 addSubview:textView];
+    [self.view3 addSubview:self.textView];
     [self.view3 addSubview:view4];
     [self.view3 addSubview:self.imageView3];
     [self.view3 addSubview:self.label2];
@@ -535,7 +571,7 @@ TZImagePickerControllerDelegate
     
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.size.mas_equalTo(imageViewSize);
+        make.size.mas_equalTo(CGSizeMake(25, 25));
         make.center.equalTo(self.publishButton);
      
     }];
@@ -548,7 +584,7 @@ TZImagePickerControllerDelegate
     
     [self.slider1 mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.size.mas_equalTo(CGSizeMake(1, 600));
+        make.size.mas_equalTo(CGSizeMake(1, 3000));
         make.top.equalTo(self.scrollView).with.offset(40);
         make.left.equalTo(self.scrollView).with.offset(40);
     }];
@@ -591,7 +627,9 @@ TZImagePickerControllerDelegate
         make.top.mas_equalTo(self.view3.mas_top).with.offset(30);
     }];
     
-    [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+
+    
+    [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.size.mas_equalTo(CGSizeMake(140, 25));
         make.top.mas_equalTo(self.view6.mas_bottom).offset(WSIMarginDouble);
@@ -601,7 +639,7 @@ TZImagePickerControllerDelegate
     [view4 mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.size.mas_equalTo(CGSizeMake(140, 1));
-        make.top.mas_equalTo(textView.mas_bottom);
+        make.top.mas_equalTo(self.textView.mas_bottom);
         make.centerX.mas_equalTo(self.view6.mas_centerX);
     }];
     
@@ -610,6 +648,23 @@ TZImagePickerControllerDelegate
         make.size.mas_equalTo(imageViewSize);
         make.top.mas_equalTo(view4.mas_bottom).with.offset(WSIMargin);
         make.left.mas_equalTo(self.view3.mas_left).with.offset(75);
+        
+    }];
+    
+
+    [self.circleImageView3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.size.mas_equalTo(imageViewSize);
+        make.top.mas_equalTo(self.slider1.mas_top).with.offset(700);
+        make.centerX.mas_equalTo(self.slider1.mas_centerX);
+        
+    }];
+    
+    [self.label10 mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.size.mas_equalTo(CGSizeMake(39,15));
+        make.left.mas_equalTo(self.slider1.mas_right).with.offset(WSIMarginDouble);
+        make.top.mas_equalTo(self.circleImageView3.mas_top);
         
     }];
     
@@ -847,6 +902,26 @@ TZImagePickerControllerDelegate
     
 }
 
+-(void)setupLayoutWithNumber5: (NSInteger)number5 {
+
+    [self.circleImageView3 mas_remakeConstraints:^(MASConstraintMaker *make) {
+     
+        
+        make.size.mas_equalTo(imageViewSize);
+        make.top.mas_equalTo(self.slider1.mas_top).with.offset(700 + 170*number5);
+        make.centerX.mas_equalTo(self.slider1.mas_centerX);
+        
+    }];
+    
+    [self.label10 mas_remakeConstraints:^(MASConstraintMaker *make) {
+        
+        make.size.mas_equalTo(CGSizeMake(39,15));
+        make.left.mas_equalTo(self.slider1.mas_right).with.offset(WSIMarginDouble);
+        make.top.mas_equalTo(self.circleImageView3.mas_top);
+        
+    }];
+}
+
 #pragma mark - 监听点击事件
 
 -(void)closePublish {
@@ -860,11 +935,10 @@ TZImagePickerControllerDelegate
 -(void)selectedPhoto: (UIButton *)button {
 
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc]initWithMaxImagesCount:9 delegate:self];
-    
    
     //拿到选择的照片
-    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets,BOOL isSelectOriginalPhoto) {
-        
+    [imagePickerVc setDidFinishPickingPhotosWithInfosHandle:^(NSArray<UIImage *> *photos,NSArray *assets,BOOL isSelectOriginalPhoto,NSArray<NSDictionary *> *infos){
+
         self.images = photos;
         
         self.pickerCount += self.images.count;
@@ -872,6 +946,8 @@ TZImagePickerControllerDelegate
         switch (button.tag) {
                 
             case 1:
+                
+                self.headerUrl = [infos[0][@"PHImageFileURLKey"] description];
                 
             {
                 if (self.view6.image) {
@@ -891,6 +967,15 @@ TZImagePickerControllerDelegate
             case 2:
                 
             {
+                
+                //拿到选择图片的url地址
+                
+                for (NSDictionary *dict in infos) {
+                    
+                    NSString *str = [dict[@"PHImageFileURLKey"] description];
+                    [self.imagePaths addObject:str];
+                    
+                }
                 
                 if (_selectedCount == 0) {//第一次选择图片
                     
@@ -912,6 +997,9 @@ TZImagePickerControllerDelegate
                         
                             //设置输入框约束
                             [self setupLayoutWithNumber4:i + 1];
+                        
+                            //设置边栏约束
+                            [self setupLayoutWithNumber5:i + 1];
                         }
                         
                     }
@@ -928,6 +1016,10 @@ TZImagePickerControllerDelegate
                                 UIImageView *imageView = [UIImageView new];
                                 imageView.image = self.images[i];
                                 imageView.userInteractionEnabled = YES;
+                            
+                                //设置imageView的裁剪方式
+                                imageView.contentMode =  UIViewContentModeScaleAspectFill;
+                                imageView.clipsToBounds  = YES;
                                 [self.scrollView addSubview:imageView];
                                 
                                 UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -963,6 +1055,9 @@ TZImagePickerControllerDelegate
                             
                                 //设置输入框约束
                                 [self setupLayoutWithNumber4:(i+_pickerCount-self.images.count+1)];
+                            
+                                //设置输入框约束
+                                [self setupLayoutWithNumber5:(i+_pickerCount-self.images.count+1)];
                             }
                         
                         
@@ -985,6 +1080,9 @@ TZImagePickerControllerDelegate
                             
                                 //设置输入框约束
                                 [self setupLayoutWithNumber4:i + 1];
+                            
+                                //设置边栏约束
+                                [self setupLayoutWithNumber5:i + 1];
                             }
                             
                         }
@@ -997,6 +1095,8 @@ TZImagePickerControllerDelegate
                 break;
                 
             case 4:
+                
+                self.headerUrl = [infos[0][@"PHImageFileURLKey"] description];
                 
             {
                 if (self.view6.image) {
@@ -1032,6 +1132,11 @@ TZImagePickerControllerDelegate
     UIImageView *imageView = [UIImageView new];
     imageView.image = self.images[number];
     imageView.userInteractionEnabled = YES;
+    
+    //设置imageView的裁剪方式
+    imageView.contentMode =  UIViewContentModeScaleAspectFill;
+    imageView.clipsToBounds  = YES;
+    
     [self.scrollView addSubview:imageView];
     [self.imageViews addObject:imageView];
     
@@ -1073,6 +1178,18 @@ TZImagePickerControllerDelegate
     return _dataSources.count;
 }
 
+#pragma mark - 发布按钮
+
+-(void)publishWish {
+
+    ListObject *object = [ListObject new];
+    object.listTitle = self.textView.text;
+    object.textArr = @[self.tv1.text,self.tv2.text,self.tv3.text,self.tv4.text];
+    object.titlePagePath = self.headerUrl;
+    object.imagePaths = self.imagePaths;
+    
+    [object saveWithCallback:nil];
+}
 
 
 
