@@ -15,4 +15,6 @@
 +(void)setupSuccessWithStatus:(NSString*)status WithDelay:(NSTimeInterval)delay completion:(SVProgressHUDDismissCompletion)completion;
 
 +(void)setupErrorWithStatus:(NSString*)status WithDelay:(NSTimeInterval)delay completion:(SVProgressHUDDismissCompletion)completion;
+
++(void)setupInfoWithStatus:(NSString*)status WithDelay:(NSTimeInterval)delay completion:(SVProgressHUDDismissCompletion)completion;
 @end

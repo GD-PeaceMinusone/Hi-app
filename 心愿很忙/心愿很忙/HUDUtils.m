@@ -31,4 +31,14 @@
     [SVProgressHUD dismissWithDelay:delay completion:completion];
 }
 
++(void)setupInfoWithStatus:(NSString*)status WithDelay:(NSTimeInterval)delay completion:(SVProgressHUDDismissCompletion)completion {
+
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleLight];
+    [SVProgressHUD setCornerRadius:8];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD showInfoWithStatus:status];
+    [SVProgressHUD setFont:[UIFont systemFontOfSize:13]];
+    [SVProgressHUD dismissWithDelay:delay completion:completion];
+}
+
 @end

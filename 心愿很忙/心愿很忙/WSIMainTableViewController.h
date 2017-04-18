@@ -10,6 +10,5 @@
 
 @interface WSIMainTableViewController : UIViewController
 
-
 @end
 

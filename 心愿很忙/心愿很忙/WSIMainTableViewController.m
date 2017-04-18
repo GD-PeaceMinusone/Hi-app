@@ -10,9 +10,15 @@
 #import "WSILoginViewController.h"
 #import "WSIMeViewController.h"
 #import "CodeViewController.h"
+#import <AFNetworking.h>
+#import "WSIRefreshHeader.h"
+#import "WSIRefreshFooter.h"
 #import <BmobSDK/Bmob.h>
 #import "AppDelegate.h"
 #import "DemoCell.h"
+#import "HUDUtils.h"
+#import <AlibcTradeSDK/AlibcTradeSDK.h>
+#import <AlipaySDK/AlipaySDK.h>
 
 @interface WSIMainTableViewController ()
 <
@@ -33,11 +39,127 @@ UITableViewDataSource
     
     [self.view addSubview:self.tableView];
     [self createCellHeightsArray];
-    
+    [self setupRefresh];
     [self setupTableView];
     [self setupNavigationBar];
     [self setupPublishButton];
+    [self networkStatus];
+//    [self setupAliSDK];
+}
+
+//初始化SDK相关接口
+
+-(void)setupAliSDK {
+
+
+    [[AlibcTradeSDK sharedInstance]asyncInitWithSuccess:^{
+        
+        NSLog(@"----初始化成功----");
+    } failure:^(NSError *error) {
+        
+        NSLog(@"----初始化失败----");
+    }];
     
+    
+    id<AlibcTradePage> page = [AlibcTradePageFactory page: @"http://c.b6wq.com/h.UiY8Lg?cv=tNeaZt7PCTk&sm=df7021"];
+    
+    AlibcTradeShowParams* showParam = [[AlibcTradeShowParams alloc] init];
+    showParam.openType = AlibcOpenTypeAuto;
+    
+    AlibcTradeTaokeParams *taoke = [AlibcTradeTaokeParams new];
+    taoke.pid = nil;
+
+    [[AlibcTradeSDK sharedInstance].tradeService show:self page:page showParams:showParam taoKeParams:taoke trackParam:nil tradeProcessSuccessCallback:^(AlibcTradeResult * _Nullable result) {
+        
+        
+    } tradeProcessFailedCallback:^(NSError * _Nullable error) {
+        
+        
+    }];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    /* 老接口写法 已弃用，建议使用新接口
+     if (![[AlibcTradeSDK sharedInstance] handleOpenURL:url]) {
+     // 处理其他app跳转到自己的app
+     }
+     return YES;
+     */
+    
+    // 新接口写法
+    if (![[AlibcTradeSDK sharedInstance] application:application
+                                             openURL:url
+                                   sourceApplication:sourceApplication
+                                          annotation:annotation]) {
+        // 处理其他app跳转到自己的app
+    }
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
+    
+    /* 老接口写法 已弃用，建议使用新接口
+     if (![[AlibcTradeSDK sharedInstance] handleOpenURL:url]) {
+     // 处理其他app跳转到自己的app
+     }
+     return YES;
+     */
+    
+    // 新接口写法
+    if (![[AlibcTradeSDK sharedInstance] application:application
+                                             openURL:url
+                                             options:options]) {
+        //处理其他app跳转到自己的app，如果百川处理过会返回YES
+    }
+    return YES;
+}
+
+//判断网络状态
+-(void)networkStatus {
+
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:
+                
+                [HUDUtils setupInfoWithStatus:@"网络似乎有点问题" WithDelay:1.5f completion:nil];
+                
+                break;
+                
+            case AFNetworkReachabilityStatusNotReachable:
+                
+                [HUDUtils setupErrorWithStatus:@"网络未连接" WithDelay:1.5f completion:nil];
+                
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+                
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                
+                [HUDUtils setupSuccessWithStatus:@"连接wifi" WithDelay:1.5f completion:nil];
+                
+                break;
+                
+            default:
+                break;
+        }
+        
+    }];
+    
+    [manager startMonitoring];
+}
+
+//设置刷新
+-(void)setupRefresh {
+
+    self.tableView.mj_header = [WSIRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopics)];
+    [self.tableView.mj_header beginRefreshing];
+    
+    self.tableView.mj_footer = [WSIRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopics)];
 }
 
 //设置view
@@ -65,7 +187,7 @@ UITableViewDataSource
     CGFloat buttonW = 75;
     CGFloat buttonH = 40;
     CGFloat buttonX = (self.view.xmg_width - buttonW)*0.5;
-    CGFloat buttonY = self.view.xmg_height - XMGMargin - buttonH;
+    CGFloat buttonY = self.view.xmg_height - WSIMargin - buttonH;
     
     publishButton.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
     [publishButton addTarget:self action:@selector(publish:) forControlEvents:UIControlEventTouchUpInside];
@@ -107,6 +229,13 @@ UITableViewDataSource
     for (int i = 0; i < kRowsCount; i ++) {
         [self.cellHeights addObject:@(kCloseCellHeight)];
     }
+}
+
+#pragma mark - 数据加载
+
+-(void)loadNewTopics {
+
+    
 }
 
 

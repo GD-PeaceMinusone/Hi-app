@@ -15,7 +15,7 @@
 #import "UIView+XMGExtension.h"
 #import "UIBarButtonItem+XMGExtension.h"
 #import "UITextField+XMGExtension.h"
-#import "XMGConst.h"
+#import "WSIConst.h"
 #import "NSString+XMGExtension.h"
 #import "NSDate+XMGExtension.h"
 #import "NSCalendar+XMGExtension.h"

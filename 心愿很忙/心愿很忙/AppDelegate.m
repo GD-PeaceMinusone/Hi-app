@@ -11,6 +11,7 @@
 #import <MMDrawerController.h>
 #import <BmobSDK/Bmob.h>
 #import "WSIMainTableViewController.h"
+#import <AlibcTradeSDK/AlibcTradeSDK.h>
 
 @interface AppDelegate ()
 
@@ -25,7 +26,30 @@
     
     [self setupBmob];
     
+    [self setupAli];
+    
     return YES;
+}
+
+//初始化ALiSDK
+-(void)setupAli {
+
+    // 百川平台基础SDK初始化，加载并初始化各个业务能力插件
+    [[AlibcTradeSDK sharedInstance] asyncInitWithSuccess:^{
+        
+        NSLog(@"初始化成功");
+    } failure:^(NSError *error) {
+        NSLog(@"Init failed: %@", error.description);
+    }];
+    
+    // 开发阶段打开日志开关，方便排查错误信息
+    //默认调试模式打开日志,release关闭,可以不调用下面的函数
+    [[AlibcTradeSDK sharedInstance] setDebugLogOpen:YES];
+    
+    
+    // 设置全局配置，是否强制使用h5
+    [[AlibcTradeSDK sharedInstance] setIsForceH5:NO];
+    
 }
 
 -(void)setupBmob {

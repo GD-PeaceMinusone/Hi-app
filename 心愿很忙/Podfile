@@ -1,4 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
+source 'http://repo.baichuan-ios.taobao.com/baichuanSDK/AliBCSpecs.git'
 platform :ios, '8.0'
 
 target '心愿很忙' do
@@ -10,4 +11,7 @@ pod 'YYText'
 pod 'SDWebImage'
 pod 'TZImagePickerController'
 pod 'HUPhotoBrowser'
+pod 'MJRefresh'
+pod 'AFNetworking'
+pod 'AlibcTradeSDK'
 end

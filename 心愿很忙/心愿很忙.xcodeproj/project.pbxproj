@@ -40,7 +40,7 @@
 		531AEB6E1E9B29E10037CA16 /* userInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 531AEB571E9B29E10037CA16 /* userInfo.png */; };
 		531AEB6F1E9B29E10037CA16 /* CCDraggableCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 531AEB5A1E9B29E10037CA16 /* CCDraggableCardView.m */; };
 		531AEB701E9B29E10037CA16 /* CCDraggableContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 531AEB5D1E9B29E10037CA16 /* CCDraggableContainer.m */; };
-		531D50D71E98C0EB00B17598 /* XMGConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 531D50D61E98C0EB00B17598 /* XMGConst.m */; };
+		531D50D71E98C0EB00B17598 /* WSIConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 531D50D61E98C0EB00B17598 /* WSIConst.m */; };
 		531D50DB1E98C8A400B17598 /* WSILoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 531D50D91E98C8A400B17598 /* WSILoginViewController.m */; };
 		531D50DC1E98C8A400B17598 /* WSILoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 531D50DA1E98C8A400B17598 /* WSILoginViewController.xib */; };
 		532887061EA3AF8800672978 /* ListObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 532887051EA3AF8800672978 /* ListObject.m */; };
@@ -58,6 +58,37 @@
 		5373E79D1E967C0400819DCD /* NSDate+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7941E967C0400819DCD /* NSDate+XMGExtension.m */; };
 		5373E79E1E967C0400819DCD /* NSCalendar+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7961E967C0400819DCD /* NSCalendar+XMGExtension.m */; };
 		53900E4A1EA4A690009FEC41 /* XWScanImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 53900E491EA4A690009FEC41 /* XWScanImage.m */; };
+		53BC82591EA5086000E95834 /* WSIRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BC82561EA5086000E95834 /* WSIRefreshHeader.m */; };
+		53BC825A1EA5086000E95834 /* WSIRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BC82581EA5086000E95834 /* WSIRefreshFooter.m */; };
+		53BC82601EA5C00600E95834 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC825F1EA5C00600E95834 /* MobileCoreServices.framework */; };
+		53BC82621EA5C00E00E95834 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82611EA5C00E00E95834 /* AssetsLibrary.framework */; };
+		53BC82641EA5C01400E95834 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82631EA5C01400E95834 /* ImageIO.framework */; };
+		53BC82681EA5C02200E95834 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82671EA5C02200E95834 /* CoreLocation.framework */; };
+		53BC826A1EA5C02900E95834 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82691EA5C02900E95834 /* Security.framework */; };
+		53BC826C1EA5C03300E95834 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC826B1EA5C03300E95834 /* SystemConfiguration.framework */; };
+		53BC826E1EA5C03A00E95834 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC826D1EA5C03A00E95834 /* CoreTelephony.framework */; };
+		53BC82701EA5C04400E95834 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC826F1EA5C04400E95834 /* CFNetwork.framework */; };
+		53BC82721EA5C04E00E95834 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82711EA5C04E00E95834 /* CoreGraphics.framework */; };
+		53BC82741EA5C05300E95834 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82731EA5C05300E95834 /* UIKit.framework */; };
+		53BC82761EA5C05900E95834 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82751EA5C05900E95834 /* Foundation.framework */; };
+		53BC82861EA5C08900E95834 /* AlibabaAuthExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82771EA5C08900E95834 /* AlibabaAuthExt.framework */; };
+		53BC82871EA5C08900E95834 /* AlibabaAuthSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82781EA5C08900E95834 /* AlibabaAuthSDK.framework */; };
+		53BC82881EA5C08900E95834 /* AlibcLinkPartnerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82791EA5C08900E95834 /* AlibcLinkPartnerSDK.framework */; };
+		53BC82891EA5C08900E95834 /* AlibcTradeBiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC827A1EA5C08900E95834 /* AlibcTradeBiz.framework */; };
+		53BC828A1EA5C08900E95834 /* AlibcTradeCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC827B1EA5C08900E95834 /* AlibcTradeCommon.framework */; };
+		53BC828B1EA5C08900E95834 /* AlibcTradeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC827C1EA5C08900E95834 /* AlibcTradeSDK.framework */; };
+		53BC828C1EA5C08900E95834 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC827D1EA5C08900E95834 /* AlipaySDK.framework */; };
+		53BC828D1EA5C08900E95834 /* OpenMtopExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC827E1EA5C08900E95834 /* OpenMtopExt.framework */; };
+		53BC828E1EA5C08900E95834 /* OpenMtopSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC827F1EA5C08900E95834 /* OpenMtopSDK.framework */; };
+		53BC828F1EA5C08900E95834 /* SecurityGuardSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82801EA5C08900E95834 /* SecurityGuardSDK.framework */; };
+		53BC82901EA5C08900E95834 /* SGMain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82811EA5C08900E95834 /* SGMain.framework */; };
+		53BC82911EA5C08900E95834 /* SGNoCaptcha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82821EA5C08900E95834 /* SGNoCaptcha.framework */; };
+		53BC82921EA5C08900E95834 /* SGSecurityBody.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82831EA5C08900E95834 /* SGSecurityBody.framework */; };
+		53BC82931EA5C08900E95834 /* UTDID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82841EA5C08900E95834 /* UTDID.framework */; };
+		53BC82941EA5C08900E95834 /* UTMini.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82851EA5C08900E95834 /* UTMini.framework */; };
+		53BC829D1EA5C15D00E95834 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82651EA5C01B00E95834 /* CoreData.framework */; };
+		53BC82CA1EA5EBD200E95834 /* NBResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53BC82C91EA5EBD200E95834 /* NBResource.bundle */; };
+		53BC82CC1EA5F56E00E95834 /* yw_1222.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 53BC82CB1EA5F56E00E95834 /* yw_1222.jpg */; };
 		53FB50931E9DD795002B305D /* HUDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FB50921E9DD795002B305D /* HUDUtils.m */; };
 /* End PBXBuildFile section */
 
@@ -110,8 +141,8 @@
 		531AEB5B1E9B29E10037CA16 /* CCDraggableConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDraggableConfig.h; sourceTree = "<group>"; };
 		531AEB5C1E9B29E10037CA16 /* CCDraggableContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDraggableContainer.h; sourceTree = "<group>"; };
 		531AEB5D1E9B29E10037CA16 /* CCDraggableContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCDraggableContainer.m; sourceTree = "<group>"; };
-		531D50D51E98C0EB00B17598 /* XMGConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGConst.h; sourceTree = "<group>"; };
-		531D50D61E98C0EB00B17598 /* XMGConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMGConst.m; sourceTree = "<group>"; };
+		531D50D51E98C0EB00B17598 /* WSIConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIConst.h; sourceTree = "<group>"; };
+		531D50D61E98C0EB00B17598 /* WSIConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIConst.m; sourceTree = "<group>"; };
 		531D50D81E98C8A400B17598 /* WSILoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSILoginViewController.h; sourceTree = "<group>"; };
 		531D50D91E98C8A400B17598 /* WSILoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSILoginViewController.m; sourceTree = "<group>"; };
 		531D50DA1E98C8A400B17598 /* WSILoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSILoginViewController.xib; sourceTree = "<group>"; };
@@ -144,6 +175,40 @@
 		5373E79F1E967D8600819DCD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		53900E481EA4A690009FEC41 /* XWScanImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWScanImage.h; sourceTree = "<group>"; };
 		53900E491EA4A690009FEC41 /* XWScanImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWScanImage.m; sourceTree = "<group>"; };
+		53BC82551EA5086000E95834 /* WSIRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIRefreshHeader.h; sourceTree = "<group>"; };
+		53BC82561EA5086000E95834 /* WSIRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIRefreshHeader.m; sourceTree = "<group>"; };
+		53BC82571EA5086000E95834 /* WSIRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIRefreshFooter.h; sourceTree = "<group>"; };
+		53BC82581EA5086000E95834 /* WSIRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIRefreshFooter.m; sourceTree = "<group>"; };
+		53BC825D1EA5BFFF00E95834 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		53BC825F1EA5C00600E95834 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		53BC82611EA5C00E00E95834 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		53BC82631EA5C01400E95834 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		53BC82651EA5C01B00E95834 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		53BC82671EA5C02200E95834 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		53BC82691EA5C02900E95834 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		53BC826B1EA5C03300E95834 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		53BC826D1EA5C03A00E95834 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		53BC826F1EA5C04400E95834 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		53BC82711EA5C04E00E95834 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		53BC82731EA5C05300E95834 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		53BC82751EA5C05900E95834 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		53BC82771EA5C08900E95834 /* AlibabaAuthExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlibabaAuthExt.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/AlibabaAuthExt.framework"; sourceTree = "<group>"; };
+		53BC82781EA5C08900E95834 /* AlibabaAuthSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlibabaAuthSDK.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/AlibabaAuthSDK.framework"; sourceTree = "<group>"; };
+		53BC82791EA5C08900E95834 /* AlibcLinkPartnerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlibcLinkPartnerSDK.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/AlibcLinkPartnerSDK.framework"; sourceTree = "<group>"; };
+		53BC827A1EA5C08900E95834 /* AlibcTradeBiz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlibcTradeBiz.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/AlibcTradeBiz.framework"; sourceTree = "<group>"; };
+		53BC827B1EA5C08900E95834 /* AlibcTradeCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlibcTradeCommon.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/AlibcTradeCommon.framework"; sourceTree = "<group>"; };
+		53BC827C1EA5C08900E95834 /* AlibcTradeSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlibcTradeSDK.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/AlibcTradeSDK.framework"; sourceTree = "<group>"; };
+		53BC827D1EA5C08900E95834 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlipaySDK.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/AlipaySDK.framework"; sourceTree = "<group>"; };
+		53BC827E1EA5C08900E95834 /* OpenMtopExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenMtopExt.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/OpenMtopExt.framework"; sourceTree = "<group>"; };
+		53BC827F1EA5C08900E95834 /* OpenMtopSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenMtopSDK.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/OpenMtopSDK.framework"; sourceTree = "<group>"; };
+		53BC82801EA5C08900E95834 /* SecurityGuardSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityGuardSDK.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/SecurityGuardSDK.framework"; sourceTree = "<group>"; };
+		53BC82811EA5C08900E95834 /* SGMain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SGMain.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/SGMain.framework"; sourceTree = "<group>"; };
+		53BC82821EA5C08900E95834 /* SGNoCaptcha.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SGNoCaptcha.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/SGNoCaptcha.framework"; sourceTree = "<group>"; };
+		53BC82831EA5C08900E95834 /* SGSecurityBody.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SGSecurityBody.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/SGSecurityBody.framework"; sourceTree = "<group>"; };
+		53BC82841EA5C08900E95834 /* UTDID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UTDID.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/UTDID.framework"; sourceTree = "<group>"; };
+		53BC82851EA5C08900E95834 /* UTMini.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UTMini.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/UTMini.framework"; sourceTree = "<group>"; };
+		53BC82C91EA5EBD200E95834 /* NBResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NBResource.bundle; sourceTree = "<group>"; };
+		53BC82CB1EA5F56E00E95834 /* yw_1222.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yw_1222.jpg; sourceTree = "<group>"; };
 		53FB50911E9DD795002B305D /* HUDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDUtils.h; sourceTree = "<group>"; };
 		53FB50921E9DD795002B305D /* HUDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDUtils.m; sourceTree = "<group>"; };
 		AB92A249E80C0D5ED4ED72A2 /* libPods-心愿很忙.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-心愿很忙.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +219,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53BC829D1EA5C15D00E95834 /* CoreData.framework in Frameworks */,
+				53BC82761EA5C05900E95834 /* Foundation.framework in Frameworks */,
+				53BC82741EA5C05300E95834 /* UIKit.framework in Frameworks */,
+				53BC82721EA5C04E00E95834 /* CoreGraphics.framework in Frameworks */,
+				53BC82701EA5C04400E95834 /* CFNetwork.framework in Frameworks */,
+				53BC826E1EA5C03A00E95834 /* CoreTelephony.framework in Frameworks */,
+				53BC826C1EA5C03300E95834 /* SystemConfiguration.framework in Frameworks */,
+				53BC82861EA5C08900E95834 /* AlibabaAuthExt.framework in Frameworks */,
+				53BC82871EA5C08900E95834 /* AlibabaAuthSDK.framework in Frameworks */,
+				53BC82881EA5C08900E95834 /* AlibcLinkPartnerSDK.framework in Frameworks */,
+				53BC82891EA5C08900E95834 /* AlibcTradeBiz.framework in Frameworks */,
+				53BC828A1EA5C08900E95834 /* AlibcTradeCommon.framework in Frameworks */,
+				53BC828B1EA5C08900E95834 /* AlibcTradeSDK.framework in Frameworks */,
+				53BC828C1EA5C08900E95834 /* AlipaySDK.framework in Frameworks */,
+				53BC828D1EA5C08900E95834 /* OpenMtopExt.framework in Frameworks */,
+				53BC828E1EA5C08900E95834 /* OpenMtopSDK.framework in Frameworks */,
+				53BC828F1EA5C08900E95834 /* SecurityGuardSDK.framework in Frameworks */,
+				53BC82901EA5C08900E95834 /* SGMain.framework in Frameworks */,
+				53BC82911EA5C08900E95834 /* SGNoCaptcha.framework in Frameworks */,
+				53BC82921EA5C08900E95834 /* SGSecurityBody.framework in Frameworks */,
+				53BC82931EA5C08900E95834 /* UTDID.framework in Frameworks */,
+				53BC82941EA5C08900E95834 /* UTMini.framework in Frameworks */,
+				53BC826A1EA5C02900E95834 /* Security.framework in Frameworks */,
+				53BC82681EA5C02200E95834 /* CoreLocation.framework in Frameworks */,
+				53BC82641EA5C01400E95834 /* ImageIO.framework in Frameworks */,
+				53BC82621EA5C00E00E95834 /* AssetsLibrary.framework in Frameworks */,
+				53BC82601EA5C00600E95834 /* MobileCoreServices.framework in Frameworks */,
 				531AEB401E9B263E0037CA16 /* libc++abi.tbd in Frameworks */,
 				531AEB3E1E9B20EA0037CA16 /* libMMDrawerController.a in Frameworks */,
 				46A0D83662884D971F9FD9E4 /* libPods-心愿很忙.a in Frameworks */,
@@ -166,6 +258,34 @@
 		4F53A747EE315370B8FD3D7C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53BC82771EA5C08900E95834 /* AlibabaAuthExt.framework */,
+				53BC82781EA5C08900E95834 /* AlibabaAuthSDK.framework */,
+				53BC82791EA5C08900E95834 /* AlibcLinkPartnerSDK.framework */,
+				53BC827A1EA5C08900E95834 /* AlibcTradeBiz.framework */,
+				53BC827B1EA5C08900E95834 /* AlibcTradeCommon.framework */,
+				53BC827C1EA5C08900E95834 /* AlibcTradeSDK.framework */,
+				53BC827D1EA5C08900E95834 /* AlipaySDK.framework */,
+				53BC827E1EA5C08900E95834 /* OpenMtopExt.framework */,
+				53BC827F1EA5C08900E95834 /* OpenMtopSDK.framework */,
+				53BC82801EA5C08900E95834 /* SecurityGuardSDK.framework */,
+				53BC82811EA5C08900E95834 /* SGMain.framework */,
+				53BC82821EA5C08900E95834 /* SGNoCaptcha.framework */,
+				53BC82831EA5C08900E95834 /* SGSecurityBody.framework */,
+				53BC82841EA5C08900E95834 /* UTDID.framework */,
+				53BC82851EA5C08900E95834 /* UTMini.framework */,
+				53BC82751EA5C05900E95834 /* Foundation.framework */,
+				53BC82731EA5C05300E95834 /* UIKit.framework */,
+				53BC82711EA5C04E00E95834 /* CoreGraphics.framework */,
+				53BC826F1EA5C04400E95834 /* CFNetwork.framework */,
+				53BC826D1EA5C03A00E95834 /* CoreTelephony.framework */,
+				53BC826B1EA5C03300E95834 /* SystemConfiguration.framework */,
+				53BC82691EA5C02900E95834 /* Security.framework */,
+				53BC82671EA5C02200E95834 /* CoreLocation.framework */,
+				53BC82651EA5C01B00E95834 /* CoreData.framework */,
+				53BC82631EA5C01400E95834 /* ImageIO.framework */,
+				53BC82611EA5C00E00E95834 /* AssetsLibrary.framework */,
+				53BC825F1EA5C00600E95834 /* MobileCoreServices.framework */,
+				53BC825D1EA5BFFF00E95834 /* CoreMotion.framework */,
 				531AEB3F1E9B263E0037CA16 /* libc++abi.tbd */,
 				531AEB3D1E9B20EA0037CA16 /* libMMDrawerController.a */,
 				AB92A249E80C0D5ED4ED72A2 /* libPods-心愿很忙.a */,
@@ -243,6 +363,8 @@
 		5373E7371E9670A900819DCD = {
 			isa = PBXGroup;
 			children = (
+				53BC82CB1EA5F56E00E95834 /* yw_1222.jpg */,
+				53BC82C91EA5EBD200E95834 /* NBResource.bundle */,
 				531AEABB1E9A0C830037CA16 /* Podfile */,
 				5373E7421E9670A900819DCD /* 心愿很忙 */,
 				5373E7411E9670A900819DCD /* Products */,
@@ -280,8 +402,12 @@
 				531AEAD81E9A69B50037CA16 /* DemoCell.h */,
 				531AEAD91E9A69B50037CA16 /* DemoCell.m */,
 				531AEADA1E9A69B50037CA16 /* DemoCell.xib */,
-				531D50D51E98C0EB00B17598 /* XMGConst.h */,
-				531D50D61E98C0EB00B17598 /* XMGConst.m */,
+				53BC82551EA5086000E95834 /* WSIRefreshHeader.h */,
+				53BC82561EA5086000E95834 /* WSIRefreshHeader.m */,
+				53BC82571EA5086000E95834 /* WSIRefreshFooter.h */,
+				53BC82581EA5086000E95834 /* WSIRefreshFooter.m */,
+				531D50D51E98C0EB00B17598 /* WSIConst.h */,
+				531D50D61E98C0EB00B17598 /* WSIConst.m */,
 				5373E7521E9670A900819DCD /* Assets.xcassets */,
 				5373E7541E9670A900819DCD /* LaunchScreen.storyboard */,
 				5373E7571E9670A900819DCD /* Info.plist */,
@@ -415,10 +541,12 @@
 				531AEB691E9B29E10037CA16 /* image_7.jpg in Resources */,
 				531AEB6C1E9B29E10037CA16 /* liked@2x.png in Resources */,
 				531AEB6B1E9B29E10037CA16 /* image_9.jpg in Resources */,
+				53BC82CA1EA5EBD200E95834 /* NBResource.bundle in Resources */,
 				5373E7531E9670A900819DCD /* Assets.xcassets in Resources */,
 				531AEB681E9B29E10037CA16 /* image_6.jpg in Resources */,
 				531AEB621E9B29E10037CA16 /* XibViewController.xib in Resources */,
 				531AEB631E9B29E10037CA16 /* image_1.jpg in Resources */,
+				53BC82CC1EA5F56E00E95834 /* yw_1222.jpg in Resources */,
 				531AEA4A1E992AB90037CA16 /* WSIRegisterViewController.xib in Resources */,
 				531AEABC1E9A0C830037CA16 /* Podfile in Resources */,
 				531AEB6E1E9B29E10037CA16 /* userInfo.png in Resources */,
@@ -497,7 +625,7 @@
 				5373E79B1E967C0400819DCD /* UITextField+XMGExtension.m in Sources */,
 				532887091EA3B0DC00672978 /* User.m in Sources */,
 				5373E7511E9670A900819DCD /* ____.xcdatamodeld in Sources */,
-				531D50D71E98C0EB00B17598 /* XMGConst.m in Sources */,
+				531D50D71E98C0EB00B17598 /* WSIConst.m in Sources */,
 				5373E7991E967C0400819DCD /* UIBarButtonItem+XMGExtension.m in Sources */,
 				531AEB5E1E9B29E10037CA16 /* CodeViewController.m in Sources */,
 				531AEB5F1E9B29E10037CA16 /* CustomCardView.m in Sources */,
@@ -508,9 +636,11 @@
 				5373E7481E9670A900819DCD /* AppDelegate.m in Sources */,
 				531AEB3B1E9B20120037CA16 /* CCRotatedView.m in Sources */,
 				531AEB6F1E9B29E10037CA16 /* CCDraggableCardView.m in Sources */,
+				53BC82591EA5086000E95834 /* WSIRefreshHeader.m in Sources */,
 				531AEADC1E9A69B50037CA16 /* DemoCell.m in Sources */,
 				531AEA491E992AB90037CA16 /* WSIRegisterViewController.m in Sources */,
 				531AEADB1E9A69B50037CA16 /* WSIMainTableViewController.m in Sources */,
+				53BC825A1EA5086000E95834 /* WSIRefreshFooter.m in Sources */,
 				5373E79D1E967C0400819DCD /* NSDate+XMGExtension.m in Sources */,
 				5373E7451E9670A900819DCD /* main.m in Sources */,
 				53900E4A1EA4A690009FEC41 /* XWScanImage.m in Sources */,
@@ -627,12 +757,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QT76YECB7N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/心愿很忙/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage/Frameworks",
+				);
 				GCC_PREFIX_HEADER = "/Users/jackeylove/Movies/心愿很忙(Beta)/心愿很忙/心愿很忙/PrefixHeader.pch";
 				INFOPLIST_FILE = "心愿很忙/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-all_load",
+					"-lstdc++",
 					"$(inherited)",
 					"-ObjC",
 				);
@@ -647,12 +782,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QT76YECB7N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/心愿很忙/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage/Frameworks",
+				);
 				GCC_PREFIX_HEADER = "/Users/jackeylove/Movies/心愿很忙(Beta)/心愿很忙/心愿很忙/PrefixHeader.pch";
 				INFOPLIST_FILE = "心愿很忙/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-all_load",
+					"-lstdc++",
 					"$(inherited)",
 					"-ObjC",
 				);
