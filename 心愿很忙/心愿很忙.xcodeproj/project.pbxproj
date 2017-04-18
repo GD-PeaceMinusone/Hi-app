@@ -58,35 +58,9 @@
 		5373E79D1E967C0400819DCD /* NSDate+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7941E967C0400819DCD /* NSDate+XMGExtension.m */; };
 		5373E79E1E967C0400819DCD /* NSCalendar+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7961E967C0400819DCD /* NSCalendar+XMGExtension.m */; };
 		53900E4A1EA4A690009FEC41 /* XWScanImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 53900E491EA4A690009FEC41 /* XWScanImage.m */; };
+		53A46ECA1EA64D610049FE2C /* LSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46EC91EA64D610049FE2C /* LSActionSheet.m */; };
 		53BC82591EA5086000E95834 /* WSIRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BC82561EA5086000E95834 /* WSIRefreshHeader.m */; };
 		53BC825A1EA5086000E95834 /* WSIRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BC82581EA5086000E95834 /* WSIRefreshFooter.m */; };
-		53BC82601EA5C00600E95834 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC825F1EA5C00600E95834 /* MobileCoreServices.framework */; };
-		53BC82621EA5C00E00E95834 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82611EA5C00E00E95834 /* AssetsLibrary.framework */; };
-		53BC82641EA5C01400E95834 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82631EA5C01400E95834 /* ImageIO.framework */; };
-		53BC82681EA5C02200E95834 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82671EA5C02200E95834 /* CoreLocation.framework */; };
-		53BC826A1EA5C02900E95834 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82691EA5C02900E95834 /* Security.framework */; };
-		53BC826C1EA5C03300E95834 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC826B1EA5C03300E95834 /* SystemConfiguration.framework */; };
-		53BC826E1EA5C03A00E95834 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC826D1EA5C03A00E95834 /* CoreTelephony.framework */; };
-		53BC82701EA5C04400E95834 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC826F1EA5C04400E95834 /* CFNetwork.framework */; };
-		53BC82721EA5C04E00E95834 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82711EA5C04E00E95834 /* CoreGraphics.framework */; };
-		53BC82741EA5C05300E95834 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82731EA5C05300E95834 /* UIKit.framework */; };
-		53BC82761EA5C05900E95834 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82751EA5C05900E95834 /* Foundation.framework */; };
-		53BC82861EA5C08900E95834 /* AlibabaAuthExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82771EA5C08900E95834 /* AlibabaAuthExt.framework */; };
-		53BC82871EA5C08900E95834 /* AlibabaAuthSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82781EA5C08900E95834 /* AlibabaAuthSDK.framework */; };
-		53BC82881EA5C08900E95834 /* AlibcLinkPartnerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82791EA5C08900E95834 /* AlibcLinkPartnerSDK.framework */; };
-		53BC82891EA5C08900E95834 /* AlibcTradeBiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC827A1EA5C08900E95834 /* AlibcTradeBiz.framework */; };
-		53BC828A1EA5C08900E95834 /* AlibcTradeCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC827B1EA5C08900E95834 /* AlibcTradeCommon.framework */; };
-		53BC828B1EA5C08900E95834 /* AlibcTradeSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC827C1EA5C08900E95834 /* AlibcTradeSDK.framework */; };
-		53BC828C1EA5C08900E95834 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC827D1EA5C08900E95834 /* AlipaySDK.framework */; };
-		53BC828D1EA5C08900E95834 /* OpenMtopExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC827E1EA5C08900E95834 /* OpenMtopExt.framework */; };
-		53BC828E1EA5C08900E95834 /* OpenMtopSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC827F1EA5C08900E95834 /* OpenMtopSDK.framework */; };
-		53BC828F1EA5C08900E95834 /* SecurityGuardSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82801EA5C08900E95834 /* SecurityGuardSDK.framework */; };
-		53BC82901EA5C08900E95834 /* SGMain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82811EA5C08900E95834 /* SGMain.framework */; };
-		53BC82911EA5C08900E95834 /* SGNoCaptcha.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82821EA5C08900E95834 /* SGNoCaptcha.framework */; };
-		53BC82921EA5C08900E95834 /* SGSecurityBody.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82831EA5C08900E95834 /* SGSecurityBody.framework */; };
-		53BC82931EA5C08900E95834 /* UTDID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82841EA5C08900E95834 /* UTDID.framework */; };
-		53BC82941EA5C08900E95834 /* UTMini.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82851EA5C08900E95834 /* UTMini.framework */; };
-		53BC829D1EA5C15D00E95834 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BC82651EA5C01B00E95834 /* CoreData.framework */; };
 		53BC82CA1EA5EBD200E95834 /* NBResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53BC82C91EA5EBD200E95834 /* NBResource.bundle */; };
 		53BC82CC1EA5F56E00E95834 /* yw_1222.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 53BC82CB1EA5F56E00E95834 /* yw_1222.jpg */; };
 		53FB50931E9DD795002B305D /* HUDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FB50921E9DD795002B305D /* HUDUtils.m */; };
@@ -175,6 +149,8 @@
 		5373E79F1E967D8600819DCD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		53900E481EA4A690009FEC41 /* XWScanImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWScanImage.h; sourceTree = "<group>"; };
 		53900E491EA4A690009FEC41 /* XWScanImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWScanImage.m; sourceTree = "<group>"; };
+		53A46EC81EA64D610049FE2C /* LSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSActionSheet.h; sourceTree = "<group>"; };
+		53A46EC91EA64D610049FE2C /* LSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSActionSheet.m; sourceTree = "<group>"; };
 		53BC82551EA5086000E95834 /* WSIRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIRefreshHeader.h; sourceTree = "<group>"; };
 		53BC82561EA5086000E95834 /* WSIRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIRefreshHeader.m; sourceTree = "<group>"; };
 		53BC82571EA5086000E95834 /* WSIRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIRefreshFooter.h; sourceTree = "<group>"; };
@@ -219,33 +195,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53BC829D1EA5C15D00E95834 /* CoreData.framework in Frameworks */,
-				53BC82761EA5C05900E95834 /* Foundation.framework in Frameworks */,
-				53BC82741EA5C05300E95834 /* UIKit.framework in Frameworks */,
-				53BC82721EA5C04E00E95834 /* CoreGraphics.framework in Frameworks */,
-				53BC82701EA5C04400E95834 /* CFNetwork.framework in Frameworks */,
-				53BC826E1EA5C03A00E95834 /* CoreTelephony.framework in Frameworks */,
-				53BC826C1EA5C03300E95834 /* SystemConfiguration.framework in Frameworks */,
-				53BC82861EA5C08900E95834 /* AlibabaAuthExt.framework in Frameworks */,
-				53BC82871EA5C08900E95834 /* AlibabaAuthSDK.framework in Frameworks */,
-				53BC82881EA5C08900E95834 /* AlibcLinkPartnerSDK.framework in Frameworks */,
-				53BC82891EA5C08900E95834 /* AlibcTradeBiz.framework in Frameworks */,
-				53BC828A1EA5C08900E95834 /* AlibcTradeCommon.framework in Frameworks */,
-				53BC828B1EA5C08900E95834 /* AlibcTradeSDK.framework in Frameworks */,
-				53BC828C1EA5C08900E95834 /* AlipaySDK.framework in Frameworks */,
-				53BC828D1EA5C08900E95834 /* OpenMtopExt.framework in Frameworks */,
-				53BC828E1EA5C08900E95834 /* OpenMtopSDK.framework in Frameworks */,
-				53BC828F1EA5C08900E95834 /* SecurityGuardSDK.framework in Frameworks */,
-				53BC82901EA5C08900E95834 /* SGMain.framework in Frameworks */,
-				53BC82911EA5C08900E95834 /* SGNoCaptcha.framework in Frameworks */,
-				53BC82921EA5C08900E95834 /* SGSecurityBody.framework in Frameworks */,
-				53BC82931EA5C08900E95834 /* UTDID.framework in Frameworks */,
-				53BC82941EA5C08900E95834 /* UTMini.framework in Frameworks */,
-				53BC826A1EA5C02900E95834 /* Security.framework in Frameworks */,
-				53BC82681EA5C02200E95834 /* CoreLocation.framework in Frameworks */,
-				53BC82641EA5C01400E95834 /* ImageIO.framework in Frameworks */,
-				53BC82621EA5C00E00E95834 /* AssetsLibrary.framework in Frameworks */,
-				53BC82601EA5C00600E95834 /* MobileCoreServices.framework in Frameworks */,
 				531AEB401E9B263E0037CA16 /* libc++abi.tbd in Frameworks */,
 				531AEB3E1E9B20EA0037CA16 /* libMMDrawerController.a in Frameworks */,
 				46A0D83662884D971F9FD9E4 /* libPods-心愿很忙.a in Frameworks */,
@@ -406,6 +355,8 @@
 				53BC82561EA5086000E95834 /* WSIRefreshHeader.m */,
 				53BC82571EA5086000E95834 /* WSIRefreshFooter.h */,
 				53BC82581EA5086000E95834 /* WSIRefreshFooter.m */,
+				53A46EC81EA64D610049FE2C /* LSActionSheet.h */,
+				53A46EC91EA64D610049FE2C /* LSActionSheet.m */,
 				531D50D51E98C0EB00B17598 /* WSIConst.h */,
 				531D50D61E98C0EB00B17598 /* WSIConst.m */,
 				5373E7521E9670A900819DCD /* Assets.xcassets */,
@@ -613,6 +564,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53A46ECA1EA64D610049FE2C /* LSActionSheet.m in Sources */,
 				5373E79A1E967C0400819DCD /* UIButton+XMGExtension.m in Sources */,
 				5373E79C1E967C0400819DCD /* NSString+XMGExtension.m in Sources */,
 				531AEB611E9B29E10037CA16 /* XibViewController.m in Sources */,

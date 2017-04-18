@@ -11,9 +11,6 @@
 
 @interface DemoCell : CCFoldCell
 
-@property (nonatomic, weak) IBOutlet UILabel *closeNumberLabel;
-
-@property (nonatomic, weak) IBOutlet UILabel *openNumberLabel;
 
 - (void)setNumber:(NSInteger)number;
 

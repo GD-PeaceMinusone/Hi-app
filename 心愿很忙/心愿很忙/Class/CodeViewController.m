@@ -57,8 +57,6 @@ TZImagePickerControllerDelegate
 @property(nonatomic,strong)UILabel *label4;
 @property(nonatomic,strong)UIView *tv1View;
 @property(nonatomic,strong)UITextView *tv1;
-@property(nonatomic,strong)UIButton *button2;
-
 
 @property(nonatomic,strong)UILabel *label5;
 @property(nonatomic,strong)UIButton *button4;
@@ -259,7 +257,7 @@ TZImagePickerControllerDelegate
     
     //内容视图
     self.scrollView = [[UIScrollView alloc]init];
-    self.scrollView.contentSize = CGSizeMake(0, 500);
+    self.scrollView.contentSize = CGSizeMake(0, 600);
     self.scrollView.delegate= self;
     //底部栏
     self.view1 = [UIView new];
@@ -303,7 +301,7 @@ TZImagePickerControllerDelegate
     
     //封面
     self.label1 = [UILabel new];
-    [self.label1 setText:@"封面"];
+    [self.label1 setText:@"东西"];
     [self.label1 setFont:[UIFont systemFontOfSize:15]];
     
     //封面内容
@@ -359,12 +357,7 @@ TZImagePickerControllerDelegate
     [self setupShadowWithObj:self.tv1View];
     
     self.tv1 = [UITextView new];
-    
-    self.button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.button2.tag = 2;
-    [self.button2 setImage:[UIImage imageNamed:@"相机"] forState:UIControlStateNormal];
-    [self.button2 addTarget:self action:@selector(selectedPhoto:) forControlEvents:UIControlEventTouchUpInside];
-    
+  
 
     
     [cardView addSubview:self.scrollView];
@@ -390,7 +383,6 @@ TZImagePickerControllerDelegate
 
     [self.scrollView addSubview:self.label4];
     [self.scrollView addSubview:self.label5];
-    [self.scrollView addSubview:self.button2];
     [self.tv1View addSubview:self.tv1];
 
     [self.view1 addSubview:self.view2];
@@ -572,27 +564,21 @@ TZImagePickerControllerDelegate
     
     [self.tv1View mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.size.mas_equalTo(TextViewSize);
-        make.top.mas_equalTo(self.view3.mas_bottom).with.offset(80);
+        make.height.equalTo(@(50));
         make.left.mas_equalTo(self.slider1.mas_right).with.offset(WSIMarginDouble);
+        make.top.mas_equalTo(self.view3.mas_bottom).with.offset(80);
+        make.right.mas_equalTo(cardView.mas_right).with.offset(-20);
         
     }];
     
     [self.tv1 mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.size.mas_equalTo(TextViewSize);
+        make.height.equalTo(@(50));
         make.left.mas_equalTo(self.slider1.mas_right).with.offset(WSIMarginDouble);
         make.top.mas_equalTo(self.view3.mas_bottom).with.offset(80);
+        make.right.mas_equalTo(cardView.mas_right).with.offset(-20);
     }];
     
-    [self.button2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.size.mas_equalTo(CGSizeMake(WSIMarginDouble, WSIMarginDouble));
-        make.top.mas_equalTo(self.tv1View.mas_bottom).with.offset(5);
-        make.trailing.mas_equalTo(self.tv1View.mas_trailing);
-    }];
-
-
 
     [self.label3 mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -629,38 +615,6 @@ TZImagePickerControllerDelegate
    
     
     return cardView;
-}
-
-#pragma mark - 设置输入框约束
-
--(void)setupLayoutWithNumber:(NSInteger)number {
-    
-    
-    [self.tv1View mas_remakeConstraints:^(MASConstraintMaker *make) {
-        
-        make.size.mas_equalTo(TextViewSize);
-        make.top.mas_equalTo(self.view3.mas_bottom).with.offset(80 + 170*number);
-        make.left.mas_equalTo(self.slider1.mas_right).with.offset(WSIMarginDouble);
-        
-        
-    }];
-    
-    [self.tv1 mas_remakeConstraints:^(MASConstraintMaker *make) {
-        
-        make.size.mas_equalTo(TextViewSize);
-        make.left.mas_equalTo(self.slider1.mas_right).with.offset(WSIMarginDouble);
-        make.top.mas_equalTo(self.view3.mas_bottom).with.offset(80 + 170*number);
-        
-    }];
-    
-    [self.button2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-        
-        make.size.mas_equalTo(CGSizeMake(WSIMarginDouble, WSIMarginDouble));
-        make.top.mas_equalTo(self.tv1View.mas_bottom).with.offset(5);
-        make.trailing.mas_equalTo(self.tv1View.mas_trailing);
-        
-    }];
-    
 }
 
 

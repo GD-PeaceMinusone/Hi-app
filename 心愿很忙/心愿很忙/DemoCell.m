@@ -7,6 +7,7 @@
 //
 
 #import "DemoCell.h"
+#import "LSActionSheet.h"
 
 @implementation DemoCell
 
@@ -22,6 +23,14 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+- (IBAction)smileButton:(id)sender {
+
+    [LSActionSheet showWithTitle:nil destructiveTitle:nil otherTitles:@[@"查看详情",@"帮她/他实现"] block:^(int index) {
+        
+        
+    }];
+
 }
 
 - (void)setNumber:(NSInteger)number
