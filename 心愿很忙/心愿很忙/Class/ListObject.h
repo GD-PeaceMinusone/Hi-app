@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <BmobSDK/BmobObject.h>
-#import "User.h"
 
 typedef void (^MyCallback)(id obj);
 @interface ListObject : NSObject
-@property(nonatomic,strong)NSString *listTitle;
-@property(nonatomic,strong)NSArray *textArr;
-@property(nonatomic,strong)NSString *titlePagePath;
-@property(nonatomic,strong)NSMutableArray *imagePaths;
+@property(nonatomic,strong)NSString *link;
+@property(nonatomic,strong)NSString *thingContent;
+@property(nonatomic,strong)NSString *thingPath;
 @property(nonatomic,strong)BmobObject *bObj;
-@property (nonatomic, strong)User *user;
+@property (nonatomic, strong)BmobUser *user;
 
+-(ListObject *)initWithBmobObject:(BmobObject *)bObj;
 -(void)saveWithCallback:(MyCallback)callback;
++(NSArray *)ListObjcetArrayFromBmobObjectArray:(NSArray *)array;
 @end

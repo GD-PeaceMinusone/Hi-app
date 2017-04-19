@@ -9,9 +9,9 @@
 #import "CCFoldCell.h"
 #import "UIView+Snapshot.h"
 
-IB_DESIGNABLE
+//IB_DESIGNABLE
 @implementation CCFoldCell
-
+ 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

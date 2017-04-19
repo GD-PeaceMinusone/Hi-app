@@ -19,6 +19,7 @@
 #import "HUDUtils.h"
 #import <AlibcTradeSDK/AlibcTradeSDK.h>
 #import <AlipaySDK/AlipaySDK.h>
+#import "ListObject.h"
 
 
 @interface WSIMainTableViewController ()
@@ -31,22 +32,100 @@ UITableViewDataSource
 
 @property (nonatomic, strong) NSMutableArray<NSNumber *> *cellHeights;
 
+@property(nonatomic,strong)NSArray *itObjs;
+
 @end
 
 @implementation WSIMainTableViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.view addSubview:self.tableView];
+
     [self createCellHeightsArray];
-    [self setupRefresh];
-    [self setupTableView];
     [self setupNavigationBar];
-    [self setupPublishButton];
     [self networkStatus];
-//    [self setupAliSDK];
+    [self setupRefresh];
+    
+    NSLog(@"viewdidload");
+
 }
+
+
+/**设置刷新操作*/
+-(void)setupRefresh {
+    
+    self.tableView.mj_header = [WSIRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopics)];
+    [self.tableView.mj_header beginRefreshing];
+    
+    self.tableView.mj_footer = [WSIRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopics)];
+}
+
+
+#pragma mark - 数据加载
+
+-(void)loadNewTopics {
+    
+    BmobQuery *query = [BmobQuery queryWithClassName:@"ListObject"];
+    
+    query.limit = 10;
+    
+    [query orderByDescending:@"createdAt"];
+    
+        
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+            
+            self.itObjs = [ListObject ListObjcetArrayFromBmobObjectArray:array];
+            [self.tableView reloadData];
+        
+        
+        }];
+        
+
+    //把数据保存
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.itObjs];
+    
+    [data writeToFile:kITObjsPath atomically:YES];
+    
+}
+
+
+-(void)loadMoreTopics {
+    
+    
+}
+
+
+
+#pragma mark - Getter && Setter
+
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        
+        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView.backgroundColor = [UIColor colorWithRed:237.0/255 green:239.0/255 blue:241.0/255 alpha:0.7];
+        
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+        [_tableView registerNib:[UINib nibWithNibName:@"DemoCell" bundle:nil] forCellReuseIdentifier:@"DemoCell"];
+        
+        [self.view addSubview:_tableView];
+        [self setupPublishButton];
+    }
+    return _tableView;
+}
+
+- (NSMutableArray<NSNumber *> *)cellHeights
+{
+    if (!_cellHeights) {
+        _cellHeights = [NSMutableArray array];
+    }
+    return _cellHeights;
+}
+
+
 
 //初始化SDK相关接口
 
@@ -141,7 +220,6 @@ UITableViewDataSource
                 
             case AFNetworkReachabilityStatusReachableViaWiFi:
                 
-                [HUDUtils setupSuccessWithStatus:@"连接wifi" WithDelay:1.5f completion:nil];
                 
                 break;
                 
@@ -152,22 +230,6 @@ UITableViewDataSource
     }];
     
     [manager startMonitoring];
-}
-
-//设置刷新
--(void)setupRefresh {
-
-    self.tableView.mj_header = [WSIRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopics)];
-    [self.tableView.mj_header beginRefreshing];
-    
-    self.tableView.mj_footer = [WSIRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopics)];
-}
-
-//设置view
--(void)setupTableView {
-    
-   self.tableView.backgroundColor = [UIColor colorWithRed:237.0/255 green:239.0/255 blue:241.0/255 alpha:0.7];
-    
 }
 
 //设置导航栏样式
@@ -232,47 +294,55 @@ UITableViewDataSource
     }
 }
 
-#pragma mark - 数据加载
-
--(void)loadNewTopics {
-
-    
-}
-
 
 #pragma mark - UITableViewDelegate && UITableViewDataSource
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return kRowsCount;
+    
+    return self.itObjs.count;
+
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(DemoCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"willdisplaycell");
+    
     if (![cell isKindOfClass:[DemoCell class]]) return;
     
     cell.backgroundColor = [UIColor clearColor];
     
     CGFloat cellHeight = self.cellHeights[indexPath.row].floatValue;
+    
     if (cellHeight == kCloseCellHeight) {
+        
         [cell selectedAnimationByIsSelected:NO animated:NO completion:nil];
-    }else
-    {
+        
+    }else{
+        
         [cell selectedAnimationByIsSelected:YES animated:NO completion:nil];
     }
-    
-    [cell setNumber:indexPath.row];
+  
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"cellforrowatindexpath");
     DemoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DemoCell" forIndexPath:indexPath];
+    
+    ListObject *obj = self.itObjs[indexPath.row];
+    
+    cell.itObj = obj;
+    
     return cell;
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.cellHeights[indexPath.row].floatValue;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -304,24 +374,4 @@ UITableViewDataSource
     
 }
 
-#pragma mark - Getter && Setter
-- (UITableView *)tableView
-{
-    if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        [_tableView registerNib:[UINib nibWithNibName:@"DemoCell" bundle:nil] forCellReuseIdentifier:@"DemoCell"];
-    }
-    return _tableView;
-}
-
-- (NSMutableArray<NSNumber *> *)cellHeights
-{
-    if (!_cellHeights) {
-        _cellHeights = [NSMutableArray array];
-    }
-    return _cellHeights;
-}
 @end

@@ -17,6 +17,8 @@
 #import <TZImageManager.h>
 #import <HUPhotoBrowser.h>
 #import "XWScanImage.h"
+#import "HUDUtils.h"
+#import <BmobSDK/Bmob.h>
 
 //#import "XLPhotoBrowser.h"
 
@@ -631,14 +633,12 @@ TZImagePickerControllerDelegate
 -(void)selectedPhoto: (UIButton *)button {
 
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc]initWithMaxImagesCount:9 delegate:self];
-   
+    
+    [imagePickerVc setMaxImagesCount:1];
+    
     //拿到选择的照片
     [imagePickerVc setDidFinishPickingPhotosWithInfosHandle:^(NSArray<UIImage *> *photos,NSArray *assets,BOOL isSelectOriginalPhoto,NSArray<NSDictionary *> *infos){
 
-        self.images = photos;
-        
-        self.pickerCount += self.images.count;
-        
         switch (button.tag) {
                 
             case 1:
@@ -652,7 +652,7 @@ TZImagePickerControllerDelegate
                     
                 }else {
                     
-                    self.view6.image = _images[0];
+                    self.view6.image = photos[0];
                     button.hidden = YES;
                 }
             
@@ -668,12 +668,12 @@ TZImagePickerControllerDelegate
             {
                 if (self.view6.image) {
                     
-                    self.view6.image = _images[0];
+                    self.view6.image = photos[0];
                     button.hidden = NO;
                     
                 }else {
                     
-                    self.view6.image = _images[0];
+                    self.view6.image = photos[0];
                     button.hidden = YES;
                 }
                 
@@ -720,11 +720,13 @@ TZImagePickerControllerDelegate
 -(void)publishWish {
 
     ListObject *object = [ListObject new];
-    object.listTitle = self.textView.text;
+    object.link = self.textView.text;
 
-    object.titlePagePath = self.headerUrl;
+    object.thingPath = self.headerUrl;
 
-    object.user = [User getCurrentUser];
+    object.thingContent = self.tv1.text;
+    
+    object.user = [BmobUser currentUser];
     
     [object saveWithCallback:nil];
 }

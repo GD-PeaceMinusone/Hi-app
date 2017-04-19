@@ -26,7 +26,7 @@
 #define  LSActionSheetDestructiveButtonColor   [UIColor redColor]
 #define  LSActionSheetOtherButtonColor  [UIColor blackColor]
 
-#define  LSActionSheetContentViewBackgroundColor [UIColor colorWithRed:251/255.0 green:251/255.0 blue:253/255.0 alpha:0.5]
+#define  LSActionSheetContentViewBackgroundColor [UIColor colorWithRed:135/255.0 green:135/255.0 blue:135/255.0 alpha:0.5]
 
 #define  LSActionSheetButtonHighlightedColor [UIColor colorWithRed:219/255.0 green:219/255.0 blue:219/255.0 alpha:0.5]
 

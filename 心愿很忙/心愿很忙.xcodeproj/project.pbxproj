@@ -11,9 +11,7 @@
 		531AEA491E992AB90037CA16 /* WSIRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 531AEA471E992AB80037CA16 /* WSIRegisterViewController.m */; };
 		531AEA4A1E992AB90037CA16 /* WSIRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 531AEA481E992AB80037CA16 /* WSIRegisterViewController.xib */; };
 		531AEABC1E9A0C830037CA16 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 531AEABB1E9A0C830037CA16 /* Podfile */; };
-		531AEADB1E9A69B50037CA16 /* WSIMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 531AEAD71E9A69B50037CA16 /* WSIMainTableViewController.m */; };
 		531AEADC1E9A69B50037CA16 /* DemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 531AEAD91E9A69B50037CA16 /* DemoCell.m */; };
-		531AEADD1E9A69B50037CA16 /* DemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 531AEADA1E9A69B50037CA16 /* DemoCell.xib */; };
 		531AEAE11E9A6A0A0037CA16 /* WSIMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 531AEADF1E9A6A0A0037CA16 /* WSIMeViewController.m */; };
 		531AEAE21E9A6A0A0037CA16 /* WSIMeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 531AEAE01E9A6A0A0037CA16 /* WSIMeViewController.xib */; };
 		531AEB3A1E9B20120037CA16 /* CCFoldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 531AEB351E9B20120037CA16 /* CCFoldCell.m */; };
@@ -44,7 +42,6 @@
 		531D50DB1E98C8A400B17598 /* WSILoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 531D50D91E98C8A400B17598 /* WSILoginViewController.m */; };
 		531D50DC1E98C8A400B17598 /* WSILoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 531D50DA1E98C8A400B17598 /* WSILoginViewController.xib */; };
 		532887061EA3AF8800672978 /* ListObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 532887051EA3AF8800672978 /* ListObject.m */; };
-		532887091EA3B0DC00672978 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 532887081EA3B0DC00672978 /* User.m */; };
 		5373E7451E9670A900819DCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7441E9670A900819DCD /* main.m */; };
 		5373E7481E9670A900819DCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7471E9670A900819DCD /* AppDelegate.m */; };
 		5373E7511E9670A900819DCD /* ____.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5373E74F1E9670A900819DCD /* ____.xcdatamodeld */; };
@@ -59,9 +56,11 @@
 		5373E79E1E967C0400819DCD /* NSCalendar+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7961E967C0400819DCD /* NSCalendar+XMGExtension.m */; };
 		53900E4A1EA4A690009FEC41 /* XWScanImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 53900E491EA4A690009FEC41 /* XWScanImage.m */; };
 		53A46ECA1EA64D610049FE2C /* LSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46EC91EA64D610049FE2C /* LSActionSheet.m */; };
+		53A46ECC1EA702840049FE2C /* WSIMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46ECB1EA702840049FE2C /* WSIMainTableViewController.m */; };
+		53A46EF01EA738EB0049FE2C /* HomeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46EEF1EA738EB0049FE2C /* HomeTableView.m */; };
+		53A46EF41EA7A2870049FE2C /* DemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53A46EF31EA7A2870049FE2C /* DemoCell.xib */; };
 		53BC82591EA5086000E95834 /* WSIRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BC82561EA5086000E95834 /* WSIRefreshHeader.m */; };
 		53BC825A1EA5086000E95834 /* WSIRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BC82581EA5086000E95834 /* WSIRefreshFooter.m */; };
-		53BC82CA1EA5EBD200E95834 /* NBResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53BC82C91EA5EBD200E95834 /* NBResource.bundle */; };
 		53BC82CC1EA5F56E00E95834 /* yw_1222.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 53BC82CB1EA5F56E00E95834 /* yw_1222.jpg */; };
 		53FB50931E9DD795002B305D /* HUDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FB50921E9DD795002B305D /* HUDUtils.m */; };
 /* End PBXBuildFile section */
@@ -74,10 +73,8 @@
 		531AEA481E992AB80037CA16 /* WSIRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSIRegisterViewController.xib; sourceTree = "<group>"; };
 		531AEABB1E9A0C830037CA16 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		531AEAD61E9A69B50037CA16 /* WSIMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIMainTableViewController.h; sourceTree = "<group>"; };
-		531AEAD71E9A69B50037CA16 /* WSIMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIMainTableViewController.m; sourceTree = "<group>"; };
 		531AEAD81E9A69B50037CA16 /* DemoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoCell.h; sourceTree = "<group>"; };
 		531AEAD91E9A69B50037CA16 /* DemoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoCell.m; sourceTree = "<group>"; };
-		531AEADA1E9A69B50037CA16 /* DemoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoCell.xib; sourceTree = "<group>"; };
 		531AEADE1E9A6A0A0037CA16 /* WSIMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIMeViewController.h; sourceTree = "<group>"; };
 		531AEADF1E9A6A0A0037CA16 /* WSIMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIMeViewController.m; sourceTree = "<group>"; };
 		531AEAE01E9A6A0A0037CA16 /* WSIMeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSIMeViewController.xib; sourceTree = "<group>"; };
@@ -122,8 +119,6 @@
 		531D50DA1E98C8A400B17598 /* WSILoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSILoginViewController.xib; sourceTree = "<group>"; };
 		532887041EA3AF8800672978 /* ListObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListObject.h; sourceTree = "<group>"; };
 		532887051EA3AF8800672978 /* ListObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListObject.m; sourceTree = "<group>"; };
-		532887071EA3B0DC00672978 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		532887081EA3B0DC00672978 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		5373E7401E9670A900819DCD /* 心愿很忙.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "心愿很忙.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5373E7441E9670A900819DCD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5373E7461E9670A900819DCD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -151,6 +146,10 @@
 		53900E491EA4A690009FEC41 /* XWScanImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWScanImage.m; sourceTree = "<group>"; };
 		53A46EC81EA64D610049FE2C /* LSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSActionSheet.h; sourceTree = "<group>"; };
 		53A46EC91EA64D610049FE2C /* LSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSActionSheet.m; sourceTree = "<group>"; };
+		53A46ECB1EA702840049FE2C /* WSIMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIMainTableViewController.m; sourceTree = "<group>"; };
+		53A46EEE1EA738EB0049FE2C /* HomeTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableView.h; sourceTree = "<group>"; };
+		53A46EEF1EA738EB0049FE2C /* HomeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableView.m; sourceTree = "<group>"; };
+		53A46EF31EA7A2870049FE2C /* DemoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoCell.xib; sourceTree = "<group>"; };
 		53BC82551EA5086000E95834 /* WSIRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIRefreshHeader.h; sourceTree = "<group>"; };
 		53BC82561EA5086000E95834 /* WSIRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIRefreshHeader.m; sourceTree = "<group>"; };
 		53BC82571EA5086000E95834 /* WSIRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIRefreshFooter.h; sourceTree = "<group>"; };
@@ -183,7 +182,6 @@
 		53BC82831EA5C08900E95834 /* SGSecurityBody.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SGSecurityBody.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/SGSecurityBody.framework"; sourceTree = "<group>"; };
 		53BC82841EA5C08900E95834 /* UTDID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UTDID.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/UTDID.framework"; sourceTree = "<group>"; };
 		53BC82851EA5C08900E95834 /* UTMini.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UTMini.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/UTMini.framework"; sourceTree = "<group>"; };
-		53BC82C91EA5EBD200E95834 /* NBResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NBResource.bundle; sourceTree = "<group>"; };
 		53BC82CB1EA5F56E00E95834 /* yw_1222.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yw_1222.jpg; sourceTree = "<group>"; };
 		53FB50911E9DD795002B305D /* HUDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDUtils.h; sourceTree = "<group>"; };
 		53FB50921E9DD795002B305D /* HUDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDUtils.m; sourceTree = "<group>"; };
@@ -264,8 +262,6 @@
 				531AEB431E9B29E10037CA16 /* CodeViewController.m */,
 				532887041EA3AF8800672978 /* ListObject.h */,
 				532887051EA3AF8800672978 /* ListObject.m */,
-				532887071EA3B0DC00672978 /* User.h */,
-				532887081EA3B0DC00672978 /* User.m */,
 				531AEB441E9B29E10037CA16 /* CustomCardView.h */,
 				531AEB451E9B29E10037CA16 /* CustomCardView.m */,
 				531AEB461E9B29E10037CA16 /* MainViewController.h */,
@@ -313,7 +309,6 @@
 			isa = PBXGroup;
 			children = (
 				53BC82CB1EA5F56E00E95834 /* yw_1222.jpg */,
-				53BC82C91EA5EBD200E95834 /* NBResource.bundle */,
 				531AEABB1E9A0C830037CA16 /* Podfile */,
 				5373E7421E9670A900819DCD /* 心愿很忙 */,
 				5373E7411E9670A900819DCD /* Products */,
@@ -347,10 +342,12 @@
 				531AEADF1E9A6A0A0037CA16 /* WSIMeViewController.m */,
 				531AEAE01E9A6A0A0037CA16 /* WSIMeViewController.xib */,
 				531AEAD61E9A69B50037CA16 /* WSIMainTableViewController.h */,
-				531AEAD71E9A69B50037CA16 /* WSIMainTableViewController.m */,
+				53A46ECB1EA702840049FE2C /* WSIMainTableViewController.m */,
+				53A46EEE1EA738EB0049FE2C /* HomeTableView.h */,
+				53A46EEF1EA738EB0049FE2C /* HomeTableView.m */,
 				531AEAD81E9A69B50037CA16 /* DemoCell.h */,
 				531AEAD91E9A69B50037CA16 /* DemoCell.m */,
-				531AEADA1E9A69B50037CA16 /* DemoCell.xib */,
+				53A46EF31EA7A2870049FE2C /* DemoCell.xib */,
 				53BC82551EA5086000E95834 /* WSIRefreshHeader.h */,
 				53BC82561EA5086000E95834 /* WSIRefreshHeader.m */,
 				53BC82571EA5086000E95834 /* WSIRefreshFooter.h */,
@@ -486,13 +483,12 @@
 			files = (
 				531AEB641E9B29E10037CA16 /* image_2.jpg in Resources */,
 				531AEB6A1E9B29E10037CA16 /* image_8.jpg in Resources */,
+				53A46EF41EA7A2870049FE2C /* DemoCell.xib in Resources */,
 				531AEB6D1E9B29E10037CA16 /* nope@2x.png in Resources */,
-				531AEADD1E9A69B50037CA16 /* DemoCell.xib in Resources */,
 				5373E7561E9670A900819DCD /* LaunchScreen.storyboard in Resources */,
 				531AEB691E9B29E10037CA16 /* image_7.jpg in Resources */,
 				531AEB6C1E9B29E10037CA16 /* liked@2x.png in Resources */,
 				531AEB6B1E9B29E10037CA16 /* image_9.jpg in Resources */,
-				53BC82CA1EA5EBD200E95834 /* NBResource.bundle in Resources */,
 				5373E7531E9670A900819DCD /* Assets.xcassets in Resources */,
 				531AEB681E9B29E10037CA16 /* image_6.jpg in Resources */,
 				531AEB621E9B29E10037CA16 /* XibViewController.xib in Resources */,
@@ -570,12 +566,13 @@
 				531AEB611E9B29E10037CA16 /* XibViewController.m in Sources */,
 				53FB50931E9DD795002B305D /* HUDUtils.m in Sources */,
 				531AEB701E9B29E10037CA16 /* CCDraggableContainer.m in Sources */,
+				53A46ECC1EA702840049FE2C /* WSIMainTableViewController.m in Sources */,
+				53A46EF01EA738EB0049FE2C /* HomeTableView.m in Sources */,
 				5373E79E1E967C0400819DCD /* NSCalendar+XMGExtension.m in Sources */,
 				531AEB601E9B29E10037CA16 /* MainViewController.m in Sources */,
 				531AEAE11E9A6A0A0037CA16 /* WSIMeViewController.m in Sources */,
 				5373E7981E967C0400819DCD /* UIView+XMGExtension.m in Sources */,
 				5373E79B1E967C0400819DCD /* UITextField+XMGExtension.m in Sources */,
-				532887091EA3B0DC00672978 /* User.m in Sources */,
 				5373E7511E9670A900819DCD /* ____.xcdatamodeld in Sources */,
 				531D50D71E98C0EB00B17598 /* WSIConst.m in Sources */,
 				5373E7991E967C0400819DCD /* UIBarButtonItem+XMGExtension.m in Sources */,
@@ -591,7 +588,6 @@
 				53BC82591EA5086000E95834 /* WSIRefreshHeader.m in Sources */,
 				531AEADC1E9A69B50037CA16 /* DemoCell.m in Sources */,
 				531AEA491E992AB90037CA16 /* WSIRegisterViewController.m in Sources */,
-				531AEADB1E9A69B50037CA16 /* WSIMainTableViewController.m in Sources */,
 				53BC825A1EA5086000E95834 /* WSIRefreshFooter.m in Sources */,
 				5373E79D1E967C0400819DCD /* NSDate+XMGExtension.m in Sources */,
 				5373E7451E9670A900819DCD /* main.m in Sources */,

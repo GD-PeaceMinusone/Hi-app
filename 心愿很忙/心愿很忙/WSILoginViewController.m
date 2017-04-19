@@ -99,12 +99,12 @@
             
             NSLog(@"登录出错---%@",error);
             
-            [HUDUtils setupErrorWithStatus:@"登录失败" WithDelay:1.5f completion:nil];
+            [HUDUtils setupErrorWithStatus:@"登录失败" WithDelay:2.0f completion:nil];
         }else {
         
             NSLog(@"登录成功---%@",user);
             
-            [HUDUtils setupSuccessWithStatus:@"登录成功" WithDelay:1.5f completion:^{
+            [HUDUtils setupSuccessWithStatus:@"登录成功" WithDelay:2.0f completion:^{
                 
                 [self dismissViewControllerAnimated:YES completion:nil];
             }];

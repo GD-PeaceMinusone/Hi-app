@@ -40,6 +40,7 @@
 /** 当前版本号判断*/
 #define ios(version) ([UIDevice currentDevice].systemVersion.doubleValue >= (version))
 #define ShareApp ((AppDelegate *)[[UIApplication sharedApplication] delegate])
+#define kITObjsPath [NSHomeDirectory() stringByAppendingString:@"/Documents/itobjs.arch"]
 
 #define kCloseCellHeight    179.f
 #define kOpenCellHeight     488.f

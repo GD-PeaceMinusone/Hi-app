@@ -19,6 +19,31 @@
 
 }
 
+
+//-(UIImageView *)thingIv {
+//
+//    if (!_thingIv) {
+//        
+//        _thingIv = [UIImageView new];
+//        _thingIv.contentMode = UIViewContentModeScaleAspectFit;
+//        _thingIv.frame = CGRectMake(50, 100, 200, 300);
+//        _thingIv.backgroundColor = XMGRandomColor;
+//        [self.contentView addSubview:_thingIv];
+//    }
+//    
+//    return _thingIv;
+//}
+
+
+-(void)setItObj:(ListObject *)itObj {
+
+    _itObj = itObj;
+    
+    self.contentLabel.text = itObj.thingContent;
+//    self.thingIv.image = [UIImage imageWithContentsOfFile:itObj.thingPath];
+    
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
