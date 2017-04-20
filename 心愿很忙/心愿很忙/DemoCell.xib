@@ -222,10 +222,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWu-QG-PYd">
-                                <rect key="frame" x="377" y="16" width="40" height="40"/>
+                                <rect key="frame" x="392" y="16" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="mkH-c7-T1J"/>
-                                    <constraint firstAttribute="width" constant="40" id="rcd-58-lgH"/>
+                                    <constraint firstAttribute="height" constant="25" id="mkH-c7-T1J"/>
+                                    <constraint firstAttribute="width" constant="25" id="rcd-58-lgH"/>
                                 </constraints>
                                 <state key="normal" image="三个圆点"/>
                             </button>
@@ -245,6 +245,9 @@
                                     <constraint firstAttribute="width" constant="27" id="eMo-ug-UWe"/>
                                 </constraints>
                                 <state key="normal" image="笑脸"/>
+                                <connections>
+                                    <action selector="smileButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="pga-lY-HBs"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3PW-WK-x46">
                                 <rect key="frame" x="321" y="439" width="27" height="27"/>
@@ -254,15 +257,18 @@
                                 <rect key="frame" x="264" y="439" width="27" height="27"/>
                                 <state key="normal" image="喜欢"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZr-Id-F3P">
-                                <rect key="frame" x="8" y="320" width="397" height="102"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZr-Id-F3P">
+                                <rect key="frame" x="15" y="386" width="390" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kDW-Oe-rsx">
+                                <rect key="frame" x="200" y="100.33333333333331" width="25" height="278.33333333333331"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="479" id="2wd-xe-8tj"/>
                             <constraint firstAttribute="height" constant="479" id="4TR-nb-4Bt"/>
@@ -275,13 +281,19 @@
                             <constraint firstItem="3PW-WK-x46" firstAttribute="height" secondItem="Czv-7x-wPl" secondAttribute="height" id="J1b-LB-lup"/>
                             <constraint firstAttribute="trailing" secondItem="UWu-QG-PYd" secondAttribute="trailing" constant="8" id="NDo-lP-Xor"/>
                             <constraint firstAttribute="trailing" secondItem="1Zt-7D-HNz" secondAttribute="trailing" id="PdR-ws-ACS"/>
+                            <constraint firstAttribute="trailing" secondItem="rZr-Id-F3P" secondAttribute="trailing" constant="20" id="PmJ-NG-J5r"/>
+                            <constraint firstAttribute="bottom" secondItem="rZr-Id-F3P" secondAttribute="bottom" constant="57" id="Q0x-3S-3QZ"/>
+                            <constraint firstItem="kDW-Oe-rsx" firstAttribute="top" secondItem="1Zt-7D-HNz" secondAttribute="bottom" constant="20" id="V80-7H-6Yk"/>
                             <constraint firstItem="egS-kS-Z3H" firstAttribute="leading" secondItem="nsb-Td-jpV" secondAttribute="trailing" constant="14" id="VeE-5i-hpc"/>
                             <constraint firstAttribute="trailing" secondItem="qoa-Qd-XNo" secondAttribute="trailing" constant="20" id="WKi-JA-mg8"/>
                             <constraint firstItem="3PW-WK-x46" firstAttribute="leading" secondItem="Czv-7x-wPl" secondAttribute="trailing" constant="30" id="XLe-1b-iRy"/>
                             <constraint firstItem="1Zt-7D-HNz" firstAttribute="leading" secondItem="z6S-DZ-oVD" secondAttribute="leading" id="XjM-pQ-Ogx"/>
                             <constraint firstItem="qoa-Qd-XNo" firstAttribute="top" secondItem="Czv-7x-wPl" secondAttribute="top" id="ZtY-X3-Syw"/>
                             <constraint firstItem="nsb-Td-jpV" firstAttribute="top" secondItem="z6S-DZ-oVD" secondAttribute="top" constant="16" id="a1p-MA-sQ5"/>
+                            <constraint firstItem="kDW-Oe-rsx" firstAttribute="centerX" secondItem="z6S-DZ-oVD" secondAttribute="centerX" id="aLp-Lp-J5G"/>
                             <constraint firstAttribute="bottom" secondItem="qoa-Qd-XNo" secondAttribute="bottom" constant="13" id="bV5-aP-4Zh"/>
+                            <constraint firstItem="rZr-Id-F3P" firstAttribute="leading" secondItem="z6S-DZ-oVD" secondAttribute="leading" constant="15" id="ho4-z0-7m8"/>
+                            <constraint firstItem="kDW-Oe-rsx" firstAttribute="centerY" secondItem="z6S-DZ-oVD" secondAttribute="centerY" id="jVf-Qe-Iy0"/>
                             <constraint firstItem="UWu-QG-PYd" firstAttribute="top" secondItem="z6S-DZ-oVD" secondAttribute="top" constant="16" id="jfu-zs-Uds"/>
                             <constraint firstItem="qoa-Qd-XNo" firstAttribute="height" secondItem="Czv-7x-wPl" secondAttribute="height" id="pob-y8-Duj"/>
                             <constraint firstItem="IyN-n2-93q" firstAttribute="leading" secondItem="egS-kS-Z3H" secondAttribute="leading" id="qZL-R6-2hz"/>
@@ -311,8 +323,10 @@
             <connections>
                 <outlet property="containerView" destination="z6S-DZ-oVD" id="GLj-Vs-wz4"/>
                 <outlet property="containerViewTop" destination="WNR-ry-zEk" id="Gru-UR-Kpa"/>
+                <outlet property="contentLabel" destination="rZr-Id-F3P" id="DX1-fX-WDy"/>
                 <outlet property="foregroundView" destination="IIy-HG-Axu" id="BbB-VK-ddD"/>
                 <outlet property="foregroundViewTop" destination="v88-WE-wG7" id="Rch-1x-SZS"/>
+                <outlet property="thingIv" destination="kDW-Oe-rsx" id="Uw3-ah-vxV"/>
             </connections>
             <point key="canvasLocation" x="168.5" y="97"/>
         </tableViewCell>

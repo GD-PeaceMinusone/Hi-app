@@ -8,6 +8,7 @@
 
 #import "DemoCell.h"
 #import "LSActionSheet.h"
+#import <UIImageView+WebCache.h>
 
 @implementation DemoCell
 
@@ -40,7 +41,8 @@
     _itObj = itObj;
     
     self.contentLabel.text = itObj.thingContent;
-//    self.thingIv.image = [UIImage imageWithContentsOfFile:itObj.thingPath];
+    NSURL *url = [NSURL URLWithString:itObj.thingPath];
+    [self.thingIv sd_setImageWithURL:url];
     
 }
 
