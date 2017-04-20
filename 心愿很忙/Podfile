@@ -3,7 +3,7 @@ source 'http://repo.baichuan-ios.taobao.com/baichuanSDK/AliBCSpecs.git'
 platform :ios, '8.0'
 
 target '心愿很忙' do
-pod 'MMDrawerController'
+
 pod 'SVProgressHUD'
 pod 'Masonry'
 pod 'BmobSDK'
@@ -15,4 +15,6 @@ pod 'MJRefresh'
 pod 'AFNetworking'
 pod 'AlibcTradeSDK'
 pod 'SVPullToRefresh'
+pod 'MMDrawerController'
+pod 'PEPhotoCropEditor'
 end

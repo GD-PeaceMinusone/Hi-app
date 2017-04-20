@@ -54,11 +54,18 @@
 		5373E79C1E967C0400819DCD /* NSString+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7921E967C0400819DCD /* NSString+XMGExtension.m */; };
 		5373E79D1E967C0400819DCD /* NSDate+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7941E967C0400819DCD /* NSDate+XMGExtension.m */; };
 		5373E79E1E967C0400819DCD /* NSCalendar+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7961E967C0400819DCD /* NSCalendar+XMGExtension.m */; };
-		53900E4A1EA4A690009FEC41 /* XWScanImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 53900E491EA4A690009FEC41 /* XWScanImage.m */; };
 		53A46ECA1EA64D610049FE2C /* LSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46EC91EA64D610049FE2C /* LSActionSheet.m */; };
 		53A46ECC1EA702840049FE2C /* WSIMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46ECB1EA702840049FE2C /* WSIMainTableViewController.m */; };
 		53A46EF01EA738EB0049FE2C /* HomeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46EEF1EA738EB0049FE2C /* HomeTableView.m */; };
 		53A46EF41EA7A2870049FE2C /* DemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53A46EF31EA7A2870049FE2C /* DemoCell.xib */; };
+		53A46FA91EA891820049FE2C /* LYPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46F971EA891810049FE2C /* LYPhoto.m */; };
+		53A46FAA1EA891820049FE2C /* LYPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46F991EA891810049FE2C /* LYPhotoBrowser.m */; };
+		53A46FAB1EA891820049FE2C /* LYZoomingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46F9B1EA891810049FE2C /* LYZoomingImageView.m */; };
+		53A46FAC1EA891820049FE2C /* MCNewCustomLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46F9F1EA891810049FE2C /* MCNewCustomLayer.m */; };
+		53A46FAD1EA891820049FE2C /* MCNewCustomLayeredView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46FA21EA891810049FE2C /* MCNewCustomLayeredView.m */; };
+		53A46FAE1EA891820049FE2C /* MCPercentageDoughnutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46FA41EA891810049FE2C /* MCPercentageDoughnutView.m */; };
+		53A46FAF1EA891820049FE2C /* MCSliceLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46FA61EA891820049FE2C /* MCSliceLayer.m */; };
+		53A46FB01EA891820049FE2C /* MCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46FA81EA891820049FE2C /* MCUtil.m */; };
 		53BC82591EA5086000E95834 /* WSIRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BC82561EA5086000E95834 /* WSIRefreshHeader.m */; };
 		53BC825A1EA5086000E95834 /* WSIRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BC82581EA5086000E95834 /* WSIRefreshFooter.m */; };
 		53BC82CC1EA5F56E00E95834 /* yw_1222.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 53BC82CB1EA5F56E00E95834 /* yw_1222.jpg */; };
@@ -142,14 +149,30 @@
 		5373E7951E967C0400819DCD /* NSCalendar+XMGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+XMGExtension.h"; sourceTree = "<group>"; };
 		5373E7961E967C0400819DCD /* NSCalendar+XMGExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+XMGExtension.m"; sourceTree = "<group>"; };
 		5373E79F1E967D8600819DCD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		53900E481EA4A690009FEC41 /* XWScanImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWScanImage.h; sourceTree = "<group>"; };
-		53900E491EA4A690009FEC41 /* XWScanImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWScanImage.m; sourceTree = "<group>"; };
 		53A46EC81EA64D610049FE2C /* LSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSActionSheet.h; sourceTree = "<group>"; };
 		53A46EC91EA64D610049FE2C /* LSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSActionSheet.m; sourceTree = "<group>"; };
 		53A46ECB1EA702840049FE2C /* WSIMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIMainTableViewController.m; sourceTree = "<group>"; };
 		53A46EEE1EA738EB0049FE2C /* HomeTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableView.h; sourceTree = "<group>"; };
 		53A46EEF1EA738EB0049FE2C /* HomeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableView.m; sourceTree = "<group>"; };
 		53A46EF31EA7A2870049FE2C /* DemoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoCell.xib; sourceTree = "<group>"; };
+		53A46F961EA891810049FE2C /* LYPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPhoto.h; sourceTree = "<group>"; };
+		53A46F971EA891810049FE2C /* LYPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPhoto.m; sourceTree = "<group>"; };
+		53A46F981EA891810049FE2C /* LYPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPhotoBrowser.h; sourceTree = "<group>"; };
+		53A46F991EA891810049FE2C /* LYPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPhotoBrowser.m; sourceTree = "<group>"; };
+		53A46F9A1EA891810049FE2C /* LYZoomingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYZoomingImageView.h; sourceTree = "<group>"; };
+		53A46F9B1EA891810049FE2C /* LYZoomingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYZoomingImageView.m; sourceTree = "<group>"; };
+		53A46F9D1EA891810049FE2C /* MCCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCCore.h; sourceTree = "<group>"; };
+		53A46F9E1EA891810049FE2C /* MCNewCustomLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewCustomLayer.h; sourceTree = "<group>"; };
+		53A46F9F1EA891810049FE2C /* MCNewCustomLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewCustomLayer.m; sourceTree = "<group>"; };
+		53A46FA01EA891810049FE2C /* MCNewCustomLayeredView+MCCustomLayeredViewSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MCNewCustomLayeredView+MCCustomLayeredViewSubclass.h"; sourceTree = "<group>"; };
+		53A46FA11EA891810049FE2C /* MCNewCustomLayeredView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCNewCustomLayeredView.h; sourceTree = "<group>"; };
+		53A46FA21EA891810049FE2C /* MCNewCustomLayeredView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCNewCustomLayeredView.m; sourceTree = "<group>"; };
+		53A46FA31EA891810049FE2C /* MCPercentageDoughnutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCPercentageDoughnutView.h; sourceTree = "<group>"; };
+		53A46FA41EA891810049FE2C /* MCPercentageDoughnutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCPercentageDoughnutView.m; sourceTree = "<group>"; };
+		53A46FA51EA891820049FE2C /* MCSliceLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCSliceLayer.h; sourceTree = "<group>"; };
+		53A46FA61EA891820049FE2C /* MCSliceLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSliceLayer.m; sourceTree = "<group>"; };
+		53A46FA71EA891820049FE2C /* MCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCUtil.h; sourceTree = "<group>"; };
+		53A46FA81EA891820049FE2C /* MCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCUtil.m; sourceTree = "<group>"; };
 		53BC82551EA5086000E95834 /* WSIRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIRefreshHeader.h; sourceTree = "<group>"; };
 		53BC82561EA5086000E95834 /* WSIRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIRefreshHeader.m; sourceTree = "<group>"; };
 		53BC82571EA5086000E95834 /* WSIRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIRefreshFooter.h; sourceTree = "<group>"; };
@@ -257,7 +280,6 @@
 		531AEB411E9B29E10037CA16 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				53900E471EA4A690009FEC41 /* XWScanImage */,
 				531AEB421E9B29E10037CA16 /* CodeViewController.h */,
 				531AEB431E9B29E10037CA16 /* CodeViewController.m */,
 				532887041EA3AF8800672978 /* ListObject.h */,
@@ -348,6 +370,7 @@
 				531AEAD81E9A69B50037CA16 /* DemoCell.h */,
 				531AEAD91E9A69B50037CA16 /* DemoCell.m */,
 				53A46EF31EA7A2870049FE2C /* DemoCell.xib */,
+				53A46F951EA891810049FE2C /* PhotoBrowser */,
 				53BC82551EA5086000E95834 /* WSIRefreshHeader.h */,
 				53BC82561EA5086000E95834 /* WSIRefreshHeader.m */,
 				53BC82571EA5086000E95834 /* WSIRefreshFooter.h */,
@@ -401,13 +424,37 @@
 			path = "../../../BSBDJ/百思不得姐2/百思不得姐/classes/Other/Categary";
 			sourceTree = "<group>";
 		};
-		53900E471EA4A690009FEC41 /* XWScanImage */ = {
+		53A46F951EA891810049FE2C /* PhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				53900E481EA4A690009FEC41 /* XWScanImage.h */,
-				53900E491EA4A690009FEC41 /* XWScanImage.m */,
+				53A46F961EA891810049FE2C /* LYPhoto.h */,
+				53A46F971EA891810049FE2C /* LYPhoto.m */,
+				53A46F981EA891810049FE2C /* LYPhotoBrowser.h */,
+				53A46F991EA891810049FE2C /* LYPhotoBrowser.m */,
+				53A46F9A1EA891810049FE2C /* LYZoomingImageView.h */,
+				53A46F9B1EA891810049FE2C /* LYZoomingImageView.m */,
+				53A46F9C1EA891810049FE2C /* PercentageDoughnutView */,
 			);
-			path = XWScanImage;
+			path = PhotoBrowser;
+			sourceTree = "<group>";
+		};
+		53A46F9C1EA891810049FE2C /* PercentageDoughnutView */ = {
+			isa = PBXGroup;
+			children = (
+				53A46F9D1EA891810049FE2C /* MCCore.h */,
+				53A46F9E1EA891810049FE2C /* MCNewCustomLayer.h */,
+				53A46F9F1EA891810049FE2C /* MCNewCustomLayer.m */,
+				53A46FA01EA891810049FE2C /* MCNewCustomLayeredView+MCCustomLayeredViewSubclass.h */,
+				53A46FA11EA891810049FE2C /* MCNewCustomLayeredView.h */,
+				53A46FA21EA891810049FE2C /* MCNewCustomLayeredView.m */,
+				53A46FA31EA891810049FE2C /* MCPercentageDoughnutView.h */,
+				53A46FA41EA891810049FE2C /* MCPercentageDoughnutView.m */,
+				53A46FA51EA891820049FE2C /* MCSliceLayer.h */,
+				53A46FA61EA891820049FE2C /* MCSliceLayer.m */,
+				53A46FA71EA891820049FE2C /* MCUtil.h */,
+				53A46FA81EA891820049FE2C /* MCUtil.m */,
+			);
+			path = PercentageDoughnutView;
 			sourceTree = "<group>";
 		};
 		6D3E656E835DAFB534EB3AD0 /* Pods */ = {
@@ -566,6 +613,7 @@
 				531AEB611E9B29E10037CA16 /* XibViewController.m in Sources */,
 				53FB50931E9DD795002B305D /* HUDUtils.m in Sources */,
 				531AEB701E9B29E10037CA16 /* CCDraggableContainer.m in Sources */,
+				53A46FAC1EA891820049FE2C /* MCNewCustomLayer.m in Sources */,
 				53A46ECC1EA702840049FE2C /* WSIMainTableViewController.m in Sources */,
 				53A46EF01EA738EB0049FE2C /* HomeTableView.m in Sources */,
 				5373E79E1E967C0400819DCD /* NSCalendar+XMGExtension.m in Sources */,
@@ -574,24 +622,30 @@
 				5373E7981E967C0400819DCD /* UIView+XMGExtension.m in Sources */,
 				5373E79B1E967C0400819DCD /* UITextField+XMGExtension.m in Sources */,
 				5373E7511E9670A900819DCD /* ____.xcdatamodeld in Sources */,
+				53A46FAA1EA891820049FE2C /* LYPhotoBrowser.m in Sources */,
 				531D50D71E98C0EB00B17598 /* WSIConst.m in Sources */,
 				5373E7991E967C0400819DCD /* UIBarButtonItem+XMGExtension.m in Sources */,
 				531AEB5E1E9B29E10037CA16 /* CodeViewController.m in Sources */,
 				531AEB5F1E9B29E10037CA16 /* CustomCardView.m in Sources */,
 				531D50DB1E98C8A400B17598 /* WSILoginViewController.m in Sources */,
+				53A46FA91EA891820049FE2C /* LYPhoto.m in Sources */,
 				531AEB3C1E9B20120037CA16 /* UIView+Snapshot.m in Sources */,
+				53A46FB01EA891820049FE2C /* MCUtil.m in Sources */,
 				532887061EA3AF8800672978 /* ListObject.m in Sources */,
 				531AEB3A1E9B20120037CA16 /* CCFoldCell.m in Sources */,
+				53A46FAD1EA891820049FE2C /* MCNewCustomLayeredView.m in Sources */,
 				5373E7481E9670A900819DCD /* AppDelegate.m in Sources */,
 				531AEB3B1E9B20120037CA16 /* CCRotatedView.m in Sources */,
+				53A46FAE1EA891820049FE2C /* MCPercentageDoughnutView.m in Sources */,
 				531AEB6F1E9B29E10037CA16 /* CCDraggableCardView.m in Sources */,
 				53BC82591EA5086000E95834 /* WSIRefreshHeader.m in Sources */,
 				531AEADC1E9A69B50037CA16 /* DemoCell.m in Sources */,
+				53A46FAF1EA891820049FE2C /* MCSliceLayer.m in Sources */,
 				531AEA491E992AB90037CA16 /* WSIRegisterViewController.m in Sources */,
 				53BC825A1EA5086000E95834 /* WSIRefreshFooter.m in Sources */,
 				5373E79D1E967C0400819DCD /* NSDate+XMGExtension.m in Sources */,
 				5373E7451E9670A900819DCD /* main.m in Sources */,
-				53900E4A1EA4A690009FEC41 /* XWScanImage.m in Sources */,
+				53A46FAB1EA891820049FE2C /* LYZoomingImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,16 +9,14 @@
 #import "CodeViewController.h"
 #import "CCDraggableContainer.h"
 #import "CustomCardView.h"
-#import <YYText.h>
 #import <Masonry.h>
-#import <UIImageView+WebCache.h>
 #import <TZImagePickerController.h>
 #import "ListObject.h"
 #import <TZImageManager.h>
 #import <HUPhotoBrowser.h>
-#import "XWScanImage.h"
 #import "HUDUtils.h"
 #import <BmobSDK/Bmob.h>
+#import <PECropViewController.h>
 
 //#import "XLPhotoBrowser.h"
 
@@ -27,7 +25,8 @@
 CCDraggableContainerDataSource,
 CCDraggableContainerDelegate,
 UIScrollViewDelegate,
-TZImagePickerControllerDelegate
+TZImagePickerControllerDelegate,
+PECropViewControllerDelegate
 >
 
 @property (nonatomic, strong) CCDraggableContainer *container;
@@ -636,6 +635,8 @@ TZImagePickerControllerDelegate
     
     [imagePickerVc setMaxImagesCount:1];
     
+   
+    
     //拿到选择的照片
     [imagePickerVc setDidFinishPickingPhotosWithInfosHandle:^(NSArray<UIImage *> *photos,NSArray *assets,BOOL isSelectOriginalPhoto,NSArray<NSDictionary *> *infos){
 
@@ -654,6 +655,16 @@ TZImagePickerControllerDelegate
                     
                     self.view6.image = photos[0];
                     button.hidden = YES;
+                    
+                    /**
+                     
+                     PECropViewController *controller = [[PECropViewController alloc] init];
+                     controller.delegate = self;
+
+                     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+                     
+                     [self presentViewController:navigationController animated:YES completion:nil];
+                     */
                 }
             
             
@@ -689,19 +700,25 @@ TZImagePickerControllerDelegate
     }];
     
 
-    [self presentViewController:imagePickerVc animated:YES completion:nil];
+    [self presentViewController:imagePickerVc animated:YES completion:^{
+        
+        
+        
+    }];
     
 }
 
-#pragma mark - 手势方法
+/**
+#pragma mark - PECropViewControllerDelegate
 
--(void)tap:(UITapGestureRecognizer *)tap{
-    
-    UIImageView *clickedImageView = (UIImageView *)tap.view;
-    [XWScanImage scanBigImageWithImageView:clickedImageView];
+- (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    self.view6.image = croppedImage;
     
 }
 
+*/
 
 #pragma mark - 关闭按钮
 

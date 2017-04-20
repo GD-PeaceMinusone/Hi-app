@@ -314,21 +314,49 @@
 {
     if (isSelected) {
         if (animated) {
+
+            
             self.containerView.alpha = 0;
             [self openAnimationWithCompletion:completion];
+            //imageview: self.subviews[0].subviews[1].subviews[1].subviews
+            
+        //    CCRotatedView:self.subviews[0].subviews[1].subviews[1]
+            
+            //
+            
+            UIImageView *view = self.subviews[0].subviews[1].subviews[1].subviews[0];
+            
+            view.userInteractionEnabled = YES;
+            
+            UIImageView *imageIv = self.subviews[0].subviews[1].subviews[1].subviews[0];
+            
+            imageIv.userInteractionEnabled = YES;
+            
+            UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
+            [view addGestureRecognizer:gr];
+            
+            NSLog(@"%@",self.subviews[0].subviews[1].subviews[1].subviews[1]);
         }else
         {
             self.foregroundView.alpha = 0;
             self.containerView.alpha = 1;
+            
+
         }
     }else
     {
         if (animated) {
+
+            
             [self closeAnimationWithCompletion:completion];
+            NSLog(@"关闭");
+         
         }else
         {
             self.foregroundView.alpha = 1;
             self.containerView.alpha = 0;
+        
+           
         }
     }
 }
@@ -414,6 +442,9 @@
 
 - (void)closeAnimationWithCompletion:(void(^)())completion
 {
+    
+
+        
     [self removeImageItemsFromAnimationView];
     [self addImageItemsToAnimationView];
     
@@ -422,6 +453,7 @@
     
     self.animationView.alpha = 1;
     self.containerView.alpha = 0;
+
     
     NSArray<NSNumber *> *durations = [[[self durationSequenceWithType:AnimationTypeClose] reverseObjectEnumerator] allObjects];
     
@@ -473,6 +505,8 @@
             [firstItemView setNeedsLayout];
         });
     }
+    
 }
+
 
 @end

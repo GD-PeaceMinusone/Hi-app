@@ -9,6 +9,11 @@
 #import "DemoCell.h"
 #import "LSActionSheet.h"
 #import <UIImageView+WebCache.h>
+#import "LYPhotoBrowser.h"
+#import "LYPhoto.h"
+#import "HUDUtils.h"
+
+
 
 @implementation DemoCell
 
@@ -17,23 +22,11 @@
 
     self.foregroundView.layer.cornerRadius = 10;
     self.foregroundView.layer.masksToBounds = YES;
-
+    self.scrollView.contentSize = CGSizeMake(0, 1000);
 }
 
 
-//-(UIImageView *)thingIv {
-//
-//    if (!_thingIv) {
-//        
-//        _thingIv = [UIImageView new];
-//        _thingIv.contentMode = UIViewContentModeScaleAspectFit;
-//        _thingIv.frame = CGRectMake(50, 100, 200, 300);
-//        _thingIv.backgroundColor = XMGRandomColor;
-//        [self.contentView addSubview:_thingIv];
-//    }
-//    
-//    return _thingIv;
-//}
+
 
 
 -(void)setItObj:(ListObject *)itObj {
@@ -42,8 +35,14 @@
     
     self.contentLabel.text = itObj.thingContent;
     NSURL *url = [NSURL URLWithString:itObj.thingPath];
-    [self.thingIv sd_setImageWithURL:url];
+
+    [self.thingIv sd_setImageWithURL:url placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        
+        
+    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
     
+        
+    }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -58,6 +57,14 @@
         
     }];
 
+}
+- (IBAction)button:(UIButton *)sender {
+ 
+
+    
+    LYPhoto *photo = [LYPhoto photoWithImageView:self.thingIv placeHold:self.thingIv.image photoUrl:nil];
+    
+    [LYPhotoBrowser showPhotos:@[photo] currentPhotoIndex:0 countType:LYPhotoBrowserCountTypeNone];
 }
 
 - (void)setNumber:(NSInteger)number

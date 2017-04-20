@@ -15,7 +15,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
 @property(nonatomic,strong)ListObject *itObj;
+
 @property (weak, nonatomic) IBOutlet UIImageView *thingIv;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 
 - (void)setNumber:(NSInteger)number;
