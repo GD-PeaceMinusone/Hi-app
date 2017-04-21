@@ -17,5 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 /**图片*/
 @property (strong, nonatomic) IBOutlet UIImageView *thingIv;
+/**头像*/
+@property (weak, nonatomic) IBOutlet UIImageView *headerIv;
 
 @end

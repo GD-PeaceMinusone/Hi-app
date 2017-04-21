@@ -16,7 +16,7 @@
 #import <HUPhotoBrowser.h>
 #import "HUDUtils.h"
 #import <BmobSDK/Bmob.h>
-#import <PECropViewController.h>
+
 
 //#import "XLPhotoBrowser.h"
 
@@ -25,8 +25,8 @@
 CCDraggableContainerDataSource,
 CCDraggableContainerDelegate,
 UIScrollViewDelegate,
-TZImagePickerControllerDelegate,
-PECropViewControllerDelegate
+TZImagePickerControllerDelegate
+
 >
 
 @property (nonatomic, strong) CCDraggableContainer *container;
@@ -58,7 +58,6 @@ PECropViewControllerDelegate
 @property(nonatomic,strong)UILabel *label4;
 @property(nonatomic,strong)UIView *tv1View;
 @property(nonatomic,strong)UITextView *tv1;
-
 @property(nonatomic,strong)UILabel *label5;
 @property(nonatomic,strong)UIButton *button4;
 @property(nonatomic,strong)NSArray *images;
@@ -68,7 +67,8 @@ PECropViewControllerDelegate
 @property(nonatomic,strong)NSMutableArray *imageViews;
 @property(nonatomic,strong)UILabel *label10;
 @property(nonatomic,strong)NSString *headerUrl;
-
+@property (nonatomic,assign)CGFloat photoW;
+@property (nonatomic,assign)CGFloat photoH;
 @property(nonatomic,strong)NSMutableArray *BigPictures;
 
 @end
@@ -645,6 +645,8 @@ PECropViewControllerDelegate
             case 1:
                 
                 self.headerUrl = [infos[0][@"PHImageFileURLKey"] description];
+                self.photoW = photos[0].size.width / 2;
+                self.photoH = photos[0].size.height / 2;
                 
             {
                 if (self.view6.image) {
@@ -657,6 +659,7 @@ PECropViewControllerDelegate
                     button.hidden = YES;
                     
                     /**
+                 
                      
                      PECropViewController *controller = [[PECropViewController alloc] init];
                      controller.delegate = self;
@@ -664,6 +667,8 @@ PECropViewControllerDelegate
                      UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
                      
                      [self presentViewController:navigationController animated:YES completion:nil];
+                     
+                     
                      */
                 }
             
@@ -744,6 +749,10 @@ PECropViewControllerDelegate
     object.thingContent = self.tv1.text;
     
     object.user = [BmobUser currentUser];
+    
+    object.width = @(self.photoW);
+    
+    object.height = @(self.photoH);
     
     [object saveWithCallback:nil];
 }

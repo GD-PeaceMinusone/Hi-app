@@ -16,28 +16,29 @@
  */
 
 -(void)saveWithCallback:(MyCallback)callback {
-
+    
     BmobObject *bObj = [BmobObject objectWithClassName:@"ListObject"];
-
+    
     [bObj setObject:self.link forKey:@"link"];
     [bObj setObject:self.thingPath forKey:@"thingPath"];
     [bObj setObject:self.thingContent forKey:@"thingContent"];
-    
-   
+//    [bObj setObject:self.width forKey:@"width"];
+//    [bObj setObject:self.height forKey:@"height"];
     
     [bObj setObject:self.user forKey:@"user"];
-
+    
     [bObj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
             
             NSLog(@"保存成功---%@",error);
             [HUDUtils setupSuccessWithStatus:@"清单已生成" WithDelay:2.0f completion:^{
-            
+                
                 [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
                 
             }];
         }else{
             NSLog(@"保存出错---%@",error);
+            [HUDUtils setupErrorWithStatus:@"清单未生成" WithDelay:2.0f completion:nil];
         }
     }];
 }
@@ -47,7 +48,7 @@
  *  初始化时将Bmobject对象转化成Lis他Object对象
  */
 -(ListObject *)initWithBmobObject:(BmobObject *)bObj {
-
+    
     self = [super init];
     
     if (self) {
@@ -68,8 +69,8 @@
  *  将数组里的BmobObject 转换成ListObject对象
  */
 +(NSArray *)ListObjcetArrayFromBmobObjectArray:(NSArray *)array {
-
-
+    
+    
     NSMutableArray *itObjArray = [NSMutableArray array];
     for (BmobObject *bObj in array) {
         ListObject *itObj = [[ListObject alloc]initWithBmobObject:bObj];
@@ -90,20 +91,25 @@
     if (_cellHeight) return _cellHeight;
     
     //头像
-    _cellHeight += (49 + 12 + 16 + 0.33);
+    _cellHeight = (49 + 12 + 16 + 0.33);
     
-    CGFloat textMaxW = [UIScreen mainScreen].bounds.size.width - 2 * WSIMargin;
+    CGFloat textMaxW = [UIScreen mainScreen].bounds.size.width - WSIMarginDouble;
     
-    //图片
-    CGFloat contentH = textMaxW * self.height / self.width;
-    _cellHeight += contentH + WSIMarginDouble;
+    if (_thingPath) {
+        
+//        //图片
+//        CGFloat contentH = textMaxW * [_height floatValue] / [_width floatValue];
+//        _cellHeight += contentH + WSIMarginDouble;
+        _cellHeight += 250;
+    }
+    
     
     //文本
-    CGSize textMaxSize = CGSizeMake(textMaxW, MAXFLOAT);
+    CGSize textMaxSize = CGSizeMake(textMaxW - WSIMarginDouble, MAXFLOAT);
     
-    CGSize textSize = [self.text boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} context:nil].size;
+    CGSize textSize = [self.thingContent boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} context:nil].size;
     
-    _cellHeight += textSize.height + XMGMargin;
+    _cellHeight += (textSize.height + WSIMarginDouble);
     
     //图标
     _cellHeight += 57;

@@ -65,7 +65,7 @@
     
     UINavigationController *navigationVc = [[UINavigationController alloc]initWithRootViewController:mainVc];
     self.drawer = [[MMDrawerController alloc]initWithCenterViewController:navigationVc leftDrawerViewController:meVc];
-    
+//
     [self.drawer setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
     [self.drawer setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     

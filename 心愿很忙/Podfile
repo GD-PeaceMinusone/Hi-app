@@ -16,5 +16,8 @@ pod 'AFNetworking'
 pod 'AlibcTradeSDK'
 pod 'SVPullToRefresh'
 pod 'MMDrawerController'
-pod 'PEPhotoCropEditor'
+pod 'UITableView+FDTemplateLayoutCell'
+pod ‘SRActionSheet’
+pod 'STPopup'
+
 end

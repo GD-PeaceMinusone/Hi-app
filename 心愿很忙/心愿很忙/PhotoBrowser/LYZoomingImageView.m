@@ -80,7 +80,7 @@
 }
 #pragma mark - UIGestureRecognizer Action
 - (void)sigleTapAction:(UIGestureRecognizer *)gestureRecognizer{
-    [UIView animateWithDuration:0.4 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         [self resetZoom];
         self.superview.superview.alpha = 0;
     } completion:^(BOOL finished) {

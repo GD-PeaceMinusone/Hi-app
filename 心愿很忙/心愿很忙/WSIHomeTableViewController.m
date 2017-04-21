@@ -9,18 +9,18 @@
 #import "WSIHomeTableViewController.h"
 #import "WSILoginViewController.h"
 #import "WSIMeViewController.h"
-#import "CodeViewController.h"
 #import <AFNetworking.h>
 #import "WSIRefreshHeader.h"
 #import "WSIRefreshFooter.h"
 #import <BmobSDK/Bmob.h>
-#import "AppDelegate.h"
-#import "DemoCell.h"
 #import "HUDUtils.h"
 #import <AlibcTradeSDK/AlibcTradeSDK.h>
 #import <AlipaySDK/AlipaySDK.h>
 #import "ListObject.h"
 #import "HomeTableViewCell.h"
+#import "CodeViewController.h"
+#import "AppDelegate.h"
+#import <UITableView+FDTemplateLayoutCell.h>
 
 @interface WSIHomeTableViewController ()
 
@@ -43,18 +43,20 @@
     [self setupRefresh];
     [self registerCell];
     
-    [self performSelector:@selector(setupPublishButton) withObject:nil afterDelay:0.2];
+//    
+//    [self performSelector:@selector(setupPublishButton) withObject:nil afterDelay:0.2];
+//
 }
 
 //在view即将显示前加载按钮
 -(void)viewWillAppear:(BOOL)animated {
-
-    [self performSelector:@selector(setupPublishButton) withObject:nil afterDelay:0.2];
+//    
+//    [self performSelector:@selector(setupPublishButton) withObject:nil afterDelay:0.2];
 }
 
 //在view即将销毁时销毁window
 -(void)viewWillDisappear:(BOOL)animated{
-
+    
     [_window resignKeyWindow];
     _window = nil;
 }
@@ -87,35 +89,35 @@
     [self.navigationController.navigationBar.subviews firstObject].hidden = YES;
 }
 
--(void)setupPublishButton {
-    
-    _button = [UIButton new];
-    [_button setImage:[UIImage imageNamed:@"发布"] forState:UIControlStateNormal];
-    
-    /**
-    CGFloat buttonW = 75;
-    CGFloat buttonH = 40;
-    CGFloat buttonX = (self.view.xmg_width - buttonW)*0.5;
-    CGFloat buttonY = self.view.xmg_height - WSIMargin - buttonH;
-    */
-     
-    _button.frame =  CGRectMake(0,0, 64, 64);
-    [_button addTarget:self action:@selector(publish:) forControlEvents:UIControlEventTouchUpInside];
-    
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-    
-    //悬浮按钮所处的顶端UIWindow
-    _window = [[UIWindow alloc] initWithFrame:CGRectMake(screenWidth*0.5-32, screenHeight-70, 64, 64)];
-    
-    //使得新建window在最顶端
-    _window.windowLevel = UIWindowLevelAlert + 1;
-    _window.backgroundColor = [UIColor clearColor];
-    [_window addSubview:_button];
-    
-    //显示window
-    [_window makeKeyAndVisible];
-}
+//-(void)setupPublishButton {
+//    
+//    _button = [UIButton new];
+//    [_button setImage:[UIImage imageNamed:@"发布"] forState:UIControlStateNormal];
+//    
+//    /**
+//     CGFloat buttonW = 75;
+//     CGFloat buttonH = 40;
+//     CGFloat buttonX = (self.view.xmg_width - buttonW)*0.5;
+//     CGFloat buttonY = self.view.xmg_height - WSIMargin - buttonH;
+//     */
+//    
+//    _button.frame =  CGRectMake(0,0, 64, 64);
+//    [_button addTarget:self action:@selector(publish:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+//    
+//    //悬浮按钮所处的顶端UIWindow
+//    _window = [[UIWindow alloc] initWithFrame:CGRectMake(screenWidth*0.5-32, screenHeight-70, 64, 64)];
+//    
+//    //使得新建window在最顶端
+//    _window.windowLevel = UIWindowLevelAlert + 1;
+//    _window.backgroundColor = [UIColor clearColor];
+//    [_window addSubview:_button];
+//    
+//    //显示window
+//    [_window makeKeyAndVisible];
+//}
 
 
 //设置发布按钮
@@ -292,25 +294,26 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    
-    
+    NSLog(@"rows");
     return self.itObjs.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-
-    HomeTableViewCell *homeCell = [tableView dequeueReusableCellWithIdentifier:@"HomeCell"];
-
-    homeCell.itObj = self.itObjs[indexPath.row];;
+    
+    NSLog(@"cell");
+    HomeTableViewCell *homeCell = [tableView dequeueReusableCellWithIdentifier:@"HomeCell" forIndexPath:indexPath];
+    
+    homeCell.itObj = self.itObjs[indexPath.row];
     
     return homeCell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+        ListObject *obj = self.itObjs[indexPath.row];
+        return obj.cellHeight;
 
-    return [self.itObjs[indexPath.row] cellHeight];
+
 }
 
 

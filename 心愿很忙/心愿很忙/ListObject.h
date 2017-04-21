@@ -24,9 +24,9 @@ typedef void (^MyCallback)(id obj);
 /**cell高度*/
 @property (nonatomic,assign) CGFloat cellHeight;
 /** 图片的真实宽度 */
-@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, assign) NSString *width;
 /** 图片的真实高度 */
-@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, assign) NSString *height;
 /** 帖子的文字内容 */
 @property (nonatomic, copy) NSString *text;
 

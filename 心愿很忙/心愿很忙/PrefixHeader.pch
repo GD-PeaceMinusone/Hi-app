@@ -19,6 +19,7 @@
 #import "NSString+XMGExtension.h"
 #import "NSDate+XMGExtension.h"
 #import "NSCalendar+XMGExtension.h"
+#import <UIViewController+STPopup.h>
 
 /***将服务器返回的数据写入plist文件***/
 #define XMGWriteToPlist(data,fileName) [data writeToFile:[NSString stringWithFormat:@"/Users/jackeylove/Desktop/%@.plist",fileName] atomically:YES];
