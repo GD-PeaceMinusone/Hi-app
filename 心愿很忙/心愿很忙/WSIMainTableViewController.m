@@ -20,7 +20,7 @@
 #import <AlibcTradeSDK/AlibcTradeSDK.h>
 #import <AlipaySDK/AlipaySDK.h>
 #import "ListObject.h"
-
+#import "HomeTableViewCell.h"
 
 @interface WSIMainTableViewController ()
 <
@@ -76,7 +76,7 @@ UITableViewDataSource
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
             
             self.itObjs = [ListObject ListObjcetArrayFromBmobObjectArray:array];
-            [self.tableView reloadData];
+//            [self.tableView reloadData];
         
         
         }];
@@ -99,23 +99,6 @@ UITableViewDataSource
 
 #pragma mark - Getter && Setter
 
-- (UITableView *)tableView
-{
-    if (!_tableView) {
-        
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-        _tableView.backgroundColor = [UIColor colorWithRed:237.0/255 green:239.0/255 blue:241.0/255 alpha:0.7];
-        
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        [_tableView registerNib:[UINib nibWithNibName:@"DemoCell" bundle:nil] forCellReuseIdentifier:@"DemoCell"];
-        
-        [self.view addSubview:_tableView];
-        [self setupPublishButton];
-    }
-    return _tableView;
-}
 
 - (NSMutableArray<NSNumber *> *)cellHeights
 {

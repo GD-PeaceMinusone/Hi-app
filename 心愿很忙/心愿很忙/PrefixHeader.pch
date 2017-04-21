@@ -43,7 +43,7 @@
 #define kITObjsPath [NSHomeDirectory() stringByAppendingString:@"/Documents/itobjs.arch"]
 
 #define kCloseCellHeight    179.f
-#define kOpenCellHeight     488.f
+#define kOpenCellHeight     900.f
 #define kRowsCount          10
 #define WSIMargin 10
 #define WSIMarginDouble 20

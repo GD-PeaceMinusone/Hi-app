@@ -22,7 +22,9 @@
 
     self.foregroundView.layer.cornerRadius = 10;
     self.foregroundView.layer.masksToBounds = YES;
-    self.scrollView.contentSize = CGSizeMake(0, 1000);
+   
+    self.scrollView.contentSize = CGSizeMake(0, 2000);
+    self.thingIv.clipsToBounds = YES;
 }
 
 
@@ -39,8 +41,13 @@
     [self.thingIv sd_setImageWithURL:url placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
         
         
+        
     } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
     
+        if (image.size.height > 200) {
+            
+            self.thingIv.frame = CGRectMake(0, 0, image.size.height, image.size.width);
+        }
         
     }];
 }

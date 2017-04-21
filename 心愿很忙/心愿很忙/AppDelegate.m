@@ -9,9 +9,9 @@
 #import "AppDelegate.h"
 #import "WSIMeViewController.h"
 #import <MMDrawerController.h>
-#import <BmobSDK/Bmob.h>
-#import "WSIMainTableViewController.h"
+#import "WSIHomeTableViewController.h"
 #import <AlibcTradeSDK/AlibcTradeSDK.h>
+#import <BmobSDK/Bmob.h>
 
 
 @interface AppDelegate ()
@@ -61,7 +61,7 @@
 -(void)setupWindow {
 
     WSIMeViewController *meVc = [[WSIMeViewController alloc]initWithNibName:@"WSIMeViewController" bundle:[NSBundle mainBundle]];
-    WSIMainTableViewController *mainVc = [WSIMainTableViewController new];
+    WSIHomeTableViewController *mainVc = [WSIHomeTableViewController new];
     
     UINavigationController *navigationVc = [[UINavigationController alloc]initWithRootViewController:mainVc];
     self.drawer = [[MMDrawerController alloc]initWithCenterViewController:navigationVc leftDrawerViewController:meVc];

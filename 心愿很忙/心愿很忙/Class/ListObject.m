@@ -11,6 +11,10 @@
 
 @implementation ListObject
 
+/**
+ *  异步保存数据
+ */
+
 -(void)saveWithCallback:(MyCallback)callback {
 
     BmobObject *bObj = [BmobObject objectWithClassName:@"ListObject"];
@@ -38,6 +42,10 @@
     }];
 }
 
+
+/**
+ *  初始化时将Bmobject对象转化成Lis他Object对象
+ */
 -(ListObject *)initWithBmobObject:(BmobObject *)bObj {
 
     self = [super init];
@@ -56,7 +64,9 @@
 }
 
 
-
+/**
+ *  将数组里的BmobObject 转换成ListObject对象
+ */
 +(NSArray *)ListObjcetArrayFromBmobObjectArray:(NSArray *)array {
 
 
@@ -68,6 +78,39 @@
     }
     return itObjArray;
 }
+
+
+/**
+ *  动态设置cell的高度
+ */
+
+- (CGFloat)cellHeight {
+    
+    // 如果cell的高度已经计算过, 就直接返回
+    if (_cellHeight) return _cellHeight;
+    
+    //头像
+    _cellHeight += (49 + 12 + 16 + 0.33);
+    
+    CGFloat textMaxW = [UIScreen mainScreen].bounds.size.width - 2 * WSIMargin;
+    
+    //图片
+    CGFloat contentH = textMaxW * self.height / self.width;
+    _cellHeight += contentH + WSIMarginDouble;
+    
+    //文本
+    CGSize textMaxSize = CGSizeMake(textMaxW, MAXFLOAT);
+    
+    CGSize textSize = [self.text boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} context:nil].size;
+    
+    _cellHeight += textSize.height + XMGMargin;
+    
+    //图标
+    _cellHeight += 57;
+    
+    return _cellHeight;
+}
+
 
 
 @end

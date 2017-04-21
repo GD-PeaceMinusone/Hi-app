@@ -318,24 +318,22 @@
             
             self.containerView.alpha = 0;
             [self openAnimationWithCompletion:completion];
-            //imageview: self.subviews[0].subviews[1].subviews[1].subviews
             
-        //    CCRotatedView:self.subviews[0].subviews[1].subviews[1]
+            /**
+            imageview: self.subviews[0].subviews[1].subviews[1].subviews
+            CCRotatedView:self.subviews[0].subviews[1].subviews[1]
             
-            //
-            
-            UIImageView *view = self.subviews[0].subviews[1].subviews[1].subviews[0];
-            
-            view.userInteractionEnabled = YES;
-            
-            UIImageView *imageIv = self.subviews[0].subviews[1].subviews[1].subviews[0];
-            
-            imageIv.userInteractionEnabled = YES;
-            
-            UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
-            [view addGestureRecognizer:gr];
-            
-            NSLog(@"%@",self.subviews[0].subviews[1].subviews[1].subviews[1]);
+            [self.subviews[0].subviews[1].subviews[1].subviews[1] removeFromSuperview];
+            [self.subviews[0].subviews[1].subviews[2].subviews[1] removeFromSuperview];
+            [self.subviews[0].subviews[1].subviews[2].subviews[0] removeFromSuperview];
+            [self.subviews[0].subviews[1].subviews[2] removeFromSuperview];
+            [self.subviews[0].subviews[1].subviews[1] removeFromSuperview];
+             
+             NSLog(@"%@",self.subviews[0].subviews[1].subviews[1].subviews[1]);
+             
+             NSLog(@"%@",self.subviews[0].subviews);
+            */
+          
         }else
         {
             self.foregroundView.alpha = 0;
