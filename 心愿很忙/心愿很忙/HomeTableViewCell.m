@@ -15,12 +15,21 @@
 #import "WSIMeDetailViewController.h"
 #import "WSIHomeTableViewController.h"
 
+
+@interface HomeTableViewCell ()
+
+@property(nonatomic,strong)STPopupController *popupController;
+
+@end
+
+
 @implementation HomeTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
   
     [self addGesture];
+    [self.headerIv circleHeader:self.headerIv withBorderWidth:0 andBorderColor:nil];
   
 }
 
@@ -30,6 +39,9 @@
     // Configure the view for the selected state
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
+
+
+
 
 /**
  *  点击查看大图
@@ -66,9 +78,21 @@
         case 2:
             
         {
-            STPopupController *popupController = [[STPopupController alloc] initWithRootViewController:[WSIMeDetailViewController new]];
-            [popupController presentInViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
-//            [popupController pushViewController:[WSIMeDetailViewController new] animated:YES];
+            [STPopupNavigationBar appearance].barTintColor = [UIColor colorWithRed:38/255.0 green:38/255.0 blue:38/255.0 alpha:1.0];
+            [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
+            [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont fontWithName:nil size:15], NSForegroundColorAttributeName: [UIColor whiteColor] };
+           
+            
+            WSIMeDetailViewController *meVc = [WSIMeDetailViewController new];
+            self.popupController = [[STPopupController alloc] initWithRootViewController:meVc];
+            self.popupController.containerView.layer.cornerRadius = 4.0f;
+            
+            
+            [self.popupController presentInViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+            
+            [self.popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+            
+           
             
         }
             break;
@@ -76,6 +100,16 @@
         default:
             break;
     }
+    
+}
+
+/**
+ *  点击视图销毁
+ */
+
+-(void)backgroundViewDidTap {
+    
+    [self.popupController dismiss];
     
 }
 

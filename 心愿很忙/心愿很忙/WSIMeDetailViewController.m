@@ -7,8 +7,13 @@
 //
 
 #import "WSIMeDetailViewController.h"
+#import "WSIPerosonalViewController.h"
+#import <MMDrawerController.h>
+#import "ViewController.h"
 
-@interface WSIMeDetailViewController ()
+@interface WSIMeDetailViewController () 
+@property (weak, nonatomic) IBOutlet UIView *popView;
+@property (weak, nonatomic) IBOutlet UIImageView *headerIv;
 
 @end
 
@@ -17,9 +22,11 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.title = @"View Controller";
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(nextBtnDidTap)];
-        self.contentSizeInPopup = CGSizeMake(300, 400);
+        self.title = @"许愿人";
+    
+    
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"详情" style:UIBarButtonItemStylePlain target:self action:@selector(nextBtnDidTap)];
+        self.contentSizeInPopup = CGSizeMake(300, 300);
         self.landscapeContentSizeInPopup = CGSizeMake(400, 200);
     }
     return self;
@@ -27,22 +34,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [self.popView.layer setCornerRadius:4.0f];
+    [self.headerIv circleHeader:self.headerIv withBorderWidth:0 andBorderColor:nil];
+ 
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+/**
+ *  推出个人详情页面
+ */
+
+-(void)nextBtnDidTap {
+    
+   WSIPerosonalViewController *personal = [WSIPerosonalViewController new];
+    
+    MMDrawerController *mVc = (MMDrawerController*)[UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    UINavigationController *navi =(UINavigationController*)mVc.centerViewController;
+   
+    [navi  pushViewController:personal animated:YES];
+    
+   
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
+
+
+
+
+
+
+
 
 @end

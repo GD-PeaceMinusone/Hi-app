@@ -16,11 +16,11 @@
             <rect key="frame" x="0.0" y="0.0" width="406" height="514"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="406" height="513.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="406" height="513"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChR-Ve-nai">
-                        <rect key="frame" x="0.0" y="85" width="406" height="0.6666666666666714"/>
+                        <rect key="frame" x="0.0" y="85" width="406" height="1"/>
                         <color key="backgroundColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="0.29999999999999999" id="Slt-ki-sPi"/>
@@ -28,7 +28,7 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header" translatesAutoresizingMaskIntoConstraints="NO" id="XwU-EG-07k">
-                        <rect key="frame" x="20" y="20" width="49" height="49"/>
+                        <rect key="frame" x="15" y="15" width="49" height="49"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="49" id="9cF-Py-3GZ"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="49" id="QcG-dy-aWj"/>
@@ -45,7 +45,7 @@
                         <state key="normal" image="三个圆点"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XY1-DQ-dVX">
-                        <rect key="frame" x="364" y="472" width="22" height="22"/>
+                        <rect key="frame" x="364" y="471" width="22" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="22" id="e8u-Qd-z5r"/>
                             <constraint firstAttribute="height" constant="22" id="nm9-k5-feq"/>
@@ -56,21 +56,21 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qio-gG-Ttg">
-                        <rect key="frame" x="312" y="472" width="22" height="22"/>
+                        <rect key="frame" x="312" y="471" width="22" height="22"/>
                         <state key="normal" image="评论"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BwM-W5-oBt">
-                        <rect key="frame" x="260" y="472" width="22" height="22"/>
+                        <rect key="frame" x="260" y="471" width="22" height="22"/>
                         <state key="normal" image="喜欢"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试" textAlignment="justified" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzw-H7-j5j">
-                        <rect key="frame" x="12" y="436" width="374" height="36"/>
+                        <rect key="frame" x="12" y="435" width="374" height="36"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24分钟前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3y-AB-MXy">
-                        <rect key="frame" x="83" y="41" width="52" height="20"/>
+                        <rect key="frame" x="78" y="36" width="52" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="at1-qy-oAK"/>
                         </constraints>
@@ -79,7 +79,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我还是决定减肥了" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgK-CV-Qvf">
-                        <rect key="frame" x="83" y="20" width="123" height="20"/>
+                        <rect key="frame" x="78" y="15" width="123" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="m8T-t4-mJL"/>
                         </constraints>
@@ -88,7 +88,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DZK-OJ-yN2">
-                        <rect key="frame" x="0.0" y="85.666666666666686" width="406" height="340"/>
+                        <rect key="frame" x="0.0" y="86" width="406" height="339"/>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -112,13 +112,13 @@
                     <constraint firstItem="XY1-DQ-dVX" firstAttribute="top" secondItem="BwM-W5-oBt" secondAttribute="top" id="arn-G5-jIA"/>
                     <constraint firstAttribute="trailingMargin" secondItem="xZf-9S-sEr" secondAttribute="trailing" constant="8" id="bUN-gI-Qpr"/>
                     <constraint firstItem="dzw-H7-j5j" firstAttribute="top" secondItem="DZK-OJ-yN2" secondAttribute="bottom" constant="10" id="cTb-Zm-Xls"/>
-                    <constraint firstItem="XwU-EG-07k" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="12" id="cXo-mr-fC8"/>
+                    <constraint firstItem="XwU-EG-07k" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="cXo-mr-fC8"/>
                     <constraint firstItem="DZK-OJ-yN2" firstAttribute="top" secondItem="ChR-Ve-nai" secondAttribute="bottom" id="pma-r8-NSA"/>
                     <constraint firstItem="ChR-Ve-nai" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tFu-gT-10W"/>
                     <constraint firstAttribute="trailing" secondItem="ChR-Ve-nai" secondAttribute="trailing" id="uN4-xN-vtk"/>
                     <constraint firstItem="BwM-W5-oBt" firstAttribute="top" secondItem="dzw-H7-j5j" secondAttribute="bottom" id="umc-Mq-6CJ"/>
                     <constraint firstAttribute="trailing" secondItem="DZK-OJ-yN2" secondAttribute="trailing" id="vHK-0B-NnE"/>
-                    <constraint firstItem="XwU-EG-07k" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="ww3-OS-PfL"/>
+                    <constraint firstItem="XwU-EG-07k" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="ww3-OS-PfL"/>
                     <constraint firstItem="qio-gG-Ttg" firstAttribute="height" secondItem="BwM-W5-oBt" secondAttribute="height" id="wzm-ev-2vQ"/>
                 </constraints>
             </tableViewCellContentView>

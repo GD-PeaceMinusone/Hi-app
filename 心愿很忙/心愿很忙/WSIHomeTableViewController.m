@@ -85,6 +85,7 @@
     UIImage *image = [UIImage imageNamed:@"头像"];
     image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage: image style:UIBarButtonItemStylePlain target:self action:@selector(goMe)];
+   
     
     [self.navigationController.navigationBar.subviews firstObject].hidden = YES;
 }

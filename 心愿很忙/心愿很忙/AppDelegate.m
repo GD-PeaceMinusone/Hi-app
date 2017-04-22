@@ -64,6 +64,13 @@
     WSIHomeTableViewController *mainVc = [WSIHomeTableViewController new];
     
     UINavigationController *navigationVc = [[UINavigationController alloc]initWithRootViewController:mainVc];
+   
+     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
+    
+
+//    [UINavigationBar appearance].barStyle = UIBarStyleBlack;
     self.drawer = [[MMDrawerController alloc]initWithCenterViewController:navigationVc leftDrawerViewController:meVc];
 //
     [self.drawer setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
