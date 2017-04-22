@@ -164,15 +164,15 @@
         
         self.itObjs = [ListObject ListObjcetArrayFromBmobObjectArray:array];
         [self.tableView reloadData];
-        
+        [self.tableView.mj_header endRefreshing];
         
     }];
     
     
     //把数据保存
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.itObjs];
-    
-    [data writeToFile:kITObjsPath atomically:YES];
+////    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.itObjs];
+//    
+//    [data writeToFile:kITObjsPath atomically:YES];
     
 }
 

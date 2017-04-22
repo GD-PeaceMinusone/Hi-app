@@ -12,9 +12,9 @@
 #import "PersonalTableViewCell.h"
 
 @interface WSIPerosonalViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UIImageView *headerIv;
-@property(nonatomic,strong)UIImageView *headerIv2;
 
+@property(nonatomic,strong)UIImageView *headerIv2;
+@property(nonatomic,strong)UITableView *tableView;
 @end
 
 @implementation WSIPerosonalViewController
@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    [self registerCell];
     [self.view addSubview:self.tableView];
 }
 
@@ -31,7 +32,8 @@
 -(void)registerCell {
     
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([PersonalTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"personalCell"];
-}
+    
+   }
 
 
 #pragma mark - 懒加载
@@ -51,10 +53,11 @@
 
 
 -(UITableView *)tableView {
-    
+
     if (!_tableView) {
         
         _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+//        _tableView.separatorStyle =                                         UITableViewCellSeparatorStyleNone;
         _tableView.dataSource = self;
         _tableView.delegate = self;
         
@@ -62,7 +65,6 @@
     
     return _tableView;
 }
-
 
 #pragma mark - delegate
 
@@ -74,13 +76,11 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    PersonalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"personalCell"];
-    
-    if (!cell) {
+    if (indexPath.row == 0) {
         
-        cell = [[PersonalTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"personalCell"];
         
     }
+    PersonalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"personalCell"];
     return cell;
 }
 
@@ -113,8 +113,15 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-
-    return 200;
+    if (indexPath == 0) {
+        
+        return 10;
+        
+    }else {
+    
+        return 600;
+    }
+    
 }
 
 

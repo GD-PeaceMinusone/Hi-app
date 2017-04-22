@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WSIPerosonalViewController : UIViewController
-@property(nonatomic,strong)UITableView *tableView;
+
 @end

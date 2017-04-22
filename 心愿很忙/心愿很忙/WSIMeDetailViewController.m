@@ -46,13 +46,13 @@
  */
 
 -(void)nextBtnDidTap {
-    
+//    
    WSIPerosonalViewController *personal = [WSIPerosonalViewController new];
     
     MMDrawerController *mVc = (MMDrawerController*)[UIApplication sharedApplication].keyWindow.rootViewController;
     
     UINavigationController *navi =(UINavigationController*)mVc.centerViewController;
-   
+//   
     [navi  pushViewController:personal animated:YES];
     
    
