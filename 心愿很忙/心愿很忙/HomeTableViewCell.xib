@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="406" height="514"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="406" height="513"/>
+                <rect key="frame" x="0.0" y="0.0" width="406" height="513.66666666666663"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChR-Ve-nai">
@@ -122,7 +122,7 @@
                     <constraint firstItem="qio-gG-Ttg" firstAttribute="height" secondItem="BwM-W5-oBt" secondAttribute="height" id="wzm-ev-2vQ"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.8269650000732387" green="0.6742668363880937" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="contentLabel" destination="dzw-H7-j5j" id="OGX-zo-2Yu"/>
                 <outlet property="headerIv" destination="XwU-EG-07k" id="iIG-Ez-2Ak"/>

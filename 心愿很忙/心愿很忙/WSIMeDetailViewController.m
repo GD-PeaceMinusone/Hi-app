@@ -9,7 +9,7 @@
 #import "WSIMeDetailViewController.h"
 #import "WSIPerosonalViewController.h"
 #import <MMDrawerController.h>
-#import "ViewController.h"
+
 
 @interface WSIMeDetailViewController () 
 @property (weak, nonatomic) IBOutlet UIView *popView;

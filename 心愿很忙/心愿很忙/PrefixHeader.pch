@@ -21,6 +21,9 @@
 #import "NSCalendar+XMGExtension.h"
 #import <UIViewController+STPopup.h>
 #import "UIImageView+WSIExtension.h"
+#import "SizeUtils.h"
+#import "HUDUtils.h"
+#import "UIImage+WSIExtension.h"
 
 /***将服务器返回的数据写入plist文件***/
 #define XMGWriteToPlist(data,fileName) [data writeToFile:[NSString stringWithFormat:@"/Users/jackeylove/Desktop/%@.plist",fileName] atomically:YES];
@@ -49,6 +52,8 @@
 #define kRowsCount          10
 #define WSIMargin 10
 #define WSIMarginDouble 20
+#define screenNormalW 375
+#define screenPlusW 414
 
 #define TextViewSize CGSizeMake(250, 50)
 #define imageViewSize CGSizeMake(10, 10)

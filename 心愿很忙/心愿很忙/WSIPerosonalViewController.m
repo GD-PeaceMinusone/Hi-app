@@ -42,9 +42,11 @@
 
     if (!_headerIv2) {
         
-       UIImage *image = [UIImage imageWithIconName:@"header" borderImage:nil border:0];
+//       UIImage *image = [UIImage imageWithIconName:@"header" borderImage:nil border:0];
+//        
+//        _headerIv2 = [[UIImageView alloc]initWithImage:image];
         
-        _headerIv2 = [[UIImageView alloc]initWithImage:image];
+        _headerIv2 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"header"]];
         
     }
     
@@ -56,11 +58,17 @@
 
     if (!_tableView) {
         
+        /**
+         *    _tableView.bounces = NO;
+         *   _tableView.separatorStyle =                                  UITableViewCellSeparatorStyleNone;
+         */
+        
         _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-//        _tableView.separatorStyle =                                         UITableViewCellSeparatorStyleNone;
+
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        
+      
+        _tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
     }
     
     return _tableView;
@@ -99,17 +107,49 @@
     
     [_headerIv2 mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.size.mas_equalTo(CGSizeMake(79, 79));
-        make.right.mas_equalTo(self.tableView.mas_right).with.offset(360);
-        make.top.mas_equalTo(self.tableView.mas_top).with.offset(250);
+        
+        if ([UIScreen mainScreen].bounds.size.width == screenNormalW) {
+            
+            [self constraintsWithOffset:263];
+            
+        }else if([UIScreen mainScreen].bounds.size.width == screenPlusW){
+        
+            [self constraintsWithOffset:295];
+            
+        }else {
+        
+            [self constraintsWithOffset:217];
+        }
+        
     
     }];
-    
     
 
     return BgIv;
     
 }
+
+
+/**
+ *  抽取约束方法
+ */
+
+
+-(void)constraintsWithOffset:(CGFloat)offset {
+
+    
+    [_headerIv2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.size.mas_equalTo(CGSizeMake(79, 79));
+        make.left.equalTo(self.tableView.mas_leftMargin).with.offset(offset);
+        make.top.equalTo(self.tableView.mas_top).with.offset(250);
+        
+    }];
+    
+    
+}
+
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 

@@ -100,6 +100,10 @@
                     <constraint firstItem="P2T-1t-rLg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="w3d-Ok-Utu"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="contentLabel" destination="sPd-fu-hL4" id="987-gb-hTS"/>
+                <outlet property="contetnIv" destination="T4d-tA-vKK" id="Hil-wQ-F5k"/>
+            </connections>
             <point key="canvasLocation" x="26" y="131.5"/>
         </tableViewCell>
     </objects>

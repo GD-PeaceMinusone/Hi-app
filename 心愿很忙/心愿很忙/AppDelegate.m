@@ -10,8 +10,9 @@
 #import "WSIMeViewController.h"
 #import <MMDrawerController.h>
 #import "WSIHomeTableViewController.h"
-#import <AlibcTradeSDK/AlibcTradeSDK.h>
+//#import <AlibcTradeSDK/AlibcTradeSDK.h>
 #import <BmobSDK/Bmob.h>
+#import <UMSocialCore/UMSocialCore.h>
 
 
 @interface AppDelegate ()
@@ -27,58 +28,144 @@
     
     [self setupBmob];
     
-    [self setupAli];
+//    [self setupAli];
     
+    [self configUSharePlatforms];
+    
+    [self confitUShareSettings];
+    
+    [self setupUshare];
     return YES;
 }
 
-//初始化ALiSDK
--(void)setupAli {
+/**
+ *  初始化ALiSDK
+ */
 
-    // 百川平台基础SDK初始化，加载并初始化各个业务能力插件
-    [[AlibcTradeSDK sharedInstance] asyncInitWithSuccess:^{
-        
-        NSLog(@"初始化成功");
-    } failure:^(NSError *error) {
-        NSLog(@"Init failed: %@", error.description);
-    }];
+-(void)setupUshare {
+
     
-    // 开发阶段打开日志开关，方便排查错误信息
-    //默认调试模式打开日志,release关闭,可以不调用下面的函数
-    [[AlibcTradeSDK sharedInstance] setDebugLogOpen:YES];
+    [[UMSocialManager defaultManager] openLog:YES];
     
-    
-    // 设置全局配置，是否强制使用h5
-    [[AlibcTradeSDK sharedInstance] setIsForceH5:NO];
+    /* 设置友盟appkey */
+    [[UMSocialManager defaultManager] setUmSocialAppkey:@"58fb6970cae7e733260006b5"];
     
 }
+
+- (void)confitUShareSettings
+{
+    /*
+     * 打开图片水印
+     */
+    //[UMSocialGlobal shareInstance].isUsingWaterMark = YES;
+    
+    /*
+     * 关闭强制验证https，可允许http图片分享，但需要在info.plist设置安全域名
+     <key>NSAppTransportSecurity</key>
+     <dict>
+     <key>NSAllowsArbitraryLoads</key>
+     <true/>
+     </dict>
+     */
+    [UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
+    
+}
+
+- (void)configUSharePlatforms
+{
+    /* 设置微信的appKey和appSecret */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wxdc1e388c3822c80b" appSecret:@"3baf1193c85774b3fd9d18447d76cab0" redirectURL:@"http://mobile.umeng.com/social"];
+    /*
+     * 移除相应平台的分享，如微信收藏
+     */
+    //[[UMSocialManager defaultManager] removePlatformProviderWithPlatformTypes:@[@(UMSocialPlatformType_WechatFavorite)]];
+    
+    /* 设置分享到QQ互联的appID
+     * U-Share SDK为了兼容大部分平台命名，统一用appKey和appSecret进行参数设置，而QQ平台仅需将appID作为U-Share的appKey参数传进即可。
+     */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"1106117908 "/*设置QQ平台的appID*/  appSecret:@"kjoalSooWXzsIMrt" redirectURL:@"http://mobile.umeng.com/social"];
+    
+    /* 设置新浪的appKey和appSecret */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"761373709"  appSecret:@"702d6b78b83c5fdf64e4a53548e4306b" redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
+
+}
+
+
+/**
+ *  支持所有iOS系统
+ */
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    //6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
+    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+    if (!result) {
+        // 其他如支付等SDK的回调
+    }
+    return result;
+}
+
+
+/**
+ *  初始化ALiSDK
+ */
+//-(void)setupAli {
+//
+//    // 百川平台基础SDK初始化，加载并初始化各个业务能力插件
+//    [[AlibcTradeSDK sharedInstance] asyncInitWithSuccess:^{
+//        
+//        NSLog(@"初始化成功");
+//    } failure:^(NSError *error) {
+//        NSLog(@"Init failed: %@", error.description);
+//    }];
+//    
+//    // 开发阶段打开日志开关，方便排查错误信息
+//    //默认调试模式打开日志,release关闭,可以不调用下面的函数
+//    [[AlibcTradeSDK sharedInstance] setDebugLogOpen:YES];
+//    
+//    
+//    // 设置全局配置，是否强制使用h5
+//    [[AlibcTradeSDK sharedInstance] setIsForceH5:NO];
+//    
+//}
+
+/**
+ *  初始化Bmob
+ */
 
 -(void)setupBmob {
 
     [Bmob registerWithAppKey:@"1b06e7519038aac91f3ec8f8437034c9"];
 }
 
+/**
+ *  初始化window
+ */
+
 -(void)setupWindow {
 
     WSIMeViewController *meVc = [[WSIMeViewController alloc]initWithNibName:@"WSIMeViewController" bundle:[NSBundle mainBundle]];
+    
     WSIHomeTableViewController *mainVc = [WSIHomeTableViewController new];
     
     UINavigationController *navigationVc = [[UINavigationController alloc]initWithRootViewController:mainVc];
-   
-     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
     
-
-//    [UINavigationBar appearance].barStyle = UIBarStyleBlack;
-    self.drawer = [[MMDrawerController alloc]initWithCenterViewController:navigationVc leftDrawerViewController:meVc];
-//
-    [self.drawer setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    
+    //    [UINavigationBar appearance].barStyle = UIBarStyleBlack;
+    self.drawer = [[MMDrawerController alloc]  initWithCenterViewController:navigationVc   leftDrawerViewController:meVc];
+    //
+    [self.drawer setOpenDrawerGestureModeMask:  MMOpenDrawerGestureModeAll];
     [self.drawer setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    
     self.window.rootViewController = self.drawer;
+    
     self.window.backgroundColor = [UIColor colorWithRed:241.0/255 green:242.0/255 blue:244.0/255 alpha:1];
+    
     [self.window makeKeyAndVisible];
 }
 

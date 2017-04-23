@@ -17,8 +17,8 @@
 #import "AppDelegate.h"
 #import "DemoCell.h"
 #import "HUDUtils.h"
-#import <AlibcTradeSDK/AlibcTradeSDK.h>
-#import <AlipaySDK/AlipaySDK.h>
+//#import <AlibcTradeSDK/AlibcTradeSDK.h>
+//#import <AlipaySDK/AlipaySDK.h>
 #import "ListObject.h"
 #import "HomeTableViewCell.h"
 
@@ -111,71 +111,71 @@ UITableViewDataSource
 
 
 //初始化SDK相关接口
-
--(void)setupAliSDK {
-
-
-    [[AlibcTradeSDK sharedInstance]asyncInitWithSuccess:^{
-        
-        NSLog(@"----初始化成功----");
-    } failure:^(NSError *error) {
-        
-        NSLog(@"----初始化失败----");
-    }];
-    
-    
-    id<AlibcTradePage> page = [AlibcTradePageFactory page: @"http://c.b6wq.com/h.UiY8Lg?cv=tNeaZt7PCTk&sm=df7021"];
-    
-    AlibcTradeShowParams* showParam = [[AlibcTradeShowParams alloc] init];
-    showParam.openType = AlibcOpenTypeAuto;
-    
-    AlibcTradeTaokeParams *taoke = [AlibcTradeTaokeParams new];
-    taoke.pid = nil;
-
-    [[AlibcTradeSDK sharedInstance].tradeService show:self page:page showParams:showParam taoKeParams:taoke trackParam:nil tradeProcessSuccessCallback:^(AlibcTradeResult * _Nullable result) {
-        
-        
-    } tradeProcessFailedCallback:^(NSError * _Nullable error) {
-        
-        
-    }];
-}
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    /* 老接口写法 已弃用，建议使用新接口
-     if (![[AlibcTradeSDK sharedInstance] handleOpenURL:url]) {
-     // 处理其他app跳转到自己的app
-     }
-     return YES;
-     */
-    
-    // 新接口写法
-    if (![[AlibcTradeSDK sharedInstance] application:application
-                                             openURL:url
-                                   sourceApplication:sourceApplication
-                                          annotation:annotation]) {
-        // 处理其他app跳转到自己的app
-    }
-    return YES;
-}
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
-    
-    /* 老接口写法 已弃用，建议使用新接口
-     if (![[AlibcTradeSDK sharedInstance] handleOpenURL:url]) {
-     // 处理其他app跳转到自己的app
-     }
-     return YES;
-     */
-    
-    // 新接口写法
-    if (![[AlibcTradeSDK sharedInstance] application:application
-                                             openURL:url
-                                             options:options]) {
-        //处理其他app跳转到自己的app，如果百川处理过会返回YES
-    }
-    return YES;
-}
+//
+//-(void)setupAliSDK {
+//
+//
+//    [[AlibcTradeSDK sharedInstance]asyncInitWithSuccess:^{
+//        
+//        NSLog(@"----初始化成功----");
+//    } failure:^(NSError *error) {
+//        
+//        NSLog(@"----初始化失败----");
+//    }];
+//    
+//    
+//    id<AlibcTradePage> page = [AlibcTradePageFactory page: @"http://c.b6wq.com/h.UiY8Lg?cv=tNeaZt7PCTk&sm=df7021"];
+//    
+//    AlibcTradeShowParams* showParam = [[AlibcTradeShowParams alloc] init];
+//    showParam.openType = AlibcOpenTypeAuto;
+//    
+//    AlibcTradeTaokeParams *taoke = [AlibcTradeTaokeParams new];
+//    taoke.pid = nil;
+//
+//    [[AlibcTradeSDK sharedInstance].tradeService show:self page:page showParams:showParam taoKeParams:taoke trackParam:nil tradeProcessSuccessCallback:^(AlibcTradeResult * _Nullable result) {
+//        
+//        
+//    } tradeProcessFailedCallback:^(NSError * _Nullable error) {
+//        
+//        
+//    }];
+//}
+//
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+//    /* 老接口写法 已弃用，建议使用新接口
+//     if (![[AlibcTradeSDK sharedInstance] handleOpenURL:url]) {
+//     // 处理其他app跳转到自己的app
+//     }
+//     return YES;
+//     */
+//    
+//    // 新接口写法
+//    if (![[AlibcTradeSDK sharedInstance] application:application
+//                                             openURL:url
+//                                   sourceApplication:sourceApplication
+//                                          annotation:annotation]) {
+//        // 处理其他app跳转到自己的app
+//    }
+//    return YES;
+//}
+//
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
+//    
+//    /* 老接口写法 已弃用，建议使用新接口
+//     if (![[AlibcTradeSDK sharedInstance] handleOpenURL:url]) {
+//     // 处理其他app跳转到自己的app
+//     }
+//     return YES;
+//     */
+//    
+//    // 新接口写法
+//    if (![[AlibcTradeSDK sharedInstance] application:application
+//                                             openURL:url
+//                                             options:options]) {
+//        //处理其他app跳转到自己的app，如果百川处理过会返回YES
+//    }
+//    return YES;
+//}
 
 //判断网络状态
 -(void)networkStatus {

@@ -13,11 +13,15 @@ pod 'TZImagePickerController'
 pod 'HUPhotoBrowser'
 pod 'MJRefresh'
 pod 'AFNetworking'
-pod 'AlibcTradeSDK'
+#pod 'AlibcTradeSDK'
 pod 'SVPullToRefresh'
 pod 'MMDrawerController'
-pod 'UITableView+FDTemplateLayoutCell'
 pod 'SRActionSheet'
 pod 'STPopup'
-
+pod 'MMDrawerController'
+pod 'UMengUShare/Social/WeChat'
+pod 'UMengUShare/Social/QQ'
+pod 'UMengUShare/Social/Sina'
+pod 'UMengUShare/UI’
+pod 'CYTabBar'
 end
