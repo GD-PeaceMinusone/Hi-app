@@ -25,7 +25,7 @@
         self.title = @"许愿人";
     
     
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"详情" style:UIBarButtonItemStylePlain target:self action:@selector(nextBtnDidTap)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"主页" style:UIBarButtonItemStylePlain target:self action:@selector(nextBtnDidTap)];
         self.contentSizeInPopup = CGSizeMake(300, 300);
         self.landscapeContentSizeInPopup = CGSizeMake(400, 200);
     }

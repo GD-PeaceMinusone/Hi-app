@@ -67,6 +67,8 @@
 		5373E79E1E967C0400819DCD /* NSCalendar+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7961E967C0400819DCD /* NSCalendar+XMGExtension.m */; };
 		5385FAC41EAC830000F283FD /* SizeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5385FAC31EAC830000F283FD /* SizeUtils.m */; };
 		5385FAC61EACDCEA00F283FD /* 发表 (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 5385FAC51EACDCEA00F283FD /* 发表 (1).png */; };
+		5385FACB1EADC05B00F283FD /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5385FAC81EADC05B00F283FD /* UIScrollView+Refresh.m */; };
+		5385FACC1EADC05B00F283FD /* MJRefreshGifHeader+HeaderRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5385FACA1EADC05B00F283FD /* MJRefreshGifHeader+HeaderRefresh.m */; };
 		53A46ECC1EA702840049FE2C /* WSIMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46ECB1EA702840049FE2C /* WSIMainTableViewController.m */; };
 		53A46EF41EA7A2870049FE2C /* DemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53A46EF31EA7A2870049FE2C /* DemoCell.xib */; };
 		53A46FA91EA891820049FE2C /* LYPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46F971EA891810049FE2C /* LYPhoto.m */; };
@@ -181,6 +183,10 @@
 		5385FAC21EAC830000F283FD /* SizeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeUtils.h; sourceTree = "<group>"; };
 		5385FAC31EAC830000F283FD /* SizeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SizeUtils.m; sourceTree = "<group>"; };
 		5385FAC51EACDCEA00F283FD /* 发表 (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "发表 (1).png"; sourceTree = "<group>"; };
+		5385FAC71EADC05B00F283FD /* UIScrollView+Refresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Refresh.h"; sourceTree = "<group>"; };
+		5385FAC81EADC05B00F283FD /* UIScrollView+Refresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Refresh.m"; sourceTree = "<group>"; };
+		5385FAC91EADC05B00F283FD /* MJRefreshGifHeader+HeaderRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MJRefreshGifHeader+HeaderRefresh.h"; sourceTree = "<group>"; };
+		5385FACA1EADC05B00F283FD /* MJRefreshGifHeader+HeaderRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MJRefreshGifHeader+HeaderRefresh.m"; sourceTree = "<group>"; };
 		53A46ECB1EA702840049FE2C /* WSIMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSIMainTableViewController.m; path = ../WSIMainTableViewController.m; sourceTree = "<group>"; };
 		53A46EF31EA7A2870049FE2C /* DemoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DemoCell.xib; path = ../DemoCell.xib; sourceTree = "<group>"; };
 		53A46F961EA891810049FE2C /* LYPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPhoto.h; sourceTree = "<group>"; };
@@ -452,6 +458,10 @@
 				5373E78C1E967C0400819DCD /* UIBarButtonItem+XMGExtension.m */,
 				5373E78D1E967C0400819DCD /* UIButton+XMGExtension.h */,
 				5373E78E1E967C0400819DCD /* UIButton+XMGExtension.m */,
+				5385FAC71EADC05B00F283FD /* UIScrollView+Refresh.h */,
+				5385FAC81EADC05B00F283FD /* UIScrollView+Refresh.m */,
+				5385FAC91EADC05B00F283FD /* MJRefreshGifHeader+HeaderRefresh.h */,
+				5385FACA1EADC05B00F283FD /* MJRefreshGifHeader+HeaderRefresh.m */,
 				5373E78F1E967C0400819DCD /* UITextField+XMGExtension.h */,
 				5373E7901E967C0400819DCD /* UITextField+XMGExtension.m */,
 				5373E7911E967C0400819DCD /* NSString+XMGExtension.h */,
@@ -662,6 +672,7 @@
 				5373E79C1E967C0400819DCD /* NSString+XMGExtension.m in Sources */,
 				531AEB611E9B29E10037CA16 /* XibViewController.m in Sources */,
 				5385FAC41EAC830000F283FD /* SizeUtils.m in Sources */,
+				5385FACB1EADC05B00F283FD /* UIScrollView+Refresh.m in Sources */,
 				53FB50931E9DD795002B305D /* HUDUtils.m in Sources */,
 				531AEB701E9B29E10037CA16 /* CCDraggableContainer.m in Sources */,
 				53A46FAC1EA891820049FE2C /* MCNewCustomLayer.m in Sources */,
@@ -680,6 +691,7 @@
 				532420AF1EAA18440017E25A /* ListObject.m in Sources */,
 				531AEB5E1E9B29E10037CA16 /* CodeViewController.m in Sources */,
 				531AEB5F1E9B29E10037CA16 /* CustomCardView.m in Sources */,
+				5385FACC1EADC05B00F283FD /* MJRefreshGifHeader+HeaderRefresh.m in Sources */,
 				531D50DB1E98C8A400B17598 /* WSILoginViewController.m in Sources */,
 				532420B31EAA395C0017E25A /* WSIMeDetailViewController.m in Sources */,
 				53A46FA91EA891820049FE2C /* LYPhoto.m in Sources */,

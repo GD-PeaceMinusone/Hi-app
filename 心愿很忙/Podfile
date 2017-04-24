@@ -24,4 +24,5 @@ pod 'UMengUShare/Social/QQ'
 pod 'UMengUShare/Social/Sina'
 pod 'UMengUShare/UI’
 pod 'REFrostedViewController'
+pod 'HorizontalProgress'
 end

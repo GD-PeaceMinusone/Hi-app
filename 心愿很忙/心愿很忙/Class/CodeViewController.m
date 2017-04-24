@@ -16,6 +16,7 @@
 #import <HUPhotoBrowser.h>
 #import "HUDUtils.h"
 #import <BmobSDK/Bmob.h>
+#import <HorizontalProgressView.h>
 
 
 
@@ -748,6 +749,8 @@ TZImagePickerControllerDelegate
 
 -(void)publishWish {
 
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
     ListObject *object = [ListObject new];
     object.link = self.textView.text;
 
@@ -782,6 +785,7 @@ TZImagePickerControllerDelegate
         [file saveInBackgroundByDataSharding:^(BOOL isSuccessful, NSError *error) {
             
             
+            
             if (isSuccessful) {
                 NSLog(@"上传图片成功");
                 
@@ -795,6 +799,15 @@ TZImagePickerControllerDelegate
                 
                 NSLog(@"上传图片失败: ---- %@", error);
             }
+            
+        } progressBlock:^(CGFloat progress) {
+            
+            NSLog(@"%lf",progress);
+            
+            [HUDUtils uploadImgWithProgress:progress completion:^{
+                
+               
+            }];
         }];
    
     }else {

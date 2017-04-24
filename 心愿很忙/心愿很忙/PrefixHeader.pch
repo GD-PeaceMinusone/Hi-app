@@ -47,6 +47,9 @@
 #define ShareApp ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 #define kITObjsPath [NSHomeDirectory() stringByAppendingString:@"/Documents/itobjs.arch"]
 
+// 弱引用
+#define WSIWeakSelf __weak typeof(self) weakSelf = self;
+
 #define kCloseCellHeight    179.f
 #define kOpenCellHeight     900.f
 #define kRowsCount          10

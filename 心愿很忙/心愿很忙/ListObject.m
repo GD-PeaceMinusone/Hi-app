@@ -32,6 +32,8 @@
                 
                 [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
                 
+                //网络活动指示器
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             }];
         }else{
             NSLog(@"保存出错---%@",error);

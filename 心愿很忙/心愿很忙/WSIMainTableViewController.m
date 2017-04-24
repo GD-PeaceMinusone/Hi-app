@@ -32,7 +32,7 @@ UITableViewDataSource
 
 @property (nonatomic, strong) NSMutableArray<NSNumber *> *cellHeights;
 
-@property(nonatomic,strong)NSArray *itObjs;
+@property(nonatomic,strong)NSMutableArray *itObjs;
 
 @end
 

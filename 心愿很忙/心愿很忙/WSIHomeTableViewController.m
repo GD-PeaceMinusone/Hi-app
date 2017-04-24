@@ -20,16 +20,20 @@
 #import "HomeTableViewCell.h"
 #import "CodeViewController.h"
 #import "AppDelegate.h"
+#import "MJRefreshGifHeader+HeaderRefresh.h"
+#import "UIScrollView+Refresh.h"
 
 
 @interface WSIHomeTableViewController ()
 
 /**数据数组*/
-@property(nonatomic,strong)NSArray *itObjs;
+@property(nonatomic,strong)NSMutableArray *itObjs;
 /** window */
 @property (nonatomic, strong) UIWindow *window;
 /** 悬浮按钮 */
 @property (nonatomic, strong) UIButton *button;
+
+@property(nonatomic,strong)NSMutableArray *moreItobjs;
 
 @end
 
@@ -40,47 +44,55 @@
     
     [self setupNavigationBar];
     [self networkStatus];
-    [self setupRefresh];
     [self registerCell];
-
-//    
-//    [self performSelector:@selector(setupPublishButton) withObject:nil afterDelay:0.2];
-//
-}
-
-
-//在view即将显示前加载按钮
--(void)viewWillAppear:(BOOL)animated {
-//    
-//    [self performSelector:@selector(setupPublishButton) withObject:nil afterDelay:0.2];
-}
-
-//在view即将销毁时销毁window
--(void)viewWillDisappear:(BOOL)animated{
+    [self setupRefresh];
     
-    [_window resignKeyWindow];
-    _window = nil;
 }
 
+/**
+ *  懒加载
+ */
 
-//注册cell
+-(NSMutableArray *)itObjs {
+
+    if (!_itObjs) {
+        
+        _itObjs = [NSMutableArray array];
+    }
+    
+    return _itObjs;
+}
+
+/**
+ *  注册cell
+ */
 -(void)registerCell {
     
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([HomeTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"HomeCell"];
 }
 
 
-//设置刷新操作
+/**
+ *  设置刷新操作
+ */
 -(void)setupRefresh {
     
-    self.tableView.mj_header = [WSIRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopics)];
-    [self.tableView.mj_header beginRefreshing];
+    WSIWeakSelf
+    [self.tableView addHeaderRefresh:^{
+        [weakSelf loadNewTopics];
+    }];
     
-    self.tableView.mj_footer = [WSIRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopics)];
+    [weakSelf.tableView beginHeaderRefresh];
+    
+    [self.tableView addFooterRefresh:^{
+        [weakSelf loadMoreTopics];
+    }];
 }
 
 
-//设置导航栏样式
+/**
+ *  设置导航栏样式
+ */
 -(void)setupNavigationBar {
     
     UIImage *image1 = [UIImage imageNamed:@"列表 "];
@@ -127,7 +139,9 @@
 //}
 
 
-//设置发布按钮
+/**
+ *  设置发布按钮
+ */
 -(void)publish: (UIButton*)button {
     
     if ([BmobUser currentUser]) {
@@ -142,12 +156,11 @@
         
     }
     
-    //    WSILoginViewController *loginVc = [WSILoginViewController new];
-    //    [self presentViewController:loginVc animated:YES completion:nil];
-    
 }
 
-//监听按钮响应
+/**
+ *  监听按钮响应
+ */
 -(void)goMe {
     
     [[NSNotificationCenter defaultCenter]postNotificationName:@"clickButton" object:nil];
@@ -168,10 +181,23 @@
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         
-        self.itObjs = [ListObject ListObjcetArrayFromBmobObjectArray:array];
+        if (error) {
+            
+            [HUDUtils setupErrorWithStatus:@"加载失败" WithDelay:2.0f completion:^{
+                
+                WSIWeakSelf
+                [weakSelf.tableView endHeaderRefresh];
+                
+            }];
+        }{
+            
+        self.itObjs = [[ListObject ListObjcetArrayFromBmobObjectArray:array] mutableCopy];
         [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
-        
+        self.moreItobjs = [array mutableCopy];
+        WSIWeakSelf
+        [weakSelf.tableView endHeaderRefresh];
+            
+        }
     }];
     
     
@@ -185,7 +211,37 @@
 
 -(void)loadMoreTopics {
     
+    BmobQuery *query = [BmobQuery queryWithClassName:@"ListObject"];
     
+    query.limit = 10;
+    
+    BmobObject *obj = self.moreItobjs[self.moreItobjs.count - 1];
+    
+    [query whereKey:@"createdAt" lessThan:obj.createdAt];
+   
+    [query orderByDescending:@"createdAt"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        if (error) {
+            
+            [HUDUtils setupErrorWithStatus:@"加载失败" WithDelay:2.0f completion:^{
+                
+                WSIWeakSelf
+                [weakSelf.tableView endFooterRefresh];
+                
+            }];
+        }{
+            NSArray<ListObject*> *moreItObjs = [ListObject ListObjcetArrayFromBmobObjectArray:array];
+            [self.itObjs addObjectsFromArray:moreItObjs];
+            [self.moreItobjs addObjectsFromArray:array];
+            [self.tableView reloadData];
+            
+            WSIWeakSelf
+            [weakSelf.tableView endFooterRefresh];
+            
+        }
+    }];
 }
 
 
@@ -281,7 +337,7 @@
                 break;
                 
             case AFNetworkReachabilityStatusReachableViaWiFi:
-                
+
                 
                 break;
                 
