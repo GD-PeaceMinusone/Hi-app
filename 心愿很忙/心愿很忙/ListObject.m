@@ -22,15 +22,12 @@
     [bObj setObject:self.link forKey:@"link"];
     [bObj setObject:self.thingPath forKey:@"thingPath"];
     [bObj setObject:self.thingContent forKey:@"thingContent"];
-//    [bObj setObject:self.width forKey:@"width"];
-//    [bObj setObject:self.height forKey:@"height"];
-    
     [bObj setObject:self.user forKey:@"user"];
     
     [bObj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
             
-            NSLog(@"保存成功---%@",error);
+            NSLog(@"保存成功---^_^");
             [HUDUtils setupSuccessWithStatus:@"清单已生成" WithDelay:2.0f completion:^{
                 
                 [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
@@ -45,7 +42,7 @@
 
 
 /**
- *  初始化时将Bmobject对象转化成Lis他Object对象
+ *  初始化时将Bmobject对象转化成ListObject对象
  */
 -(ListObject *)initWithBmobObject:(BmobObject *)bObj {
     

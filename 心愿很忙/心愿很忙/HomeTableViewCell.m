@@ -124,7 +124,7 @@
     self.contentLabel.text = itObj.thingContent;
    
     NSURL *url = [NSURL URLWithString:itObj.thingPath];
-    NSLog(@"1111");
+   
     [self.thingIv sd_setImageWithURL:url placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
         
         

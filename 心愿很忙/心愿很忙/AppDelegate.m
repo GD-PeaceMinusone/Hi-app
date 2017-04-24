@@ -8,15 +8,13 @@
 
 #import "AppDelegate.h"
 #import "WSIMeViewController.h"
-#import <MMDrawerController.h>
 #import "WSIHomeTableViewController.h"
 //#import <AlibcTradeSDK/AlibcTradeSDK.h>
 #import <BmobSDK/Bmob.h>
 #import <UMSocialCore/UMSocialCore.h>
-
-
+#import "REFrostedViewController.h"
 @interface AppDelegate ()
-
+@property(nonatomic,strong)REFrostedViewController *frostedViewController;
 @end
 
 @implementation AppDelegate
@@ -149,26 +147,56 @@
     
     UINavigationController *navigationVc = [[UINavigationController alloc]initWithRootViewController:mainVc];
     
+    UITabBarController * tabbarVc = [[UITabBarController alloc]init];
+    
+    [tabbarVc addChildViewController:navigationVc];
+    
+    self.frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:tabbarVc menuViewController:meVc];
+    
+    self.frostedViewController.direction = REFrostedViewControllerDirectionLeft;
+    self.frostedViewController.panGestureEnabled = YES;
+    self.frostedViewController.limitMenuViewSize = YES;
+    self.frostedViewController.menuViewSize = CGSizeMake(meVc.view.frame.size.width, [UIScreen mainScreen].bounds.size.height);
+
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureRecognized:)];
+    [self.frostedViewController.view addGestureRecognizer:pan];
+    
+    //注册通知 按钮点击时推出侧边栏
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(menu) name:@"clickButton" object:nil];
+    
+    
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
     
     
-    //    [UINavigationBar appearance].barStyle = UIBarStyleBlack;
-    self.drawer = [[MMDrawerController alloc]  initWithCenterViewController:navigationVc   leftDrawerViewController:meVc];
-    //
-    [self.drawer setOpenDrawerGestureModeMask:  MMOpenDrawerGestureModeAll];
-    [self.drawer setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-    
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
-    self.window.rootViewController = self.drawer;
+    self.window.rootViewController = self.frostedViewController;
     
     self.window.backgroundColor = [UIColor colorWithRed:241.0/255 green:242.0/255 blue:244.0/255 alpha:1];
     
     [self.window makeKeyAndVisible];
+    
+    /**
+     *
+     *      [UINavigationBar appearance].barStyle = UIBarStyleBlack;
+     *       self.drawer = [[MMDrawerController alloc]  initWithCenterViewController:navigationVc               leftDrawerViewController:meVc];
+     
+            [self.drawer setOpenDrawerGestureModeMask:  MMOpenDrawerGestureModeAll];
+            [self.drawer setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+     *
+     */
 }
 
+-(void)menu {
+
+    [self.frostedViewController presentMenuViewController];
+}
+- (void)panGestureRecognized:(UIPanGestureRecognizer *)sender
+{
+    [self.frostedViewController panGestureRecognized:sender];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

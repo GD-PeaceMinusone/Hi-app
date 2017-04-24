@@ -23,5 +23,5 @@ pod 'UMengUShare/Social/WeChat'
 pod 'UMengUShare/Social/QQ'
 pod 'UMengUShare/Social/Sina'
 pod 'UMengUShare/UI’
-pod 'CYTabBar'
+pod 'REFrostedViewController'
 end

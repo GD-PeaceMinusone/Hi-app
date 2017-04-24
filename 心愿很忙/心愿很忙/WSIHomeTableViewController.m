@@ -42,11 +42,12 @@
     [self networkStatus];
     [self setupRefresh];
     [self registerCell];
-    
+
 //    
 //    [self performSelector:@selector(setupPublishButton) withObject:nil afterDelay:0.2];
 //
 }
+
 
 //在view即将显示前加载按钮
 -(void)viewWillAppear:(BOOL)animated {
@@ -82,11 +83,16 @@
 //设置导航栏样式
 -(void)setupNavigationBar {
     
-    UIImage *image = [UIImage imageNamed:@"头像"];
-    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage: image style:UIBarButtonItemStylePlain target:self action:@selector(goMe)];
-   
-    self.navigationController.hidesBarsOnSwipe = YES;
+    UIImage *image1 = [UIImage imageNamed:@"列表 "];
+    image1 = [image1 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    UIImage *image2 = [UIImage imageNamed:@"发表"];
+    image2 = [image2 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage: image1 style:UIBarButtonItemStylePlain target:self action:@selector(goMe)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage: image2 style:UIBarButtonItemStylePlain target:self action:@selector(publish:)];
+
     [self.navigationController.navigationBar.subviews firstObject].hidden = YES;
 }
 
@@ -144,7 +150,7 @@
 //监听按钮响应
 -(void)goMe {
     
-    [ShareApp.drawer toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"clickButton" object:nil];
     
 }
 
@@ -316,9 +322,30 @@
 
 }
 
+/**
+ *  设置bar随滚动隐藏和显示
+ */
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [UIView animateWithDuration:1 animations:^{
+        
+        self.tabBarController.tabBar.transform = CGAffineTransformMakeTranslation(0, 49);
+        self.navigationController.navigationBar.transform = CGAffineTransformMakeTranslation(0, -49);
+       
+        
+    }];
+    
+}
 
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
 
+    [UIView animateWithDuration:1 animations:^{
+        
+        self.tabBarController.tabBar.transform = CGAffineTransformMakeTranslation(0, 0);
+        self.navigationController.navigationBar.transform = CGAffineTransformMakeTranslation(0, 0);
+        
+    }];
+}
 
 
 

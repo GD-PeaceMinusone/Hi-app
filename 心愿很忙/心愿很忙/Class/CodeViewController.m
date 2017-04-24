@@ -18,6 +18,7 @@
 #import <BmobSDK/Bmob.h>
 
 
+
 //#import "XLPhotoBrowser.h"
 
 @interface CodeViewController ()
@@ -66,11 +67,11 @@ TZImagePickerControllerDelegate
 @property(nonatomic,assign)NSInteger selectedCount2;
 @property(nonatomic,strong)NSMutableArray *imageViews;
 @property(nonatomic,strong)UILabel *label10;
-@property(nonatomic,strong)NSString *headerUrl;
+@property(nonatomic,strong)NSURL *headerUrl;
 @property (nonatomic,assign)CGFloat photoW;
 @property (nonatomic,assign)CGFloat photoH;
 @property(nonatomic,strong)NSMutableArray *BigPictures;
-
+@property(nonatomic,strong)UIImage *selectedImage;
 @end
 
 @implementation CodeViewController
@@ -643,10 +644,16 @@ TZImagePickerControllerDelegate
         switch (button.tag) {
                 
             case 1:
-                
-                self.headerUrl = [infos[0][@"PHImageFileURLKey"] description];
-                self.photoW = photos[0].size.width / 2;
-                self.photoH = photos[0].size.height / 2;
+               
+            /**
+             
+               self.photoW = photos[0].size.width / 2;
+               self.photoH = photos[0].size.height / 2;
+            
+             */
+                self.headerUrl = infos[0][@"PHImageFileURLKey"];
+                self.selectedImage = photos[0];
+                NSLog(@"%@",infos);
                 
             {
                 if (self.view6.image) {
@@ -679,7 +686,7 @@ TZImagePickerControllerDelegate
                 
             case 4:
                 
-                self.headerUrl = [infos[0][@"PHImageFileURLKey"] description];
+                self.headerUrl = infos[0][@"PHImageFileURLKey"];
                 
             {
                 if (self.view6.image) {
@@ -744,17 +751,60 @@ TZImagePickerControllerDelegate
     ListObject *object = [ListObject new];
     object.link = self.textView.text;
 
-    object.thingPath = self.headerUrl;
-
     object.thingContent = self.tv1.text;
     
     object.user = [BmobUser currentUser];
     
-    object.width = @(self.photoW);
+    NSData *imgData = nil;
+    /**
+     *  根据有无照片执行不同的上传逻辑
+     */
     
-    object.height = @(self.photoH);
+    if (_headerUrl) {
+        
+        if ([[_headerUrl description] hasSuffix:@"PNG"]) {
+            
+            imgData = UIImagePNGRepresentation(self.selectedImage);
+            
+        }else {
+        
+            imgData = UIImageJPEGRepresentation(self.selectedImage, 1.0);
+
+        }
+        
+        
+        BmobFile *file = [[BmobFile alloc]initWithFileName:@"picture.png" withFileData:imgData];
+
+        /**
+         *  将保存数据回调放在保存文件回调里面 防止异步请求不到数据
+         */
+        
+        [file saveInBackgroundByDataSharding:^(BOOL isSuccessful, NSError *error) {
+            
+            
+            if (isSuccessful) {
+                NSLog(@"上传图片成功");
+                
+                NSLog(@"%@",file.url);
+                
+                object.thingPath = file.url;
+                
+                [object saveWithCallback:nil];
+                
+            }else {
+                
+                NSLog(@"上传图片失败: ---- %@", error);
+            }
+        }];
+   
+    }else {
     
-    [object saveWithCallback:nil];
+        [object saveWithCallback:nil];
+        
+    }
+
+
+   
 }
 
 
