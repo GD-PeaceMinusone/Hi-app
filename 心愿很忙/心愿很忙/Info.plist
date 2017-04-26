@@ -52,11 +52,24 @@
 				<string>wb761373709</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wxc50ae2152a6995b2</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>wxc50ae2152a6995b2</string>
+		<string>mogujie</string>
+		<string>liwushuo</string>
+		<string>tmall</string>
+		<string>tbopen</string>
 		<string>wechat</string>
 		<string>weixin</string>
 		<string>sinaweibohd</string>
@@ -90,73 +103,6 @@
 		<string>mqqbrowser</string>
 		<string>mttbrowser</string>
 	</array>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSExceptionDomains</key>
-        <dict>
-            <!-- 集成新浪微博对应的HTTP白名单-->
-            <key>sina.com.cn</key>
-            <dict>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-                <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
-                <true/>
-                <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-                <false/>
-            </dict>
-            <key>sinaimg.cn</key>
-            <dict>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-                <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
-                <true/>
-                <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-                <false/>
-            </dict>
-            <key>sinajs.cn</key>
-            <dict>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-                <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
-                <true/>
-                <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-                <false/>
-            </dict>
-            <key>sina.cn</key>
-            <dict>
-                <!-- 适配iOS10 -->
-                <key>NSExceptionMinimumTLSVersion</key>
-                <string>TLSv1.0</string>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-                <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-                <false/>
-            </dict>
-            <key>weibo.cn</key>
-            <dict>
-                <!-- 适配iOS10 -->
-                <key>NSExceptionMinimumTLSVersion</key>
-                <string>TLSv1.0</string>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-                <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-                <false/>
-            </dict>
-            <key>weibo.com</key>
-            <dict>
-                <!-- 适配iOS10 -->
-                <key>NSExceptionMinimumTLSVersion</key>
-                <string>TLSv1.0</string>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-                <key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
-                <true/>
-                <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-                <false/>
-            </dict>
-            <!-- 新浪微博-->
-        </dict>
-    </dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -165,7 +111,7 @@
 		<true/>
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>"隐秘"想访问您的相册</string>
+	<string>"小明同学"想访问您的相册</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

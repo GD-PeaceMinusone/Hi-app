@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JCNaviSubViewController.h"
 
-@interface WSIPerosonalViewController : UIViewController
+@interface WSIPerosonalViewController : JCNaviSubViewController
 
 @end

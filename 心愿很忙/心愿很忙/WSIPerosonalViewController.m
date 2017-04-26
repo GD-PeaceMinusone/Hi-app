@@ -24,7 +24,9 @@
    
     [self registerCell];
     [self.view addSubview:self.tableView];
+   
 }
+
 
 /**
  *  注册cell
@@ -64,11 +66,10 @@
          */
         
         _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-
+        
         _tableView.dataSource = self;
         _tableView.delegate = self;
       
-        _tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
     }
     
     return _tableView;
@@ -127,6 +128,17 @@
 
     return BgIv;
     
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+
+    UIView *view = [UIView new];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(tableView.xmg_width*0.5 - 50, -30, 100, 100)];
+    label.text = @"已显示全部心愿";
+    label.font = [UIFont systemFontOfSize:13.0];
+    label.textColor = [UIColor colorWithRed:202/255.0 green:202/255.0 blue:202/255.0 alpha:1.0];
+    [view addSubview:label];
+    return view;
 }
 
 

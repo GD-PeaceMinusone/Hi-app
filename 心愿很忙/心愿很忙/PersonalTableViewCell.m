@@ -10,6 +10,7 @@
 #import <SRActionSheet.h>
 #import <UShareUI/UShareUI.h>
 
+
 @interface PersonalTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *contetnIv;
@@ -21,7 +22,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
