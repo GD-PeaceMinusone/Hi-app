@@ -7,10 +7,12 @@
 //
 
 #import "WSIMeViewController.h"
+#import "WSIEditViewController.h"
 
 @interface WSIMeViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (weak, nonatomic) IBOutlet UIImageView *headerIv;
+@property(nonatomic,strong)WSIEditViewController *editVc;
 @end
 
 @implementation WSIMeViewController
@@ -18,13 +20,54 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [self setupHeaderIv];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - 懒加载
+
+- (WSIEditViewController *)editVc {
+
+    if (!_editVc) {
+        
+        _editVc = [WSIEditViewController new];
+    }
+    
+    return _editVc;
 }
+
+/**
+ *  初始化
+ */
+
+-(void)setupHeaderIv {
+
+    _headerIv.layer.borderWidth = 1.5f;
+    _headerIv.layer.borderColor = [UIColor whiteColor].CGColor;
+    _headerIv.layer.shadowColor = [UIColor colorWithRed:237.0/255 green:239.0/255 blue:241.0/255 alpha:1.0].CGColor;
+    _headerIv.layer.shadowOpacity = 1.0;
+    _headerIv.layer.shadowOffset = CGSizeMake(0, 0);
+    _headerIv.layer.shadowRadius = 3.f;
+    _headerIv.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
+    [_headerIv addGestureRecognizer:tap];
+}
+
+
+/**
+ *  跳转到个人信息页面
+ */
+
+-(void)tap {
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"closeSlider" object:nil];
+    [[UIViewController getNavi] pushViewController:self.editVc animated:YES];
+   
+}
+
+
+#pragma mark - delegate
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 

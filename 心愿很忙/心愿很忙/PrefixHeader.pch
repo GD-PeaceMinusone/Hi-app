@@ -24,11 +24,13 @@
 #import "SizeUtils.h"
 #import "HUDUtils.h"
 #import "UIImage+WSIExtension.h"
+#import "JCNaviSubViewController.h"
+#import "UIViewController+Extension.h"
 
-/***将服务器返回的数据写入plist文件***/
+/*** 将服务器返回的数据写入plist文件 ***/
 #define XMGWriteToPlist(data,fileName) [data writeToFile:[NSString stringWithFormat:@"/Users/jackeylove/Desktop/%@.plist",fileName] atomically:YES];
 
-/**日志**/
+/** 日志 */
 #ifdef DEBUG
 #define XMGLog(...) NSLog(__VA_ARGS__)
 #else
@@ -36,18 +38,22 @@
 #endif
 
 #define XMGLogFunc XMGLog(@"%s", __func__);
-/** 颜色**/
+/** 颜色 */
 #define XMGColorA(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/255.0]
 #define XMGColor(r,g,b) XMGColorA(r,g,b,255)
 #define XMGRandomColor XMGColor(arc4random_uniform(255),arc4random_uniform(255),arc4random_uniform(255))
 #define XMGCommonBgColor XMGGrayColor(206)
 #define XMGGrayColor(v) XMGColor(v,v,v)
-/** 当前版本号判断*/
+/** 当前版本号判断 */
 #define ios(version) ([UIDevice currentDevice].systemVersion.doubleValue >= (version))
 #define ShareApp ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 #define kITObjsPath [NSHomeDirectory() stringByAppendingString:@"/Documents/itobjs.arch"]
 
-// 弱引用
+/** 当前屏幕宽高 */
+#define  SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define  SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+/** 弱引用 */
 #define WSIWeakSelf __weak typeof(self) weakSelf = self;
 
 #define kCloseCellHeight    179.f
@@ -61,6 +67,8 @@
 #define TextViewSize CGSizeMake(250, 50)
 #define imageViewSize CGSizeMake(10, 10)
 #define buttonSize CGSizeMake(20, 20)
+
+
 
 #endif
 #endif /* PrefixHeader_pch */

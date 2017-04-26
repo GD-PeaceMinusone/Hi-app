@@ -8,7 +8,7 @@
 
 #import "WSIMeDetailViewController.h"
 #import "WSIPerosonalViewController.h"
-#import <MMDrawerController.h>
+#import <REFrostedViewController.h>
 
 
 @interface WSIMeDetailViewController () 
@@ -46,14 +46,11 @@
  */
 
 -(void)nextBtnDidTap {
-//    
-   WSIPerosonalViewController *personal = [WSIPerosonalViewController new];
-    
-    MMDrawerController *mVc = (MMDrawerController*)[UIApplication sharedApplication].keyWindow.rootViewController;
-    
-    UINavigationController *navi =(UINavigationController*)mVc.centerViewController;
-//   
-    [navi  pushViewController:personal animated:YES];
+   
+    WSIPerosonalViewController *personal = [WSIPerosonalViewController new];
+
+  
+    [[UIViewController getNavi]  pushViewController:personal animated:YES];
     
    
     [self dismissViewControllerAnimated:YES completion:nil];

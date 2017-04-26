@@ -9,10 +9,10 @@
 #import "AppDelegate.h"
 #import "WSIMeViewController.h"
 #import "WSIHomeTableViewController.h"
-//#import <AlibcTradeSDK/AlibcTradeSDK.h>
 #import <BmobSDK/Bmob.h>
 #import <UMSocialCore/UMSocialCore.h>
 #import "REFrostedViewController.h"
+#import "JCNavigationController.h"
 @interface AppDelegate ()
 @property(nonatomic,strong)REFrostedViewController *frostedViewController;
 @end
@@ -25,8 +25,6 @@
     [self setupWindow];
     
     [self setupBmob];
-    
-//    [self setupAli];
     
     [self configUSharePlatforms];
     
@@ -104,29 +102,6 @@
 
 
 /**
- *  初始化ALiSDK
- */
-//-(void)setupAli {
-//
-//    // 百川平台基础SDK初始化，加载并初始化各个业务能力插件
-//    [[AlibcTradeSDK sharedInstance] asyncInitWithSuccess:^{
-//        
-//        NSLog(@"初始化成功");
-//    } failure:^(NSError *error) {
-//        NSLog(@"Init failed: %@", error.description);
-//    }];
-//    
-//    // 开发阶段打开日志开关，方便排查错误信息
-//    //默认调试模式打开日志,release关闭,可以不调用下面的函数
-//    [[AlibcTradeSDK sharedInstance] setDebugLogOpen:YES];
-//    
-//    
-//    // 设置全局配置，是否强制使用h5
-//    [[AlibcTradeSDK sharedInstance] setIsForceH5:NO];
-//    
-//}
-
-/**
  *  初始化Bmob
  */
 
@@ -146,9 +121,11 @@
     WSIHomeTableViewController *mainVc = [WSIHomeTableViewController new];
     
     UINavigationController *navigationVc = [[UINavigationController alloc]initWithRootViewController:mainVc];
-    
+
+    [[UINavigationBar appearance] setTintColor:[UIColor clearColor]];
     UITabBarController * tabbarVc = [[UITabBarController alloc]init];
-    
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
+   
     [tabbarVc addChildViewController:navigationVc];
     
     self.frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:tabbarVc menuViewController:meVc];
@@ -163,11 +140,12 @@
     
     //注册通知 按钮点击时推出侧边栏
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(menu) name:@"clickButton" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(close) name:@"closeSlider" object:nil];
     
+//    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+//[[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
     
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
+//
     
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
@@ -177,26 +155,39 @@
     self.window.backgroundColor = [UIColor colorWithRed:241.0/255 green:242.0/255 blue:244.0/255 alpha:1];
     
     [self.window makeKeyAndVisible];
-    
-    /**
-     *
-     *      [UINavigationBar appearance].barStyle = UIBarStyleBlack;
-     *       self.drawer = [[MMDrawerController alloc]  initWithCenterViewController:navigationVc               leftDrawerViewController:meVc];
-     
-            [self.drawer setOpenDrawerGestureModeMask:  MMOpenDrawerGestureModeAll];
-            [self.drawer setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-     *
-     */
+
 }
+
+/**
+ *  移除通知
+ */
+-(void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+/**
+ *  初始化侧边栏
+ */
 
 -(void)menu {
-
+ 
     [self.frostedViewController presentMenuViewController];
 }
+
+/**
+ *  通知方法
+ */
+-(void)close {
+    
+    [self.frostedViewController hideMenuViewController];
+}
+
 - (void)panGestureRecognized:(UIPanGestureRecognizer *)sender
 {
     [self.frostedViewController panGestureRecognized:sender];
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
