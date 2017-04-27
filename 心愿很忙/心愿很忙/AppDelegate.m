@@ -121,7 +121,7 @@
     WSIHomeTableViewController *mainVc = [WSIHomeTableViewController new];
     
     UINavigationController *navigationVc = [[UINavigationController alloc]initWithRootViewController:mainVc];
-
+    navigationVc.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"bj" style:UIBarButtonItemStyleDone target:self action:nil];
     [[UINavigationBar appearance] setTintColor:[UIColor clearColor]];
     UITabBarController * tabbarVc = [[UITabBarController alloc]init];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
@@ -141,6 +141,7 @@
     //注册通知 按钮点击时推出侧边栏
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(menu) name:@"clickButton" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(close) name:@"closeSlider" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeNavi) name:@"removeNavi" object:nil];
     
 //    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
 //[[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
@@ -188,6 +189,10 @@
     [self.frostedViewController panGestureRecognized:sender];
 }
 
+-(void)removeNavi {
+
+   
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

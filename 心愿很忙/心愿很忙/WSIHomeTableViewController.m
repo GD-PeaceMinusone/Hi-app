@@ -48,13 +48,19 @@
 -(void)viewDidAppear:(BOOL)animated{//显示tabbar
     
     self.tabBarController.tabBar.hidden = NO;
+   
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated {//隐藏tabbar
    
     self.tabBarController.tabBar.hidden = YES;
+    self.navigationController.navigationBar.hidden = YES;
 }
-
 
 /**
  *  懒加载
@@ -192,7 +198,7 @@
         
         if (error) {
             
-            [HUDUtils setupErrorWithStatus:@"加载失败" WithDelay:2.0f completion:^{
+            [HUDUtils setupErrorWithStatus:@"加载失败" WithDelay:1.8f completion:^{
                 
                 WSIWeakSelf
                 [weakSelf.tableView endHeaderRefresh];
@@ -234,7 +240,7 @@
         
         if (error) {
             
-            [HUDUtils setupErrorWithStatus:@"加载失败" WithDelay:2.0f completion:^{
+            [HUDUtils setupErrorWithStatus:@"加载失败" WithDelay:1.8f completion:^{
                 
                 WSIWeakSelf
                 [weakSelf.tableView endFooterRefresh];

@@ -63,7 +63,7 @@
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"closeSlider" object:nil];
     [[UIViewController getNavi] pushViewController:self.editVc animated:YES];
-   
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"removeNavi" object:nil];
 }
 
 

@@ -1,13 +1,13 @@
 //
-//  WSISettingViewController.h
+//  SettingNaviBarView.h
 //  心愿很忙
 //
 //  Created by Jackeylove on 2017/4/26.
 //  Copyright © 2017年 Jackeylove. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "JCBaseNaviBarView.h"
 
-@interface WSISettingViewController : JCNaviSubViewController
+@interface SettingNaviBarView : JCBaseNaviBarView
 
 @end

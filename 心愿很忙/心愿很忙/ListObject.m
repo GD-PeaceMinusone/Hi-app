@@ -23,12 +23,15 @@
     [bObj setObject:self.thingPath forKey:@"thingPath"];
     [bObj setObject:self.thingContent forKey:@"thingContent"];
     [bObj setObject:self.user forKey:@"user"];
+    [bObj setObject:self.headerPath forKey:@"headerPath"];
+    [bObj setObject:self.nickName forKey:@"nickName"];
+    [bObj setObject:self.sign forKey:@"sign"];
     
     [bObj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
             
             NSLog(@"保存成功---^_^");
-            [HUDUtils setupSuccessWithStatus:@"清单已生成" WithDelay:2.0f completion:^{
+            [HUDUtils setupSuccessWithStatus:@"清单已生成" WithDelay:1.8f completion:^{
                 
                 [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
                 
@@ -37,10 +40,11 @@
             }];
         }else{
             NSLog(@"保存出错---%@",error);
-            [HUDUtils setupErrorWithStatus:@"清单未生成" WithDelay:2.0f completion:nil];
+            [HUDUtils setupErrorWithStatus:@"清单未生成" WithDelay:1.8f completion:nil];
         }
     }];
 }
+
 
 
 /**

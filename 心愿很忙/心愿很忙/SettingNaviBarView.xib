@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SettingNaviBarView">
+            <rect key="frame" x="0.0" y="0.0" width="402" height="68"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oD3-uY-oEE">
+                    <rect key="frame" x="15" y="22" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="HAK-A0-Mz8"/>
+                        <constraint firstAttribute="height" constant="25" id="Jcb-G0-5Ou"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" image="返回 (1)"/>
+                    <connections>
+                        <action selector="backButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="2jZ-UK-eBP"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修改资料" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpv-bj-lQu">
+                    <rect key="frame" x="166" y="22" width="70" height="21"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Kca-D9-qsU"/>
+                        <constraint firstAttribute="width" constant="70" id="cT6-RT-MDU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lpB-ar-YHY">
+                    <rect key="frame" x="0.0" y="67" width="402" height="0.5"/>
+                    <color key="backgroundColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.29999999999999999" id="hxg-Qb-Md0"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="lpB-ar-YHY" firstAttribute="top" secondItem="oD3-uY-oEE" secondAttribute="bottom" constant="20" id="7Bo-EF-KFm"/>
+                <constraint firstItem="lpv-bj-lQu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="Atv-01-P7W"/>
+                <constraint firstItem="lpB-ar-YHY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="HpV-7p-6J8"/>
+                <constraint firstItem="oD3-uY-oEE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Y79-iL-YQg"/>
+                <constraint firstAttribute="trailing" secondItem="lpB-ar-YHY" secondAttribute="trailing" id="aC0-dk-bJk"/>
+                <constraint firstItem="oD3-uY-oEE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="thc-sk-Ico"/>
+                <constraint firstItem="lpv-bj-lQu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="wfY-ur-2Tn"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="27" y="-80"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="返回 (1)" width="128" height="128"/>
+    </resources>
+</document>

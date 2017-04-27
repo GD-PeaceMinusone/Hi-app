@@ -74,6 +74,9 @@
 		5374A5DD1EB0D4620062B75A /* UIViewController+SelectPhotoIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 5374A5DC1EB0D4620062B75A /* UIViewController+SelectPhotoIcon.m */; };
 		5374A5E11EB0D5150062B75A /* WSISettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5374A5DF1EB0D5150062B75A /* WSISettingViewController.m */; };
 		5374A5E21EB0D5150062B75A /* WSISettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5374A5E01EB0D5150062B75A /* WSISettingViewController.xib */; };
+		5374A5E51EB0DFDD0062B75A /* SettingNaviBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5374A5E41EB0DFDD0062B75A /* SettingNaviBarView.m */; };
+		5374A5E71EB0DFF90062B75A /* SettingNaviBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5374A5E61EB0DFF90062B75A /* SettingNaviBarView.xib */; };
+		5374A5EA1EB1BEFA0062B75A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5374A5E91EB1BEFA0062B75A /* User.m */; };
 		5385FAC41EAC830000F283FD /* SizeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5385FAC31EAC830000F283FD /* SizeUtils.m */; };
 		5385FACB1EADC05B00F283FD /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5385FAC81EADC05B00F283FD /* UIScrollView+Refresh.m */; };
 		5385FACC1EADC05B00F283FD /* MJRefreshGifHeader+HeaderRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5385FACA1EADC05B00F283FD /* MJRefreshGifHeader+HeaderRefresh.m */; };
@@ -222,6 +225,11 @@
 		5374A5DE1EB0D5150062B75A /* WSISettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSISettingViewController.h; sourceTree = "<group>"; };
 		5374A5DF1EB0D5150062B75A /* WSISettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSISettingViewController.m; sourceTree = "<group>"; };
 		5374A5E01EB0D5150062B75A /* WSISettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSISettingViewController.xib; sourceTree = "<group>"; };
+		5374A5E31EB0DFDD0062B75A /* SettingNaviBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingNaviBarView.h; sourceTree = "<group>"; };
+		5374A5E41EB0DFDD0062B75A /* SettingNaviBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingNaviBarView.m; sourceTree = "<group>"; };
+		5374A5E61EB0DFF90062B75A /* SettingNaviBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingNaviBarView.xib; sourceTree = "<group>"; };
+		5374A5E81EB1BEFA0062B75A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		5374A5E91EB1BEFA0062B75A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		5385FAC21EAC830000F283FD /* SizeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeUtils.h; sourceTree = "<group>"; };
 		5385FAC31EAC830000F283FD /* SizeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SizeUtils.m; sourceTree = "<group>"; };
 		5385FAC71EADC05B00F283FD /* UIScrollView+Refresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Refresh.h"; sourceTree = "<group>"; };
@@ -460,6 +468,9 @@
 				5374A5DE1EB0D5150062B75A /* WSISettingViewController.h */,
 				5374A5DF1EB0D5150062B75A /* WSISettingViewController.m */,
 				5374A5E01EB0D5150062B75A /* WSISettingViewController.xib */,
+				5374A5E31EB0DFDD0062B75A /* SettingNaviBarView.h */,
+				5374A5E41EB0DFDD0062B75A /* SettingNaviBarView.m */,
+				5374A5E61EB0DFF90062B75A /* SettingNaviBarView.xib */,
 				5374A5C81EB0A8F20062B75A /* WSIChildVcOne.h */,
 				5374A5C91EB0A8F20062B75A /* WSIChildVcOne.m */,
 				5374A5CB1EB0A9050062B75A /* WSIChildVcTwo.h */,
@@ -468,6 +479,8 @@
 				5374A5CF1EB0A9130062B75A /* WSIChildVcThree.m */,
 				532420AD1EAA18440017E25A /* ListObject.h */,
 				532420AE1EAA18440017E25A /* ListObject.m */,
+				5374A5E81EB1BEFA0062B75A /* User.h */,
+				5374A5E91EB1BEFA0062B75A /* User.m */,
 				53BC82551EA5086000E95834 /* WSIRefreshHeader.h */,
 				53BC82561EA5086000E95834 /* WSIRefreshHeader.m */,
 				53BC82571EA5086000E95834 /* WSIRefreshFooter.h */,
@@ -710,6 +723,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5374A5E71EB0DFF90062B75A /* SettingNaviBarView.xib in Resources */,
 				53A46EF41EA7A2870049FE2C /* DemoCell.xib in Resources */,
 				53192CD01EAB397400C5E5BF /* PersonalTableViewCell.xib in Resources */,
 				5374A5781EB050B20062B75A /* EditingNaviBarView.xib in Resources */,
@@ -795,6 +809,7 @@
 				5374A5651EAF9C2E0062B75A /* UIViewController+Extension.m in Sources */,
 				5374A5951EB080330062B75A /* SGHelperTool.m in Sources */,
 				531AEB611E9B29E10037CA16 /* XibViewController.m in Sources */,
+				5374A5E51EB0DFDD0062B75A /* SettingNaviBarView.m in Sources */,
 				5374A5E11EB0D5150062B75A /* WSISettingViewController.m in Sources */,
 				5385FB351EAEEC0800F283FD /* JCNaviSubViewController.m in Sources */,
 				5385FAC41EAC830000F283FD /* SizeUtils.m in Sources */,
@@ -822,6 +837,7 @@
 				5373E7991E967C0400819DCD /* UIBarButtonItem+XMGExtension.m in Sources */,
 				532420AF1EAA18440017E25A /* ListObject.m in Sources */,
 				531AEB5E1E9B29E10037CA16 /* CodeViewController.m in Sources */,
+				5374A5EA1EB1BEFA0062B75A /* User.m in Sources */,
 				5374A5721EB044B50062B75A /* UINavigationBar+leoAdd.m in Sources */,
 				5374A5DD1EB0D4620062B75A /* UIViewController+SelectPhotoIcon.m in Sources */,
 				5385FB341EAEEC0800F283FD /* JCNavigationController.m in Sources */,

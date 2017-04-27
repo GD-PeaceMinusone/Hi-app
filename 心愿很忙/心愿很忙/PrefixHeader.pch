@@ -13,8 +13,6 @@
 
 /**分类和其他接口**/
 #import "UIView+XMGExtension.h"
-#import "UIBarButtonItem+XMGExtension.h"
-#import "UITextField+XMGExtension.h"
 #import "WSIConst.h"
 #import "NSString+XMGExtension.h"
 #import "NSDate+XMGExtension.h"
@@ -26,6 +24,9 @@
 #import "UIImage+WSIExtension.h"
 #import "JCNaviSubViewController.h"
 #import "UIViewController+Extension.h"
+#import <Masonry.h>
+#import "Bmob.h"
+#import "User.h"
 
 /*** 将服务器返回的数据写入plist文件 ***/
 #define XMGWriteToPlist(data,fileName) [data writeToFile:[NSString stringWithFormat:@"/Users/jackeylove/Desktop/%@.plist",fileName] atomically:YES];
@@ -44,6 +45,8 @@
 #define XMGRandomColor XMGColor(arc4random_uniform(255),arc4random_uniform(255),arc4random_uniform(255))
 #define XMGCommonBgColor XMGGrayColor(206)
 #define XMGGrayColor(v) XMGColor(v,v,v)
+#define blueColor [UIColor colorWithRed:0/255.0 green:114/255.0 blue:254/255.0 alpha:1.0]
+
 /** 当前版本号判断 */
 #define ios(version) ([UIDevice currentDevice].systemVersion.doubleValue >= (version))
 #define ShareApp ((AppDelegate *)[[UIApplication sharedApplication] delegate])

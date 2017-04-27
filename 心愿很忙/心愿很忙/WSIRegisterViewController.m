@@ -114,13 +114,13 @@
             
             NSLog(@"获取验证码失败.%@",error);
             
-            [HUDUtils setupErrorWithStatus:@"验证码发送失败" WithDelay:2.0f completion:nil];
+            [HUDUtils setupErrorWithStatus:@"验证码发送失败" WithDelay:1.8f completion:nil];
             
         } else {
             //获得smsID
             NSLog(@"验证码已发送.sms ID：%d",number);
             
-            [HUDUtils setupSuccessWithStatus:@"验证码已发送" WithDelay:2.0f completion:nil];
+            [HUDUtils setupSuccessWithStatus:@"验证码已发送" WithDelay:1.8f completion:nil];
         }
         
     }];
