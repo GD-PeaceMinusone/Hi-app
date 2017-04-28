@@ -22,5 +22,5 @@
 
 -(void)update;
 
-+(User *)currentUser;
++(User *)getCurrentUser;
 @end

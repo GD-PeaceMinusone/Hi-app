@@ -16,4 +16,8 @@
     [[UIViewController getNavi] popViewControllerAnimated:YES];
 }
 
+
+- (IBAction)wclButtonAction:(UIButton *)sender {
+    sender.selected = !sender.selected;
+}
 @end

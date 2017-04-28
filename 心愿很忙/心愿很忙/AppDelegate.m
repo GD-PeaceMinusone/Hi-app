@@ -13,6 +13,8 @@
 #import <UMSocialCore/UMSocialCore.h>
 #import "REFrostedViewController.h"
 #import "JCNavigationController.h"
+#import <Masonry.h>
+
 @interface AppDelegate ()
 @property(nonatomic,strong)REFrostedViewController *frostedViewController;
 @end
@@ -123,12 +125,11 @@
     UINavigationController *navigationVc = [[UINavigationController alloc]initWithRootViewController:mainVc];
     navigationVc.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"bj" style:UIBarButtonItemStyleDone target:self action:nil];
     [[UINavigationBar appearance] setTintColor:[UIColor clearColor]];
-    UITabBarController * tabbarVc = [[UITabBarController alloc]init];
+    
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
    
-    [tabbarVc addChildViewController:navigationVc];
     
-    self.frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:tabbarVc menuViewController:meVc];
+    self.frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationVc menuViewController:meVc];
     
     self.frostedViewController.direction = REFrostedViewControllerDirectionLeft;
     self.frostedViewController.panGestureEnabled = YES;
@@ -147,8 +148,7 @@
 //[[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
     
 //
-    
-    
+ 
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
     self.window.rootViewController = self.frostedViewController;
@@ -156,7 +156,9 @@
     self.window.backgroundColor = [UIColor colorWithRed:241.0/255 green:242.0/255 blue:244.0/255 alpha:1];
     
     [self.window makeKeyAndVisible];
-
+    
+    [self setupPublishButton];
+    NSLog(@"------%@-------",self.window.subviews);
 }
 
 /**
@@ -177,6 +179,40 @@
 }
 
 /**
+ *  初始化按钮
+ */
+
+-(void)setupPublishButton {
+
+    _publishButton = [UIButton new];
+    [self.window addSubview:_publishButton];
+    [_publishButton setImage:[UIImage imageNamed:@"发表动态"] forState:UIControlStateNormal];
+    
+    _publishButton.layer.shadowColor = [UIColor colorWithRed:38.0/255 green:38.0/255 blue:38.0/255 alpha:1.0].CGColor;
+    [_publishButton addTarget:self action:@selector(cilckButton) forControlEvents:UIControlEventTouchUpInside];
+    _publishButton.layer.shadowOpacity = 1.0;
+    _publishButton.layer.shadowOffset = CGSizeMake(0, 0);
+    _publishButton.layer.shadowRadius = 3.f;
+    
+    [_publishButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.size.mas_equalTo(CGSizeMake(45, 45));
+        make.bottom.equalTo(self.window.mas_bottom).with.offset(-15);
+        make.centerX.mas_equalTo(self.window.mas_centerX);
+        
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeButton) name:@"hideButton" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showButton) name:@"showButton" object:nil];
+}
+
+-(void)cilckButton {
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showPublish" object:nil];
+}
+
+
+/**
  *  通知方法
  */
 -(void)close {
@@ -189,10 +225,19 @@
     [self.frostedViewController panGestureRecognized:sender];
 }
 
--(void)removeNavi {
-
+-(void)removeButton {
+    
+    _publishButton.hidden = YES;
    
 }
+
+-(void)showButton {
+
+    _publishButton.hidden = NO;
+    
+}
+
+-(void)removeNavi {}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

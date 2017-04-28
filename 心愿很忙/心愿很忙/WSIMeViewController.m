@@ -8,6 +8,8 @@
 
 #import "WSIMeViewController.h"
 #import "WSIEditViewController.h"
+#import <UIImageView+WebCache.h>
+
 
 @interface WSIMeViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -22,6 +24,11 @@
     
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self setupHeaderIv];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+
+    [_headerIv sd_setImageWithURL:[NSURL URLWithString:[[BmobUser currentUser] objectForKey:@"headerPath"]] placeholderImage:nil];
 }
 
 #pragma mark - 懒加载
@@ -49,6 +56,7 @@
     _headerIv.layer.shadowOffset = CGSizeMake(0, 0);
     _headerIv.layer.shadowRadius = 3.f;
     _headerIv.userInteractionEnabled = YES;
+    [_headerIv sd_setImageWithURL:[NSURL URLWithString:[[BmobUser currentUser] objectForKey:@"headerPath"]] placeholderImage:nil];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
     [_headerIv addGestureRecognizer:tap];

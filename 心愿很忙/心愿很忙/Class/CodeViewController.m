@@ -200,7 +200,7 @@ TZImagePickerControllerDelegate
 
     if (!_imageVeiw) {
         
-        UIImage *image = [UIImage imageNamed:@"关闭"];
+        UIImage *image = [UIImage imageNamed:@"wrong"];
         _imageVeiw = [[UIImageView alloc]initWithImage:image];
     }
     
@@ -255,7 +255,7 @@ TZImagePickerControllerDelegate
     [self.closeButton addTarget:self action:@selector(closePublish) forControlEvents:UIControlEventTouchUpInside];
     
     //按钮视图
-    UIImage *image = [UIImage imageNamed:@"关闭"];
+    UIImage *image = [UIImage imageNamed:@"wrong"];
     self.imageVeiw = [[UIImageView alloc]initWithImage:image];
     
     //内容视图
@@ -751,12 +751,16 @@ TZImagePickerControllerDelegate
 
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
-    ListObject *object = [ListObject new];
-    object.link = self.textView.text;
-
-    object.thingContent = self.tv1.text;
+//    ListObject *object = [ListObject new];
+//    object.link = self.textView.text;
+//
+//    object.thingContent = self.tv1.text;
     
-    object.user = [BmobUser currentUser];
+    BmobObject *obj = [BmobObject objectWithClassName:@"test"];
+    [obj setObject:self.textView.text forKey:@"link"];
+    [obj setObject:self.tv1.text forKey:@"content"];
+    [obj setObject:[BmobUser currentUser] forKey:@"user"];
+    
     
     NSData *imgData = nil;
     /**
@@ -791,9 +795,21 @@ TZImagePickerControllerDelegate
                 
                 NSLog(@"%@",file.url);
                 
-                object.thingPath = file.url;
+//                object.thingPath = file.url;
+//                
+//                [object saveWithCallback:nil];
                 
-                [object saveWithCallback:nil];
+                [obj setObject:file.url forKey:@"url"];
+                [obj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                    
+                    if (isSuccessful) {
+                        
+                        NSLog(@"上传成功");
+                    }else {
+                    
+                        NSLog(@"上传失败 ---- %@",error);
+                    }
+                }];
                 
             }else {
                 
@@ -804,20 +820,25 @@ TZImagePickerControllerDelegate
             
             NSLog(@"%lf",progress);
             
-            [HUDUtils uploadImgWithProgress:progress completion:^{
-                
-               
-            }];
+            [HUDUtils uploadImgWithProgress:progress status:@"心愿清单生成中.." completion:nil];
         }];
    
     }else {
     
-        [object saveWithCallback:nil];
+//        [object saveWithCallback:nil];
         
+        [obj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            
+            if (isSuccessful) {
+                
+                NSLog(@"上传成功");
+            }else {
+                
+                NSLog(@"上传失败 ---- %@",error);
+            }
+        }];
     }
 
-
-   
 }
 
 

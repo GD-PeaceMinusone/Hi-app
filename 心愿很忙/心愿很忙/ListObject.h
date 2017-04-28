@@ -19,18 +19,14 @@ typedef void (^MyCallback)(id obj);
 @property(nonatomic,strong)NSString *thingPath;
 /** BmobObject 对象 */
 @property(nonatomic,strong)BmobObject *bObj;
-/** BmobUser 对象 */
-@property (nonatomic, strong)BmobUser *user;
+/** User 对象 */
+@property (nonatomic, strong)User *user;
 /** cell高度 */
 @property (nonatomic,assign) CGFloat cellHeight;
 /** 帖子的文字内容 */
 @property (nonatomic, copy) NSString *text;
-/** 头像地址 */
-@property(nonatomic,copy) NSString *headerPath;
-/** 签名 */
-@property(nonatomic,copy) NSString *sign;
-/** 昵称 */
-@property(nonatomic,copy) NSString *nickName;
+
+@property (nonatomic, strong)ListObject *itObj;
 
 -(ListObject *)initWithBmobObject:(BmobObject *)bObj;
 -(void)saveWithCallback:(MyCallback)callback;

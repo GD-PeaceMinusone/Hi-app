@@ -22,10 +22,11 @@
     [bObj setObject:self.link forKey:@"link"];
     [bObj setObject:self.thingPath forKey:@"thingPath"];
     [bObj setObject:self.thingContent forKey:@"thingContent"];
-    [bObj setObject:self.user forKey:@"user"];
-    [bObj setObject:self.headerPath forKey:@"headerPath"];
-    [bObj setObject:self.nickName forKey:@"nickName"];
-    [bObj setObject:self.sign forKey:@"sign"];
+   
+    BmobUser *user = [BmobUser currentUser];
+    [bObj setObject:user forKey:@"user"];
+    
+    [bObj setObject:self.itObj.bObj forKey:@"itobj"];
     
     [bObj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
@@ -59,7 +60,8 @@
         self.link = [bObj objectForKey:@"link"];
         self.thingPath = [bObj objectForKey:@"thingPath"];
         self.thingContent = [bObj objectForKey:@"thingContent"];
-        self.user =[bObj objectForKey:@"user"];
+        self.bObj = bObj;
+        self.user = [[User alloc]initWithBmobUser:[bObj objectForKey:@"user"]];
         
     }
     
@@ -73,9 +75,10 @@
  */
 +(NSArray *)ListObjcetArrayFromBmobObjectArray:(NSArray *)array {
     
-    
     NSMutableArray *itObjArray = [NSMutableArray array];
+    
     for (BmobObject *bObj in array) {
+        
         ListObject *itObj = [[ListObject alloc]initWithBmobObject:bObj];
         
         [itObjArray addObject:itObj];
@@ -103,7 +106,7 @@
 //        //图片
 //        CGFloat contentH = textMaxW * [_height floatValue] / [_width floatValue];
 //        _cellHeight += contentH + WSIMarginDouble;
-        _cellHeight += 250;
+        _cellHeight += 280;
     }
     
    

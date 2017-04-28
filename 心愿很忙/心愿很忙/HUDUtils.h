@@ -18,5 +18,6 @@
 
 +(void)setupInfoWithStatus:(NSString*)status WithDelay:(NSTimeInterval)delay completion:(SVProgressHUDDismissCompletion)completion;
 
-+(void)uploadImgWithProgress: (CGFloat)progress completion:(SVProgressHUDDismissCompletion)completion;
++(void)uploadImgWithProgress: (CGFloat)progress status:(NSString*)status completion:(SVProgressHUDDismissCompletion)completion;
+
 @end

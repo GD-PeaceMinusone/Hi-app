@@ -41,12 +41,12 @@
     [SVProgressHUD dismissWithDelay:delay completion:completion];
 }
 
-+(void)uploadImgWithProgress:(CGFloat)progress completion:(SVProgressHUDDismissCompletion)completion{
++(void)uploadImgWithProgress:(CGFloat)progress status:(NSString*)status completion:(SVProgressHUDDismissCompletion)completion{
 
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleLight];
     [SVProgressHUD setCornerRadius:8];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
-    [SVProgressHUD showProgress:progress status:@"清单生成中..."];
+    [SVProgressHUD showProgress:progress status:status];
     [SVProgressHUD setFont:[UIFont systemFontOfSize:13]];
     
 }

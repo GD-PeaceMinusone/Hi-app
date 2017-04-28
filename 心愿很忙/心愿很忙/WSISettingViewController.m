@@ -12,6 +12,8 @@
 #import "SRActionSheet.h"
 #import "Bmob.h"
 #import "BBInput.h"
+#import <UIImageView+WebCache.h>
+#import "ListObject.h"
 
 @interface WSISettingViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) SettingNaviBarView *barView;
@@ -29,11 +31,13 @@
     
     _barView = [SettingNaviBarView createNaviBarViewFromXIB];
     [self replaceNaviBarView:_barView];
-    
-   
+  
 }
 
-
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [_headerIv sd_setImageWithURL:[NSURL URLWithString:[[BmobUser currentUser] objectForKey:@"headerPath"]] placeholderImage:nil];
+}
 
 #pragma mark - 懒加载
 
@@ -131,6 +135,8 @@
                     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
                     
                     _headerIv = [[UIImageView alloc]initWithImage:image];
+                    
+                    [_headerIv sd_setImageWithURL:[NSURL URLWithString:[[BmobUser currentUser] objectForKey:@"headerPath"]] placeholderImage:nil];
                     
                     _headerIv.userInteractionEnabled = YES;
                     
@@ -265,11 +271,64 @@
     
     //获得编辑后的图片
     UIImage *editedImage = (UIImage *)info[UIImagePickerControllerEditedImage];
+    NSURL *url = info[@"UIImagePickerControllerReferenceURL"];
+    NSData *imgData = nil;
     
     UIImage *image = [UIImage imageWithIcon:editedImage borderImage:nil Border:0];
     
-    _headerIv.image = image;
+    if ([[url description] hasSuffix:@"PNG"]) {
+        
+        imgData = UIImagePNGRepresentation(image);
+        
+    }else {
+        
+        imgData = UIImageJPEGRepresentation(image, 1.0);
+        
+    }
     
+    
+    BmobFile *file = [[BmobFile alloc]initWithFileName:@"header.jpg" withFileData:imgData];
+    
+    
+    [file saveInBackgroundByDataSharding:^(BOOL isSuccessful, NSError *error) {
+        
+        
+        if (isSuccessful) {
+            NSLog(@"上传头像成功");
+            
+            NSLog(@"%@",file.url);
+            
+//            [User getCurrentUser].headerPath= file.url;
+//
+//            [[User getCurrentUser] update];
+            
+            [[BmobUser currentUser] setObject:file.url forKey:@"headerPath"];
+            [[BmobUser currentUser] updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                
+                if (isSuccessful) {
+                    NSLog(@"设置头像成功");
+                }else {
+                
+                    NSLog(@"设置头像失败 --- %@", error);
+                }
+                
+            }];
+            
+        }else {
+            
+            NSLog(@"上传头像失败: ---- %@", error);
+        }
+    
+    }progressBlock:^(CGFloat progress) {
+            
+            NSLog(@"%lf",progress);
+            
+            [HUDUtils uploadImgWithProgress:progress status:@"头像上传中.." completion:nil];
+
+   }];
+    
+    _headerIv.image = image;
+
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -328,9 +387,8 @@
         
         _nickCell.detailTextLabel.text = inputContent;
         
-        
-        
-        
+        [User getCurrentUser].nickName = inputContent;
+        [[User getCurrentUser] update];
         
         [self.tableView reloadData];
         
@@ -350,6 +408,8 @@
     [BBInput showInput:^(NSString *inputContent) {
         
         _signCell.detailTextLabel.text = inputContent;
+        [User getCurrentUser].sign = inputContent;
+        [[User getCurrentUser] update];
         [self.tableView reloadData];
         
     }];

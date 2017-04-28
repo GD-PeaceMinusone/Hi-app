@@ -11,14 +11,17 @@
 
 @interface HomeTableViewCell : UITableViewCell
 
-/**接受传过来的模型*/
+/** 接受传过来的模型 */
 @property(nonatomic,strong)ListObject *itObj;
-/**内容文本*/
+/** 内容文本 */
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
-/**图片*/
+/** 图片 */
 @property (strong, nonatomic) IBOutlet UIImageView *thingIv;
-/**头像*/
+/** 头像 */
 @property (weak, nonatomic) IBOutlet UIImageView *headerIv;
-
+/** 用户 */
+@property (nonatomic, strong)User *user;
+/** 所有赞 */
+@property (nonatomic, strong)NSArray *likes;
 
 @end

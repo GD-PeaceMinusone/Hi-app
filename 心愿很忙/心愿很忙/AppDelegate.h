@@ -18,6 +18,8 @@
 
 @property(nonatomic,strong) MMDrawerController *drawer;
 
+@property(nonatomic,strong)UIButton *publishButton;
+
 - (void)saveContext;
 
 

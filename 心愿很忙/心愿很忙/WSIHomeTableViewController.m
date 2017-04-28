@@ -42,7 +42,6 @@
     [self registerCell];
     [self setupRefresh];
     
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated{//显示tabbar
@@ -54,6 +53,7 @@
 -(void)viewWillAppear:(BOOL)animated {
 
     self.navigationController.navigationBar.hidden = NO;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showButton" object:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {//隐藏tabbar
@@ -120,38 +120,10 @@
 
     [self.navigationController.navigationBar.subviews firstObject].hidden = YES;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(publish:) name:@"showPublish" object:nil];
     
+    [self.view setBackgroundColor:[UIColor colorWithRed:242.0/255 green:242/255.0 blue:245/255.0 alpha:1.0f]];
 }
-
-//-(void)setupPublishButton {
-//    
-//    _button = [UIButton new];
-//    [_button setImage:[UIImage imageNamed:@"发布"] forState:UIControlStateNormal];
-//    
-//    /**
-//     CGFloat buttonW = 75;
-//     CGFloat buttonH = 40;
-//     CGFloat buttonX = (self.view.xmg_width - buttonW)*0.5;
-//     CGFloat buttonY = self.view.xmg_height - WSIMargin - buttonH;
-//     */
-//    
-//    _button.frame =  CGRectMake(0,0, 64, 64);
-//    [_button addTarget:self action:@selector(publish:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-//    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-//    
-//    //悬浮按钮所处的顶端UIWindow
-//    _window = [[UIWindow alloc] initWithFrame:CGRectMake(screenWidth*0.5-32, screenHeight-70, 64, 64)];
-//    
-//    //使得新建window在最顶端
-//    _window.windowLevel = UIWindowLevelAlert + 1;
-//    _window.backgroundColor = [UIColor clearColor];
-//    [_window addSubview:_button];
-//    
-//    //显示window
-//    [_window makeKeyAndVisible];
-//}
 
 
 /**
@@ -159,19 +131,24 @@
  */
 -(void)publish: (UIButton*)button {
     
+    
     if ([BmobUser currentUser]) {
         
         CodeViewController *codeVc = [CodeViewController new];
         [self presentViewController:codeVc animated:YES completion:nil];
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"hideButton" object:nil];
     }else {
         
         WSILoginViewController *loginVc = [WSILoginViewController new];
         [self presentViewController:loginVc animated:YES completion:nil];
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"hideButton" object:nil];
     }
     
 }
+
+
 
 /**
  *  监听按钮响应
@@ -179,7 +156,7 @@
 -(void)goMe {
     
     [[NSNotificationCenter defaultCenter]postNotificationName:@"clickButton" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"hideButton" object:nil];
 }
 
 
@@ -215,12 +192,7 @@
         }
     }];
     
-    
-    //把数据保存
-////    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.itObjs];
-//    
-//    [data writeToFile:kITObjsPath atomically:YES];
-    
+
 }
 
 
@@ -334,8 +306,7 @@
         
         self.tabBarController.tabBar.transform = CGAffineTransformMakeTranslation(0, 49);
         self.navigationController.navigationBar.transform = CGAffineTransformMakeTranslation(0, -49);
-       
-        
+
     }];
     
 }
@@ -346,7 +317,7 @@
         
         self.tabBarController.tabBar.transform = CGAffineTransformMakeTranslation(0, 0);
         self.navigationController.navigationBar.transform = CGAffineTransformMakeTranslation(0, 0);
-        
+
     }];
 }
 

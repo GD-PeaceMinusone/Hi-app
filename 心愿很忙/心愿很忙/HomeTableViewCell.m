@@ -18,6 +18,7 @@
 #import <REFrostedViewController.h>
 #import <WebKit/WebKit.h>
 #import "WSIThingViewController.h"
+#import <UIImageView+WebCache.h>
 
 #define ifHTTP !([link rangeOfString:@"http"].location == NSNotFound)
 #define ifType(type) !([self.itObj.link rangeOfString:type].location == NSNotFound)
@@ -26,7 +27,10 @@
 @property(nonatomic,strong) STPopupController *popupController;
 @property(nonatomic,strong) DACircularProgressView *progressView;
 @property (nonatomic,assign) NSInteger progress;
-@property(nonatomic,strong) NSString *wishLink;
+@property(nonatomic,strong)  NSString *wishLink;
+@property (weak, nonatomic) IBOutlet UILabel *likeAmount;
+@property (weak, nonatomic) IBOutlet UILabel *commentAmount;
+
 @end
 
 
@@ -38,12 +42,59 @@
     [self addGesture];
     [self.headerIv circleHeader:self.headerIv withBorderWidth:0 andBorderColor:nil];
     [self addProgress];
+    [self setupContentLabel];
+
     
-    //让cell 不响应点击事件
+}
+
+/**
+ *  实现label长按复制
+ */
+
+-(void)setupContentLabel {
+    
+     //让cell 不响应点击事件
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
+    
+    longPress.minimumPressDuration = 0.5;
+    
+    [_contentLabel addGestureRecognizer:longPress];
 }
 
 
+-(BOOL)canBecomeFirstResponder {
+
+    return YES;
+}
+
+-(BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+
+    return action == @selector(customCopy:);
+}
+
+- (void)customCopy:(id)sender {
+    
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = _contentLabel.text;
+    
+}
+
+- (void)longPressAction:(UIGestureRecognizer *)recognizer {
+    
+    [self becomeFirstResponder];
+    
+    UILabel *label=( UILabel *)[self.window viewWithTag: 1];
+    
+    label.backgroundColor = [UIColor colorWithRed:38/255.0 green:202/255.0 blue:202/255.0 alpha:1.0f];
+    
+    UIMenuItem *copyItem = [[UIMenuItem alloc] initWithTitle:@"复制" action:@selector(customCopy:)];
+    
+    [[UIMenuController sharedMenuController] setMenuItems:[NSArray arrayWithObjects:copyItem, nil]];
+    [[UIMenuController sharedMenuController] setTargetRect:self.frame inView:self.superview];
+    [[UIMenuController sharedMenuController] setMenuVisible:YES animated:YES];
+}
 
 /**
  *  图片加载进度
@@ -137,14 +188,14 @@
    
     NSURL *url = [NSURL URLWithString:itObj.thingPath];
    
-    [self.thingIv sd_setImageWithURL:url placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-        
-       
-        
+    [_thingIv sd_setImageWithURL:url placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+  
     } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
        
     }];
-   
+ 
+    [_headerIv sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"头像 (22)"] completed:nil];
+    NSLog(@"%@", [itObj.bObj objectForKey:@"user"]);
 }
 
 /**
@@ -276,6 +327,41 @@
     [[UIApplication sharedApplication]openURL:[NSURL URLWithString:self.wishLink] options:@{} completionHandler:nil];
     
 
+}
+
+- (IBAction)wclButtonAction:(UIButton *)sender {
+    
+    sender.selected = !sender.selected;
+    
+    BmobObject *bObj = [BmobObject objectWithClassName:@"Like"];
+    
+    [bObj setObject:[BmobUser currentUser].username forKey:@"username"];
+    [bObj setObject:self.user.bUser.username forKey:@"tousername"];
+    
+    [bObj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (isSuccessful) {
+            NSLog(@"点赞成功");
+            [self findLikes];
+        }else{
+            NSLog(@"点赞失败");
+        }
+    }];
+
+    
+}
+
+-(void)findLikes{
+    //查询多少条赞
+    BmobQuery *q = [BmobQuery queryWithClassName:@"Like"];
+    
+    [q whereKey:@"tousername" equalTo:self.user.bUser.username];
+    
+    [q findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        self.likes = array;
+       
+        [_likeAmount setText:[NSString stringWithFormat:@"%ld",array.count]];
+    }];
+    
 }
 
 @end
