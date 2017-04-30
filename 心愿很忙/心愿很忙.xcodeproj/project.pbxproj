@@ -48,6 +48,8 @@
 		533D2AF11EB431BC0072C98C /* SRActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 533D2AF01EB431BC0072C98C /* SRActionSheet.m */; };
 		533D2AF51EB4D9030072C98C /* WSICodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 533D2AF31EB4D9030072C98C /* WSICodeViewController.m */; };
 		533D2AF61EB4D9030072C98C /* WSICodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533D2AF41EB4D9030072C98C /* WSICodeViewController.xib */; };
+		533D2AFA1EB59A990072C98C /* WSIResetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 533D2AF81EB59A990072C98C /* WSIResetViewController.m */; };
+		533D2AFB1EB59A990072C98C /* WSIResetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533D2AF91EB59A990072C98C /* WSIResetViewController.xib */; };
 		5373E7451E9670A900819DCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7441E9670A900819DCD /* main.m */; };
 		5373E7481E9670A900819DCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7471E9670A900819DCD /* AppDelegate.m */; };
 		5373E7511E9670A900819DCD /* ____.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5373E74F1E9670A900819DCD /* ____.xcdatamodeld */; };
@@ -179,6 +181,9 @@
 		533D2AF21EB4D9030072C98C /* WSICodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSICodeViewController.h; sourceTree = "<group>"; };
 		533D2AF31EB4D9030072C98C /* WSICodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSICodeViewController.m; sourceTree = "<group>"; };
 		533D2AF41EB4D9030072C98C /* WSICodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSICodeViewController.xib; sourceTree = "<group>"; };
+		533D2AF71EB59A990072C98C /* WSIResetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIResetViewController.h; sourceTree = "<group>"; };
+		533D2AF81EB59A990072C98C /* WSIResetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIResetViewController.m; sourceTree = "<group>"; };
+		533D2AF91EB59A990072C98C /* WSIResetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSIResetViewController.xib; sourceTree = "<group>"; };
 		5373E7401E9670A900819DCD /* 心愿很忙.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "心愿很忙.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5373E7441E9670A900819DCD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5373E7461E9670A900819DCD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -461,6 +466,9 @@
 				533D2AF21EB4D9030072C98C /* WSICodeViewController.h */,
 				533D2AF31EB4D9030072C98C /* WSICodeViewController.m */,
 				533D2AF41EB4D9030072C98C /* WSICodeViewController.xib */,
+				533D2AF71EB59A990072C98C /* WSIResetViewController.h */,
+				533D2AF81EB59A990072C98C /* WSIResetViewController.m */,
+				533D2AF91EB59A990072C98C /* WSIResetViewController.xib */,
 				53FB50911E9DD795002B305D /* HUDUtils.h */,
 				53FB50921E9DD795002B305D /* HUDUtils.m */,
 				5385FAC21EAC830000F283FD /* SizeUtils.h */,
@@ -515,8 +523,8 @@
 				5373E7521E9670A900819DCD /* Assets.xcassets */,
 				5373E7571E9670A900819DCD /* Info.plist */,
 				5373E74F1E9670A900819DCD /* ____.xcdatamodeld */,
-				533D2AEE1EB431BC0072C98C /* SRActionSheet */,
 				531AEB411E9B29E10037CA16 /* Class */,
+				533D2AEE1EB431BC0072C98C /* SRActionSheet */,
 				5374A5ED1EB200E40062B75A /* WclEmitterButton */,
 				5374A5DA1EB0D4620062B75A /* UIViewController+SelectPhotoIcon */,
 				5374A5D11EB0D45D0062B75A /* WSIInputKit */,
@@ -762,6 +770,7 @@
 			files = (
 				5374A5E71EB0DFF90062B75A /* SettingNaviBarView.xib in Resources */,
 				53A46EF41EA7A2870049FE2C /* DemoCell.xib in Resources */,
+				533D2AFB1EB59A990072C98C /* WSIResetViewController.xib in Resources */,
 				5374A5781EB050B20062B75A /* EditingNaviBarView.xib in Resources */,
 				532420A91EAA106E0017E25A /* WSIHomeTableViewController.xib in Resources */,
 				533D2ABB1EB322F50072C98C /* PersonalTableViewCell.xib in Resources */,
@@ -897,6 +906,7 @@
 				53192CB31EAAEDF300C5E5BF /* UIImageView+WSIExtension.m in Sources */,
 				531AEB3A1E9B20120037CA16 /* CCFoldCell.m in Sources */,
 				53A46FAD1EA891820049FE2C /* MCNewCustomLayeredView.m in Sources */,
+				533D2AFA1EB59A990072C98C /* WSIResetViewController.m in Sources */,
 				5373E7481E9670A900819DCD /* AppDelegate.m in Sources */,
 				532420A01EA9A13D0017E25A /* HomeTableViewCell.m in Sources */,
 				531AEB3B1E9B20120037CA16 /* CCRotatedView.m in Sources */,

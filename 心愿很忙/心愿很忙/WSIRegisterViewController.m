@@ -28,6 +28,8 @@
 @property (nonatomic,assign) NSInteger smsCode;
 /**重置密码*/
 @property (weak, nonatomic) IBOutlet UIButton *resetBt;
+/**邮箱*/
+@property (weak, nonatomic) IBOutlet UITextField *emailTF;
 @end
 
 @implementation WSIRegisterViewController
@@ -37,7 +39,6 @@
     [super viewDidLoad];
     
     [self setupConerRadius];
-    [self setupImageView];
     [self setupTF];
 }
 
@@ -61,22 +62,12 @@
     imageIv2.frame = CGRectMake(0, 0, 29, 29);
     _codeTF.leftView = imageIv2;
     _codeTF.leftViewMode = UITextFieldViewModeAlways;
-  
-}
-
-/*对imageView进行半透明处理**/
-
--(void)setupImageView {
     
-    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-    UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
-    effectView.frame = [UIScreen mainScreen].bounds;
-    [self.imageView addSubview:effectView];
+    UIImageView *imageIv3 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"邮箱 (2)"]];
+    imageIv3.frame = CGRectMake(0, 0, 29, 29);
+    _emailTF.leftView = imageIv3;
+    _emailTF.leftViewMode = UITextFieldViewModeAlways;
     
-    UIVibrancyEffect *vibrancyView = [UIVibrancyEffect effectForBlurEffect:effect];
-    UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:vibrancyView];
-    visualEffectView.translatesAutoresizingMaskIntoConstraints = NO;
-    [effectView.contentView addSubview:visualEffectView];
 }
 
 #pragma mark - 收起键盘
@@ -119,53 +110,17 @@
     
     [self.registerView endEditing:YES];
     
- if([self validateEmail:self.userNameTF.text]){//用户输入的为邮箱
+    if([self validateEmail:self.userNameTF.text]){//用户输入的为邮箱
      
-        BmobUser *bUser = [[BmobUser alloc] init];
-        [bUser setUsername:self.userNameTF.text];
-        [bUser setEmail:self.userNameTF.text];
-        [bUser setPassword:self.passwordTF.text];
-
-        [bUser signUpInBackgroundWithBlock:^ (BOOL isSuccessful, NSError *error){
-            
-            if (isSuccessful){
-                
-                NSLog(@"邮件发送成功");
-                
-                [HUDUtils setupSuccessWithStatus:@"邮件已发送" WithDelay:1.5f completion:nil];
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    
-                     [self dismissViewControllerAnimated:YES completion:nil];
-                });;
-               
-                
-                BmobUser *user = [BmobUser currentUser];
-                //应用开启了邮箱验证功能
-                if ([user objectForKey:@"emailVerified"]) {
-                    //用户没验证过邮箱
-                    if (![[user objectForKey:@"emailVerified"] boolValue]) {
-                        [user verifyEmailInBackgroundWithEmailAddress:self.userNameTF.text];
-                        
-                    }
-                    
-                }
-                
-            } else {
-                NSLog(@"邮件发送失败--%@",error);
-                
-                [HUDUtils setupErrorWithStatus:@"邮件发送失败" WithDelay:1.5f completion:nil];
-            }
-        }];
-       
+     [HUDUtils setupInfoWithStatus:@"请输入用户名或手机号" WithDelay:1.5f completion:nil];
         
-    }else {
+}else {
     
 
     AVUser *user = [AVUser user];// 新建 AVUser 对象实例
     [user setUsername:_userNameTF.text];// 设置用户名
     [user setPassword:_codeTF.text];// 设置密码
-    
+    [user setEmail:_emailTF.text];
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
@@ -184,7 +139,7 @@
             
             NSLog(@"注册失败");
             
-            [HUDUtils setupErrorWithStatus:@"用户名或手机号已被注册" WithDelay:1.5f completion:nil];
+            [HUDUtils setupErrorWithStatus:@"此邮箱已注册" WithDelay:1.5f completion:nil];
         }
         
          }];

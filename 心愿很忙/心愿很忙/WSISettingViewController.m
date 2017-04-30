@@ -72,7 +72,7 @@
                                                                
                                                                if (index == 0) {
                                                                    
-                                                                   [BmobUser logout];
+                                                                   [AVUser logOut];
                                                                    
                                                                    [HUDUtils setupSuccessWithStatus:@"已退出" WithDelay:1.8f completion:^{
                                                                        
@@ -287,52 +287,48 @@
     }
     
     
-    BmobFile *file = [[BmobFile alloc]initWithFileName:@"header.jpg" withFileData:imgData];
+    AVFile *file = [AVFile fileWithName:@"header.jpg" data:imgData];
     
-    [file saveInBackgroundByDataSharding:^(BOOL isSuccessful, NSError *error) {
+    [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         
-        
-        if (isSuccessful) {
+        if (succeeded) {
+            
             NSLog(@"上传头像成功");
             
             NSLog(@"%@",file.url);
+
+            [[AVUser currentUser] setObject:file.url forKey:@"userHeader"];
             
-//            [User getCurrentUser].headerPath= file.url;
-//
-//            [[User getCurrentUser] update];
-            
-    
-            [[BmobUser currentUser] setObject:file forKey:@"fileType"];
-            
-            [[BmobUser currentUser] saveInBackground];
-       
-//            [[BmobUser currentUser] updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-//                
-//                if (isSuccessful) {
-//                    
-//                    NSLog(@"设置成功");
-//                
-//                }else {
-//                
-//                    NSLog(@"设置失败-----%@", error);
-//                }
-//                
-//            }];
-           
+            [[AVUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                
+                if (succeeded) {
+                    
+                    NSLog(@"头像更新成功");
+                    
+                    [HUDUtils setupSuccessWithStatus:@"头像上传成功" WithDelay:1.8f completion:nil];
+                    
+                }else {
+                
+                    [HUDUtils setupErrorWithStatus:@"设置头像失败" WithDelay:1.5f completion:nil];
+                }
+                
+            }];
             
         }else {
             
             NSLog(@"上传头像失败: ---- %@", error);
+            
+            [HUDUtils setupErrorWithStatus:@"头像上传失败" WithDelay:1.5f completion:nil];
         }
-    
-    }progressBlock:^(CGFloat progress) {
-            
-            NSLog(@"%lf",progress);
-            
-            [HUDUtils uploadImgWithProgress:progress status:@"头像上传中.." completion:nil];
+        
+    } progressBlock:^(NSInteger percentDone) {
+        
+        NSLog(@"%lf",percentDone/100.0);
+        
+        [HUDUtils uploadImgWithProgress:percentDone/100.0 status:@"头像上传中.." completion:nil];
+        
+    }];
 
-   }];
-    
     _headerIv.image = image;
 
     [picker dismissViewControllerAnimated:YES completion:nil];

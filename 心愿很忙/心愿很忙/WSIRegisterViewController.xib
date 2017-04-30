@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WSIRegisterViewController">
             <connections>
                 <outlet property="codeTF" destination="QmB-m6-5YF" id="gn0-xS-xQt"/>
+                <outlet property="emailTF" destination="1gW-Tj-DyU" id="KFs-MW-FqK"/>
                 <outlet property="registerButton" destination="MTl-hu-AiI" id="KcY-rT-vDv"/>
                 <outlet property="resetBt" destination="qQo-38-ulh" id="GbM-nH-5dj"/>
                 <outlet property="userNameTF" destination="9FR-RJ-VGV" id="Frc-j3-fP2"/>
@@ -128,7 +129,7 @@
                     </constraints>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" keyboardType="phonePad" secureTextEntry="YES"/>
+                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d83-55-iJK">
                     <rect key="frame" x="0.0" y="583" width="414" height="70"/>

@@ -8,6 +8,8 @@
 
 #import "WSICodeViewController.h"
 #import "WSIRegisterViewController.h"
+#import "WSIResetViewController.h"
+#import <STPopupController.h>
 
 @interface WSICodeViewController ()
 /**用户名或手机号*/
@@ -18,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *forgotBt;
 /**登录按钮*/
 @property (weak, nonatomic) IBOutlet UIButton *loginBt;
+/**重置密码*/
+@property(nonatomic,strong)STPopupController *popVc;
 @end
 
 @implementation WSICodeViewController
@@ -67,6 +71,39 @@
 - (IBAction)goBack:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (IBAction)forgotBt:(id)sender {
+    
+    [STPopupNavigationBar appearance].barTintColor = [UIColor colorWithRed:0/255.0
+                                                                    green:0/255.0
+                                                                    blue:0/255.0
+                                                                    alpha:1.0];
+    
+    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
+    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName:
+                                                               [UIFont fontWithName:nil size:15],
+                                                                NSForegroundColorAttributeName:
+                                                               [UIColor whiteColor] };
+    
+    
+    WSIResetViewController *meVc = [WSIResetViewController new];
+    _popVc = [[STPopupController alloc] initWithRootViewController:meVc];
+    _popVc.containerView.layer.cornerRadius = 4.0f;
+    
+    
+    [_popVc presentInViewController:self];
+    
+    [_popVc.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc]
+                                 initWithTarget:self action:@selector(backgroundViewDidTap)]];
+
+}
+
+
+-(void)backgroundViewDidTap {
+    
+    [_popVc dismiss];
     
 }
 

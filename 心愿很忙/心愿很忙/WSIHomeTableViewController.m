@@ -44,9 +44,7 @@
     [self networkStatus];
     [self registerCell];
     [self setupRefresh];
-    AVObject *testObject = [AVObject objectWithClassName:@"TestObject"];
-    [testObject setObject:@"bar" forKey:@"foo"];
-    [testObject save];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{//显示tabbar
@@ -137,7 +135,7 @@
 -(void)publish: (UIButton*)button {
     
     
-    if ([BmobUser currentUser]) {
+    if ([AVUser currentUser]) {
         
         CodeViewController *codeVc = [CodeViewController new];
         [self presentViewController:codeVc animated:YES completion:nil];
@@ -169,16 +167,17 @@
 
 -(void)loadNewTopics {
     
-    BmobQuery *query = [BmobQuery queryWithClassName:@"test"];
-    
+    AVQuery *query = [AVQuery queryWithClassName:@"WishList"];
+   
     query.limit = 10;
     
     [query orderByDescending:@"createdAt"];
     
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        
         
         if (error) {
+            NSLog(@"----%@---", error);
             
             [HUDUtils setupErrorWithStatus:@"加载失败" WithDelay:1.8f completion:^{
                 
@@ -187,63 +186,58 @@
                 
             }];
         }{
-//            
-//        self.itObjs = [[ListObject ListObjcetArrayFromBmobObjectArray:array] mutableCopy];
-//        [self.tableView reloadData];
-//        self.moreItobjs = [array mutableCopy];
             
-            self.itObjs = [array mutableCopy];
+            self.itObjs = [objects mutableCopy];
             [self.tableView reloadData];
-            self.moreItobjs = [array mutableCopy];
+            self.moreItobjs = [objects mutableCopy];
             
-        WSIWeakSelf
-        [weakSelf.tableView endHeaderRefresh];
+            WSIWeakSelf
+            [weakSelf.tableView endHeaderRefresh];
             
         }
+        
     }];
-    
+
 
 }
 
 
 -(void)loadMoreTopics {
     
-    BmobQuery *query = [BmobQuery queryWithClassName:@"test"];
+    AVQuery *query = [AVQuery queryWithClassName:@"WishList"];
     
     query.limit = 10;
     
-    BmobObject *obj = self.moreItobjs[self.moreItobjs.count - 1];
+    AVObject *obj = self.moreItobjs[self.moreItobjs.count - 1];
     
     [query whereKey:@"createdAt" lessThan:obj.createdAt];
-   
+    
     [query orderByDescending:@"createdAt"];
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         
         if (error) {
             
-            [HUDUtils setupErrorWithStatus:@"加载失败" WithDelay:1.8f completion:^{
+            [HUDUtils setupErrorWithStatus:@"加载失败" WithDelay:1.5f completion:^{
                 
                 WSIWeakSelf
                 [weakSelf.tableView endFooterRefresh];
                 
             }];
         }{
-//            NSArray<ListObject*> *moreItObjs = [ListObject ListObjcetArrayFromBmobObjectArray:array];
-//            [self.itObjs addObjectsFromArray:moreItObjs];
-//            [self.moreItobjs addObjectsFromArray:array];
-//            [self.tableView reloadData];
-//            
-//            
-
-            [self.itObjs addObject:array];
-            [self.moreItobjs addObject:array];
+            
+            
+            [self.itObjs addObjectsFromArray:objects];
+            [self.moreItobjs addObjectsFromArray:objects];
+            [self.tableView reloadData];
             
             WSIWeakSelf
             [weakSelf.tableView endFooterRefresh];
             
         }
+        
     }];
+
 }
 
 //判断网络状态
@@ -299,7 +293,7 @@
     
     HomeTableViewCell *homeCell = [tableView dequeueReusableCellWithIdentifier:@"HomeCell" forIndexPath:indexPath];
     
-    homeCell.itObj = self.itObjs[indexPath.row];
+    homeCell.avObj = self.itObjs[indexPath.row];
     
     return homeCell;
 }

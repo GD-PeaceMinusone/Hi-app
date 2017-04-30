@@ -75,7 +75,7 @@
     _numberTF.leftView = imageIv;
     _numberTF.leftViewMode = UITextFieldViewModeAlways;
     
-    UIImageView *imageIv2 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"信息"]];
+    UIImageView *imageIv2 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"短信"]];
     imageIv2.frame = CGRectMake(0, 0, 29, 29);
     _smsCode.leftView = imageIv2;
     _smsCode.leftViewMode = UITextFieldViewModeAlways;
@@ -121,7 +121,7 @@
             
             NSLog(@"登录失败---%@", error);
             
-            [HUDUtils setupErrorWithStatus:@"登录失败" WithDelay:1.5f completion:nil];
+            [HUDUtils setupErrorWithStatus:@"验证码错误" WithDelay:1.5f completion:nil];
             
         }else {
         

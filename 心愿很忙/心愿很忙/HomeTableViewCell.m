@@ -39,13 +39,11 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-  
-    [self addGesture];
-    [self.headerIv circleHeader:self.headerIv withBorderWidth:0 andBorderColor:nil];
-    [self addProgress];
-    [self setupContentLabel];
-
     
+    [self.headerIv circleHeader:self.headerIv withBorderWidth:0 andBorderColor:nil];
+    [self setupContentLabel];
+    [self addGesture];
+
 }
 
 /**
@@ -97,15 +95,6 @@
     [[UIMenuController sharedMenuController] setMenuVisible:YES animated:YES];
 }
 
-/**
- *  图片加载进度
- */
-
--(void)addProgress {
-
-   
-}
-
 
 /**
  *  点击查看大图
@@ -145,19 +134,12 @@
             [STPopupNavigationBar appearance].barTintColor = [UIColor colorWithRed:38/255.0 green:38/255.0 blue:38/255.0 alpha:1.0];
             [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
             [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont fontWithName:nil size:15], NSForegroundColorAttributeName: [UIColor whiteColor] };
-           
-            
             WSIMeDetailViewController *meVc = [WSIMeDetailViewController new];
             self.popupController = [[STPopupController alloc] initWithRootViewController:meVc];
             self.popupController.containerView.layer.cornerRadius = 4.0f;
-            
-            
             [self.popupController presentInViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
-            
             [self.popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
-            
-           
-            
+     
         }
             break;
             
@@ -181,36 +163,34 @@
 /**
  *  设置cell上的数据
  */
--(void)setItObj:(BmobObject *)itObj {
+
+
+-(void)setAvObj:(AVObject *)avObj {
+
+    _avObj = avObj;
     
-    _itObj = itObj;
+    _contentLabel.text = [avObj objectForKey:@"content"];
     
-//    self.contentLabel.text = itObj.thingContent;
-//   
-//    NSURL *url = [NSURL URLWithString:itObj.thingPath];
-//   
-//    [_thingIv sd_setImageWithURL:url placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-//  
-//    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-//       
-//    }];
-// 
-//    [_headerIv sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"头像 (22)"] completed:nil];
-//    NSLog(@"%@", [itObj.bObj objectForKey:@"user"]);
+    NSURL *url = [NSURL URLWithString:[avObj objectForKey:@"picUrl"]];
+    
+    [_thingIv sd_setImageWithURL:url placeholderImage:nil options:0 progress:nil completed:nil];
+    
+    AVUser *user = [avObj objectForKey:@"wishUser"];
     
     
-    self.contentLabel.text = [itObj objectForKey:@"content"];
-    NSURL *url = [NSURL URLWithString:[itObj objectForKey:@"url"]];
+    [user fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
+        
+        NSString *headerStr = [object objectForKey:@"userHeader"];
+        
+        NSURL *headerUrl = [NSURL URLWithString:headerStr];
+        
+        [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
+    }];
     
-    [_thingIv sd_setImageWithURL:url placeholderImage:nil completed:nil];
     
-    
-    BmobUser *user = [itObj objectForKey:@"user"];
-    
-    NSURL *url2 = [NSURL URLWithString:[user objectForKey:@"headerPath"]];
-    
-    [_headerIv sd_setImageWithURL:url2 placeholderImage:nil completed:nil];
+
 }
+
 
 /**
  *  重写这个方法的目的: 能够拦截所有设置cell frame的操作
