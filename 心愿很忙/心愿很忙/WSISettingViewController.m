@@ -289,7 +289,6 @@
     
     BmobFile *file = [[BmobFile alloc]initWithFileName:@"header.jpg" withFileData:imgData];
     
-    
     [file saveInBackgroundByDataSharding:^(BOOL isSuccessful, NSError *error) {
         
         
@@ -302,17 +301,24 @@
 //
 //            [[User getCurrentUser] update];
             
-            [[BmobUser currentUser] setObject:file.url forKey:@"headerPath"];
-            [[BmobUser currentUser] updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-                
-                if (isSuccessful) {
-                    NSLog(@"设置头像成功");
-                }else {
-                
-                    NSLog(@"设置头像失败 --- %@", error);
-                }
-                
-            }];
+    
+            [[BmobUser currentUser] setObject:file forKey:@"fileType"];
+            
+            [[BmobUser currentUser] saveInBackground];
+       
+//            [[BmobUser currentUser] updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+//                
+//                if (isSuccessful) {
+//                    
+//                    NSLog(@"设置成功");
+//                
+//                }else {
+//                
+//                    NSLog(@"设置失败-----%@", error);
+//                }
+//                
+//            }];
+           
             
         }else {
             

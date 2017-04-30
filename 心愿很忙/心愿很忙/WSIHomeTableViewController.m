@@ -20,7 +20,8 @@
 #import "AppDelegate.h"
 #import "MJRefreshGifHeader+HeaderRefresh.h"
 #import "UIScrollView+Refresh.h"
-
+#import <AVOSCloud/AVOSCloud.h>
+#import "STPopupController.h"
 
 @interface WSIHomeTableViewController ()
 /**数据数组*/
@@ -29,6 +30,8 @@
 @property (nonatomic, strong) UIWindow *window;
 /**数据数组*/
 @property(nonatomic,strong)NSMutableArray *moreItobjs;
+@property(nonatomic,strong) STPopupController *popupController;
+
 
 @end
 
@@ -41,7 +44,9 @@
     [self networkStatus];
     [self registerCell];
     [self setupRefresh];
-    
+    AVObject *testObject = [AVObject objectWithClassName:@"TestObject"];
+    [testObject setObject:@"bar" forKey:@"foo"];
+    [testObject save];
 }
 
 -(void)viewDidAppear:(BOOL)animated{//显示tabbar
@@ -142,7 +147,7 @@
         
         WSILoginViewController *loginVc = [WSILoginViewController new];
         [self presentViewController:loginVc animated:YES completion:nil];
-        
+
         [[NSNotificationCenter defaultCenter] postNotificationName:@"hideButton" object:nil];
     }
     
@@ -164,7 +169,7 @@
 
 -(void)loadNewTopics {
     
-    BmobQuery *query = [BmobQuery queryWithClassName:@"ListObject"];
+    BmobQuery *query = [BmobQuery queryWithClassName:@"test"];
     
     query.limit = 10;
     
@@ -182,10 +187,15 @@
                 
             }];
         }{
+//            
+//        self.itObjs = [[ListObject ListObjcetArrayFromBmobObjectArray:array] mutableCopy];
+//        [self.tableView reloadData];
+//        self.moreItobjs = [array mutableCopy];
             
-        self.itObjs = [[ListObject ListObjcetArrayFromBmobObjectArray:array] mutableCopy];
-        [self.tableView reloadData];
-        self.moreItobjs = [array mutableCopy];
+            self.itObjs = [array mutableCopy];
+            [self.tableView reloadData];
+            self.moreItobjs = [array mutableCopy];
+            
         WSIWeakSelf
         [weakSelf.tableView endHeaderRefresh];
             
@@ -198,7 +208,7 @@
 
 -(void)loadMoreTopics {
     
-    BmobQuery *query = [BmobQuery queryWithClassName:@"ListObject"];
+    BmobQuery *query = [BmobQuery queryWithClassName:@"test"];
     
     query.limit = 10;
     
@@ -219,10 +229,15 @@
                 
             }];
         }{
-            NSArray<ListObject*> *moreItObjs = [ListObject ListObjcetArrayFromBmobObjectArray:array];
-            [self.itObjs addObjectsFromArray:moreItObjs];
-            [self.moreItobjs addObjectsFromArray:array];
-            [self.tableView reloadData];
+//            NSArray<ListObject*> *moreItObjs = [ListObject ListObjcetArrayFromBmobObjectArray:array];
+//            [self.itObjs addObjectsFromArray:moreItObjs];
+//            [self.moreItobjs addObjectsFromArray:array];
+//            [self.tableView reloadData];
+//            
+//            
+
+            [self.itObjs addObject:array];
+            [self.moreItobjs addObject:array];
             
             WSIWeakSelf
             [weakSelf.tableView endFooterRefresh];
@@ -291,9 +306,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-        ListObject *obj = self.itObjs[indexPath.row];
-        return obj.cellHeight;
-
+//        ListObject *obj = self.itObjs[indexPath.row];
+//        return obj.cellHeight;
+    return 500;
 
 }
 

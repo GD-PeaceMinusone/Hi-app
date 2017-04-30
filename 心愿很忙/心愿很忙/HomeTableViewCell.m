@@ -8,7 +8,7 @@
 
 #import "HomeTableViewCell.h"
 #import <UIImageView+WebCache.h>
-#import <SRActionSheet.h>
+#import "SRActionSheet.h"
 #import "LYPhoto.h"
 #import "LYPhotoBrowser.h"
 #import <STPopup/STPopup.h>
@@ -19,6 +19,7 @@
 #import <WebKit/WebKit.h>
 #import "WSIThingViewController.h"
 #import <UIImageView+WebCache.h>
+#import "Bmob.h"
 
 #define ifHTTP !([link rangeOfString:@"http"].location == NSNotFound)
 #define ifType(type) !([self.itObj.link rangeOfString:type].location == NSNotFound)
@@ -180,22 +181,35 @@
 /**
  *  设置cell上的数据
  */
--(void)setItObj:(ListObject *)itObj {
+-(void)setItObj:(BmobObject *)itObj {
     
     _itObj = itObj;
     
-    self.contentLabel.text = itObj.thingContent;
-   
-    NSURL *url = [NSURL URLWithString:itObj.thingPath];
-   
-    [_thingIv sd_setImageWithURL:url placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-  
-    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-       
-    }];
- 
-    [_headerIv sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"头像 (22)"] completed:nil];
-    NSLog(@"%@", [itObj.bObj objectForKey:@"user"]);
+//    self.contentLabel.text = itObj.thingContent;
+//   
+//    NSURL *url = [NSURL URLWithString:itObj.thingPath];
+//   
+//    [_thingIv sd_setImageWithURL:url placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+//  
+//    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+//       
+//    }];
+// 
+//    [_headerIv sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"头像 (22)"] completed:nil];
+//    NSLog(@"%@", [itObj.bObj objectForKey:@"user"]);
+    
+    
+    self.contentLabel.text = [itObj objectForKey:@"content"];
+    NSURL *url = [NSURL URLWithString:[itObj objectForKey:@"url"]];
+    
+    [_thingIv sd_setImageWithURL:url placeholderImage:nil completed:nil];
+    
+    
+    BmobUser *user = [itObj objectForKey:@"user"];
+    
+    NSURL *url2 = [NSURL URLWithString:[user objectForKey:@"headerPath"]];
+    
+    [_headerIv sd_setImageWithURL:url2 placeholderImage:nil completed:nil];
 }
 
 /**
@@ -226,7 +240,7 @@
             switch (index) {
                 case 0:{
  
-                    [self getLink];
+//                    [self getLink];
 
                 }
                     break;
@@ -253,81 +267,81 @@
  */
 
 
--(void)getLink {
-    
-    if (ifType(@"手机淘宝")) {//为淘宝链接
-        
-        if (!([self.itObj.link rangeOfString:@"http"].location == NSNotFound)) {
-            
-            self.wishLink = [self taobaoLinkWithHttp:@"http"];
-            
-        }else {
-        
-            self.wishLink = [self taobaoLinkWithHttp:@"https"];
-        }
-        
-
-        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:self.wishLink] options:@{} completionHandler:nil];
-        
-    }else if(ifType(@"tm=")) {//天猫链接
-        
-        [self openWithTitle:@"taobao"];
-        
-    }else {
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"link" object:self.itObj.link];
-        NSLog(@"1111");
-        REFrostedViewController*vc = (REFrostedViewController*)[UIApplication sharedApplication].keyWindow.rootViewController;
-        UITabBarController *tabBarVc =(UITabBarController*) vc.contentViewController;
-        
-        
-        WSIThingViewController *thingVc = [WSIThingViewController new];
-        [tabBarVc.selectedViewController pushViewController:thingVc animated:YES];
-        
-    }
- 
-}
-
-
-/**
- *  淘宝链接判断
- */
-
--(NSString*)taobaoLinkWithHttp:(NSString*)http {
-    
-    NSString *link = self.itObj.link;
-    NSRange startRange = [link rangeOfString:@"打开"];
-    NSRange endRange = [link rangeOfString:@"，或"];
-    NSRange range = NSMakeRange(startRange.location + startRange.length, endRange.location - startRange.location - startRange.length);
-    NSString *resultStr = [link substringWithRange:range];
-    NSString *wishStr = [resultStr stringByReplacingOccurrencesOfString:http withString:@"taobao"];
-    
-    return wishStr;
-}
-
-/**
- *  其他链接判断
- */
-
--(void)openWithTitle: (NSString*)title {
-
-    NSString *link = self.itObj.link;
-    
-    if (ifHTTP) {
-        
-        NSString *wishStr = [link stringByReplacingOccurrencesOfString:@"http" withString:title];
-        self.wishLink = wishStr;
-        
-    }else {
-        
-        NSString *wishStr = [link stringByReplacingOccurrencesOfString:@"https" withString:title];
-        self.wishLink = wishStr;
-    }
-    
-    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:self.wishLink] options:@{} completionHandler:nil];
-    
-
-}
+//-(void)getLink {
+//    
+//    if (ifType(@"手机淘宝")) {//为淘宝链接
+//        
+//        if (!([self.itObj.link rangeOfString:@"http"].location == NSNotFound)) {
+//            
+//            self.wishLink = [self taobaoLinkWithHttp:@"http"];
+//            
+//        }else {
+//        
+//            self.wishLink = [self taobaoLinkWithHttp:@"https"];
+//        }
+//        
+//
+//        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:self.wishLink] options:@{} completionHandler:nil];
+//        
+//    }else if(ifType(@"tm=")) {//天猫链接
+//        
+//        [self openWithTitle:@"taobao"];
+//        
+//    }else {
+//        
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"link" object:self.itObj.link];
+//        NSLog(@"1111");
+//        REFrostedViewController*vc = (REFrostedViewController*)[UIApplication sharedApplication].keyWindow.rootViewController;
+//        UITabBarController *tabBarVc =(UITabBarController*) vc.contentViewController;
+//        
+//        
+//        WSIThingViewController *thingVc = [WSIThingViewController new];
+//        [tabBarVc.selectedViewController pushViewController:thingVc animated:YES];
+//        
+//    }
+// 
+//}
+//
+//
+///**
+// *  淘宝链接判断
+// */
+//
+//-(NSString*)taobaoLinkWithHttp:(NSString*)http {
+//    
+//    NSString *link = self.itObj.link;
+//    NSRange startRange = [link rangeOfString:@"打开"];
+//    NSRange endRange = [link rangeOfString:@"，或"];
+//    NSRange range = NSMakeRange(startRange.location + startRange.length, endRange.location - startRange.location - startRange.length);
+//    NSString *resultStr = [link substringWithRange:range];
+//    NSString *wishStr = [resultStr stringByReplacingOccurrencesOfString:http withString:@"taobao"];
+//    
+//    return wishStr;
+//}
+//
+///**
+// *  其他链接判断
+// */
+//
+//-(void)openWithTitle: (NSString*)title {
+//
+//    NSString *link = self.itObj.link;
+//    
+//    if (ifHTTP) {
+//        
+//        NSString *wishStr = [link stringByReplacingOccurrencesOfString:@"http" withString:title];
+//        self.wishLink = wishStr;
+//        
+//    }else {
+//        
+//        NSString *wishStr = [link stringByReplacingOccurrencesOfString:@"https" withString:title];
+//        self.wishLink = wishStr;
+//    }
+//    
+//    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:self.wishLink] options:@{} completionHandler:nil];
+//    
+//
+//}
 
 - (IBAction)wclButtonAction:(UIButton *)sender {
     

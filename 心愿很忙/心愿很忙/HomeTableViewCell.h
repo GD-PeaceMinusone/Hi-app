@@ -12,7 +12,9 @@
 @interface HomeTableViewCell : UITableViewCell
 
 /** 接受传过来的模型 */
-@property(nonatomic,strong)ListObject *itObj;
+//@property(nonatomic,strong)ListObject *itObj;
+/** 接受传过来的模型 */
+@property(nonatomic,strong)BmobObject *itObj;
 /** 内容文本 */
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 /** 图片 */

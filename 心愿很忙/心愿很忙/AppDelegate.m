@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "WSIMeViewController.h"
 #import "WSIHomeTableViewController.h"
-#import <BmobSDK/Bmob.h>
+#import <AVOSCloud/AVOSCloud.h>
 #import <UMSocialCore/UMSocialCore.h>
 #import "REFrostedViewController.h"
 #import "JCNavigationController.h"
@@ -26,13 +26,15 @@
 
     [self setupWindow];
     
-    [self setupBmob];
-    
+    [self setupAV];
+    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     [self configUSharePlatforms];
     
     [self confitUShareSettings];
     
     [self setupUshare];
+    
+    [self setupBmob];
     return YES;
 }
 
@@ -107,9 +109,15 @@
  *  初始化Bmob
  */
 
+-(void)setupAV {
+
+    [AVOSCloud setApplicationId:@"EdpSxUoPpa8F2QbTLyL6ifHY-gzGzoHsz" clientKey:@"JddhqnXxhIzC0HcaTjzD32oc"];
+   
+}
+
 -(void)setupBmob {
 
-    [Bmob registerWithAppKey:@"1b06e7519038aac91f3ec8f8437034c9"];
+//    [Bmob registerWithAppKey:@"1b06e7519038aac91f3ec8f8437034c9"];
 }
 
 /**
@@ -227,13 +235,22 @@
 
 -(void)removeButton {
     
-    _publishButton.hidden = YES;
+    [UIView animateWithDuration:0.4f animations:^{
+        
+        _publishButton.hidden = YES;
+        
+    }];
+    
    
 }
 
 -(void)showButton {
 
-    _publishButton.hidden = NO;
+    [UIView animateWithDuration:0.4f animations:^{
+        
+        _publishButton.hidden = NO;
+        
+    }];
     
 }
 

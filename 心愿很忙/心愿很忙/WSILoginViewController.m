@@ -8,72 +8,80 @@
 
 #import "WSILoginViewController.h"
 #import "WSIRegisterViewController.h"
+#import "WSICodeViewController.h"
 #import <BmobSDK/Bmob.h>
 #import <Masonry.h>
 #import "HUDUtils.h"
 
 @interface WSILoginViewController ()
-/**关闭按钮*/
-@property (weak, nonatomic) IBOutlet UIButton *closeButton;
-/**背景图*/
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-/**登录视图*/
-@property (weak, nonatomic) IBOutlet UIView *loginView;
 /**登录按钮*/
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
-/**忘记密码*/
-@property (weak, nonatomic) IBOutlet UIButton *forgot;
-/**输入用户名*/
-@property (weak, nonatomic) IBOutlet UITextField *usernameTF;
-/**输入密码*/
-@property (weak, nonatomic) IBOutlet UITextField *passWordTF;
-
+/**手机号*/
+@property (weak, nonatomic) IBOutlet UITextField *numberTF;
+/**验证码*/
+@property (weak, nonatomic) IBOutlet UITextField *smsCode;
+/**vc*/
+@property(nonatomic,strong)WSIRegisterViewController *registerVc;
+/**vc*/
+@property(nonatomic,strong)WSICodeViewController *codeVc;
 @end
 
 @implementation WSILoginViewController
 
 #pragma mark - 一些初始化操作
+
+-(WSIRegisterViewController *)registerVc {
+    
+    if (_registerVc) {
+        
+        _registerVc = [[WSIRegisterViewController alloc]initWithNibName:NSStringFromClass([WSIRegisterViewController class]) bundle:[NSBundle mainBundle]];
+        
+    }
+    
+    return _registerVc;
+    
+}
+
+-(WSICodeViewController *)codeVc {
+
+    if (!_codeVc) {
+        
+        _codeVc = [[WSICodeViewController alloc]initWithNibName:NSStringFromClass([WSICodeViewController class]) bundle:[NSBundle mainBundle]];
+        
+    }
+    
+    return _codeVc;
+}
+
 - (void)viewDidLoad {
     
-    [self setupImageView];
+    [self setupTF];
     [self setupConerRadius];
 }
 
 -(void)setupConerRadius {
 
-    [self.loginView.layer setCornerRadius:4.0f];
+   
     [self.loginButton.layer setCornerRadius:3.0f];
-    [self.forgot.layer setCornerRadius:2.0f];
-}
-
-
-/*对imageView进行半透明处理**/
-
--(void)setupImageView {
-
-    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-    UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
-    effectView.frame = [UIScreen mainScreen].bounds;
-    [self.imageView addSubview:effectView];
     
-    UIVibrancyEffect *vibrancyView = [UIVibrancyEffect effectForBlurEffect:effect];
-    UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:vibrancyView];
-    visualEffectView.translatesAutoresizingMaskIntoConstraints = NO;
-    [effectView.contentView addSubview:visualEffectView];
 }
 
-#pragma mark - 对view添加手势
+/**设置输入框的头像*/
 
--(void)addGesture {
+-(void)setupTF {
     
-    UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
-    [self.loginView addGestureRecognizer:tap];
+    UIImageView *imageIv = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"手机号"]];
+    imageIv.frame = CGRectMake(0, 0, 29, 29);
+    _numberTF.leftView = imageIv;
+    _numberTF.leftViewMode = UITextFieldViewModeAlways;
+    
+    UIImageView *imageIv2 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"信息"]];
+    imageIv2.frame = CGRectMake(0, 0, 29, 29);
+    _smsCode.leftView = imageIv2;
+    _smsCode.leftViewMode = UITextFieldViewModeAlways;
+ 
 }
 
--(void)tap {
-    
-    [self.loginView endEditing:YES];
-}
 
 #pragma mark - 按钮事件监听
 
@@ -85,40 +93,68 @@
 
 - (IBAction)Register:(UIButton *)sender {
     
-    WSIRegisterViewController *registerVc = [[WSIRegisterViewController alloc]initWithNibName:@"WSIRegisterViewController" bundle:[NSBundle mainBundle]];
+    _registerVc = [[WSIRegisterViewController alloc]initWithNibName:NSStringFromClass([WSIRegisterViewController class]) bundle:[NSBundle mainBundle]];
+    [self presentViewController:self.registerVc animated:YES completion:nil];
     
-    [self presentViewController:registerVc animated:YES completion:nil];
+}
+
+
+- (IBAction)userPw:(id)sender {
+    
+    [self presentViewController:self.codeVc animated:YES completion:nil];
+    
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+
+    [self.view endEditing:YES];
 }
 
 
 - (IBAction)loginButton:(id)sender {
     
-    [BmobUser loginInbackgroundWithAccount:self.usernameTF.text andPassword:self.passWordTF.text block:^(BmobUser *user, NSError *error) {
+    [self.view endEditing:YES];
+    
+    [AVUser logInWithMobilePhoneNumberInBackground:_numberTF.text smsCode:_smsCode.text block:^(AVUser *user, NSError *error) {
         
         if (error) {
             
-            NSLog(@"登录出错---%@",error);
+            NSLog(@"登录失败---%@", error);
             
-            [HUDUtils setupErrorWithStatus:@"登录失败" WithDelay:1.8f completion:nil];
+            [HUDUtils setupErrorWithStatus:@"登录失败" WithDelay:1.5f completion:nil];
+            
         }else {
         
-            NSLog(@"登录成功---%@",user);
+            NSLog(@"登录成功");
             
-            [HUDUtils setupSuccessWithStatus:@"登录成功" WithDelay:1.8f completion:^{
+            [HUDUtils setupSuccessWithStatus:@"登录成功" WithDelay:1.5f completion:nil];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
                 [self dismissViewControllerAnimated:YES completion:nil];
-            }];
+            });
+        }
+        
+    }];
+   
+}
+
+
+- (IBAction)getCode:(id)sender {
+    
+    [AVUser requestLoginSmsCode:_numberTF.text withBlock:^(BOOL succeeded, NSError *error) {
+        
+        if (succeeded) {
+            
+            NSLog(@"验证码发送成功");
+            [HUDUtils setupSuccessWithStatus:@"验证码已发送" WithDelay:1.8f completion:nil];
+            
+        }else {
+        
+            NSLog(@"验证码发送失败---%@", error);
+            [HUDUtils setupErrorWithStatus:@"验证码发送失败" WithDelay:1.8f completion:nil];
         }
         
     }];
 }
-
-
-- (IBAction)forgotButton:(id)sender {
-    
-    
-}
-
-
-
 @end

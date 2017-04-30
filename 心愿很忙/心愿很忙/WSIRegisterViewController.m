@@ -26,7 +26,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *codeTF;
 /**验证码*/
 @property (nonatomic,assign) NSInteger smsCode;
-
+/**重置密码*/
+@property (weak, nonatomic) IBOutlet UIButton *resetBt;
 @end
 
 @implementation WSIRegisterViewController
@@ -37,14 +38,30 @@
     
     [self setupConerRadius];
     [self setupImageView];
-    [self addGesture];
+    [self setupTF];
 }
 
 -(void)setupConerRadius {
 
     [self.registerView.layer setCornerRadius:4.0f];
-    
     [self.registerButton.layer setCornerRadius:3.0f];
+    [self.resetBt.layer setCornerRadius:2.0f];
+}
+
+/**设置输入框的头像*/
+
+-(void)setupTF {
+
+    UIImageView *imageIv = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"笑脸2"]];
+    imageIv.frame = CGRectMake(0, 0, 25, 25);
+    _userNameTF.leftView = imageIv;
+    _userNameTF.leftViewMode = UITextFieldViewModeAlways;
+    
+    UIImageView *imageIv2 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"密码"]];
+    imageIv2.frame = CGRectMake(0, 0, 29, 29);
+    _codeTF.leftView = imageIv2;
+    _codeTF.leftViewMode = UITextFieldViewModeAlways;
+  
 }
 
 /*对imageView进行半透明处理**/
@@ -62,18 +79,11 @@
     [effectView.contentView addSubview:visualEffectView];
 }
 
-#pragma mark - 对view添加手势
+#pragma mark - 收起键盘
 
--(void)addGesture {
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 
-    UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
-    [self.registerView addGestureRecognizer:tap];
-}
-
--(void)tap {
-
-    [self.registerView endEditing:YES];
-
+    [self.view endEditing:YES];
 }
 
 #pragma mark - 正则表达式注册判断
@@ -103,55 +113,14 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-//发送验证码
-- (IBAction)codeButton:(id)sender {
-    
-    [self.registerView endEditing:YES];
-    
-    [BmobSMS requestSMSCodeInBackgroundWithPhoneNumber:self.userNameTF.text andTemplate:@"test" resultBlock:^(int number, NSError *error) {
-        
-        if (error) {
-            
-            NSLog(@"获取验证码失败.%@",error);
-            
-            [HUDUtils setupErrorWithStatus:@"验证码发送失败" WithDelay:1.8f completion:nil];
-            
-        } else {
-            //获得smsID
-            NSLog(@"验证码已发送.sms ID：%d",number);
-            
-            [HUDUtils setupSuccessWithStatus:@"验证码已发送" WithDelay:1.8f completion:nil];
-        }
-        
-    }];
-}
 
 
 - (IBAction)registerButton:(id)sender {
     
     [self.registerView endEditing:YES];
     
-    if ([self validateMobile:self.userNameTF.text]) {//用户输入为手机号
-        
-        BmobUser *buser = [[BmobUser alloc] init];
-        buser.mobilePhoneNumber = self.userNameTF.text;
-        buser.password = self.passwordTF.text;
-        
-        [buser signUpOrLoginInbackgroundWithSMSCode:self.codeTF.text block:^(BOOL isSuccessful, NSError *error) {
-            
-            if (error) {
-                
-                [HUDUtils setupErrorWithStatus:@"注册失败" WithDelay:1.5f completion:nil];
-                
-            } else {
-          
-                [HUDUtils setupSuccessWithStatus:@"注册成功" WithDelay:1.5f completion:nil];
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }
-        }];
-    
-    }else if([self validateEmail:self.userNameTF.text]){//用户输入的为邮箱
-        
+ if([self validateEmail:self.userNameTF.text]){//用户输入的为邮箱
+     
         BmobUser *bUser = [[BmobUser alloc] init];
         [bUser setUsername:self.userNameTF.text];
         [bUser setEmail:self.userNameTF.text];
@@ -188,38 +157,39 @@
                 [HUDUtils setupErrorWithStatus:@"邮件发送失败" WithDelay:1.5f completion:nil];
             }
         }];
+       
         
-        
-    }else {//用户输入的为用户名
+    }else {
     
-        BmobUser *bUser = [[BmobUser alloc] init];
-        [bUser setUsername:self.userNameTF.text];
-        [bUser setPassword:self.passwordTF.text];
-        
-        [bUser signUpInBackgroundWithBlock:^ (BOOL isSuccessful, NSError *error){
-        
-            if (isSuccessful) {
-                
-                NSLog(@"用户名注册成功");
-                [HUDUtils setupSuccessWithStatus:@"注册成功" WithDelay:1.5f completion:nil];
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                });
-                
-            }else {
-            
-                NSLog(@"用户名注册失败--%@",error);
-                [HUDUtils setupErrorWithStatus:@"注册失败" WithDelay:1.5f completion:nil];
-            }
-            
-        }];
-        
-    }
-    
-}
 
+    AVUser *user = [AVUser user];// 新建 AVUser 对象实例
+    [user setUsername:_userNameTF.text];// 设置用户名
+    [user setPassword:_codeTF.text];// 设置密码
+    
+    
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        
+        if (succeeded) {
+            
+            NSLog(@"注册成功");
+            
+            [HUDUtils setupSuccessWithStatus:@"注册成功" WithDelay:1.5f completion:nil];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
+            });
+            
+        } else {
+            
+            NSLog(@"注册失败");
+            
+            [HUDUtils setupErrorWithStatus:@"用户名或手机号已被注册" WithDelay:1.5f completion:nil];
+        }
+        
+         }];
+    }
+}
 
 
 

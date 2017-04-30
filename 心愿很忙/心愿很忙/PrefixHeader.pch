@@ -24,6 +24,7 @@
 #import "UIImage+WSIExtension.h"
 #import "JCNaviSubViewController.h"
 #import "UIViewController+Extension.h"
+#import <AVOSCloud/AVOSCloud.h>
 #import <Masonry.h>
 #import "Bmob.h"
 #import "User.h"
