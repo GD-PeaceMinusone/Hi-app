@@ -18,7 +18,7 @@
 #define kDividerHeight        7.5
 
 #define kTitleFontSize        SCREEN_ADJUST(15)
-#define kActionItemFontSize   SCREEN_ADJUST(17)
+#define kActionItemFontSize   SCREEN_ADJUST(15)
 
 #define kActionSheetColor            [UIColor colorWithRed:245.0f/255.0f green:245.0f/255.0f blue:245.0f/255.0f alpha:1.0f]
 #define kTitleColor                  [UIColor colorWithRed:111.0f/255.0f green:111.0f/255.0f blue:111.0f/255.0f alpha:1.0f]

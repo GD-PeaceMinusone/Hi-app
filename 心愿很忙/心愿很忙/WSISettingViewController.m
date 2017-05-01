@@ -10,7 +10,6 @@
 #import "UIViewController+SelectPhotoIcon.m"
 #import "SettingNaviBarView.h"
 #import "SRActionSheet.h"
-#import "Bmob.h"
 #import "BBInput.h"
 #import <UIImageView+WebCache.h>
 
@@ -30,7 +29,8 @@
     
     _barView = [SettingNaviBarView createNaviBarViewFromXIB];
     [self replaceNaviBarView:_barView];
-  
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -40,7 +40,7 @@
         NSString *headerStr = [object objectForKey:@"userHeader"];
         
         NSURL *headerUrl = [NSURL URLWithString:headerStr];
-        
+        _headerIv.backgroundColor = [UIColor clearColor];
         [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
     }];
 }
@@ -277,22 +277,26 @@
     UIImage *editedImage = (UIImage *)info[UIImagePickerControllerEditedImage];
     NSURL *url = info[@"UIImagePickerControllerReferenceURL"];
     NSData *imgData = nil;
+    NSData *imgData2= nil;
     
     UIImage *image = [UIImage imageWithIcon:editedImage borderImage:nil Border:0];
+    _headerIv.image = image;
     
     if ([[url description] hasSuffix:@"PNG"]) {
         
         imgData = UIImagePNGRepresentation(image);
+        imgData2 = UIImagePNGRepresentation(editedImage);
         
     }else {
         
         imgData = UIImageJPEGRepresentation(image, 1.0);
-        
+        imgData2 = UIImageJPEGRepresentation(editedImage, 1.0);
     }
     
     
     AVFile *file = [AVFile fileWithName:@"header.jpg" data:imgData];
-    
+    AVFile *file2 = [AVFile fileWithName:@"squareHeader.jpg" data:imgData2];
+
     [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         
         if (succeeded) {
@@ -332,8 +336,23 @@
         [HUDUtils uploadImgWithProgress:percentDone/100.0 status:@"头像上传中.." completion:nil];
         
     }];
+    
+    
+    [file2 saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        
+        if (succeeded) {
+            
+            [[AVUser currentUser] setObject:file2.url forKey:@"squareUserHeader"];
+            
+            [[AVUser currentUser] saveInBackground];
+            
+        }else {
+        
+            NSLog(@"上传方形头像失败---%@", error);
+        }
+        
+    }];
 
-    _headerIv.image = image;
 
     [picker dismissViewControllerAnimated:YES completion:nil];
 }

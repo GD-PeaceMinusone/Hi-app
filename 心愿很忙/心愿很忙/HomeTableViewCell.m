@@ -19,7 +19,6 @@
 #import <WebKit/WebKit.h>
 #import "WSIThingViewController.h"
 #import <UIImageView+WebCache.h>
-#import "Bmob.h"
 
 #define ifHTTP !([link rangeOfString:@"http"].location == NSNotFound)
 #define ifType(type) !([self.itObj.link rangeOfString:type].location == NSNotFound)
@@ -44,6 +43,7 @@
 
 
 @implementation HomeTableViewCell
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -133,7 +133,7 @@
     
    
 
-    [STPopupNavigationBar appearance].barTintColor = [UIColor colorWithRed:38/255.0 green:38/255.0 blue:38/255.0 alpha:1.0];
+    [STPopupNavigationBar appearance].barTintColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
     [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
     [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont fontWithName:nil size:15], NSForegroundColorAttributeName: [UIColor whiteColor] };
     WSIMeDetailViewController *meVc = [WSIMeDetailViewController new];
@@ -195,7 +195,13 @@
 - (IBAction)wclButtonAction:(UIButton *)sender {
     
     sender.selected = !sender.selected;
-
+    
+    AVObject *like = [AVObject objectWithClassName:@"like"];
+    AVUser *starUser = [like objectForKey:@"starUser"];
+    
+   
+    
+    
 }
 
 

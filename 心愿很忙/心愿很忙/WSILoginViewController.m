@@ -9,7 +9,6 @@
 #import "WSILoginViewController.h"
 #import "WSIRegisterViewController.h"
 #import "WSICodeViewController.h"
-#import <BmobSDK/Bmob.h>
 #import <Masonry.h>
 #import "HUDUtils.h"
 

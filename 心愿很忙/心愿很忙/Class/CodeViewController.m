@@ -14,7 +14,6 @@
 #import <TZImageManager.h>
 #import <HUPhotoBrowser.h>
 #import "HUDUtils.h"
-#import <BmobSDK/Bmob.h>
 #import <HorizontalProgressView.h>
 
 
@@ -785,6 +784,7 @@ TZImagePickerControllerDelegate
             
                 NSLog(@"文件上传成功");
                 NSLog(@"----%@----",file.url);
+              
                 
                 [wishObj setObject:file.url forKey:@"picUrl"];
                 [wishObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
@@ -801,6 +801,13 @@ TZImagePickerControllerDelegate
                             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                         }];
                         
+                        //将每条用户发的状态关联到该用户
+                        AVRelation *relation = [[AVUser currentUser] relationForKey:@"containedTodos"];
+                        [relation addObject:wishObj];
+                        
+                        [[AVUser currentUser] saveInBackground];
+                        
+            
                     }else {
                     
                         NSLog(@"清单保存失败----%@", error);

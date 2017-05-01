@@ -7,12 +7,12 @@
 //
 
 #import "WSIMeViewController.h"
-#import "WSIEditViewController.h"
+#import "WSIHomePageViewController.h"
 #import <UIImageView+WebCache.h>
 
 
 @interface WSIMeViewController ()<UITableViewDataSource,UITableViewDelegate>
-@property(nonatomic,strong)WSIEditViewController *editVc;
+@property(nonatomic,strong)WSIHomePageViewController *editVc;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerIv;
 @property (weak, nonatomic) IBOutlet UILabel *sign;
@@ -25,28 +25,31 @@
     [super viewDidLoad];
     
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    [self setupHeaderIv];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
 
-    [[AVUser currentUser] fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
+    if ([AVUser currentUser]) {
         
-        NSString *headerStr = [object objectForKey:@"userHeader"];
+        [self setupHeaderIv];
         
-        NSURL *headerUrl = [NSURL URLWithString:headerStr];
+    }else {
         
-        [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
-    }];
+        [self setupHeaderIv];
+        UIImage *image = [UIImage imageNamed:@"笑脸 (11)"];
+        _headerIv.image = image;
+    }
+    
 }
 
 #pragma mark - 懒加载
 
-- (WSIEditViewController *)editVc {
+- (WSIHomePageViewController *)editVc {
 
     if (!_editVc) {
         
-        _editVc = [WSIEditViewController new];
+        _editVc = [WSIHomePageViewController new];
     }
     
     return _editVc;
@@ -68,13 +71,13 @@
 
     [[AVUser currentUser] fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
         
-        NSString *headerStr = [object objectForKey:@"userHeader"];
+        NSString *headerStr = [object objectForKey:@"squareUserHeader"];
         
         NSURL *headerUrl = [NSURL URLWithString:headerStr];
         
-        [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
+        [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"笑脸 (11)"]];
         
-        NSString *nameStr = [object objectForKey:@"username"];
+        NSString *nameStr = [object objectForKey:@"nickName"];
         [_nickName setText:nameStr];
         
         NSString *signStr = [object objectForKey:@"sign"];

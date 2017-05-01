@@ -10,11 +10,12 @@
 #import "WSIPerosonalViewController.h"
 #import <REFrostedViewController.h>
 #import <UIImageView+WebCache.h>
-
+#import "SCAvatarBrowser.h"
 
 @interface WSIMeDetailViewController () 
 @property (weak, nonatomic) IBOutlet UIView *popView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerIv;
+@property (weak, nonatomic) IBOutlet UILabel *nickLabel;
 
 @end
 
@@ -34,6 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setupHeaderIv];
     [self.popView.layer setCornerRadius:4.0f];
     [self.headerIv circleHeader:self.headerIv withBorderWidth:0 andBorderColor:nil];
     
@@ -52,12 +54,28 @@
             
             NSURL *headerUrl = [NSURL URLWithString:headerStr];
             
-            [_headerIv sd_setImageWithURL:headerUrl];
+            [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
             
+            NSString *nameStr = [object objectForKey:@"nickName"];
+            [_nickLabel setText:nameStr];
         }];
     
 }
 
+-(void)setupHeaderIv {
+    
+    [_headerIv circleHeader:_headerIv withBorderWidth:1.5f andBorderColor:[UIColor whiteColor]];
+    _headerIv.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(checkHead)];
+    [_headerIv addGestureRecognizer:tap];
+}
+
+-(void)checkHead {
+    
+    [SCAvatarBrowser showImageView:_headerIv];
+    
+}
 
 /**
  *  推出个人详情页面

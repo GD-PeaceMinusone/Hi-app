@@ -12,7 +12,6 @@
 #import <AFNetworking.h>
 #import "WSIRefreshHeader.h"
 #import "WSIRefreshFooter.h"
-#import <BmobSDK/Bmob.h>
 #import "HUDUtils.h"
 #import "HomeTableViewCell.h"
 #import "CodeViewController.h"

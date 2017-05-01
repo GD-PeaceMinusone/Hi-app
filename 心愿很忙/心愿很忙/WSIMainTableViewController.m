@@ -13,7 +13,6 @@
 #import <AFNetworking.h>
 #import "WSIRefreshHeader.h"
 #import "WSIRefreshFooter.h"
-#import <BmobSDK/Bmob.h>
 #import "AppDelegate.h"
 #import "DemoCell.h"
 #import "HUDUtils.h"
@@ -215,25 +214,25 @@ UITableViewDataSource
 }
 
 
-//设置发布按钮
--(void)publish: (UIButton*)button {
-    
-    if ([BmobUser currentUser]) {
-        
-        CodeViewController *codeVc = [CodeViewController new];
-        [self presentViewController:codeVc animated:YES completion:nil];
-        
-    }else {
-        
-        WSILoginViewController *loginVc = [WSILoginViewController new];
-        [self presentViewController:loginVc animated:YES completion:nil];
-        
-    }
-    
-    //    WSILoginViewController *loginVc = [WSILoginViewController new];
-    //    [self presentViewController:loginVc animated:YES completion:nil];
-    
-}
+////设置发布按钮
+//-(void)publish: (UIButton*)button {
+//    
+//    if ([BmobUser currentUser]) {
+//        
+//        CodeViewController *codeVc = [CodeViewController new];
+//        [self presentViewController:codeVc animated:YES completion:nil];
+//        
+//    }else {
+//        
+//        WSILoginViewController *loginVc = [WSILoginViewController new];
+//        [self presentViewController:loginVc animated:YES completion:nil];
+//        
+//    }
+//    
+//    //    WSILoginViewController *loginVc = [WSILoginViewController new];
+//    //    [self presentViewController:loginVc animated:YES completion:nil];
+//    
+//}
 
 //监听按钮响应
 -(void)goMe {

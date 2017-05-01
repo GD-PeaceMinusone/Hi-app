@@ -50,6 +50,9 @@
 		533D2AFA1EB59A990072C98C /* WSIResetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 533D2AF81EB59A990072C98C /* WSIResetViewController.m */; };
 		533D2AFB1EB59A990072C98C /* WSIResetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533D2AF91EB59A990072C98C /* WSIResetViewController.xib */; };
 		533D2AFD1EB5F40E0072C98C /* Sparkle.png in Resources */ = {isa = PBXBuildFile; fileRef = 533D2AFC1EB5F40E0072C98C /* Sparkle.png */; };
+		533F00241EB6EDA5002E0B19 /* WSIHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 533F00221EB6EDA5002E0B19 /* WSIHomePageViewController.m */; };
+		533F00251EB6EDA5002E0B19 /* WSIHomePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533F00231EB6EDA5002E0B19 /* WSIHomePageViewController.xib */; };
+		533F00291EB6F438002E0B19 /* WMPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 533F00281EB6F438002E0B19 /* WMPanGestureRecognizer.m */; };
 		5373E7451E9670A900819DCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7441E9670A900819DCD /* main.m */; };
 		5373E7481E9670A900819DCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7471E9670A900819DCD /* AppDelegate.m */; };
 		5373E7511E9670A900819DCD /* ____.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5373E74F1E9670A900819DCD /* ____.xcdatamodeld */; };
@@ -61,8 +64,6 @@
 		5373E79C1E967C0400819DCD /* NSString+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7921E967C0400819DCD /* NSString+XMGExtension.m */; };
 		5373E79D1E967C0400819DCD /* NSDate+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7941E967C0400819DCD /* NSDate+XMGExtension.m */; };
 		5373E79E1E967C0400819DCD /* NSCalendar+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7961E967C0400819DCD /* NSCalendar+XMGExtension.m */; };
-		5374A5611EAF99BE0062B75A /* WSIEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5374A55F1EAF99BE0062B75A /* WSIEditViewController.m */; };
-		5374A5621EAF99BE0062B75A /* WSIEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5374A5601EAF99BE0062B75A /* WSIEditViewController.xib */; };
 		5374A5651EAF9C2E0062B75A /* UIViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5374A5641EAF9C2E0062B75A /* UIViewController+Extension.m */; };
 		5374A5711EB044B50062B75A /* LEOHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5374A56C1EB044B50062B75A /* LEOHeaderView.m */; };
 		5374A5721EB044B50062B75A /* UINavigationBar+leoAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 5374A56E1EB044B50062B75A /* UINavigationBar+leoAdd.m */; };
@@ -181,6 +182,11 @@
 		533D2AF81EB59A990072C98C /* WSIResetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIResetViewController.m; sourceTree = "<group>"; };
 		533D2AF91EB59A990072C98C /* WSIResetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSIResetViewController.xib; sourceTree = "<group>"; };
 		533D2AFC1EB5F40E0072C98C /* Sparkle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sparkle.png; sourceTree = "<group>"; };
+		533F00211EB6EDA5002E0B19 /* WSIHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIHomePageViewController.h; sourceTree = "<group>"; };
+		533F00221EB6EDA5002E0B19 /* WSIHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIHomePageViewController.m; sourceTree = "<group>"; };
+		533F00231EB6EDA5002E0B19 /* WSIHomePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSIHomePageViewController.xib; sourceTree = "<group>"; };
+		533F00271EB6F438002E0B19 /* WMPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPanGestureRecognizer.h; sourceTree = "<group>"; };
+		533F00281EB6F438002E0B19 /* WMPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPanGestureRecognizer.m; sourceTree = "<group>"; };
 		5373E7401E9670A900819DCD /* 心愿很忙.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "心愿很忙.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5373E7441E9670A900819DCD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5373E7461E9670A900819DCD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -203,9 +209,6 @@
 		5373E7951E967C0400819DCD /* NSCalendar+XMGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+XMGExtension.h"; sourceTree = "<group>"; };
 		5373E7961E967C0400819DCD /* NSCalendar+XMGExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+XMGExtension.m"; sourceTree = "<group>"; };
 		5373E79F1E967D8600819DCD /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		5374A55E1EAF99BE0062B75A /* WSIEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIEditViewController.h; sourceTree = "<group>"; };
-		5374A55F1EAF99BE0062B75A /* WSIEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIEditViewController.m; sourceTree = "<group>"; };
-		5374A5601EAF99BE0062B75A /* WSIEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSIEditViewController.xib; sourceTree = "<group>"; };
 		5374A5631EAF9C2E0062B75A /* UIViewController+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extension.h"; sourceTree = "<group>"; };
 		5374A5641EAF9C2E0062B75A /* UIViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extension.m"; sourceTree = "<group>"; };
 		5374A56B1EB044B50062B75A /* LEOHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEOHeaderView.h; sourceTree = "<group>"; };
@@ -426,6 +429,15 @@
 			path = SRActionSheet;
 			sourceTree = "<group>";
 		};
+		533F00261EB6F438002E0B19 /* Gesture */ = {
+			isa = PBXGroup;
+			children = (
+				533F00271EB6F438002E0B19 /* WMPanGestureRecognizer.h */,
+				533F00281EB6F438002E0B19 /* WMPanGestureRecognizer.m */,
+			);
+			path = Gesture;
+			sourceTree = "<group>";
+		};
 		5373E7371E9670A900819DCD = {
 			isa = PBXGroup;
 			children = (
@@ -486,9 +498,9 @@
 				532420A51EAA106E0017E25A /* WSIHomeTableViewController.h */,
 				532420A61EAA106E0017E25A /* WSIHomeTableViewController.m */,
 				532420A71EAA106E0017E25A /* WSIHomeTableViewController.xib */,
-				5374A55E1EAF99BE0062B75A /* WSIEditViewController.h */,
-				5374A55F1EAF99BE0062B75A /* WSIEditViewController.m */,
-				5374A5601EAF99BE0062B75A /* WSIEditViewController.xib */,
+				533F00211EB6EDA5002E0B19 /* WSIHomePageViewController.h */,
+				533F00221EB6EDA5002E0B19 /* WSIHomePageViewController.m */,
+				533F00231EB6EDA5002E0B19 /* WSIHomePageViewController.xib */,
 				533D2AE51EB331990072C98C /* WSIChildVcOne.h */,
 				533D2AE61EB331990072C98C /* WSIChildVcOne.m */,
 				533D2AE71EB331990072C98C /* WSIChildVcThree.h */,
@@ -514,6 +526,7 @@
 				5373E7571E9670A900819DCD /* Info.plist */,
 				5373E74F1E9670A900819DCD /* ____.xcdatamodeld */,
 				531AEB411E9B29E10037CA16 /* Class */,
+				533F00261EB6F438002E0B19 /* Gesture */,
 				533D2AEE1EB431BC0072C98C /* SRActionSheet */,
 				5374A5ED1EB200E40062B75A /* WclEmitterButton */,
 				5374A5DA1EB0D4620062B75A /* UIViewController+SelectPhotoIcon */,
@@ -765,7 +778,7 @@
 				532420A91EAA106E0017E25A /* WSIHomeTableViewController.xib in Resources */,
 				533D2ABB1EB322F50072C98C /* PersonalTableViewCell.xib in Resources */,
 				532420B41EAA395C0017E25A /* WSIMeDetailViewController.xib in Resources */,
-				5374A5621EAF99BE0062B75A /* WSIEditViewController.xib in Resources */,
+				533F00251EB6EDA5002E0B19 /* WSIHomePageViewController.xib in Resources */,
 				5373E7531E9670A900819DCD /* Assets.xcassets in Resources */,
 				533D2ABF1EB324560072C98C /* Images.xcassets in Resources */,
 				533D2AFD1EB5F40E0072C98C /* Sparkle.png in Resources */,
@@ -858,6 +871,7 @@
 				5374A5761EB0504D0062B75A /* EditingNaviBarView.m in Sources */,
 				53FB50931E9DD795002B305D /* HUDUtils.m in Sources */,
 				5374A5971EB080330062B75A /* SGPageTitleView.m in Sources */,
+				533F00241EB6EDA5002E0B19 /* WSIHomePageViewController.m in Sources */,
 				531AEB701E9B29E10037CA16 /* CCDraggableContainer.m in Sources */,
 				53A46FAC1EA891820049FE2C /* MCNewCustomLayer.m in Sources */,
 				53A46ECC1EA702840049FE2C /* WSIMainTableViewController.m in Sources */,
@@ -889,6 +903,7 @@
 				532420B31EAA395C0017E25A /* WSIMeDetailViewController.m in Sources */,
 				53A46FA91EA891820049FE2C /* LYPhoto.m in Sources */,
 				5385FB281EAE50BD00F283FD /* WSIThingViewController.m in Sources */,
+				533F00291EB6F438002E0B19 /* WMPanGestureRecognizer.m in Sources */,
 				531AEB3C1E9B20120037CA16 /* UIView+Snapshot.m in Sources */,
 				53A46FB01EA891820049FE2C /* MCUtil.m in Sources */,
 				53192CB31EAAEDF300C5E5BF /* UIImageView+WSIExtension.m in Sources */,
@@ -906,7 +921,6 @@
 				53A46FAF1EA891820049FE2C /* MCSliceLayer.m in Sources */,
 				5385FB361EAEEC0800F283FD /* JCNormalNavigationBarView.m in Sources */,
 				531AEA491E992AB90037CA16 /* WSIRegisterViewController.m in Sources */,
-				5374A5611EAF99BE0062B75A /* WSIEditViewController.m in Sources */,
 				53BC825A1EA5086000E95834 /* WSIRefreshFooter.m in Sources */,
 				5373E79D1E967C0400819DCD /* NSDate+XMGExtension.m in Sources */,
 				5373E7451E9670A900819DCD /* main.m in Sources */,

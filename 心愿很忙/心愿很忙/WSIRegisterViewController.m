@@ -7,7 +7,6 @@
 //
 
 #import "WSIRegisterViewController.h"
-#import <BmobSDK/Bmob.h>
 #import <SVProgressHUD.h>
 #import "HUDUtils.h"
 

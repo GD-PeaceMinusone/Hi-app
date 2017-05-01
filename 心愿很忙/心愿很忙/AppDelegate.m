@@ -105,7 +105,7 @@
 
 
 /**
- *  初始化Bmob
+ *  初始化AV
  */
 
 -(void)setupAV {
@@ -229,24 +229,15 @@
 }
 
 -(void)removeButton {
-    
-    [UIView animateWithDuration:0.4f animations:^{
-        
+ 
         _publishButton.hidden = YES;
-        
-    }];
-    
-   
+
 }
 
 -(void)showButton {
 
-    [UIView animateWithDuration:0.4f animations:^{
-        
         _publishButton.hidden = NO;
-        
-    }];
-    
+  
 }
 
 -(void)removeNavi {}

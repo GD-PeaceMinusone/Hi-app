@@ -26,7 +26,6 @@
 #import "UIViewController+Extension.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import <Masonry.h>
-#import "Bmob.h"
 #import "User.h"
 
 /*** 将服务器返回的数据写入plist文件 ***/
