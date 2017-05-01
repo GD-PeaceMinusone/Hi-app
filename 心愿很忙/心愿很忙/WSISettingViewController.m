@@ -13,7 +13,6 @@
 #import "Bmob.h"
 #import "BBInput.h"
 #import <UIImageView+WebCache.h>
-#import "ListObject.h"
 
 @interface WSISettingViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) SettingNaviBarView *barView;
@@ -36,7 +35,14 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
-    [_headerIv sd_setImageWithURL:[NSURL URLWithString:[[BmobUser currentUser] objectForKey:@"headerPath"]] placeholderImage:nil];
+    [[AVUser currentUser] fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
+        
+        NSString *headerStr = [object objectForKey:@"userHeader"];
+        
+        NSURL *headerUrl = [NSURL URLWithString:headerStr];
+        
+        [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
+    }];
 }
 
 #pragma mark - 懒加载
@@ -121,7 +127,7 @@
     if (!cell) {
         
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
-        
+        [cell.detailTextLabel setFont:[UIFont systemFontOfSize:14.0f]];
         
         if (indexPath.section == 0)
         {
@@ -130,13 +136,11 @@
                 {
                     cell.textLabel.text = @"头像";
                     
-                    UIImage *image = [UIImage imageWithIconName:@"header" borderImage:nil border:0];
+                    UIImage *image = [UIImage imageWithIconName:@"头像 (22)" borderImage:nil border:0];
                     
                     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
                     
                     _headerIv = [[UIImageView alloc]initWithImage:image];
-                    
-                    [_headerIv sd_setImageWithURL:[NSURL URLWithString:[[BmobUser currentUser] objectForKey:@"headerPath"]] placeholderImage:nil];
                     
                     _headerIv.userInteractionEnabled = YES;
                     
@@ -383,15 +387,15 @@
 -(void)updateNickName{
     
     [BBInput setDescTitle:@"请输入昵称"];
-    [BBInput setMaxContentLength:10];
+    [BBInput setMaxContentLength:20];
     [BBInput setNormalContent:_nickCell.detailTextLabel.text];
     [BBInput showInput:^(NSString *inputContent) {
         
         _nickCell.detailTextLabel.text = inputContent;
         
-        [User getCurrentUser].nickName = inputContent;
-        [[User getCurrentUser] update];
-        
+        [[AVUser currentUser] setObject:inputContent forKey:@"nickName"];
+        [[AVUser currentUser] saveInBackground];
+    
         [self.tableView reloadData];
         
     }];
@@ -410,8 +414,9 @@
     [BBInput showInput:^(NSString *inputContent) {
         
         _signCell.detailTextLabel.text = inputContent;
-        [User getCurrentUser].sign = inputContent;
-        [[User getCurrentUser] update];
+        
+        [[AVUser currentUser] setObject:inputContent forKey:@"sign"];
+        [[AVUser currentUser] saveInBackground];
         [self.tableView reloadData];
         
     }];

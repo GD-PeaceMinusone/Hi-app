@@ -34,7 +34,6 @@
     
     [self setupUshare];
     
-    [self setupBmob];
     return YES;
 }
 
@@ -115,10 +114,6 @@
    
 }
 
--(void)setupBmob {
-
-//    [Bmob registerWithAppKey:@"1b06e7519038aac91f3ec8f8437034c9"];
-}
 
 /**
  *  初始化window

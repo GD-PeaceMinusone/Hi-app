@@ -9,6 +9,7 @@
 #import "WSIMeDetailViewController.h"
 #import "WSIPerosonalViewController.h"
 #import <REFrostedViewController.h>
+#import <UIImageView+WebCache.h>
 
 
 @interface WSIMeDetailViewController () 
@@ -35,7 +36,26 @@
     
     [self.popView.layer setCornerRadius:4.0f];
     [self.headerIv circleHeader:self.headerIv withBorderWidth:0 andBorderColor:nil];
- 
+    
+}
+
+
+-(void)setAvObj:(AVObject *)avObj {
+
+    _avObj = avObj;
+    
+    AVUser *user = [_avObj objectForKey:@"wishUser"];
+        
+        [user fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
+            
+            NSString *headerStr = [object objectForKey:@"userHeader"];
+            
+            NSURL *headerUrl = [NSURL URLWithString:headerStr];
+            
+            [_headerIv sd_setImageWithURL:headerUrl];
+            
+        }];
+    
 }
 
 
@@ -53,15 +73,6 @@
    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-
-
-
-
-
-
-
-
 
 
 @end

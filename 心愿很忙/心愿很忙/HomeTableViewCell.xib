@@ -21,13 +21,13 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChR-Ve-nai">
                         <rect key="frame" x="0.0" y="85" width="406" height="1"/>
-                        <color key="backgroundColor" red="0.5490196078431373" green="0.5490196078431373" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.92941176470588238" green="0.93725490196078431" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="0.29999999999999999" id="Slt-ki-sPi"/>
+                            <constraint firstAttribute="height" constant="0.5" id="Slt-ki-sPi"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="0.33000000000000002" id="j0J-SG-ejc"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header" translatesAutoresizingMaskIntoConstraints="NO" id="XwU-EG-07k">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header" translatesAutoresizingMaskIntoConstraints="NO" id="XwU-EG-07k">
                         <rect key="frame" x="15" y="15" width="49" height="49"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="49" id="9cF-Py-3GZ"/>
@@ -197,8 +197,10 @@
             <connections>
                 <outlet property="commentAmount" destination="HLz-PT-czW" id="l2u-gH-Qvc"/>
                 <outlet property="contentLabel" destination="dzw-H7-j5j" id="OGX-zo-2Yu"/>
-                <outlet property="headerIv" destination="XwU-EG-07k" id="iIG-Ez-2Ak"/>
+                <outlet property="currentTime" destination="n3y-AB-MXy" id="oJu-Fo-mxG"/>
+                <outlet property="headerIv" destination="XwU-EG-07k" id="ct4-6I-L3o"/>
                 <outlet property="likeAmount" destination="KGV-3f-BdP" id="kdR-le-x89"/>
+                <outlet property="nickName" destination="fgK-CV-Qvf" id="GVD-u3-v42"/>
                 <outlet property="thingIv" destination="DZK-OJ-yN2" id="2JK-Tg-4MA"/>
             </connections>
             <point key="canvasLocation" x="-133" y="171"/>

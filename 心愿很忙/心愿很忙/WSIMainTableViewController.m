@@ -17,9 +17,6 @@
 #import "AppDelegate.h"
 #import "DemoCell.h"
 #import "HUDUtils.h"
-//#import <AlibcTradeSDK/AlibcTradeSDK.h>
-//#import <AlipaySDK/AlipaySDK.h>
-#import "ListObject.h"
 #import "HomeTableViewCell.h"
 
 @interface WSIMainTableViewController ()
@@ -64,30 +61,6 @@ UITableViewDataSource
 
 #pragma mark - 数据加载
 
--(void)loadNewTopics {
-    
-    BmobQuery *query = [BmobQuery queryWithClassName:@"ListObject"];
-    
-    query.limit = 10;
-    
-    [query orderByDescending:@"createdAt"];
-    
-        
-    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-            
-            self.itObjs = [ListObject ListObjcetArrayFromBmobObjectArray:array];
-//            [self.tableView reloadData];
-        
-        
-        }];
-        
-
-    //把数据保存
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.itObjs];
-    
-    [data writeToFile:kITObjsPath atomically:YES];
-    
-}
 
 
 -(void)loadMoreTopics {
@@ -312,11 +285,7 @@ UITableViewDataSource
 {
     NSLog(@"cellforrowatindexpath");
     DemoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DemoCell" forIndexPath:indexPath];
-    
-    ListObject *obj = self.itObjs[indexPath.row];
-    
-    cell.itObj = obj;
-    
+
     return cell;
 }
 

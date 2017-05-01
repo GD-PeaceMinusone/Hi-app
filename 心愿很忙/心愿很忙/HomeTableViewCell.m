@@ -24,14 +24,22 @@
 #define ifHTTP !([link rangeOfString:@"http"].location == NSNotFound)
 #define ifType(type) !([self.itObj.link rangeOfString:type].location == NSNotFound)
 @interface HomeTableViewCell ()<WKNavigationDelegate>
-
+/**个人简介*/
 @property(nonatomic,strong) STPopupController *popupController;
+/***/
 @property(nonatomic,strong) DACircularProgressView *progressView;
+/***/
 @property (nonatomic,assign) NSInteger progress;
+/**宝贝链接*/
 @property(nonatomic,strong)  NSString *wishLink;
+/**赞*/
 @property (weak, nonatomic) IBOutlet UILabel *likeAmount;
+/**评论*/
 @property (weak, nonatomic) IBOutlet UILabel *commentAmount;
-
+/**昵称*/
+@property (weak, nonatomic) IBOutlet UILabel *nickName;
+/**发表时间*/
+@property (weak, nonatomic) IBOutlet UILabel *currentTime;
 @end
 
 
@@ -102,52 +110,44 @@
 
 -(void)addGesture {
 
-    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
     
-     UITapGestureRecognizer *tapGr2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+    UITapGestureRecognizer *tapGr2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap2)];
     
-    [self.headerIv addGestureRecognizer:tapGr];
+    [self.headerIv addGestureRecognizer:tapGr2];
     self.headerIv.userInteractionEnabled = YES;
-    self.headerIv.tag = 2;
     
     self.thingIv.userInteractionEnabled = YES;
-    [self.thingIv addGestureRecognizer:tapGr2];
-    self.thingIv.tag = 1;
+    [self.thingIv addGestureRecognizer:tapGr];
    
 }
 
--(void)tap:(UITapGestureRecognizer*)tap {
-  
-    switch (tap.view.tag) {
+-(void)tap{
+
+    LYPhoto *photo = [LYPhoto photoWithImageView:self.thingIv placeHold:self.thingIv.image photoUrl:nil];
             
-        case 1:
-        {
-            LYPhoto *photo = [LYPhoto photoWithImageView:self.thingIv placeHold:self.thingIv.image photoUrl:nil];
-            
-            [LYPhotoBrowser showPhotos:@[photo] currentPhotoIndex:0 countType:LYPhotoBrowserCountTypeNone];
-        }
-            break;
-            
-        case 2:
-            
-        {
-            [STPopupNavigationBar appearance].barTintColor = [UIColor colorWithRed:38/255.0 green:38/255.0 blue:38/255.0 alpha:1.0];
-            [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
-            [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont fontWithName:nil size:15], NSForegroundColorAttributeName: [UIColor whiteColor] };
-            WSIMeDetailViewController *meVc = [WSIMeDetailViewController new];
-            self.popupController = [[STPopupController alloc] initWithRootViewController:meVc];
-            self.popupController.containerView.layer.cornerRadius = 4.0f;
-            [self.popupController presentInViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
-            [self.popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
-     
-        }
-            break;
-            
-        default:
-            break;
-    }
-    
+    [LYPhotoBrowser showPhotos:@[photo] currentPhotoIndex:0 countType:LYPhotoBrowserCountTypeNone];
 }
+
+-(void)tap2 {
+    
+   
+
+    [STPopupNavigationBar appearance].barTintColor = [UIColor colorWithRed:38/255.0 green:38/255.0 blue:38/255.0 alpha:1.0];
+    [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
+    [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont fontWithName:nil size:15], NSForegroundColorAttributeName: [UIColor whiteColor] };
+    WSIMeDetailViewController *meVc = [WSIMeDetailViewController new];
+    
+    
+    NSString *notiName = @"pushVc";
+    [[NSNotificationCenter defaultCenter] postNotificationName:notiName object:@[@(_headerIv.tag),meVc]];
+    
+    self.popupController = [[STPopupController alloc] initWithRootViewController:meVc];
+    self.popupController.containerView.layer.cornerRadius = 4.0f;
+    [self.popupController presentInViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+    [self.popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+}
+
 
 /**
  *  点击视图销毁
@@ -185,9 +185,16 @@
         NSURL *headerUrl = [NSURL URLWithString:headerStr];
         
         [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
+        [_nickName setText:[object objectForKey:@"nickName"]];
     }];
     
     
+
+}
+
+- (IBAction)wclButtonAction:(UIButton *)sender {
+    
+    sender.selected = !sender.selected;
 
 }
 
@@ -322,40 +329,5 @@
 //    
 //
 //}
-
-- (IBAction)wclButtonAction:(UIButton *)sender {
-    
-    sender.selected = !sender.selected;
-    
-    BmobObject *bObj = [BmobObject objectWithClassName:@"Like"];
-    
-    [bObj setObject:[BmobUser currentUser].username forKey:@"username"];
-    [bObj setObject:self.user.bUser.username forKey:@"tousername"];
-    
-    [bObj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            NSLog(@"点赞成功");
-            [self findLikes];
-        }else{
-            NSLog(@"点赞失败");
-        }
-    }];
-
-    
-}
-
--(void)findLikes{
-    //查询多少条赞
-    BmobQuery *q = [BmobQuery queryWithClassName:@"Like"];
-    
-    [q whereKey:@"tousername" equalTo:self.user.bUser.username];
-    
-    [q findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        self.likes = array;
-       
-        [_likeAmount setText:[NSString stringWithFormat:@"%ld",array.count]];
-    }];
-    
-}
 
 @end

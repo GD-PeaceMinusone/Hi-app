@@ -12,9 +12,11 @@
 
 
 @interface WSIMeViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property(nonatomic,strong)WSIEditViewController *editVc;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerIv;
-@property(nonatomic,strong)WSIEditViewController *editVc;
+@property (weak, nonatomic) IBOutlet UILabel *sign;
+@property (weak, nonatomic) IBOutlet UILabel *nickName;
 @end
 
 @implementation WSIMeViewController
@@ -28,7 +30,14 @@
 
 -(void)viewWillAppear:(BOOL)animated {
 
-    [_headerIv sd_setImageWithURL:[NSURL URLWithString:[[BmobUser currentUser] objectForKey:@"headerPath"]] placeholderImage:nil];
+    [[AVUser currentUser] fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
+        
+        NSString *headerStr = [object objectForKey:@"userHeader"];
+        
+        NSURL *headerUrl = [NSURL URLWithString:headerStr];
+        
+        [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
+    }];
 }
 
 #pragma mark - 懒加载
@@ -56,7 +65,21 @@
     _headerIv.layer.shadowOffset = CGSizeMake(0, 0);
     _headerIv.layer.shadowRadius = 3.f;
     _headerIv.userInteractionEnabled = YES;
-    [_headerIv sd_setImageWithURL:[NSURL URLWithString:[[BmobUser currentUser] objectForKey:@"headerPath"]] placeholderImage:nil];
+
+    [[AVUser currentUser] fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
+        
+        NSString *headerStr = [object objectForKey:@"userHeader"];
+        
+        NSURL *headerUrl = [NSURL URLWithString:headerStr];
+        
+        [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
+        
+        NSString *nameStr = [object objectForKey:@"username"];
+        [_nickName setText:nameStr];
+        
+        NSString *signStr = [object objectForKey:@"sign"];
+        [_sign setText:signStr];
+    }];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
     [_headerIv addGestureRecognizer:tap];

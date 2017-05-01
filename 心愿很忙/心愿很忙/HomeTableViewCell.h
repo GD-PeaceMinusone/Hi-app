@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ListObject.h"
 
 @interface HomeTableViewCell : UITableViewCell
 
@@ -19,8 +18,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *thingIv;
 /** 头像 */
 @property (weak, nonatomic) IBOutlet UIImageView *headerIv;
-/** 用户 */
-@property (nonatomic, strong)User *user;
 /** 所有赞 */
 @property (nonatomic, strong)NSArray *likes;
 

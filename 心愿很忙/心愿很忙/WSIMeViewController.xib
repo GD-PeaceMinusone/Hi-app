@@ -12,6 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WSIMeViewController">
             <connections>
                 <outlet property="headerIv" destination="H5i-yP-h5Q" id="3Dg-CN-vfG"/>
+                <outlet property="nickName" destination="gjH-za-eYd" id="chG-pS-5yK"/>
+                <outlet property="sign" destination="0f2-ow-SNg" id="QOE-ex-8Bb"/>
                 <outlet property="tableView" destination="D6g-nX-mnV" id="WRD-wN-Bxg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -27,7 +29,7 @@
                         <constraint firstAttribute="height" constant="230" id="WoU-GO-CVb"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header" translatesAutoresizingMaskIntoConstraints="NO" id="H5i-yP-h5Q">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header" translatesAutoresizingMaskIntoConstraints="NO" id="H5i-yP-h5Q">
                     <rect key="frame" x="15" y="50" width="70" height="70"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="EAe-vf-Rho"/>

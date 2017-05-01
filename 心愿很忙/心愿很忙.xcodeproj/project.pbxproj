@@ -36,7 +36,6 @@
 		532420A11EA9A13D0017E25A /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5324209F1EA9A13D0017E25A /* HomeTableViewCell.xib */; };
 		532420A81EAA106E0017E25A /* WSIHomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 532420A61EAA106E0017E25A /* WSIHomeTableViewController.m */; };
 		532420A91EAA106E0017E25A /* WSIHomeTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 532420A71EAA106E0017E25A /* WSIHomeTableViewController.xib */; };
-		532420AF1EAA18440017E25A /* ListObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 532420AE1EAA18440017E25A /* ListObject.m */; };
 		532420B31EAA395C0017E25A /* WSIMeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 532420B11EAA395C0017E25A /* WSIMeDetailViewController.m */; };
 		532420B41EAA395C0017E25A /* WSIMeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 532420B21EAA395C0017E25A /* WSIMeDetailViewController.xib */; };
 		533D2ABA1EB322F50072C98C /* PersonalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 533D2AB81EB322F50072C98C /* PersonalTableViewCell.m */; };
@@ -50,6 +49,7 @@
 		533D2AF61EB4D9030072C98C /* WSICodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533D2AF41EB4D9030072C98C /* WSICodeViewController.xib */; };
 		533D2AFA1EB59A990072C98C /* WSIResetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 533D2AF81EB59A990072C98C /* WSIResetViewController.m */; };
 		533D2AFB1EB59A990072C98C /* WSIResetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533D2AF91EB59A990072C98C /* WSIResetViewController.xib */; };
+		533D2AFD1EB5F40E0072C98C /* Sparkle.png in Resources */ = {isa = PBXBuildFile; fileRef = 533D2AFC1EB5F40E0072C98C /* Sparkle.png */; };
 		5373E7451E9670A900819DCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7441E9670A900819DCD /* main.m */; };
 		5373E7481E9670A900819DCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7471E9670A900819DCD /* AppDelegate.m */; };
 		5373E7511E9670A900819DCD /* ____.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5373E74F1E9670A900819DCD /* ____.xcdatamodeld */; };
@@ -81,9 +81,7 @@
 		5374A5E21EB0D5150062B75A /* WSISettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5374A5E01EB0D5150062B75A /* WSISettingViewController.xib */; };
 		5374A5E51EB0DFDD0062B75A /* SettingNaviBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5374A5E41EB0DFDD0062B75A /* SettingNaviBarView.m */; };
 		5374A5E71EB0DFF90062B75A /* SettingNaviBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5374A5E61EB0DFF90062B75A /* SettingNaviBarView.xib */; };
-		5374A5EA1EB1BEFA0062B75A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 5374A5E91EB1BEFA0062B75A /* User.m */; };
 		5374A5F21EB200E40062B75A /* WclEmitterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5374A5F01EB200E40062B75A /* WclEmitterButton.m */; };
-		5374A5F41EB2037D0062B75A /* Sparkle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5374A5F31EB2037D0062B75A /* Sparkle.png */; };
 		5385FAC41EAC830000F283FD /* SizeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5385FAC31EAC830000F283FD /* SizeUtils.m */; };
 		5385FACB1EADC05B00F283FD /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5385FAC81EADC05B00F283FD /* UIScrollView+Refresh.m */; };
 		5385FACC1EADC05B00F283FD /* MJRefreshGifHeader+HeaderRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5385FACA1EADC05B00F283FD /* MJRefreshGifHeader+HeaderRefresh.m */; };
@@ -161,8 +159,6 @@
 		532420A51EAA106E0017E25A /* WSIHomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIHomeTableViewController.h; sourceTree = "<group>"; };
 		532420A61EAA106E0017E25A /* WSIHomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIHomeTableViewController.m; sourceTree = "<group>"; };
 		532420A71EAA106E0017E25A /* WSIHomeTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSIHomeTableViewController.xib; sourceTree = "<group>"; };
-		532420AD1EAA18440017E25A /* ListObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListObject.h; sourceTree = "<group>"; };
-		532420AE1EAA18440017E25A /* ListObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListObject.m; sourceTree = "<group>"; };
 		532420B01EAA395C0017E25A /* WSIMeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIMeDetailViewController.h; sourceTree = "<group>"; };
 		532420B11EAA395C0017E25A /* WSIMeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIMeDetailViewController.m; sourceTree = "<group>"; };
 		532420B21EAA395C0017E25A /* WSIMeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSIMeDetailViewController.xib; sourceTree = "<group>"; };
@@ -184,6 +180,7 @@
 		533D2AF71EB59A990072C98C /* WSIResetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIResetViewController.h; sourceTree = "<group>"; };
 		533D2AF81EB59A990072C98C /* WSIResetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIResetViewController.m; sourceTree = "<group>"; };
 		533D2AF91EB59A990072C98C /* WSIResetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSIResetViewController.xib; sourceTree = "<group>"; };
+		533D2AFC1EB5F40E0072C98C /* Sparkle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sparkle.png; sourceTree = "<group>"; };
 		5373E7401E9670A900819DCD /* 心愿很忙.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "心愿很忙.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5373E7441E9670A900819DCD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5373E7461E9670A900819DCD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -243,11 +240,8 @@
 		5374A5E31EB0DFDD0062B75A /* SettingNaviBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingNaviBarView.h; sourceTree = "<group>"; };
 		5374A5E41EB0DFDD0062B75A /* SettingNaviBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingNaviBarView.m; sourceTree = "<group>"; };
 		5374A5E61EB0DFF90062B75A /* SettingNaviBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingNaviBarView.xib; sourceTree = "<group>"; };
-		5374A5E81EB1BEFA0062B75A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		5374A5E91EB1BEFA0062B75A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		5374A5EF1EB200E40062B75A /* WclEmitterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WclEmitterButton.h; sourceTree = "<group>"; };
 		5374A5F01EB200E40062B75A /* WclEmitterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WclEmitterButton.m; sourceTree = "<group>"; };
-		5374A5F31EB2037D0062B75A /* Sparkle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sparkle.png; sourceTree = "<group>"; };
 		5385FAC21EAC830000F283FD /* SizeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SizeUtils.h; sourceTree = "<group>"; };
 		5385FAC31EAC830000F283FD /* SizeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SizeUtils.m; sourceTree = "<group>"; };
 		5385FAC71EADC05B00F283FD /* UIScrollView+Refresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Refresh.h"; sourceTree = "<group>"; };
@@ -473,10 +467,6 @@
 				53FB50921E9DD795002B305D /* HUDUtils.m */,
 				5385FAC21EAC830000F283FD /* SizeUtils.h */,
 				5385FAC31EAC830000F283FD /* SizeUtils.m */,
-				532420AD1EAA18440017E25A /* ListObject.h */,
-				532420AE1EAA18440017E25A /* ListObject.m */,
-				5374A5E81EB1BEFA0062B75A /* User.h */,
-				5374A5E91EB1BEFA0062B75A /* User.m */,
 				531AEADE1E9A6A0A0037CA16 /* WSIMeViewController.h */,
 				531AEADF1E9A6A0A0037CA16 /* WSIMeViewController.m */,
 				531AEAE01E9A6A0A0037CA16 /* WSIMeViewController.xib */,
@@ -639,7 +629,7 @@
 		5374A5ED1EB200E40062B75A /* WclEmitterButton */ = {
 			isa = PBXGroup;
 			children = (
-				5374A5F31EB2037D0062B75A /* Sparkle.png */,
+				533D2AFC1EB5F40E0072C98C /* Sparkle.png */,
 				5374A5EF1EB200E40062B75A /* WclEmitterButton.h */,
 				5374A5F01EB200E40062B75A /* WclEmitterButton.m */,
 			);
@@ -778,9 +768,9 @@
 				5374A5621EAF99BE0062B75A /* WSIEditViewController.xib in Resources */,
 				5373E7531E9670A900819DCD /* Assets.xcassets in Resources */,
 				533D2ABF1EB324560072C98C /* Images.xcassets in Resources */,
+				533D2AFD1EB5F40E0072C98C /* Sparkle.png in Resources */,
 				5374A5D91EB0D45D0062B75A /* BBInputView.xib in Resources */,
 				531AEB621E9B29E10037CA16 /* XibViewController.xib in Resources */,
-				5374A5F41EB2037D0062B75A /* Sparkle.png in Resources */,
 				532420A11EA9A13D0017E25A /* HomeTableViewCell.xib in Resources */,
 				53BC82CC1EA5F56E00E95834 /* yw_1222.jpg in Resources */,
 				531AEA4A1E992AB90037CA16 /* WSIRegisterViewController.xib in Resources */,
@@ -887,9 +877,7 @@
 				531D50D71E98C0EB00B17598 /* WSIConst.m in Sources */,
 				5385FB331EAEEC0800F283FD /* JCBaseNaviBarView.m in Sources */,
 				5373E7991E967C0400819DCD /* UIBarButtonItem+XMGExtension.m in Sources */,
-				532420AF1EAA18440017E25A /* ListObject.m in Sources */,
 				531AEB5E1E9B29E10037CA16 /* CodeViewController.m in Sources */,
-				5374A5EA1EB1BEFA0062B75A /* User.m in Sources */,
 				5374A5721EB044B50062B75A /* UINavigationBar+leoAdd.m in Sources */,
 				5374A5DD1EB0D4620062B75A /* UIViewController+SelectPhotoIcon.m in Sources */,
 				5385FB341EAEEC0800F283FD /* JCNavigationController.m in Sources */,

@@ -14,7 +14,6 @@
 #import "WSIRefreshFooter.h"
 #import <BmobSDK/Bmob.h>
 #import "HUDUtils.h"
-#import "ListObject.h"
 #import "HomeTableViewCell.h"
 #import "CodeViewController.h"
 #import "AppDelegate.h"
@@ -22,6 +21,7 @@
 #import "UIScrollView+Refresh.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "STPopupController.h"
+#import "WSIMeDetailViewController.h"
 
 @interface WSIHomeTableViewController ()
 /**数据数组*/
@@ -44,7 +44,15 @@
     [self networkStatus];
     [self registerCell];
     [self setupRefresh];
+    NSString *notiName = @"pushVc";
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushVc:) name:notiName object:nil];
+}
+
+-(void)pushVc: (NSNotification*)noti {//接受传过来的Vc 通过tag给对应vc赋值
     
+    NSInteger index = [noti.object[0] integerValue];
+    WSIMeDetailViewController *detailVc = noti.object[1];
+    detailVc.avObj = self.moreItobjs[index];
 }
 
 -(void)viewDidAppear:(BOOL)animated{//显示tabbar
@@ -294,6 +302,7 @@
     HomeTableViewCell *homeCell = [tableView dequeueReusableCellWithIdentifier:@"HomeCell" forIndexPath:indexPath];
     
     homeCell.avObj = self.itObjs[indexPath.row];
+    homeCell.headerIv.tag = indexPath.row;
     
     return homeCell;
 }

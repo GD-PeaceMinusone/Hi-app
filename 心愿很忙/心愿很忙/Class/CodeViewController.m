@@ -11,7 +11,6 @@
 #import "CustomCardView.h"
 #import <Masonry.h>
 #import <TZImagePickerController.h>
-#import "ListObject.h"
 #import <TZImageManager.h>
 #import <HUPhotoBrowser.h>
 #import "HUDUtils.h"

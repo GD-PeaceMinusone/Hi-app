@@ -28,29 +28,6 @@
 
 
 
-
-
--(void)setItObj:(ListObject *)itObj {
-
-    _itObj = itObj;
-    
-    self.contentLabel.text = itObj.thingContent;
-    NSURL *url = [NSURL URLWithString:itObj.thingPath];
-
-    [self.thingIv sd_setImageWithURL:url placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-        
-        
-        
-    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-    
-        if (image.size.height > 200) {
-            
-            self.thingIv.frame = CGRectMake(0, 0, image.size.height, image.size.width);
-        }
-        
-    }];
-}
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
