@@ -13,8 +13,14 @@
 #import "SCAvatarBrowser.h"
 #import "SRActionSheet.h"
 #import <UIImageView+WebCache.h>
+#import "WSIChildVcOne.h"
+#import "WSIChildVcTwo.h"
+#import "WSIChildVcThree.h"
+#import "SGPageView.h"
 
-@interface WSIHomePageViewController ()
+
+
+@interface WSIHomePageViewController () <SGPageTitleViewDelegate, SGPageContentViewDelegare>
 @property (nonatomic, strong) EditingNaviBarView *barView;
 /**背景*/
 @property (weak, nonatomic) IBOutlet UIImageView *bgIv;
@@ -26,21 +32,82 @@
 @property (weak, nonatomic) IBOutlet UILabel *likeCount;
 /**昵称*/
 @property (weak, nonatomic) IBOutlet UILabel *nickName;
+/**title*/
+@property (nonatomic, strong) SGPageTitleView *pageTitleView;
+/**page*/
+@property (nonatomic, strong) SGPageContentView *pageContentView;
 
 @end
 
 @implementation WSIHomePageViewController
 
+-(SGPageContentView *)pageContentView {
+
+    if (!_pageContentView) {
+
+        WSIChildVcOne *childOne = [WSIChildVcOne new];
+        childOne.tableView.backgroundColor = XMGRandomColor;
+
+        WSIChildVcTwo *childTwo = [WSIChildVcTwo new];
+        childTwo.tableView.backgroundColor = XMGRandomColor;
+
+        WSIChildVcThree *childThree = [WSIChildVcThree new];
+        childThree.tableView.backgroundColor = XMGRandomColor;
+
+        NSArray *childArr = @[childOne,childTwo,childThree];
+        
+        _pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, 345, self.view.xmg_width, SCREEN_HEIGHT) parentVC:self childVCs:childArr];
+        _pageContentView.delegatePageContentView = self;
+    }
+
+    return _pageContentView;
+}
+
+
+
+-(SGPageTitleView *)pageTitleView {
+    
+    if (!_pageTitleView) {
+        
+        NSArray *titleArr = @[@"心愿清单",@"评论与喜欢",@"勾搭"];
+        
+        _pageTitleView = [SGPageTitleView pageTitleViewWithFrame:CGRectMake(0, 305, self.view.xmg_width, 40) delegate:self titleNames:titleArr];
+        _pageTitleView.selectedIndex = 0;
+        [_pageTitleView setTitleColorStateNormal:[UIColor grayColor]];
+        [_pageTitleView setTitleColorStateSelected:blueColor];
+        [_pageTitleView setIndicatorColor:blueColor];
+        [_pageTitleView setIndicatorStyle:SGIndicatorTypeEqual];
+    }
+    
+    return _pageTitleView;
+    
+}
+
+
+#pragma mark - 视图代理
+
+- (void)SGPageTitleView:(SGPageTitleView *)SGPageTitleView selectedIndex:(NSInteger)selectedIndex {
+    
+    [self.pageContentView setPageCententViewCurrentIndex:selectedIndex];
+}
+
+- (void)SGPageContentView:(SGPageContentView *)SGPageContentView progress:(CGFloat)progress originalIndex:(NSInteger)originalIndex targetIndex:(NSInteger)targetIndex {
+    
+    [self.pageTitleView setPageTitleViewWithProgress:progress originalIndex:originalIndex targetIndex:targetIndex];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     _barView = [EditingNaviBarView createNaviBarViewFromXIB];
     [self replaceNaviBarView:_barView];
-    
     [self setupHeaderIv];
     [self setupBgIv];
-}
+    
+    [self.view addSubview:self.pageContentView];
+    
+    [self.view addSubview:self.pageTitleView];
+  }
 
 -(void)viewWillAppear:(BOOL)animated {
 

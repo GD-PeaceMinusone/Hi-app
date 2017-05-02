@@ -39,6 +39,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *nickName;
 /**发表时间*/
 @property (weak, nonatomic) IBOutlet UILabel *currentTime;
+/**总赞数*/
+@property (weak, nonatomic) IBOutlet UILabel *likeCount;
+/**总评论数*/
+@property (weak, nonatomic) IBOutlet UILabel *commentCount;
+
 @end
 
 
@@ -188,20 +193,63 @@
         [_nickName setText:[object objectForKey:@"nickName"]];
     }];
     
+    AVQuery *startDateQuery = [AVQuery queryWithClassName:@"Praise"];
+    [startDateQuery whereKey:@"beStarUser" equalTo:[_avObj objectForKey:@"wishUser"]];
     
+    AVQuery *endDateQuery = [AVQuery queryWithClassName:@"Praise"];
+    [endDateQuery whereKey:@"comment" equalTo:_avObj];
+    
+    AVQuery *query = [AVQuery andQueryWithSubqueries:[NSArray arrayWithObjects:startDateQuery,endDateQuery,nil]];
+    
+    [query countObjectsInBackgroundWithBlock:^(NSInteger number, NSError * _Nullable error) {
+        
+        [_likeCount setText:[NSString stringWithFormat:@"%ld",number]];
+        
+    }];
 
 }
 
+/**实现点赞功能*/
 - (IBAction)wclButtonAction:(UIButton *)sender {
     
     sender.selected = !sender.selected;
+  
+    AVQuery *startDateQuery = [AVQuery queryWithClassName:@"Praise"];
+    [startDateQuery whereKey:@"starUser" equalTo:[AVUser currentUser]];
     
-    AVObject *like = [AVObject objectWithClassName:@"like"];
-    AVUser *starUser = [like objectForKey:@"starUser"];
+    AVQuery *endDateQuery = [AVQuery queryWithClassName:@"Praise"];
+    [endDateQuery whereKey:@"comment" equalTo:_avObj];
     
-   
+    AVQuery *query = [AVQuery andQueryWithSubqueries:[NSArray arrayWithObjects:startDateQuery,endDateQuery,nil]];
     
-    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+       
+        if (results.count == 0) {
+            
+            AVObject *obj = [AVObject objectWithClassName:@"Praise"];
+            
+            [obj setObject:[AVUser currentUser] forKey:@"starUser"];
+            [obj setObject:_avObj forKey:@"comment"];
+            [obj setObject:[_avObj objectForKey:@"wishUser"] forKey:@"beStarUser"];
+            
+            [obj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                
+                if (succeeded) {
+                    
+                    NSLog(@"点赞成功");
+                    
+                }else {
+                    
+                    NSLog(@"点赞失败");
+                }
+                
+            }];
+            
+        }else {
+        
+            [results[0] deleteInBackground];
+        }
+    }];
 }
 
 

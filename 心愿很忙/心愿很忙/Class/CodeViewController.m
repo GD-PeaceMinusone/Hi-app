@@ -15,7 +15,7 @@
 #import <HUPhotoBrowser.h>
 #import "HUDUtils.h"
 #import <HorizontalProgressView.h>
-
+#import "BBInput.h"
 
 
 //#import "XLPhotoBrowser.h"
@@ -311,7 +311,12 @@ TZImagePickerControllerDelegate
     
     //输入框
     self.textView = [[UITextView alloc]init];
-
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
+    
+    [self.textView addGestureRecognizer:tap];
+    
+    
     //输入框下划线
     UIView *view4 = [UIView new];
     view4.backgroundColor = [UIColor colorWithRed:237.0/255 green:239.0/255 blue:241.0/255 alpha:1.0];
@@ -358,7 +363,9 @@ TZImagePickerControllerDelegate
     [self setupShadowWithObj:self.tv1View];
     
     self.tv1 = [UITextView new];
-  
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap2)];
+    
+    [self.tv1 addGestureRecognizer:tap2];
 
     
     [cardView addSubview:self.scrollView];
@@ -395,6 +402,7 @@ TZImagePickerControllerDelegate
     [self.self.closeButton addSubview:self.imageVeiw];
     [cardView addSubview:self.self.closeButton];
     
+
     /*使用masonry设置约束**/
     
     [self.view1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -629,6 +637,44 @@ TZImagePickerControllerDelegate
     }];
 }
 
+
+-(void)tap {
+    
+    [BBInput setDescTitle:@"请粘贴链接"];
+    [BBInput setMaxContentLength:20];
+    [BBInput setNormalContent:_textView.text];
+    [BBInput showInput:^(NSString *inputContent) {
+        
+        _textView.text = inputContent;
+        
+        AVObject *obj = [AVObject objectWithClassName:@"WishList"];
+        
+        [obj setObject:inputContent forKey:@"link"];
+        [obj saveInBackground];
+    
+    }];
+    
+}
+
+-(void)tap2 {
+    
+    [BBInput setDescTitle:@"请输入描述"];
+    [BBInput setMaxContentLength:20];
+    [BBInput setNormalContent:_textView.text];
+    [BBInput showInput:^(NSString *inputContent) {
+        
+        _textView.text = inputContent;
+        
+        AVObject *obj = [AVObject objectWithClassName:@"WishList"];
+        
+        [obj setObject:inputContent forKey:@"content"];
+        [obj saveInBackground];
+        
+    }];
+    
+}
+
+
 -(void)selectedPhoto: (UIButton *)button {
 
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc]initWithMaxImagesCount:9 delegate:self];
@@ -806,7 +852,7 @@ TZImagePickerControllerDelegate
                         [relation addObject:wishObj];
                         
                         [[AVUser currentUser] saveInBackground];
-                        
+                  
             
                     }else {
                     

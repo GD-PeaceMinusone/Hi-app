@@ -111,7 +111,7 @@
 -(void)setupAV {
 
     [AVOSCloud setApplicationId:@"EdpSxUoPpa8F2QbTLyL6ifHY-gzGzoHsz" clientKey:@"JddhqnXxhIzC0HcaTjzD32oc"];
-   
+    [AVOSCloud setAllLogsEnabled:YES];
 }
 
 

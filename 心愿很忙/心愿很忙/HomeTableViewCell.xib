@@ -196,10 +196,12 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="commentAmount" destination="HLz-PT-czW" id="l2u-gH-Qvc"/>
+                <outlet property="commentCount" destination="HLz-PT-czW" id="mp0-z9-rPF"/>
                 <outlet property="contentLabel" destination="dzw-H7-j5j" id="OGX-zo-2Yu"/>
                 <outlet property="currentTime" destination="n3y-AB-MXy" id="oJu-Fo-mxG"/>
                 <outlet property="headerIv" destination="XwU-EG-07k" id="ct4-6I-L3o"/>
                 <outlet property="likeAmount" destination="KGV-3f-BdP" id="kdR-le-x89"/>
+                <outlet property="likeCount" destination="KGV-3f-BdP" id="fla-96-Wc5"/>
                 <outlet property="nickName" destination="fgK-CV-Qvf" id="GVD-u3-v42"/>
                 <outlet property="thingIv" destination="DZK-OJ-yN2" id="2JK-Tg-4MA"/>
             </connections>

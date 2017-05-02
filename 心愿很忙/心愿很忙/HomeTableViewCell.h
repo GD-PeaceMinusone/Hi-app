@@ -19,6 +19,5 @@
 /** 头像 */
 @property (weak, nonatomic) IBOutlet UIImageView *headerIv;
 /** 所有赞 */
-@property (nonatomic, strong)NSArray *likes;
 
 @end
