@@ -12,11 +12,19 @@
 
 
 @interface WSIMeViewController ()<UITableViewDataSource,UITableViewDelegate>
+/**vc*/
 @property(nonatomic,strong)WSIHomePageViewController *editVc;
+/**tableView*/
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+/**头像*/
 @property (weak, nonatomic) IBOutlet UIImageView *headerIv;
+/**签名*/
 @property (weak, nonatomic) IBOutlet UILabel *sign;
+/**昵称*/
 @property (weak, nonatomic) IBOutlet UILabel *nickName;
+/**背景*/
+@property (weak, nonatomic) IBOutlet UIImageView *bgIv;
+
 @end
 
 @implementation WSIMeViewController
@@ -30,15 +38,14 @@
 
 -(void)viewWillAppear:(BOOL)animated {
 
-    if ([AVUser currentUser]) {
+    if ([AVUser currentUser] == nil) {
         
-        [self setupHeaderIv];
+        UIImage *image = [UIImage imageNamed:@"笑脸 (11)"];
+        _headerIv.image = image;
         
     }else {
         
         [self setupHeaderIv];
-        UIImage *image = [UIImage imageNamed:@"笑脸 (11)"];
-        _headerIv.image = image;
     }
     
 }
@@ -60,15 +67,19 @@
  */
 
 -(void)setupHeaderIv {
-
+    
+    /**
     _headerIv.layer.borderWidth = 1.5f;
     _headerIv.layer.borderColor = [UIColor whiteColor].CGColor;
     _headerIv.layer.shadowColor = [UIColor colorWithRed:237.0/255 green:239.0/255 blue:241.0/255 alpha:1.0].CGColor;
     _headerIv.layer.shadowOpacity = 1.0;
     _headerIv.layer.shadowOffset = CGSizeMake(0, 0);
     _headerIv.layer.shadowRadius = 3.f;
+     */
+    
     _headerIv.userInteractionEnabled = YES;
-
+    _bgIv.userInteractionEnabled = YES;
+    
     [[AVUser currentUser] fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
         
         NSString *headerStr = [object objectForKey:@"squareUserHeader"];
@@ -82,10 +93,18 @@
         
         NSString *signStr = [object objectForKey:@"sign"];
         [_sign setText:signStr];
+        
+        NSString *bgStr = [object objectForKey:@"bgUrl"];
+        NSURL *bgUrl = [NSURL URLWithString:bgStr];
+        
+        [_bgIv sd_setImageWithURL:bgUrl placeholderImage:nil];
     }];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
     [_headerIv addGestureRecognizer:tap];
+    
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
+    [_bgIv addGestureRecognizer:tap2];
 }
 
 

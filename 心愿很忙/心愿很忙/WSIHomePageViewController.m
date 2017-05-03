@@ -56,7 +56,7 @@
 
         NSArray *childArr = @[childOne,childTwo,childThree];
         
-        _pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, 345, self.view.xmg_width, SCREEN_HEIGHT) parentVC:self childVCs:childArr];
+        _pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, 345, SCREEN_WIDTH, SCREEN_HEIGHT) parentVC:self childVCs:childArr];
         _pageContentView.delegatePageContentView = self;
     }
 
@@ -71,7 +71,7 @@
         
         NSArray *titleArr = @[@"心愿清单",@"评论与喜欢",@"勾搭"];
         
-        _pageTitleView = [SGPageTitleView pageTitleViewWithFrame:CGRectMake(0, 305, self.view.xmg_width, 40) delegate:self titleNames:titleArr];
+        _pageTitleView = [SGPageTitleView pageTitleViewWithFrame:CGRectMake(0, 305,SCREEN_WIDTH, 40) delegate:self titleNames:titleArr];
         _pageTitleView.selectedIndex = 0;
         [_pageTitleView setTitleColorStateNormal:[UIColor grayColor]];
         [_pageTitleView setTitleColorStateSelected:blueColor];
@@ -151,7 +151,7 @@
 
 -(void)changeBg {
 
-    SRActionSheet *actionSheet = [SRActionSheet sr_actionSheetViewWithTitle:nil
+    SRActionSheet *actionSheet = [SRActionSheet sr_actionSheetViewWithTitle:@"更改背景"
                                                                 cancelTitle:@"取消"
                                                            destructiveTitle:nil
                                                                 otherTitles:@[@"相机",@"从手机相册选择",@"查看背景"]
@@ -189,7 +189,6 @@
     NSURL *url = info[@"UIImagePickerControllerReferenceURL"];
     NSData *imgData = nil;
     
-     _bgIv.image = editedImage;
     
     if ([[url description] hasSuffix:@"PNG"]) {
         
@@ -239,7 +238,10 @@
         
         NSLog(@"%lf",percentDone/100.0);
         
-        [HUDUtils uploadImgWithProgress:percentDone/100.0 status:@"正在设置背景.." completion:nil];
+        [HUDUtils uploadImgWithProgress:percentDone/100.0 status:@"正在设置背景" completion:^{
+            [_bgIv setImage:editedImage];
+     
+        }];
         
     }];
    

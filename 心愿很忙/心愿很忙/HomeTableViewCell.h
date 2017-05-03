@@ -18,6 +18,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *thingIv;
 /** 头像 */
 @property (weak, nonatomic) IBOutlet UIImageView *headerIv;
-/** 所有赞 */
+
 
 @end

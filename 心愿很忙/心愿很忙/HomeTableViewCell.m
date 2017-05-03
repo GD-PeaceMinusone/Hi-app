@@ -19,6 +19,11 @@
 #import <WebKit/WebKit.h>
 #import "WSIThingViewController.h"
 #import <UIImageView+WebCache.h>
+#import "WclEmitterButton.h"
+#import <UShareUI/UShareUI.h>
+#import "WSILoginViewController.h"
+#import "REFrostedViewController.h"
+#import "WSICommentViewController.h"
 
 #define ifHTTP !([link rangeOfString:@"http"].location == NSNotFound)
 #define ifType(type) !([self.itObj.link rangeOfString:type].location == NSNotFound)
@@ -43,12 +48,30 @@
 @property (weak, nonatomic) IBOutlet UILabel *likeCount;
 /**总评论数*/
 @property (weak, nonatomic) IBOutlet UILabel *commentCount;
-
+/**+1-1*/
+@property (nonatomic,assign) NSInteger like;
+/**点赞按钮*/
+@property (weak, nonatomic) IBOutlet WclEmitterButton *starBt;
+/**date*/
+@property(nonatomic,strong)NSDate *date;
+/**vc*/
+@property(nonatomic,strong)WSICommentViewController *commentVc;
 @end
 
 
 @implementation HomeTableViewCell
+static NSDateFormatter *fmt_;
+static NSCalendar *calendar_;
 
+-(WSICommentViewController *)commentVc {
+
+    if (!_commentVc) {
+        
+        _commentVc =[[WSICommentViewController alloc]init];
+    }
+    
+    return _commentVc;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -56,6 +79,8 @@
     [self.headerIv circleHeader:self.headerIv withBorderWidth:0 andBorderColor:nil];
     [self setupContentLabel];
     [self addGesture];
+    
+    [NSTimer scheduledTimerWithTimeInterval:60.0f target:self selector:@selector(checkingUnRead) userInfo:nil repeats:YES];
 
 }
 
@@ -96,11 +121,7 @@
 - (void)longPressAction:(UIGestureRecognizer *)recognizer {
     
     [self becomeFirstResponder];
-    
-    UILabel *label=( UILabel *)[self.window viewWithTag: 1];
-    
-    label.backgroundColor = [UIColor colorWithRed:38/255.0 green:202/255.0 blue:202/255.0 alpha:1.0f];
-    
+   
     UIMenuItem *copyItem = [[UIMenuItem alloc] initWithTitle:@"复制" action:@selector(customCopy:)];
     
     [[UIMenuController sharedMenuController] setMenuItems:[NSArray arrayWithObjects:copyItem, nil]];
@@ -154,13 +175,51 @@
 }
 
 
-/**
- *  点击视图销毁
- */
+/**点击视图销毁*/
 
 -(void)backgroundViewDidTap {
     
     [self.popupController dismiss];
+    
+}
+
+/**删除和分享*/
+
+- (IBAction)shareAction:(id)sender {
+    
+    AVUser *user = [_avObj objectForKey:@"wishUser"];
+    
+    if ([user.username isEqualToString:[AVUser currentUser].username]) {
+        
+        SRActionSheet *actionSheet = [SRActionSheet sr_actionSheetViewWithTitle:nil
+                                                                    cancelTitle:@"删除"
+                                                               destructiveTitle:nil
+                                                                    otherTitles:@[@"分享"]
+                                                                    otherImages:nil
+                                                               selectSheetBlock:^(SRActionSheet *actionSheetView, NSInteger index) {
+                                                                   
+                                                                   if (index == 0) {
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                                                                   }else if(index == 1) {
+                                                                       
+                                                                       
+                                                                       
+                                                                   }else {
+                                                                       
+                                                                   }
+                                                                   
+                                                               }];
+        
+        [actionSheet show];
+        
+    }else {
+    
+        [self shareWithUI];
+    }
+    
     
 }
 
@@ -178,6 +237,8 @@
     
     NSURL *url = [NSURL URLWithString:[avObj objectForKey:@"picUrl"]];
     
+    _date = [avObj objectForKey:@"createdAt"];
+    
     [_thingIv sd_setImageWithURL:url placeholderImage:nil options:0 progress:nil completed:nil];
     
     AVUser *user = [avObj objectForKey:@"wishUser"];
@@ -186,33 +247,74 @@
     [user fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
         
         NSString *headerStr = [object objectForKey:@"userHeader"];
-        
+
         NSURL *headerUrl = [NSURL URLWithString:headerStr];
         
         [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
         [_nickName setText:[object objectForKey:@"nickName"]];
+
+        [_currentTime setText:[self createTime:_date]];
     }];
     
+    AVQuery *Query = [AVQuery queryWithClassName:@"Praise"];
+    [Query whereKey:@"beStarUser" equalTo:[_avObj objectForKey:@"wishUser"]];
+    
+    AVQuery *Query2 = [AVQuery queryWithClassName:@"Praise"];
+    [Query2 whereKey:@"comment" equalTo:_avObj];
+    
+    AVQuery *query = [AVQuery andQueryWithSubqueries:[NSArray arrayWithObjects:Query,Query2,nil]];
+
+    
+    [query countObjectsInBackgroundWithBlock:^(NSInteger number, NSError * _Nullable error) {
+        
+        _like = number;
+        [_likeCount setText:[NSString stringWithFormat:@"%ld",number]];
+        
+    }];
+    
+    //判断当前状态是否被当前用户赞过 如果赞过 则无论何时图标都显示selected状态
     AVQuery *startDateQuery = [AVQuery queryWithClassName:@"Praise"];
-    [startDateQuery whereKey:@"beStarUser" equalTo:[_avObj objectForKey:@"wishUser"]];
+    [startDateQuery whereKey:@"starUser" equalTo:[AVUser currentUser]];
     
     AVQuery *endDateQuery = [AVQuery queryWithClassName:@"Praise"];
     [endDateQuery whereKey:@"comment" equalTo:_avObj];
     
-    AVQuery *query = [AVQuery andQueryWithSubqueries:[NSArray arrayWithObjects:startDateQuery,endDateQuery,nil]];
+    AVQuery *query2 = [AVQuery andQueryWithSubqueries:[NSArray arrayWithObjects:startDateQuery,endDateQuery,nil]];
     
-    [query countObjectsInBackgroundWithBlock:^(NSInteger number, NSError * _Nullable error) {
+    [query2 findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
         
-        [_likeCount setText:[NSString stringWithFormat:@"%ld",number]];
-        
+        if (results.count == 0) {
+            
+            _starBt.selected = NO;
+            
+        }else {
+            _starBt.selected = YES;
+    
+        }
     }];
 
+}
+
+/**定时器改变状态时间*/
+-(void)checkingUnRead {
+    
+    [_currentTime setText:[self createTime:_date]];
 }
 
 /**实现点赞功能*/
 - (IBAction)wclButtonAction:(UIButton *)sender {
     
     sender.selected = !sender.selected;
+    
+    if (![AVUser currentUser]) {
+        
+        WSILoginViewController *loginVc = [WSILoginViewController new];
+        
+        REFrostedViewController *vc = (REFrostedViewController*) [UIApplication sharedApplication].keyWindow.rootViewController;
+        
+        [vc presentViewController:loginVc animated:YES completion:nil];
+      
+    }
   
     AVQuery *startDateQuery = [AVQuery queryWithClassName:@"Praise"];
     [startDateQuery whereKey:@"starUser" equalTo:[AVUser currentUser]];
@@ -237,7 +339,9 @@
                 if (succeeded) {
                     
                     NSLog(@"点赞成功");
-                    
+                    [_likeCount setText:[NSString stringWithFormat:@"%ld", _like + 1]];
+                    _like += 1;
+              
                 }else {
                     
                     NSLog(@"点赞失败");
@@ -246,11 +350,47 @@
             }];
             
         }else {
-        
-            [results[0] deleteInBackground];
+                    
+                    [results[0] deleteInBackground];
+                    [_likeCount setText:[NSString stringWithFormat:@"%ld", _like - 1]];
+                    _like -= 1;
+            
         }
     }];
 }
+
+
+- (IBAction)commentBt:(id)sender {
+    
+    
+    [[UIViewController getNavi] pushViewController:self.commentVc animated:YES];
+}
+
+
+-(NSString *)createTime: (NSDate*)created_At{
+    
+    // 获得状态发布的具体时间
+    NSDate *createDate = created_At;
+    //获取当前时间对象
+    NSDate *nowDate = [NSDate date];
+    long createTime = [createDate timeIntervalSince1970];
+    long nowTime = [nowDate timeIntervalSince1970];
+    long time = nowTime-createTime;
+    if (time<60) {
+        return @"刚刚";
+    }else if (time<3600){
+        return [NSString stringWithFormat:@"%ld分钟前",time/60];
+    }else if (time<3600*24){
+        return [NSString stringWithFormat:@"%ld小时前",time/3600];
+    }else{
+        NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+        fmt.dateFormat = @"MM月dd日 HH:mm";
+        return [fmt stringFromDate:createDate];
+    }
+    
+    
+}
+
 
 
 /**
@@ -300,6 +440,104 @@
     
     [actionSheet show];
   
+    
+}
+
+- (void)shareWithUI {
+    
+//    UIImage *headerImg  = [UIImage imageNamed:@"header"];
+//    
+//    UIImage *image = [self imageAddText:_contetnIv.image withName:@"我想想还是不结婚了" andHeader:headerImg];
+    
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_QQ),@(UMSocialPlatformType_WechatSession),@(UMSocialPlatformType_WechatTimeLine)]];
+    
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        
+        
+        switch (platformType) {
+            case UMSocialPlatformType_QQ:
+                
+            {
+                [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"1106117908"  appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
+                
+                //创建分享消息对象
+                UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+                
+                messageObject.text = _contentLabel.text;
+                //创建图片内容对象
+                UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
+                //如果有缩略图，则设置缩略图
+                shareObject.thumbImage = [UIImage imageNamed:@"header"];
+                
+//                [shareObject setShareImage:image];
+                
+                //分享消息对象设置分享内容对象
+                messageObject.shareObject = shareObject;
+                
+                //调用分享接口
+                [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_QQ  messageObject:messageObject currentViewController:nil completion:^(id data, NSError *error) {
+                    if (error) {
+                        NSLog(@"************Share fail with error %@*********",error);
+                    }else{
+                        NSLog(@"response data is %@",data);
+                    }
+                }];
+            }
+                break;
+                
+            case UMSocialPlatformType_Sina:
+                
+            {
+                
+                //创建分享消息对象
+                UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+                
+                messageObject.text = _contentLabel.text;
+                //创建图片内容对象
+                UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
+                //如果有缩略图，则设置缩略图
+                shareObject.thumbImage = [UIImage imageNamed:@"header"];
+                
+//                [shareObject setShareImage:image];
+                
+                //分享消息对象设置分享内容对象
+                messageObject.shareObject = shareObject;
+                
+                //调用分享接口
+                [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_Sina  messageObject:messageObject currentViewController:nil completion:^(id data, NSError *error) {
+                    if (error) {
+                        NSLog(@"************Share fail with error %@*********",error);
+                    }else{
+                        NSLog(@"response data is %@",data);
+                    }
+                }];
+                
+            }
+                break;
+                
+            case UMSocialPlatformType_WechatTimeLine:
+                
+            {
+                
+                
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }];//显示分享面板
+    
+    
     
 }
 

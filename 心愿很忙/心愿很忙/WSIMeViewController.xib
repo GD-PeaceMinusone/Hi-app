@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WSIMeViewController">
             <connections>
+                <outlet property="bgIv" destination="nYz-KO-BeN" id="IAu-Oa-uEc"/>
                 <outlet property="headerIv" destination="H5i-yP-h5Q" id="3Dg-CN-vfG"/>
                 <outlet property="nickName" destination="gjH-za-eYd" id="chG-pS-5yK"/>
                 <outlet property="sign" destination="0f2-ow-SNg" id="QOE-ex-8Bb"/>

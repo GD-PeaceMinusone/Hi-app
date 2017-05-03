@@ -30,7 +30,8 @@
     _barView = [SettingNaviBarView createNaviBarViewFromXIB];
     [self replaceNaviBarView:_barView];
     
-    
+    _headerIv.contentMode = UIViewContentModeScaleAspectFill;
+    _headerIv.clipsToBounds = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -40,7 +41,7 @@
         NSString *headerStr = [object objectForKey:@"userHeader"];
         
         NSURL *headerUrl = [NSURL URLWithString:headerStr];
-        _headerIv.backgroundColor = [UIColor clearColor];
+       
         [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
     }];
 }
@@ -220,7 +221,7 @@
             case 0: //头像
             {
                 
-                SRActionSheet *actionSheet = [SRActionSheet sr_actionSheetViewWithTitle:nil
+                SRActionSheet *actionSheet = [SRActionSheet sr_actionSheetViewWithTitle:@"更改头像"
                                                                             cancelTitle:@"取消"
                                                                        destructiveTitle:nil
                                                                             otherTitles:@[@"相机",@"从手机相册选择"]

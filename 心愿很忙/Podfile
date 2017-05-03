@@ -28,4 +28,5 @@ pod 'AVOSCloudIM'
 pod 'AVOSCloudCrashReporting'
 pod 'WMPageController'
 pod 'SCAvatarBrowser'
+pod 'ZYCornerRadius'
 end

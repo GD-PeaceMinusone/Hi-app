@@ -29,9 +29,12 @@
 @property (nonatomic, strong) UIWindow *window;
 /**数据数组*/
 @property(nonatomic,strong)NSMutableArray *moreItobjs;
+
 @property(nonatomic,strong) STPopupController *popupController;
 
-
+@property (nonatomic,assign) NSInteger cellHeight;
+@property(nonatomic,strong)NSString *thingPath;
+@property(nonatomic,strong)NSString *thingContent;
 @end
 
 @implementation WSIHomeTableViewController
@@ -285,9 +288,6 @@
     [manager startMonitoring];
 }
 
-
-
-
 #pragma mark - Table view data source
 
 
@@ -307,11 +307,40 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+   
+        AVObject *obj = _itObjs[indexPath.row];
     
-//        ListObject *obj = self.itObjs[indexPath.row];
-//        return obj.cellHeight;
-    return 500;
+        _thingPath = [obj objectForKey:@"picUrl"];
+        _thingContent = [obj objectForKey:@"content"];
 
+    //头像
+    _cellHeight = (49 + 12 + 16 + 0.33);
+    
+    CGFloat textMaxW = [UIScreen mainScreen].bounds.size.width - WSIMarginDouble;
+    
+    if (_thingPath) {
+        
+        //        //图片
+        //        CGFloat contentH = textMaxW * [_height floatValue] / [_width floatValue];
+        //        _cellHeight += contentH + WSIMarginDouble;
+        _cellHeight += 300;
+    }
+    
+    
+    //文本
+    CGSize textMaxSize = CGSizeMake(textMaxW - WSIMarginDouble, MAXFLOAT);
+    
+    CGSize textSize = [_thingContent boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} context:nil].size;
+    
+    _cellHeight += (textSize.height + WSIMarginDouble);
+    
+    //图标
+    _cellHeight += 90;
+    
+    NSLog(@"-------%ld----", _cellHeight);
+    return _cellHeight;
+
+   
 }
 
 /**

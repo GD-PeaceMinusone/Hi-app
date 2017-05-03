@@ -40,8 +40,8 @@
     self.bgView.layer.borderColor = [UIColor colorWithRed:216/255.0 green:216/255.0 blue:216/255.0 alpha:1.0].CGColor;
     self.bgView.layer.borderWidth = 1.0f;
     
-    self.cancelBtn.layer.cornerRadius = 5;
-    self.confirmBtn.layer.cornerRadius = 5;
+    self.cancelBtn.layer.cornerRadius = 3.0f;
+    self.confirmBtn.layer.cornerRadius = 3.0f;
     
     if (_maxLength <= 0) {
         _maxLength = 20;

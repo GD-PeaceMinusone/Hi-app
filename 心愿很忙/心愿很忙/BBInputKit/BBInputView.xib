@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="9O8-bu-5sx" customClass="BBInputView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="145"/>
+            <rect key="frame" x="0.0" y="0.0" width="373" height="201"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="請輸入個性簽名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKU-ea-05Q">
@@ -22,19 +22,19 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOa-Zv-5QB" userLabel="bgView">
-                    <rect key="frame" x="10" y="42" width="355" height="60"/>
+                    <rect key="frame" x="10" y="42" width="353" height="110"/>
                     <subviews>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UkG-vm-J5E">
-                            <rect key="frame" x="15" y="7" width="310" height="38"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UkG-vm-J5E">
+                            <rect key="frame" x="15" y="7" width="308" height="88"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <attributedString key="attributedText"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             <connections>
                                 <outlet property="delegate" destination="9O8-bu-5sx" id="qFA-rF-oos"/>
                             </connections>
                         </textView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00/100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAR-CQ-oz2">
-                            <rect key="frame" x="315" y="43" width="35" height="12"/>
+                            <rect key="frame" x="313" y="93" width="35" height="12"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -45,14 +45,14 @@
                         <constraint firstAttribute="trailing" secondItem="JAR-CQ-oz2" secondAttribute="trailing" constant="5" id="JaS-4g-QmO"/>
                         <constraint firstAttribute="trailing" secondItem="UkG-vm-J5E" secondAttribute="trailing" constant="30" id="MIu-nU-HYq"/>
                         <constraint firstAttribute="bottom" secondItem="JAR-CQ-oz2" secondAttribute="bottom" constant="5" id="VMm-3w-GTb"/>
-                        <constraint firstAttribute="height" constant="60" id="ehi-OM-Jpe"/>
+                        <constraint firstAttribute="height" constant="110" id="ehi-OM-Jpe"/>
                         <constraint firstItem="UkG-vm-J5E" firstAttribute="leading" secondItem="jOa-Zv-5QB" secondAttribute="leading" constant="15" id="gxk-Di-E9I"/>
                         <constraint firstAttribute="bottom" secondItem="UkG-vm-J5E" secondAttribute="bottom" constant="15" id="uCQ-jL-tfz"/>
                         <constraint firstItem="UkG-vm-J5E" firstAttribute="top" secondItem="jOa-Zv-5QB" secondAttribute="top" constant="7" id="xLz-Ph-x2p"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8m-VP-XH4">
-                    <rect key="frame" x="319" y="107" width="46" height="30"/>
+                    <rect key="frame" x="317" y="163" width="46" height="30"/>
                     <color key="backgroundColor" red="0.0" green="0.44705882352941173" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Qy9-Ut-I1V"/>
@@ -67,7 +67,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6LB-tn-3gH">
-                    <rect key="frame" x="263" y="107" width="46" height="30"/>
+                    <rect key="frame" x="261" y="163" width="46" height="30"/>
                     <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="46" id="URQ-F7-y0U"/>
@@ -112,7 +112,7 @@
                 <outlet property="descTitleLabel" destination="KKU-ea-05Q" id="FV6-Hm-8sq"/>
                 <outlet property="textNum" destination="JAR-CQ-oz2" id="Obj-9Q-8Lg"/>
             </connections>
-            <point key="canvasLocation" x="223.5" y="166.5"/>
+            <point key="canvasLocation" x="222.5" y="138.5"/>
         </view>
     </objects>
 </document>

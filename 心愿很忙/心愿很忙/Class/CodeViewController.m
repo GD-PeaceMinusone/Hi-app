@@ -641,7 +641,7 @@ TZImagePickerControllerDelegate
 -(void)tap {
     
     [BBInput setDescTitle:@"请粘贴链接"];
-    [BBInput setMaxContentLength:20];
+    [BBInput setMaxContentLength:MAXFLOAT];
     [BBInput setNormalContent:_textView.text];
     [BBInput showInput:^(NSString *inputContent) {
         
@@ -659,11 +659,11 @@ TZImagePickerControllerDelegate
 -(void)tap2 {
     
     [BBInput setDescTitle:@"请输入描述"];
-    [BBInput setMaxContentLength:20];
-    [BBInput setNormalContent:_textView.text];
+    [BBInput setMaxContentLength:240];
+    [BBInput setNormalContent:_tv1.text];
     [BBInput showInput:^(NSString *inputContent) {
         
-        _textView.text = inputContent;
+        _tv1.text = inputContent;
         
         AVObject *obj = [AVObject objectWithClassName:@"WishList"];
         
