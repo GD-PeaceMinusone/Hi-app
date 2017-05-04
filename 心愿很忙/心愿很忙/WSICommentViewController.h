@@ -9,5 +9,5 @@
 #import "JCNaviSubViewController.h"
 
 @interface WSICommentViewController : JCNaviSubViewController
-
+@property(nonatomic,strong)WishModel *avObj;
 @end

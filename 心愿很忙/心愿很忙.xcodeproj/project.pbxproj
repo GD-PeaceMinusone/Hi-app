@@ -55,6 +55,7 @@
 		533F00291EB6F438002E0B19 /* WMPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 533F00281EB6F438002E0B19 /* WMPanGestureRecognizer.m */; };
 		533F00391EB9ECAE002E0B19 /* WSICommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 533F00371EB9ECAE002E0B19 /* WSICommentViewController.m */; };
 		533F003A1EB9ECAE002E0B19 /* WSICommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533F00381EB9ECAE002E0B19 /* WSICommentViewController.xib */; };
+		533F003D1EBAD1C8002E0B19 /* WishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 533F003C1EBAD1C8002E0B19 /* WishModel.m */; };
 		5373E7451E9670A900819DCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7441E9670A900819DCD /* main.m */; };
 		5373E7481E9670A900819DCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7471E9670A900819DCD /* AppDelegate.m */; };
 		5373E7511E9670A900819DCD /* ____.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5373E74F1E9670A900819DCD /* ____.xcdatamodeld */; };
@@ -192,6 +193,8 @@
 		533F00361EB9ECAE002E0B19 /* WSICommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSICommentViewController.h; sourceTree = "<group>"; };
 		533F00371EB9ECAE002E0B19 /* WSICommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSICommentViewController.m; sourceTree = "<group>"; };
 		533F00381EB9ECAE002E0B19 /* WSICommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSICommentViewController.xib; sourceTree = "<group>"; };
+		533F003B1EBAD1C8002E0B19 /* WishModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WishModel.h; sourceTree = "<group>"; };
+		533F003C1EBAD1C8002E0B19 /* WishModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WishModel.m; sourceTree = "<group>"; };
 		5373E7401E9670A900819DCD /* 心愿很忙.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "心愿很忙.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5373E7441E9670A900819DCD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5373E7461E9670A900819DCD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -484,6 +487,8 @@
 				53FB50921E9DD795002B305D /* HUDUtils.m */,
 				5385FAC21EAC830000F283FD /* SizeUtils.h */,
 				5385FAC31EAC830000F283FD /* SizeUtils.m */,
+				533F003B1EBAD1C8002E0B19 /* WishModel.h */,
+				533F003C1EBAD1C8002E0B19 /* WishModel.m */,
 				531AEADE1E9A6A0A0037CA16 /* WSIMeViewController.h */,
 				531AEADF1E9A6A0A0037CA16 /* WSIMeViewController.m */,
 				531AEAE01E9A6A0A0037CA16 /* WSIMeViewController.xib */,
@@ -862,6 +867,7 @@
 			files = (
 				5373E79A1E967C0400819DCD /* UIButton+XMGExtension.m in Sources */,
 				53192CCB1EAB34E600C5E5BF /* UIImage+WSIExtension.m in Sources */,
+				533F003D1EBAD1C8002E0B19 /* WishModel.m in Sources */,
 				5374A5981EB080330062B75A /* UIView+SGFrame.m in Sources */,
 				5373E79C1E967C0400819DCD /* NSString+XMGExtension.m in Sources */,
 				5374A5731EB044B50062B75A /* UIView+leoAdd.m in Sources */,

@@ -11,5 +11,5 @@
 
 @interface WSIMeDetailViewController : UIViewController
 @property(nonatomic,strong)UITableView *tableView;
-@property(nonatomic,strong)AVObject *avObj;
+@property(nonatomic,strong)WishModel *model;
 @end

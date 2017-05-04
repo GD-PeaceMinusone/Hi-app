@@ -11,7 +11,7 @@
 @interface HomeTableViewCell : UITableViewCell
 
 /** 接受传过来的模型 */
-@property(nonatomic,strong)AVObject *avObj;
+@property(nonatomic,strong)WishModel *avObj;
 /** 内容文本 */
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 /** 图片 */

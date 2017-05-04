@@ -21,6 +21,7 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "STPopupController.h"
 #import "WSIMeDetailViewController.h"
+#import "WSICommentViewController.h"
 
 @interface WSIHomeTableViewController ()
 /**数据数组*/
@@ -32,12 +33,14 @@
 
 @property(nonatomic,strong) STPopupController *popupController;
 
-@property (nonatomic,assign) NSInteger cellHeight;
+@property (nonatomic,assign)NSInteger cellHeight;
 @property(nonatomic,strong)NSString *thingPath;
 @property(nonatomic,strong)NSString *thingContent;
 @end
 
 @implementation WSIHomeTableViewController
+static NSString *notiName = @"pushVc";
+static NSString *notiName2 = @"comment";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,15 +49,23 @@
     [self networkStatus];
     [self registerCell];
     [self setupRefresh];
-    NSString *notiName = @"pushVc";
+   
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushVc:) name:notiName object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushVc2:) name:notiName2 object:nil];
 }
 
 -(void)pushVc: (NSNotification*)noti {//接受传过来的Vc 通过tag给对应vc赋值
     
     NSInteger index = [noti.object[0] integerValue];
     WSIMeDetailViewController *detailVc = noti.object[1];
-    detailVc.avObj = self.moreItobjs[index];
+    detailVc.model = self.moreItobjs[index];
+}
+
+-(void)pushVc2: (NSNotification*)noti {//接受传过来的Vc 通过tag给对应vc赋值
+    
+    NSInteger index = [noti.object[0] integerValue];
+    WSICommentViewController *commentVc = noti.object[1];
+    commentVc.avObj = self.moreItobjs[index];
 }
 
 -(void)viewDidAppear:(BOOL)animated{//显示tabbar
@@ -189,17 +200,17 @@
         if (error) {
             NSLog(@"----%@---", error);
             
-            [HUDUtils setupErrorWithStatus:@"加载失败" WithDelay:1.8f completion:^{
+            [HUDUtils setupErrorWithStatus:@"加载失败" WithDelay:1.5f completion:^{
                 
                 WSIWeakSelf
                 [weakSelf.tableView endHeaderRefresh];
                 
             }];
         }{
-            
-            self.itObjs = [objects mutableCopy];
+                
+            self.itObjs = [[WishModel wishObjectArrayFromAvobjectArrary:objects] mutableCopy];
             [self.tableView reloadData];
-            self.moreItobjs = [objects mutableCopy];
+            self.moreItobjs = [[WishModel wishObjectArrayFromAvobjectArrary:objects] mutableCopy];
             
             WSIWeakSelf
             [weakSelf.tableView endHeaderRefresh];
@@ -218,7 +229,9 @@
     
     query.limit = 10;
     
-    AVObject *obj = self.moreItobjs[self.moreItobjs.count - 1];
+    WishModel *model = self.moreItobjs[self.moreItobjs.count - 1];
+    
+    AVObject *obj = model.avObj;
     
     [query whereKey:@"createdAt" lessThan:obj.createdAt];
     
@@ -237,8 +250,8 @@
         }{
             
             
-            [self.itObjs addObjectsFromArray:objects];
-            [self.moreItobjs addObjectsFromArray:objects];
+            [self.itObjs addObjectsFromArray:[WishModel wishObjectArrayFromAvobjectArrary:objects]];
+            [self.moreItobjs addObjectsFromArray:[WishModel wishObjectArrayFromAvobjectArrary:objects]];
             [self.tableView reloadData];
             
             WSIWeakSelf
@@ -308,39 +321,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
    
-        AVObject *obj = _itObjs[indexPath.row];
-    
-        _thingPath = [obj objectForKey:@"picUrl"];
-        _thingContent = [obj objectForKey:@"content"];
+    WishModel *model = self.itObjs[indexPath.row];
+    return model.cellHeight;
 
-    //头像
-    _cellHeight = (49 + 12 + 16 + 0.33);
-    
-    CGFloat textMaxW = [UIScreen mainScreen].bounds.size.width - WSIMarginDouble;
-    
-    if (_thingPath) {
-        
-        //        //图片
-        //        CGFloat contentH = textMaxW * [_height floatValue] / [_width floatValue];
-        //        _cellHeight += contentH + WSIMarginDouble;
-        _cellHeight += 300;
-    }
-    
-    
-    //文本
-    CGSize textMaxSize = CGSizeMake(textMaxW - WSIMarginDouble, MAXFLOAT);
-    
-    CGSize textSize = [_thingContent boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} context:nil].size;
-    
-    _cellHeight += (textSize.height + WSIMarginDouble);
-    
-    //图标
-    _cellHeight += 90;
-    
-    NSLog(@"-------%ld----", _cellHeight);
-    return _cellHeight;
-
-   
 }
 
 /**

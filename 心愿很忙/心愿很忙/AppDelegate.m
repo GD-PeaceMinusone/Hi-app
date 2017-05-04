@@ -125,19 +125,25 @@
     
     WSIHomeTableViewController *mainVc = [WSIHomeTableViewController new];
     
+    UITabBarController *tabBarVc = [UITabBarController new];
+    
     UINavigationController *navigationVc = [[UINavigationController alloc]initWithRootViewController:mainVc];
+    
+    [tabBarVc addChildViewController:navigationVc];
+    
     navigationVc.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"bj" style:UIBarButtonItemStyleDone target:self action:nil];
+    
     [[UINavigationBar appearance] setTintColor:[UIColor clearColor]];
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
    
     
-    self.frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationVc menuViewController:meVc];
+    _frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:tabBarVc menuViewController:meVc];
     
-    self.frostedViewController.direction = REFrostedViewControllerDirectionLeft;
-    self.frostedViewController.panGestureEnabled = YES;
-    self.frostedViewController.limitMenuViewSize = YES;
-    self.frostedViewController.menuViewSize = CGSizeMake(meVc.view.frame.size.width, [UIScreen mainScreen].bounds.size.height);
+    _frostedViewController.direction = REFrostedViewControllerDirectionLeft;
+    _frostedViewController.panGestureEnabled = YES;
+    _frostedViewController.limitMenuViewSize = YES;
+    _frostedViewController.menuViewSize = CGSizeMake(meVc.view.frame.size.width, [UIScreen mainScreen].bounds.size.height);
 
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureRecognized:)];
     [self.frostedViewController.view addGestureRecognizer:pan];
@@ -159,9 +165,7 @@
     self.window.backgroundColor = [UIColor colorWithRed:241.0/255 green:242.0/255 blue:244.0/255 alpha:1];
     
     [self.window makeKeyAndVisible];
-    
-    [self setupPublishButton];
-    NSLog(@"------%@-------",self.window.subviews);
+
 }
 
 /**
@@ -179,34 +183,6 @@
 -(void)menu {
  
     [self.frostedViewController presentMenuViewController];
-}
-
-/**
- *  初始化按钮
- */
-
--(void)setupPublishButton {
-
-    _publishButton = [UIButton new];
-    [self.window addSubview:_publishButton];
-    [_publishButton setImage:[UIImage imageNamed:@"发表动态"] forState:UIControlStateNormal];
-    
-    _publishButton.layer.shadowColor = [UIColor colorWithRed:38.0/255 green:38.0/255 blue:38.0/255 alpha:1.0].CGColor;
-    [_publishButton addTarget:self action:@selector(cilckButton) forControlEvents:UIControlEventTouchUpInside];
-    _publishButton.layer.shadowOpacity = 1.0;
-    _publishButton.layer.shadowOffset = CGSizeMake(0, 0);
-    _publishButton.layer.shadowRadius = 3.f;
-    
-    [_publishButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.size.mas_equalTo(CGSizeMake(45, 45));
-        make.bottom.equalTo(self.window.mas_bottom).with.offset(-15);
-        make.centerX.mas_equalTo(self.window.mas_centerX);
-        
-    }];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeButton) name:@"hideButton" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showButton) name:@"showButton" object:nil];
 }
 
 -(void)cilckButton {

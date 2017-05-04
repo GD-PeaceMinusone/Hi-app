@@ -42,24 +42,21 @@
 }
 
 
--(void)setAvObj:(AVObject *)avObj {
+-(void)setModel:(WishModel *)model {
 
-    _avObj = avObj;
+    _model = model;
     
-    AVUser *user = [_avObj objectForKey:@"wishUser"];
+    [_model.user fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
         
-        [user fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
-            
-            NSString *headerStr = [object objectForKey:@"userHeader"];
-            
-            NSURL *headerUrl = [NSURL URLWithString:headerStr];
-            
-            [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
-            
-            NSString *nameStr = [object objectForKey:@"nickName"];
-            [_nickLabel setText:nameStr];
-        }];
-    
+        NSString *headerStr = [object objectForKey:@"userHeader"];
+        
+        NSURL *headerUrl = [NSURL URLWithString:headerStr];
+        
+        [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
+        
+        NSString *nameStr = [object objectForKey:@"nickName"];
+        [_nickLabel setText:nameStr];
+    }];
 }
 
 -(void)setupHeaderIv {

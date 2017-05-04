@@ -27,6 +27,8 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import <Masonry.h>
 #import "UIImageView+CornerRadius.h"
+#import "WishModel.h"
+#import <UIImageView+WebCache.h>
 
 /*** 将服务器返回的数据写入plist文件 ***/
 #define XMGWriteToPlist(data,fileName) [data writeToFile:[NSString stringWithFormat:@"/Users/jackeylove/Desktop/%@.plist",fileName] atomically:YES];

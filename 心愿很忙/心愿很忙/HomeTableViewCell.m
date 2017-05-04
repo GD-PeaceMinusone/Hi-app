@@ -18,7 +18,6 @@
 #import <REFrostedViewController.h>
 #import <WebKit/WebKit.h>
 #import "WSIThingViewController.h"
-#import <UIImageView+WebCache.h>
 #import "WclEmitterButton.h"
 #import <UShareUI/UShareUI.h>
 #import "WSILoginViewController.h"
@@ -60,6 +59,9 @@
 
 
 @implementation HomeTableViewCell
+static NSString *notiName = @"pushVc";
+static NSString *notiName2 = @"comment";
+static NSString *notiName3 = @"changeTabbar";
 static NSDateFormatter *fmt_;
 static NSCalendar *calendar_;
 
@@ -76,11 +78,12 @@ static NSCalendar *calendar_;
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [self.headerIv circleHeader:self.headerIv withBorderWidth:0 andBorderColor:nil];
+    [_headerIv circleHeader:self.headerIv withBorderWidth:0 andBorderColor:nil];
     [self setupContentLabel];
     [self addGesture];
     
     [NSTimer scheduledTimerWithTimeInterval:60.0f target:self selector:@selector(checkingUnRead) userInfo:nil repeats:YES];
+    
 
 }
 
@@ -137,14 +140,13 @@ static NSCalendar *calendar_;
 -(void)addGesture {
 
     UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
-    
     UITapGestureRecognizer *tapGr2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap2)];
     
-    [self.headerIv addGestureRecognizer:tapGr2];
-    self.headerIv.userInteractionEnabled = YES;
-    
-    self.thingIv.userInteractionEnabled = YES;
-    [self.thingIv addGestureRecognizer:tapGr];
+     _headerIv.userInteractionEnabled = YES;
+    [_headerIv addGestureRecognizer:tapGr2];
+   
+    _thingIv.userInteractionEnabled = YES;
+    [_thingIv addGestureRecognizer:tapGr];
    
 }
 
@@ -157,21 +159,17 @@ static NSCalendar *calendar_;
 
 -(void)tap2 {
     
-   
-
     [STPopupNavigationBar appearance].barTintColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
     [STPopupNavigationBar appearance].tintColor = [UIColor whiteColor];
     [STPopupNavigationBar appearance].titleTextAttributes = @{ NSFontAttributeName: [UIFont fontWithName:nil size:15], NSForegroundColorAttributeName: [UIColor whiteColor] };
     WSIMeDetailViewController *meVc = [WSIMeDetailViewController new];
-    
-    
-    NSString *notiName = @"pushVc";
+   
     [[NSNotificationCenter defaultCenter] postNotificationName:notiName object:@[@(_headerIv.tag),meVc]];
     
-    self.popupController = [[STPopupController alloc] initWithRootViewController:meVc];
-    self.popupController.containerView.layer.cornerRadius = 4.0f;
-    [self.popupController presentInViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
-    [self.popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
+    _popupController = [[STPopupController alloc] initWithRootViewController:meVc];
+    _popupController.containerView.layer.cornerRadius = 3.0f;
+    [_popupController presentInViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+    [_popupController.backgroundView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewDidTap)]];
 }
 
 
@@ -187,7 +185,7 @@ static NSCalendar *calendar_;
 
 - (IBAction)shareAction:(id)sender {
     
-    AVUser *user = [_avObj objectForKey:@"wishUser"];
+    AVUser *user = _avObj.user;
     
     if ([user.username isEqualToString:[AVUser currentUser].username]) {
         
@@ -229,41 +227,36 @@ static NSCalendar *calendar_;
  */
 
 
--(void)setAvObj:(AVObject *)avObj {
+-(void)setAvObj:(WishModel *)avObj {
 
     _avObj = avObj;
     
-    _contentLabel.text = [avObj objectForKey:@"content"];
+    [_contentLabel setText:avObj.comment]; //设置配图内容
     
-    NSURL *url = [NSURL URLWithString:[avObj objectForKey:@"picUrl"]];
+    [_currentTime setText:avObj.createdAt]; //设置发表时间
     
-    _date = [avObj objectForKey:@"createdAt"];
-    
+    NSURL *url = [NSURL URLWithString:avObj.picUrl];
+
     [_thingIv sd_setImageWithURL:url placeholderImage:nil options:0 progress:nil completed:nil];
     
-    AVUser *user = [avObj objectForKey:@"wishUser"];
-    
-    
-    [user fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
+    [_avObj.user fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
         
-        NSString *headerStr = [object objectForKey:@"userHeader"];
-
-        NSURL *headerUrl = [NSURL URLWithString:headerStr];
+        NSURL *headerUrl = [NSURL URLWithString:[object objectForKey:@"userHeader"]];
         
         [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
-        [_nickName setText:[object objectForKey:@"nickName"]];
-
-        [_currentTime setText:[self createTime:_date]];
+        
+        [_nickName setText:[object objectForKey:@"nickName"]]; //设置昵称
     }];
     
+
+    //查询对应状态的总赞数
     AVQuery *Query = [AVQuery queryWithClassName:@"Praise"];
-    [Query whereKey:@"beStarUser" equalTo:[_avObj objectForKey:@"wishUser"]];
+    [Query whereKey:@"beStarUser" equalTo:_avObj.user];
     
     AVQuery *Query2 = [AVQuery queryWithClassName:@"Praise"];
-    [Query2 whereKey:@"comment" equalTo:_avObj];
+    [Query2 whereKey:@"comment" equalTo:_avObj.avObj];
     
     AVQuery *query = [AVQuery andQueryWithSubqueries:[NSArray arrayWithObjects:Query,Query2,nil]];
-
     
     [query countObjectsInBackgroundWithBlock:^(NSInteger number, NSError * _Nullable error) {
         
@@ -272,12 +265,13 @@ static NSCalendar *calendar_;
         
     }];
     
+
     //判断当前状态是否被当前用户赞过 如果赞过 则无论何时图标都显示selected状态
     AVQuery *startDateQuery = [AVQuery queryWithClassName:@"Praise"];
     [startDateQuery whereKey:@"starUser" equalTo:[AVUser currentUser]];
     
     AVQuery *endDateQuery = [AVQuery queryWithClassName:@"Praise"];
-    [endDateQuery whereKey:@"comment" equalTo:_avObj];
+    [endDateQuery whereKey:@"comment" equalTo:_avObj.avObj];
     
     AVQuery *query2 = [AVQuery andQueryWithSubqueries:[NSArray arrayWithObjects:startDateQuery,endDateQuery,nil]];
     
@@ -289,17 +283,12 @@ static NSCalendar *calendar_;
             
         }else {
             _starBt.selected = YES;
-    
+            
         }
     }];
 
 }
 
-/**定时器改变状态时间*/
--(void)checkingUnRead {
-    
-    [_currentTime setText:[self createTime:_date]];
-}
 
 /**实现点赞功能*/
 - (IBAction)wclButtonAction:(UIButton *)sender {
@@ -316,13 +305,13 @@ static NSCalendar *calendar_;
       
     }
   
-    AVQuery *startDateQuery = [AVQuery queryWithClassName:@"Praise"];
-    [startDateQuery whereKey:@"starUser" equalTo:[AVUser currentUser]];
+    AVQuery *one = [AVQuery queryWithClassName:@"Praise"];
+    [one whereKey:@"starUser" equalTo:[AVUser currentUser]];
     
-    AVQuery *endDateQuery = [AVQuery queryWithClassName:@"Praise"];
-    [endDateQuery whereKey:@"comment" equalTo:_avObj];
+    AVQuery *one2 = [AVQuery queryWithClassName:@"Praise"];
+    [one2 whereKey:@"comment" equalTo:_avObj.avObj];
     
-    AVQuery *query = [AVQuery andQueryWithSubqueries:[NSArray arrayWithObjects:startDateQuery,endDateQuery,nil]];
+    AVQuery *query = [AVQuery andQueryWithSubqueries:[NSArray arrayWithObjects:one,one2,nil]];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
        
@@ -331,8 +320,8 @@ static NSCalendar *calendar_;
             AVObject *obj = [AVObject objectWithClassName:@"Praise"];
             
             [obj setObject:[AVUser currentUser] forKey:@"starUser"];
-            [obj setObject:_avObj forKey:@"comment"];
-            [obj setObject:[_avObj objectForKey:@"wishUser"] forKey:@"beStarUser"];
+            [obj setObject:_avObj.avObj   forKey:@"comment"];
+            [obj setObject:_avObj.user forKey:@"beStarUser"];
             
             [obj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 
@@ -360,37 +349,21 @@ static NSCalendar *calendar_;
 }
 
 
+
+
 - (IBAction)commentBt:(id)sender {
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:notiName2 object:@[@(_headerIv.tag),self.commentVc]];
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:notiName3 object:nil];
+
     [[UIViewController getNavi] pushViewController:self.commentVc animated:YES];
 }
 
+-(void)checkingUnRead {
 
--(NSString *)createTime: (NSDate*)created_At{
-    
-    // 获得状态发布的具体时间
-    NSDate *createDate = created_At;
-    //获取当前时间对象
-    NSDate *nowDate = [NSDate date];
-    long createTime = [createDate timeIntervalSince1970];
-    long nowTime = [nowDate timeIntervalSince1970];
-    long time = nowTime-createTime;
-    if (time<60) {
-        return @"刚刚";
-    }else if (time<3600){
-        return [NSString stringWithFormat:@"%ld分钟前",time/60];
-    }else if (time<3600*24){
-        return [NSString stringWithFormat:@"%ld小时前",time/3600];
-    }else{
-        NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-        fmt.dateFormat = @"MM月dd日 HH:mm";
-        return [fmt stringFromDate:createDate];
-    }
-    
-    
+    [_currentTime setText:_avObj.createdAt];
 }
-
 
 
 /**

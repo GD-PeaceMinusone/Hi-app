@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WSICommentViewController">
             <connections>
+                <outlet property="tableView" destination="L8T-6a-WGZ" id="ktb-UQ-poK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="L8T-6a-WGZ">
-                    <rect key="frame" x="0.0" y="34" width="375" height="633"/>
+                    <rect key="frame" x="0.0" y="14" width="375" height="653"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="O5r-Xl-hyd"/>
@@ -31,7 +32,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="L8T-6a-WGZ" secondAttribute="trailing" id="62R-RU-gUP"/>
-                <constraint firstItem="L8T-6a-WGZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="34" id="cav-8U-NRw"/>
+                <constraint firstItem="L8T-6a-WGZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="14" id="cav-8U-NRw"/>
                 <constraint firstAttribute="bottom" secondItem="L8T-6a-WGZ" secondAttribute="bottom" id="nf4-lk-OAE"/>
                 <constraint firstItem="L8T-6a-WGZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="o5Y-7m-xZg"/>
             </constraints>
