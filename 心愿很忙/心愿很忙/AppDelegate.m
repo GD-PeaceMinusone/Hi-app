@@ -152,11 +152,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(menu) name:@"clickButton" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(close) name:@"closeSlider" object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeNavi) name:@"removeNavi" object:nil];
-    
-//    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-//[[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
-    
-//
+
  
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
@@ -215,6 +211,7 @@
         _publishButton.hidden = NO;
   
 }
+
 
 -(void)removeNavi {}
 

@@ -11,6 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WSICommentViewController">
             <connections>
+                <outlet property="bottomCons" destination="n7a-nu-iof" id="cHm-3y-P8Z"/>
+                <outlet property="bottomHCons" destination="iDq-pz-iWe" id="R38-Uf-en4"/>
+                <outlet property="inputView" destination="hrG-nh-MBF" id="SWM-bl-zqo"/>
+                <outlet property="sendBt" destination="y83-Qi-28o" id="UCV-f5-SyW"/>
                 <outlet property="tableView" destination="L8T-6a-WGZ" id="ktb-UQ-poK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,11 +32,55 @@
                         <outlet property="delegate" destination="-1" id="Dmc-j0-1by"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Lz-51-aYx" userLabel="view">
+                    <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hrG-nh-MBF" customClass="YZInputView">
+                            <rect key="frame" x="41" y="5" width="272" height="39"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y83-Qi-28o">
+                            <rect key="frame" x="321" y="12" width="46" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="46" id="aDF-9o-uLE"/>
+                                <constraint firstAttribute="height" constant="30" id="llA-Es-ieP"/>
+                            </constraints>
+                            <state key="normal" title="发送">
+                                <color key="titleColor" red="0.43494294910237746" green="0.43924931493507424" blue="0.43924931493507424" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xrF-8b-daf">
+                            <rect key="frame" x="8" y="16" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="gYg-xw-mGe"/>
+                                <constraint firstAttribute="height" constant="25" id="uuK-jb-dwo"/>
+                            </constraints>
+                            <state key="normal" title="Button" image="表情"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.98028594255447388" green="0.98045331239700317" blue="0.98027533292770386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="xrF-8b-daf" firstAttribute="leading" secondItem="9Lz-51-aYx" secondAttribute="leading" constant="8" id="HnW-9Q-0qA"/>
+                        <constraint firstAttribute="bottom" secondItem="hrG-nh-MBF" secondAttribute="bottom" constant="5" id="Og0-CS-Ojl"/>
+                        <constraint firstAttribute="bottom" secondItem="y83-Qi-28o" secondAttribute="bottom" constant="7" id="UFU-HV-F1I"/>
+                        <constraint firstAttribute="bottom" secondItem="xrF-8b-daf" secondAttribute="bottom" constant="8" id="UUk-Ao-Pqb"/>
+                        <constraint firstItem="hrG-nh-MBF" firstAttribute="leading" secondItem="xrF-8b-daf" secondAttribute="trailing" constant="8" id="fW2-cl-JEa"/>
+                        <constraint firstAttribute="height" constant="49" id="iDq-pz-iWe"/>
+                        <constraint firstItem="y83-Qi-28o" firstAttribute="leading" secondItem="hrG-nh-MBF" secondAttribute="trailing" constant="8" id="kEH-7P-aUL"/>
+                        <constraint firstItem="hrG-nh-MBF" firstAttribute="top" secondItem="9Lz-51-aYx" secondAttribute="top" constant="5" id="n5S-6X-1G7"/>
+                        <constraint firstAttribute="trailing" secondItem="y83-Qi-28o" secondAttribute="trailing" constant="8" id="uxv-Hb-Nc0"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="L8T-6a-WGZ" secondAttribute="trailing" id="62R-RU-gUP"/>
                 <constraint firstItem="L8T-6a-WGZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="14" id="cav-8U-NRw"/>
+                <constraint firstItem="9Lz-51-aYx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gEm-n9-IlJ"/>
+                <constraint firstAttribute="trailing" secondItem="9Lz-51-aYx" secondAttribute="trailing" id="lgY-Y7-0qt"/>
+                <constraint firstAttribute="bottom" secondItem="9Lz-51-aYx" secondAttribute="bottom" id="n7a-nu-iof"/>
                 <constraint firstAttribute="bottom" secondItem="L8T-6a-WGZ" secondAttribute="bottom" id="nf4-lk-OAE"/>
                 <constraint firstItem="L8T-6a-WGZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="o5Y-7m-xZg"/>
             </constraints>
@@ -40,4 +88,7 @@
             <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="表情" width="128" height="128"/>
+    </resources>
 </document>

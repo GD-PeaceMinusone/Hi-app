@@ -41,6 +41,7 @@
 @implementation WSIHomeTableViewController
 static NSString *notiName = @"pushVc";
 static NSString *notiName2 = @"comment";
+static NSString *notiName3 = @"changeTabbar";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -71,7 +72,7 @@ static NSString *notiName2 = @"comment";
 -(void)viewDidAppear:(BOOL)animated{//显示tabbar
     
     self.tabBarController.tabBar.hidden = NO;
-   
+    NSLog(@"111");
 }
 
 -(void)viewWillAppear:(BOOL)animated {

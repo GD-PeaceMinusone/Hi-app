@@ -54,8 +54,9 @@
 		533F00251EB6EDA5002E0B19 /* WSIHomePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533F00231EB6EDA5002E0B19 /* WSIHomePageViewController.xib */; };
 		533F00291EB6F438002E0B19 /* WMPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 533F00281EB6F438002E0B19 /* WMPanGestureRecognizer.m */; };
 		533F00391EB9ECAE002E0B19 /* WSICommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 533F00371EB9ECAE002E0B19 /* WSICommentViewController.m */; };
-		533F003A1EB9ECAE002E0B19 /* WSICommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533F00381EB9ECAE002E0B19 /* WSICommentViewController.xib */; };
 		533F003D1EBAD1C8002E0B19 /* WishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 533F003C1EBAD1C8002E0B19 /* WishModel.m */; };
+		536995481EBB5DE9005379EE /* WSICommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 536995471EBB5DE9005379EE /* WSICommentViewController.xib */; };
+		5369954B1EBB5E07005379EE /* YZInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5369954A1EBB5E07005379EE /* YZInputView.m */; };
 		5373E7451E9670A900819DCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7441E9670A900819DCD /* main.m */; };
 		5373E7481E9670A900819DCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7471E9670A900819DCD /* AppDelegate.m */; };
 		5373E7511E9670A900819DCD /* ____.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5373E74F1E9670A900819DCD /* ____.xcdatamodeld */; };
@@ -192,9 +193,11 @@
 		533F00281EB6F438002E0B19 /* WMPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPanGestureRecognizer.m; sourceTree = "<group>"; };
 		533F00361EB9ECAE002E0B19 /* WSICommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSICommentViewController.h; sourceTree = "<group>"; };
 		533F00371EB9ECAE002E0B19 /* WSICommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSICommentViewController.m; sourceTree = "<group>"; };
-		533F00381EB9ECAE002E0B19 /* WSICommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSICommentViewController.xib; sourceTree = "<group>"; };
 		533F003B1EBAD1C8002E0B19 /* WishModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WishModel.h; sourceTree = "<group>"; };
 		533F003C1EBAD1C8002E0B19 /* WishModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WishModel.m; sourceTree = "<group>"; };
+		536995471EBB5DE9005379EE /* WSICommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSICommentViewController.xib; sourceTree = "<group>"; };
+		536995491EBB5E07005379EE /* YZInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZInputView.h; sourceTree = "<group>"; };
+		5369954A1EBB5E07005379EE /* YZInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZInputView.m; sourceTree = "<group>"; };
 		5373E7401E9670A900819DCD /* 心愿很忙.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "心愿很忙.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5373E7441E9670A900819DCD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5373E7461E9670A900819DCD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -513,7 +516,9 @@
 				533F00231EB6EDA5002E0B19 /* WSIHomePageViewController.xib */,
 				533F00361EB9ECAE002E0B19 /* WSICommentViewController.h */,
 				533F00371EB9ECAE002E0B19 /* WSICommentViewController.m */,
-				533F00381EB9ECAE002E0B19 /* WSICommentViewController.xib */,
+				536995471EBB5DE9005379EE /* WSICommentViewController.xib */,
+				536995491EBB5E07005379EE /* YZInputView.h */,
+				5369954A1EBB5E07005379EE /* YZInputView.m */,
 				533D2AE51EB331990072C98C /* WSIChildVcOne.h */,
 				533D2AE61EB331990072C98C /* WSIChildVcOne.m */,
 				533D2AE71EB331990072C98C /* WSIChildVcThree.h */,
@@ -787,7 +792,7 @@
 				5374A5E71EB0DFF90062B75A /* SettingNaviBarView.xib in Resources */,
 				53A46EF41EA7A2870049FE2C /* DemoCell.xib in Resources */,
 				533D2AFB1EB59A990072C98C /* WSIResetViewController.xib in Resources */,
-				533F003A1EB9ECAE002E0B19 /* WSICommentViewController.xib in Resources */,
+				536995481EBB5DE9005379EE /* WSICommentViewController.xib in Resources */,
 				5374A5781EB050B20062B75A /* EditingNaviBarView.xib in Resources */,
 				532420A91EAA106E0017E25A /* WSIHomeTableViewController.xib in Resources */,
 				533D2ABB1EB322F50072C98C /* PersonalTableViewCell.xib in Resources */,
@@ -873,6 +878,7 @@
 				5374A5731EB044B50062B75A /* UIView+leoAdd.m in Sources */,
 				533D2AEC1EB331990072C98C /* WSIChildVcThree.m in Sources */,
 				5374A5651EAF9C2E0062B75A /* UIViewController+Extension.m in Sources */,
+				5369954B1EBB5E07005379EE /* YZInputView.m in Sources */,
 				5374A5951EB080330062B75A /* SGHelperTool.m in Sources */,
 				531AEB611E9B29E10037CA16 /* XibViewController.m in Sources */,
 				5374A5F21EB200E40062B75A /* WclEmitterButton.m in Sources */,

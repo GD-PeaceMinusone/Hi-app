@@ -78,7 +78,7 @@
                         <constraint firstAttribute="height" constant="35" id="oAd-CR-Aax"/>
                     </constraints>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="用户名或/手机号" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="1Ul-ad-Bwi">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="用户名或/手机号" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1Ul-ad-Bwi">
                     <rect key="frame" x="61" y="154" width="253" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="WsY-bp-BRP"/>
@@ -130,7 +130,7 @@
                         <action selector="goBack:" destination="-1" eventType="touchUpInside" id="a0y-21-oc1"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="X1Y-VG-uND">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="X1Y-VG-uND">
                     <rect key="frame" x="61" y="206" width="187" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="xt7-4R-r35"/>

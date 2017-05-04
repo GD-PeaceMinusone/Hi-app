@@ -79,7 +79,7 @@
                         <constraint firstAttribute="height" constant="35" id="W65-oo-NNV"/>
                     </constraints>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="用户名或/手机号" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="9FR-RJ-VGV">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="用户名或/手机号" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9FR-RJ-VGV">
                     <rect key="frame" x="61" y="154" width="292" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="j6d-jb-niq"/>
@@ -107,7 +107,7 @@
                         <constraint firstAttribute="height" constant="35" id="ry6-gQ-nXt"/>
                     </constraints>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="QmB-m6-5YF">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QmB-m6-5YF">
                     <rect key="frame" x="61" y="209" width="292" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="Og3-QY-gaF"/>
@@ -122,7 +122,7 @@
                         <constraint firstAttribute="height" constant="35" id="mTA-Va-cGA"/>
                     </constraints>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入邮箱" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="1gW-Tj-DyU">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入邮箱" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1gW-Tj-DyU">
                     <rect key="frame" x="61" y="264" width="216" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="PYr-RU-CDj"/>

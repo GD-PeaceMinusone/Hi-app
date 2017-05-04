@@ -1,19 +1,16 @@
 {
   "images" : [
     {
-      "idiom" : "iphone"
-    },
-    {
-      "idiom" : "iphone",
+      "idiom" : "universal",
+      "filename" : "表情.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "iphone",
-      "filename" : "stars.pdf",
+      "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
+      "idiom" : "universal",
       "scale" : "3x"
     }
   ],

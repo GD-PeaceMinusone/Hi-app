@@ -11,6 +11,7 @@
 #import "LYPhotoBrowser.h"
 #import <STPopup/STPopup.h>
 #import "WSIMeDetailViewController.h"
+#import "YZInputView.h"
 
 @interface WSICommentViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UIImageView *headerIv;
@@ -27,6 +28,14 @@
 @property(nonatomic,strong) STPopupController *popupController;
 @property (weak,nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,strong)UIButton *detailBt;
+
+@property (weak, nonatomic) IBOutlet UIButton *sendBt;
+@property (weak, nonatomic) IBOutlet UIButton *emojiBt;
+
+@property (weak, nonatomic) IBOutlet YZInputView *inputView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomHCons;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomCons;
+
 @end
 
 @implementation WSICommentViewController
@@ -228,12 +237,55 @@ static NSString *ID = @"commentCell";
     
 }
 
+-  (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self setupSectionHeight];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    // 设置文本框占位文字
+    _inputView.placeholder = @"赶紧说两句吧..";
+    _inputView.placeholderColor = [UIColor grayColor];
+    
+    // 监听文本框文字高度改变
+    _inputView.yz_textHeightChangeBlock = ^(NSString *text,CGFloat textHeight){
+        // 文本框文字高度改变会自动执行这个【block】，可以在这【修改底部View的高度】
+        // 设置底部条的高度 = 文字高度 + textView距离上下间距约束
+        // 为什么添加10 ？（10 = 底部View距离上（5）底部View距离下（5）间距总和）
+       _bottomHCons.constant = textHeight + 10;
+    };
+    
+    // 设置文本框最大行数
+    _inputView.maxNumberOfLines = 4;
 }
+
+// 键盘弹出会调用
+- (void)keyboardWillChangeFrame:(NSNotification *)note
+{
+    // 获取键盘frame
+    CGRect endFrame = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    // 获取键盘弹出时长
+    CGFloat duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    CGFloat screenH = [UIScreen mainScreen].bounds.size.height;
+    
+    // 修改底部视图距离底部的间距
+    _bottomCons.constant = endFrame.origin.y != screenH?endFrame.size.height:0;
+    
+    // 约束动画
+    [UIView animateWithDuration:duration animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
+
 
 -(void)setupSectionHeight {
 
@@ -442,7 +494,15 @@ static NSString *ID = @"commentCell";
     return 60;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    [self.view endEditing:YES];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
+    [self.view endEditing:YES];
+}
 
 
 
