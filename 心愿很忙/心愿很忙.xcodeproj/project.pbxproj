@@ -97,6 +97,10 @@
 		5385FB351EAEEC0800F283FD /* JCNaviSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5385FB2F1EAEEC0800F283FD /* JCNaviSubViewController.m */; };
 		5385FB361EAEEC0800F283FD /* JCNormalNavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5385FB311EAEEC0800F283FD /* JCNormalNavigationBarView.m */; };
 		5385FB371EAEEC0800F283FD /* JCNormalNavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5385FB321EAEEC0800F283FD /* JCNormalNavigationBarView.xib */; };
+		53A16CE51EBDD5200089E892 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A16CE31EBDD51F0089E892 /* CommentTableViewCell.m */; };
+		53A16CE61EBDD5200089E892 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53A16CE41EBDD51F0089E892 /* CommentTableViewCell.xib */; };
+		53A16CEA1EBDD6AF0089E892 /* ContentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A16CE81EBDD6AF0089E892 /* ContentTableViewCell.m */; };
+		53A16CEB1EBDD6AF0089E892 /* ContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53A16CE91EBDD6AF0089E892 /* ContentTableViewCell.xib */; };
 		53A46ECC1EA702840049FE2C /* WSIMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46ECB1EA702840049FE2C /* WSIMainTableViewController.m */; };
 		53A46EF41EA7A2870049FE2C /* DemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53A46EF31EA7A2870049FE2C /* DemoCell.xib */; };
 		53A46FA91EA891820049FE2C /* LYPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 53A46F971EA891810049FE2C /* LYPhoto.m */; };
@@ -276,6 +280,12 @@
 		5385FB301EAEEC0800F283FD /* JCNormalNavigationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCNormalNavigationBarView.h; sourceTree = "<group>"; };
 		5385FB311EAEEC0800F283FD /* JCNormalNavigationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCNormalNavigationBarView.m; sourceTree = "<group>"; };
 		5385FB321EAEEC0800F283FD /* JCNormalNavigationBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JCNormalNavigationBarView.xib; sourceTree = "<group>"; };
+		53A16CE21EBDD51F0089E892 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
+		53A16CE31EBDD51F0089E892 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
+		53A16CE41EBDD51F0089E892 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		53A16CE71EBDD6AF0089E892 /* ContentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTableViewCell.h; sourceTree = "<group>"; };
+		53A16CE81EBDD6AF0089E892 /* ContentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTableViewCell.m; sourceTree = "<group>"; };
+		53A16CE91EBDD6AF0089E892 /* ContentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentTableViewCell.xib; sourceTree = "<group>"; };
 		53A46ECB1EA702840049FE2C /* WSIMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WSIMainTableViewController.m; path = ../WSIMainTableViewController.m; sourceTree = "<group>"; };
 		53A46EF31EA7A2870049FE2C /* DemoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DemoCell.xib; path = ../DemoCell.xib; sourceTree = "<group>"; };
 		53A46F961EA891810049FE2C /* LYPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPhoto.h; sourceTree = "<group>"; };
@@ -522,6 +532,12 @@
 				533F00361EB9ECAE002E0B19 /* WSICommentViewController.h */,
 				533F00371EB9ECAE002E0B19 /* WSICommentViewController.m */,
 				536995471EBB5DE9005379EE /* WSICommentViewController.xib */,
+				53A16CE21EBDD51F0089E892 /* CommentTableViewCell.h */,
+				53A16CE31EBDD51F0089E892 /* CommentTableViewCell.m */,
+				53A16CE41EBDD51F0089E892 /* CommentTableViewCell.xib */,
+				53A16CE71EBDD6AF0089E892 /* ContentTableViewCell.h */,
+				53A16CE81EBDD6AF0089E892 /* ContentTableViewCell.m */,
+				53A16CE91EBDD6AF0089E892 /* ContentTableViewCell.xib */,
 				536995491EBB5E07005379EE /* YZInputView.h */,
 				5369954A1EBB5E07005379EE /* YZInputView.m */,
 				533D2AE51EB331990072C98C /* WSIChildVcOne.h */,
@@ -801,6 +817,7 @@
 				5374A5781EB050B20062B75A /* EditingNaviBarView.xib in Resources */,
 				532420A91EAA106E0017E25A /* WSIHomeTableViewController.xib in Resources */,
 				533D2ABB1EB322F50072C98C /* PersonalTableViewCell.xib in Resources */,
+				53A16CE61EBDD5200089E892 /* CommentTableViewCell.xib in Resources */,
 				532420B41EAA395C0017E25A /* WSIMeDetailViewController.xib in Resources */,
 				533F00251EB6EDA5002E0B19 /* WSIHomePageViewController.xib in Resources */,
 				5373E7531E9670A900819DCD /* Assets.xcassets in Resources */,
@@ -812,6 +829,7 @@
 				53BC82CC1EA5F56E00E95834 /* yw_1222.jpg in Resources */,
 				531AEA4A1E992AB90037CA16 /* WSIRegisterViewController.xib in Resources */,
 				531AEABC1E9A0C830037CA16 /* Podfile in Resources */,
+				53A16CEB1EBDD6AF0089E892 /* ContentTableViewCell.xib in Resources */,
 				533D2AF61EB4D9030072C98C /* WSICodeViewController.xib in Resources */,
 				531D50DC1E98C8A400B17598 /* WSILoginViewController.xib in Resources */,
 				5374A5E21EB0D5150062B75A /* WSISettingViewController.xib in Resources */,
@@ -920,6 +938,7 @@
 				5373E7991E967C0400819DCD /* UIBarButtonItem+XMGExtension.m in Sources */,
 				531AEB5E1E9B29E10037CA16 /* CodeViewController.m in Sources */,
 				5374A5721EB044B50062B75A /* UINavigationBar+leoAdd.m in Sources */,
+				53A16CE51EBDD5200089E892 /* CommentTableViewCell.m in Sources */,
 				5374A5DD1EB0D4620062B75A /* UIViewController+SelectPhotoIcon.m in Sources */,
 				5385FB341EAEEC0800F283FD /* JCNavigationController.m in Sources */,
 				5369954E1EBB7499005379EE /* commentModel.m in Sources */,
@@ -953,6 +972,7 @@
 				5373E79D1E967C0400819DCD /* NSDate+XMGExtension.m in Sources */,
 				5373E7451E9670A900819DCD /* main.m in Sources */,
 				53A46FAB1EA891820049FE2C /* LYZoomingImageView.m in Sources */,
+				53A16CEA1EBDD6AF0089E892 /* ContentTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

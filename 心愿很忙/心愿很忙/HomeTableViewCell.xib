@@ -205,7 +205,7 @@
                 <outlet property="contentLabel" destination="dzw-H7-j5j" id="OGX-zo-2Yu"/>
                 <outlet property="currentTime" destination="n3y-AB-MXy" id="oJu-Fo-mxG"/>
                 <outlet property="headerIv" destination="XwU-EG-07k" id="ct4-6I-L3o"/>
-                <outlet property="likeCount" destination="KGV-3f-BdP" id="fla-96-Wc5"/>
+                <outlet property="likeCount" destination="KGV-3f-BdP" id="Inb-0T-957"/>
                 <outlet property="nickName" destination="fgK-CV-Qvf" id="GVD-u3-v42"/>
                 <outlet property="starBt" destination="BwM-W5-oBt" id="Gho-Sg-VQr"/>
                 <outlet property="thingIv" destination="DZK-OJ-yN2" id="2JK-Tg-4MA"/>

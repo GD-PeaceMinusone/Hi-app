@@ -86,4 +86,28 @@
     
     return _cellHeight;
 }
+
+-(NSInteger)comCellHeight {
+
+    _cellHeight = (49 + 12 + 16 + 0.33); //头像
+    
+    CGFloat textMaxW = [UIScreen mainScreen].bounds.size.width - WSIMarginDouble;
+    
+    if (_picUrl) {
+        
+        _cellHeight += 300;
+    }
+    
+    CGSize textMaxSize = CGSizeMake(textMaxW - WSIMarginDouble, MAXFLOAT); //文本
+    
+    CGSize textSize = [_comment boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} context:nil].size;
+    
+    _cellHeight += (textSize.height + WSIMarginDouble);
+    
+    _cellHeight += 20; //图标
+    
+    return _cellHeight;
+    
+}
+
 @end

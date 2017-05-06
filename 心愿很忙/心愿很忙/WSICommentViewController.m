@@ -12,8 +12,11 @@
 #import <STPopup/STPopup.h>
 #import "WSIMeDetailViewController.h"
 #import "YZInputView.h"
+#import "CommentTableViewCell.h"
+#import "ContentTableViewCell.h"
 
 @interface WSICommentViewController ()<UITableViewDelegate,UITableViewDataSource>
+
 @property(nonatomic,strong)UIImageView *headerIv;
 @property(nonatomic,strong)UILabel *nickName;
 @property(nonatomic,strong)UILabel *time;
@@ -351,9 +354,16 @@ static NSString *ID = @"commentCell";
  
     _inputView.maxNumberOfLines = 4;
     
- 
+    [self registerCell];
     
 }
+
+-(void)registerCell {
+    
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([CommentTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"comment"];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([ContentTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"content"];
+}
+
 
 // 键盘弹出会调用
 - (void)keyboardWillChangeFrame:(NSNotification *)note
@@ -430,280 +440,33 @@ static NSString *ID = @"commentCell";
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    if (indexPath.section == 0) {
+
+        ContentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"content"];
         
-        if (indexPath.section == 0) {
-            
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-            
-            cell  = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
-            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            
-            if (!cell) {
-      
-            //头像
-            
-            [cell addSubview:self.headerIv];
-            
-            [_headerIv mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.size.mas_equalTo(CGSizeMake(49, 49));
-                make.left.mas_equalTo(cell.mas_left).with.offset(15);
-                make.top.mas_equalTo(cell.mas_top).with.offset(15);
-            }];
-            
-            //昵称
-            
-            [cell addSubview:self.nickName];
-            
-            [_nickName mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.top.mas_equalTo(_headerIv.mas_top);
-                make.left.mas_equalTo(_headerIv.mas_right).with.offset(10);
-                make.right.mas_equalTo(cell.mas_right).with.offset(-15);
-            }];
-            
-            //时间
-            
-            [cell addSubview:self.time];
-            
-            [_time mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.top.mas_equalTo(_nickName.mas_bottom).with.offset(5);
-                make.leading.mas_equalTo(_nickName.mas_leading);
-                make.right.mas_equalTo(cell.mas_right).with.offset(15);
-            }];
-            
-            //分割线
-            
-            [cell addSubview:self.lineView];
-            
-            [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.height.mas_equalTo(0.33);
-                make.top.mas_equalTo(_headerIv.mas_bottom).with.offset(20);
-                make.left.mas_equalTo(cell.mas_left).with.offset(0);
-                make.right.mas_equalTo(cell.mas_right).with.offset(0);
-            }];
-            
-            //分享bt
-            
-            [cell addSubview:self.shareBt];
-            
-            [_shareBt mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.size.mas_equalTo(CGSizeMake(29, 29));
-                make.top.mas_equalTo(cell.mas_top).with.offset(16);
-                make.right.mas_equalTo(cell.mas_right).with.offset(-12);
-                
-                
-            }];
-            
-            //赞bt
-            
-            [cell addSubview:self.love];
-            
-            [_love mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.size.mas_equalTo(CGSizeMake(15, 15));
-                make.left.mas_equalTo(cell.mas_left).with.offset(15);
-                make.bottom.mas_equalTo(cell.mas_bottom).with.offset(-15);
-            }];
-            
-            //赞label
-            
-            [cell addSubview:self.loveCount];
-            
-            [_loveCount mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.height.mas_equalTo(15);
-                make.left.mas_equalTo(_love.mas_right).with.offset(3);
-                make.bottom.mas_equalTo(_love.mas_bottom);
-                
-            }];
-            
-            //评论bt
-            
-            [cell addSubview:self.comment];
-            
-            [_comment mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.size.mas_equalTo(CGSizeMake(13, 13));
-                make.left.mas_equalTo(_loveCount.mas_right).with.offset(10);
-                make.bottom.mas_equalTo(cell.mas_bottom).with.offset(-15);
-            }];
-            
-            //评论label
-            
-            [cell addSubview:self.commentCount];
-            
-            [_commentCount mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.height.mas_equalTo(15);
-                make.left.mas_equalTo(_comment.mas_right).with.offset(3);
-                make.bottom.mas_equalTo(_comment.mas_bottom);
-                
-            }];
-            
-            //配图文字
-            
-            [cell addSubview:self.contentlabel];
-            
-            [_contentlabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.left.mas_equalTo(cell.mas_left).with.offset(15);
-                make.right.mas_equalTo(cell.mas_right).with.offset(-15);
-                make.bottom.mas_equalTo(_commentCount.mas_top).with.offset(-20);
-            }];
-            
-            //配图iv
-            
-            [cell addSubview:self.contentIv];
-            
-            [_contentIv mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.top.mas_equalTo(_lineView.mas_bottom).with.offset(0);
-                make.left.mas_equalTo(cell.mas_left).with.offset(0);
-                make.right.mas_equalTo(cell.mas_right).with.offset(0);
-                make.bottom.mas_equalTo(_contentlabel.mas_top).with.offset(-10);
-            }];
-            
-            //心愿详情
-            
-            [cell addSubview:self.detailBt];
-            
-            [_detailBt mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.size.mas_equalTo(CGSizeMake(65, 30));
-                make.right.mas_equalTo(cell.mas_right).with.offset(-15);
-                make.bottom.mas_equalTo(cell.mas_bottom).with.offset(-15);
-            }];
-            
-            }
+        cell.avObj = _avObj;
+  
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         return cell;
+      
+    }else {
+
+        CommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"comment" ];
+   
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+
+        return cell;
     }
-    
-    
-    UITableViewCell *cell2 = [tableView dequeueReusableCellWithIdentifier:@"id"];
-    
-    if (!cell2) {
-        
-            cell2 = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"id"];
-        
-            //头像
-        
-            [cell2 addSubview:self.comHead];
-        
-            [_comHead mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-                make.size.mas_equalTo(CGSizeMake(40, 40));
-                make.left.mas_equalTo(cell2.mas_left).with.offset(10);
-                make.top.mas_equalTo(cell2.mas_top).with.offset(10);
-            }];
-        
-            //昵称
-        
-            [cell2 addSubview:self.comNick];
-        
-            [_comNick mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.height.mas_equalTo(20);
-                make.top.mas_equalTo(_comHead.mas_top);
-                make.left.mas_equalTo(_comHead.mas_right).with.offset(5);
-                make.right.mas_equalTo(cell2.mas_right).with.offset(-15);
-
-            }];
-        
-            //评论时间
-        
-            [cell2 addSubview:self.comTime];
-        
-            [_comTime mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.size.mas_equalTo(CGSizeMake(50, 20));
-                make.leading.mas_equalTo(_comNick.mas_leading);
-                make.bottom.mas_equalTo(cell2.mas_bottom).with.offset(-10);
-          
-            }];
-
-            //评论内容1
-        
-            [cell2 addSubview:self.comLabel];
-        
-            [_comLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-                make.leading.mas_equalTo(_comNick.mas_leading);
-                make.right.mas_equalTo(cell2.mas_right).with.offset(-15);
-                make.top.mas_equalTo(_comNick.mas_bottom).with.offset(10);
-                make.bottom.mas_equalTo(_comTime.mas_top).with.offset(-30);
-            }];
-        
-        
-            //点赞按钮
-        
-            [cell2 addSubview:self.likeBt];
-        
-            [_likeBt mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.size.mas_equalTo(CGSizeMake(20, 20));
-                make.top.mas_equalTo(cell2.mas_top).with.offset(13);
-                make.right.mas_equalTo(cell2.mas_right).with.offset(-15);
-            }];
-        
-            //回复按钮
-        
-            [cell2 addSubview:self.revertBt];
-        
-            [_revertBt mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.size.mas_equalTo(CGSizeMake(40, 20));
-                make.left.mas_equalTo(cell2.mas_left).with.offset(110);
-                make.bottom.mas_equalTo(cell2.mas_bottom).with.offset(-10);
-                
-            }];
-        
-        
-        
-        //在cell加载时查询到该条状态的所有评论
-        
-        BmobQuery *query = [BmobQuery queryWithClassName:@"Comment"];
-        
-        [query whereKey:@"comment" equalTo:_avObj.avObj];
-        
-        [query orderByAscending:@"createdAt"];
-        
-        [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-            
-            _comArr = [[commentModel commentObjectArrayFromBmobObjArrary:array] mutableCopy];
-            
-            commentModel *comModel = _comArr[indexPath.row];
-            
-            [_comLabel setText:comModel.content];
-            
-            BmobQuery *q = [BmobQuery queryWithClassName:@"_User"];
-            
-            [q getObjectInBackgroundWithId:comModel.user.objectId block:^(BmobObject *object, NSError *error) {
-                
-                [_comNick setText:[object objectForKey:@"nickName"]];
-                
-                NSString *str = [object objectForKey:@"userHeader"];
-                
-                [_comHead sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:nil];
-            }];
-        }];
-        
-    }
-
-
-    return cell2;
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if (indexPath.section == 0) {
         
-        return _avObj.cellHeight;
+        return _avObj.comCellHeight;
     }
     
     return 130;

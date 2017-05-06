@@ -28,8 +28,7 @@
 @interface HomeTableViewCell ()<WKNavigationDelegate>
 /**个人简介*/
 @property(nonatomic,strong) STPopupController *popupController;
-/***/
-@property (nonatomic,assign) NSInteger progress;
+
 /**宝贝链接*/
 @property(nonatomic,strong)  NSString *wishLink;
 /**赞*/
