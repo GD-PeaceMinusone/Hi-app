@@ -30,6 +30,9 @@
 #import "WishModel.h"
 #import "UIImageView+WebCache.h"
 #import "Bmob.h"
+#import "commentModel.h"
+
+
 /*** 将服务器返回的数据写入plist文件 ***/
 #define XMGWriteToPlist(data,fileName) [data writeToFile:[NSString stringWithFormat:@"/Users/jackeylove/Desktop/%@.plist",fileName] atomically:YES];
 

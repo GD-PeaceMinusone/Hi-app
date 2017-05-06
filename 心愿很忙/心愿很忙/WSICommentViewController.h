@@ -10,4 +10,5 @@
 
 @interface WSICommentViewController : JCNaviSubViewController
 @property(nonatomic,strong)WishModel *avObj;
+@property(nonatomic,strong)commentModel *comModel;
 @end

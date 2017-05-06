@@ -38,6 +38,9 @@
 @property(nonatomic,strong)UILabel *comTime;
 @property(nonatomic,strong)UIButton *revertBt;
 @property(nonatomic,strong)UIButton *likeBt;
+@property(nonatomic,strong)NSMutableArray *comArr;
+@property(nonatomic,strong)UILabel *comNick;
+@property(nonatomic,strong)UIView *comView;
 @end
 
 @implementation WSICommentViewController
@@ -214,39 +217,90 @@ static NSString *ID = @"commentCell";
     return _contentIv;
 }
 
-/**
- @property(nonatomic,strong)UIImageView *comHead;
- @property(nonatomic,strong)UILabel *comLabel;
- @property(nonatomic,strong)UILabel *comTime;
- @property(nonatomic,strong)UIButton *revertBt;
- @property(nonatomic,strong)UIButton *likeBt;
- */
-
 -(UIImageView *)comHead {
 
     if (!_comHead) {
         
         _comHead = [[UIImageView alloc] initWithRoundingRectImageView];
+        
+        [_comHead setImage:[UIImage imageNamed:@"header"]];
+        
         [_comHead setUserInteractionEnabled:YES];
+        
         UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap2)];
+        
         [_comHead addGestureRecognizer:tapGr];
-      
-        BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
-        
-        [query getObjectInBackgroundWithId:_avObj.user.objectId block:^(BmobObject *object, NSError *error) {
-            
-            NSString *headStr = [object objectForKey:@"userHeader"];
-            
-            [_comHead sd_setImageWithURL:[NSURL URLWithString:headStr] placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
-            
-            [_nickName setText:[object objectForKey:@"nickName"]];
-            
-        }];
-        
+ 
        
     }
     
     return _comHead;
+}
+
+
+-(UILabel *)comLabel {
+
+    if (!_comLabel) {
+        
+        _comLabel = [UILabel new];
+        _comLabel.text = @"zandfsdfdsfsdf";
+        [_comLabel setFont:[UIFont systemFontOfSize:15.0f]];
+        [_comLabel setNumberOfLines:0];
+    }
+    
+    return _comLabel;
+}
+
+
+-(UILabel *)comTime {
+
+    if (!_comTime) {
+        
+        _comTime = [UILabel new];
+        [_comTime setText:@"2小时前"];
+        [_comTime setTextColor:[UIColor grayColor]];
+        [_comTime setFont:[UIFont systemFontOfSize:12.0f]];
+    }
+    
+    return _comTime;
+}
+
+-(UILabel *)comNick {
+
+    if (!_comNick) {
+        
+        _comNick = [UILabel new];
+        [_comNick setText:@"你好啊蟹蟹"];
+        [_comNick setNumberOfLines:0];
+        [_comNick setTextColor:[UIColor colorWithRed:0/255.0 green:114/255.0 blue:254/255.0 alpha:1.0f]];
+        [_comNick setFont:[UIFont systemFontOfSize:13.0f]];
+    }
+    
+    return _comNick;
+}
+
+-(UIButton *)revertBt {
+
+    if (!_revertBt) {
+        
+        _revertBt = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_revertBt setTitle:@"回复" forState:UIControlStateNormal];
+        [_revertBt setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_revertBt.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
+    }
+    
+    return _revertBt;
+}
+
+-(UIButton *)likeBt {
+
+    if (!_likeBt) {
+        
+        _likeBt = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_likeBt setImage:[UIImage imageNamed:@"点赞"] forState:UIControlStateNormal];
+    }
+    
+    return _likeBt;
 }
 
 #pragma mark - 手势相关
@@ -287,20 +341,18 @@ static NSString *ID = @"commentCell";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
-    // 设置文本框占位文字
-    _inputView.placeholder = @"来,说两句";
-    _inputView.placeholderColor = [UIColor grayColor];
-    
-    // 监听文本框文字高度改变
+    [_inputView setPlaceholder:@"来,说两句"];
+    [_inputView setPlaceholderColor:[UIColor grayColor]];
+
     _inputView.yz_textHeightChangeBlock = ^(NSString *text,CGFloat textHeight){
-        // 文本框文字高度改变会自动执行这个【block】，可以在这【修改底部View的高度】
-        // 设置底部条的高度 = 文字高度 + textView距离上下间距约束
-        // 为什么添加10 ？（10 = 底部View距离上（5）底部View距离下（5）间距总和）
+
        _bottomHCons.constant = textHeight + 10;
     };
-    
-    // 设置文本框最大行数
+ 
     _inputView.maxNumberOfLines = 4;
+    
+ 
+    
 }
 
 // 键盘弹出会调用
@@ -332,24 +384,29 @@ static NSString *ID = @"commentCell";
 
 - (IBAction)sendBt:(id)sender {
     
-    AVObject *wishObj = [[AVObject alloc] initWithClassName:@"Comment"]; //建表
+    BmobObject *wishObj = [[BmobObject alloc] initWithClassName:@"Comment"]; //建表
     [wishObj setObject:_inputView.text forKey:@"content"]; //评论内容
     [wishObj setObject:_avObj.avObj forKey:@"comment"]; //评论的对应的状态
-    [wishObj setObject:[AVUser currentUser] forKey:@"user"]; //评论人
+    [wishObj setObject:[BmobUser currentUser] forKey:@"wishUser"]; //评论人
     
-    [wishObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+    [wishObj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         
-        if (succeeded) {
+        if (isSuccessful) {
             
             NSLog(@"评论成功");
+           
+            NSInteger height = [SizeUtils stringSizeWithString:_inputView.text].height;
+            _bottomHCons.constant = height + 10;
             [_inputView setText:nil];
             [self.view endEditing:YES];
+            
         }else {
-        
+            
             NSLog(@"评论失败");
         }
         
     }];
+ 
     
 }
 
@@ -369,21 +426,20 @@ static NSString *ID = @"commentCell";
         return 1;
     }
     
-    return 8;
+    return 5;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    
-    if (!cell) {
-        
-        cell  = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         if (indexPath.section == 0) {
             
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+            
+            cell  = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            
+            if (!cell) {
+      
             //头像
             
             [cell addSubview:self.headerIv];
@@ -403,7 +459,7 @@ static NSString *ID = @"commentCell";
                 
                 make.top.mas_equalTo(_headerIv.mas_top);
                 make.left.mas_equalTo(_headerIv.mas_right).with.offset(10);
-                make.right.mas_equalTo(cell.mas_right).with.offset(15);
+                make.right.mas_equalTo(cell.mas_right).with.offset(-15);
             }];
             
             //时间
@@ -521,41 +577,136 @@ static NSString *ID = @"commentCell";
                 make.right.mas_equalTo(cell.mas_right).with.offset(-15);
                 make.bottom.mas_equalTo(cell.mas_bottom).with.offset(-15);
             }];
-        }
+            
+            }
         
-        
-        
+        return cell;
     }
     
-    return cell;
+    
+    UITableViewCell *cell2 = [tableView dequeueReusableCellWithIdentifier:@"id"];
+    
+    if (!cell2) {
+        
+            cell2 = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"id"];
+        
+            //头像
+        
+            [cell2 addSubview:self.comHead];
+        
+            [_comHead mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+                make.size.mas_equalTo(CGSizeMake(40, 40));
+                make.left.mas_equalTo(cell2.mas_left).with.offset(10);
+                make.top.mas_equalTo(cell2.mas_top).with.offset(10);
+            }];
+        
+            //昵称
+        
+            [cell2 addSubview:self.comNick];
+        
+            [_comNick mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.height.mas_equalTo(20);
+                make.top.mas_equalTo(_comHead.mas_top);
+                make.left.mas_equalTo(_comHead.mas_right).with.offset(5);
+                make.right.mas_equalTo(cell2.mas_right).with.offset(-15);
+
+            }];
+        
+            //评论时间
+        
+            [cell2 addSubview:self.comTime];
+        
+            [_comTime mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.size.mas_equalTo(CGSizeMake(50, 20));
+                make.leading.mas_equalTo(_comNick.mas_leading);
+                make.bottom.mas_equalTo(cell2.mas_bottom).with.offset(-10);
+          
+            }];
+
+            //评论内容1
+        
+            [cell2 addSubview:self.comLabel];
+        
+            [_comLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+                make.leading.mas_equalTo(_comNick.mas_leading);
+                make.right.mas_equalTo(cell2.mas_right).with.offset(-15);
+                make.top.mas_equalTo(_comNick.mas_bottom).with.offset(10);
+                make.bottom.mas_equalTo(_comTime.mas_top).with.offset(-30);
+            }];
+        
+        
+            //点赞按钮
+        
+            [cell2 addSubview:self.likeBt];
+        
+            [_likeBt mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.size.mas_equalTo(CGSizeMake(20, 20));
+                make.top.mas_equalTo(cell2.mas_top).with.offset(13);
+                make.right.mas_equalTo(cell2.mas_right).with.offset(-15);
+            }];
+        
+            //回复按钮
+        
+            [cell2 addSubview:self.revertBt];
+        
+            [_revertBt mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.size.mas_equalTo(CGSizeMake(40, 20));
+                make.left.mas_equalTo(cell2.mas_left).with.offset(110);
+                make.bottom.mas_equalTo(cell2.mas_bottom).with.offset(-10);
+                
+            }];
+        
+        
+        
+        //在cell加载时查询到该条状态的所有评论
+        
+        BmobQuery *query = [BmobQuery queryWithClassName:@"Comment"];
+        
+        [query whereKey:@"comment" equalTo:_avObj.avObj];
+        
+        [query orderByAscending:@"createdAt"];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+            
+            _comArr = [[commentModel commentObjectArrayFromBmobObjArrary:array] mutableCopy];
+            
+            commentModel *comModel = _comArr[indexPath.row];
+            
+            [_comLabel setText:comModel.content];
+            
+            BmobQuery *q = [BmobQuery queryWithClassName:@"_User"];
+            
+            [q getObjectInBackgroundWithId:comModel.user.objectId block:^(BmobObject *object, NSError *error) {
+                
+                [_comNick setText:[object objectForKey:@"nickName"]];
+                
+                NSString *str = [object objectForKey:@"userHeader"];
+                
+                [_comHead sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:nil];
+            }];
+        }];
+        
+    }
+
+
+    return cell2;
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    switch (indexPath.section) {
-            
-        case 0:
-            
-        {
-            return _avObj.cellHeight;
-            
-        }
-            break;
-            
-        case 1:
-            
-            break;
-            
-        case 2:
-            
-            break;
-            
-        default:
-            break;
+    if (indexPath.section == 0) {
+        
+        return _avObj.cellHeight;
     }
     
-    return 60;
+    return 130;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -563,7 +714,7 @@ static NSString *ID = @"commentCell";
     [self.view endEditing:YES];
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
 
     [self.view endEditing:YES];
 }

@@ -9,12 +9,16 @@
 #import <Foundation/Foundation.h>
 
 @interface commentModel : NSObject
-/**评论的昵称*/
-@property(nonatomic,copy) NSString *commentName;
-/**评论人头像*/
-@property(nonatomic,copy) NSString *commentHead;
 /**评论时间*/
 @property(nonatomic,copy) NSString *commentTime;
 /**评论内容*/
 @property(nonatomic,copy) NSString *content;
+/**评论人*/
+@property(nonatomic,strong)BmobUser *user;
+/**高度*/
+@property (nonatomic,assign) NSInteger cellHeight;
+
+-(commentModel*)initWithBmobObject: (BmobObject*)avObj;
+
++(NSArray*)commentObjectArrayFromBmobObjArrary: (NSArray*)array;
 @end
