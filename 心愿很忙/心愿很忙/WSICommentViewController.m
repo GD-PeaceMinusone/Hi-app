@@ -28,14 +28,16 @@
 @property(nonatomic,strong) STPopupController *popupController;
 @property (weak,nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,strong)UIButton *detailBt;
-
 @property (weak, nonatomic) IBOutlet UIButton *sendBt;
 @property (weak, nonatomic) IBOutlet UIButton *emojiBt;
-
 @property (weak, nonatomic) IBOutlet YZInputView *inputView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomHCons;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomCons;
-
+@property(nonatomic,strong)UIImageView *comHead;
+@property(nonatomic,strong)UILabel *comLabel;
+@property(nonatomic,strong)UILabel *comTime;
+@property(nonatomic,strong)UIButton *revertBt;
+@property(nonatomic,strong)UIButton *likeBt;
 @end
 
 @implementation WSICommentViewController
@@ -69,13 +71,16 @@ static NSString *ID = @"commentCell";
         UITapGestureRecognizer *tapGr2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap2)];
         [_headerIv addGestureRecognizer:tapGr2];
         
-        [_avObj.user fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
+        BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
+        
+        [query getObjectInBackgroundWithId:_avObj.user.objectId block:^(BmobObject *object, NSError *error) {
             
             NSString *headStr = [object objectForKey:@"userHeader"];
+            
             [_headerIv sd_setImageWithURL:[NSURL URLWithString:headStr] placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
             
             [_nickName setText:[object objectForKey:@"nickName"]];
-        } ];
+        }];
         
     }
     
@@ -209,6 +214,43 @@ static NSString *ID = @"commentCell";
     return _contentIv;
 }
 
+/**
+ @property(nonatomic,strong)UIImageView *comHead;
+ @property(nonatomic,strong)UILabel *comLabel;
+ @property(nonatomic,strong)UILabel *comTime;
+ @property(nonatomic,strong)UIButton *revertBt;
+ @property(nonatomic,strong)UIButton *likeBt;
+ */
+
+-(UIImageView *)comHead {
+
+    if (!_comHead) {
+        
+        _comHead = [[UIImageView alloc] initWithRoundingRectImageView];
+        [_comHead setUserInteractionEnabled:YES];
+        UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap2)];
+        [_comHead addGestureRecognizer:tapGr];
+      
+        BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
+        
+        [query getObjectInBackgroundWithId:_avObj.user.objectId block:^(BmobObject *object, NSError *error) {
+            
+            NSString *headStr = [object objectForKey:@"userHeader"];
+            
+            [_comHead sd_setImageWithURL:[NSURL URLWithString:headStr] placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
+            
+            [_nickName setText:[object objectForKey:@"nickName"]];
+            
+        }];
+        
+       
+    }
+    
+    return _comHead;
+}
+
+#pragma mark - 手势相关
+
 -(void)tap{
     
     LYPhoto *photo = [LYPhoto photoWithImageView:_contentIv placeHold:_contentIv.image photoUrl:nil];
@@ -237,12 +279,7 @@ static NSString *ID = @"commentCell";
     
 }
 
--  (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    [self.view endEditing:YES];
-}
-
-
+#pragma mark - 键盘相关
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -251,7 +288,7 @@ static NSString *ID = @"commentCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
     // 设置文本框占位文字
-    _inputView.placeholder = @"赶紧说两句吧..";
+    _inputView.placeholder = @"来,说两句";
     _inputView.placeholderColor = [UIColor grayColor];
     
     // 监听文本框文字高度改变
@@ -293,6 +330,31 @@ static NSString *ID = @"commentCell";
     [_tableView setSectionFooterHeight:5.0f];
 }
 
+- (IBAction)sendBt:(id)sender {
+    
+    AVObject *wishObj = [[AVObject alloc] initWithClassName:@"Comment"]; //建表
+    [wishObj setObject:_inputView.text forKey:@"content"]; //评论内容
+    [wishObj setObject:_avObj.avObj forKey:@"comment"]; //评论的对应的状态
+    [wishObj setObject:[AVUser currentUser] forKey:@"user"]; //评论人
+    
+    [wishObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        
+        if (succeeded) {
+            
+            NSLog(@"评论成功");
+            [_inputView setText:nil];
+            [self.view endEditing:YES];
+        }else {
+        
+            NSLog(@"评论失败");
+        }
+        
+    }];
+    
+}
+
+
+#pragma mark - 代理相关
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
@@ -460,6 +522,8 @@ static NSString *ID = @"commentCell";
                 make.bottom.mas_equalTo(cell.mas_bottom).with.offset(-15);
             }];
         }
+        
+        
         
     }
     

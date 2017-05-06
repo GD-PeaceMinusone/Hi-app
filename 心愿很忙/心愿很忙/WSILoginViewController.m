@@ -114,16 +114,17 @@
     
     [self.view endEditing:YES];
     
-    [AVUser logInWithMobilePhoneNumberInBackground:_numberTF.text smsCode:_smsCode.text block:^(AVUser *user, NSError *error) {
+    
+    [BmobUser signOrLoginInbackgroundWithMobilePhoneNumber:_numberTF.text  andSMSCode:_smsCode.text block:^(BmobUser *user, NSError *error) {
         
         if (error) {
             
             NSLog(@"登录失败---%@", error);
             
-            [HUDUtils setupErrorWithStatus:@"验证码错误" WithDelay:1.5f completion:nil];
+            [HUDUtils setupErrorWithStatus:@"登录失败" WithDelay:1.5f completion:nil];
             
         }else {
-        
+            
             NSLog(@"登录成功");
             
             [HUDUtils setupSuccessWithStatus:@"登录成功" WithDelay:1.5f completion:nil];
@@ -135,23 +136,26 @@
         }
         
     }];
+  
    
 }
 
 
 - (IBAction)getCode:(id)sender {
     
-    [AVUser requestLoginSmsCode:_numberTF.text withBlock:^(BOOL succeeded, NSError *error) {
+    [BmobSMS requestSMSCodeInBackgroundWithPhoneNumber:_numberTF.text andTemplate:@"test" resultBlock:^(int number, NSError *error) {
         
-        if (succeeded) {
+        if (error) {
             
-            NSLog(@"验证码发送成功");
-            [HUDUtils setupSuccessWithStatus:@"验证码已发送" WithDelay:1.8f completion:nil];
+            NSLog(@"获取验证码失败.%@",error);
             
-        }else {
-        
-            NSLog(@"验证码发送失败---%@", error);
             [HUDUtils setupErrorWithStatus:@"验证码发送失败" WithDelay:1.8f completion:nil];
+            
+        } else {
+            //获得smsID
+            NSLog(@"验证码已发送.sms ID：%d",number);
+            
+            [HUDUtils setupSuccessWithStatus:@"验证码已发送" WithDelay:1.8f completion:nil];
         }
         
     }];

@@ -24,13 +24,13 @@
             <rect key="frame" x="0.0" y="0.0" width="280" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg3" translatesAutoresizingMaskIntoConstraints="NO" id="nYz-KO-BeN">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nYz-KO-BeN">
                     <rect key="frame" x="0.0" y="0.0" width="280" height="230"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="230" id="WoU-GO-CVb"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header" translatesAutoresizingMaskIntoConstraints="NO" id="H5i-yP-h5Q">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H5i-yP-h5Q">
                     <rect key="frame" x="15" y="50" width="70" height="70"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="EAe-vf-Rho"/>
@@ -97,8 +97,4 @@
             <point key="canvasLocation" x="-50" y="3"/>
         </view>
     </objects>
-    <resources>
-        <image name="bg3" width="1440" height="960"/>
-        <image name="header" width="1242" height="1242"/>
-    </resources>
 </document>

@@ -26,4 +26,5 @@ pod 'AVOSCloudCrashReporting'
 pod 'WMPageController'
 pod 'SCAvatarBrowser'
 pod 'ZYCornerRadius'
+pod 'BmobSDK'
 end

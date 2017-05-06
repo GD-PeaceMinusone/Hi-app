@@ -14,7 +14,6 @@
 #import <STPopup/STPopup.h>
 #import "WSIMeDetailViewController.h"
 #import "WSIHomeTableViewController.h"
-#import <DACircularProgressView.h>
 #import <REFrostedViewController.h>
 #import <WebKit/WebKit.h>
 #import "WSIThingViewController.h"
@@ -29,8 +28,6 @@
 @interface HomeTableViewCell ()<WKNavigationDelegate>
 /**个人简介*/
 @property(nonatomic,strong) STPopupController *popupController;
-/***/
-@property(nonatomic,strong) DACircularProgressView *progressView;
 /***/
 @property (nonatomic,assign) NSInteger progress;
 /**宝贝链接*/
@@ -84,8 +81,19 @@ static NSCalendar *calendar_;
     
     [NSTimer scheduledTimerWithTimeInterval:60.0f target:self selector:@selector(checkingUnRead) userInfo:nil repeats:YES];
     
-
+    BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
+    
+    [query getObjectInBackgroundWithId:_avObj.user.objectId block:^(BmobObject *object, NSError *error) {
+        
+        NSString *headStr = [object objectForKey:@"userHeader"];
+        
+        [_headerIv sd_setImageWithURL:[NSURL URLWithString:headStr] placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
+        
+        [_nickName setText:[object objectForKey:@"nickName"]]; //设置昵称
+        
+    }];
 }
+
 
 /**
  *  实现label长按复制
@@ -185,9 +193,9 @@ static NSCalendar *calendar_;
 
 - (IBAction)shareAction:(id)sender {
     
-    AVUser *user = _avObj.user;
+    BmobUser *user = _avObj.user;
     
-    if ([user.username isEqualToString:[AVUser currentUser].username]) {
+    if ([user.objectId isEqualToString:[BmobUser currentUser].objectId]) {
         
         SRActionSheet *actionSheet = [SRActionSheet sr_actionSheetViewWithTitle:nil
                                                                     cancelTitle:@"删除"
@@ -239,52 +247,63 @@ static NSCalendar *calendar_;
 
     [_thingIv sd_setImageWithURL:url placeholderImage:nil options:0 progress:nil completed:nil];
     
-    [_avObj.user fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
+    BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
+ 
+    [query getObjectInBackgroundWithId:_avObj.user.objectId block:^(BmobObject *object, NSError *error) {
         
-        NSURL *headerUrl = [NSURL URLWithString:[object objectForKey:@"userHeader"]];
-        
-        [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
+        NSString *headStr = [object objectForKey:@"userHeader"];
+     
+        [_headerIv sd_setImageWithURL:[NSURL URLWithString:headStr] placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
         
         [_nickName setText:[object objectForKey:@"nickName"]]; //设置昵称
+        
     }];
     
-
+    
     //查询对应状态的总赞数
-    AVQuery *Query = [AVQuery queryWithClassName:@"Praise"];
-    [Query whereKey:@"beStarUser" equalTo:_avObj.user];
     
-    AVQuery *Query2 = [AVQuery queryWithClassName:@"Praise"];
-    [Query2 whereKey:@"comment" equalTo:_avObj.avObj];
+    BmobQuery *allQuery = [BmobQuery queryWithClassName:@"Praise"];
     
-    AVQuery *query = [AVQuery andQueryWithSubqueries:[NSArray arrayWithObjects:Query,Query2,nil]];
+    [allQuery whereKey:@"comment" equalTo:_avObj.avObj];
     
-    [query countObjectsInBackgroundWithBlock:^(NSInteger number, NSError * _Nullable error) {
+    [allQuery countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
         
         _like = number;
-        [_likeCount setText:[NSString stringWithFormat:@"%ld",number]];
+        [_likeCount setText:[NSString stringWithFormat:@"%d", number]];
         
     }];
     
-
+    
     //判断当前状态是否被当前用户赞过 如果赞过 则无论何时图标都显示selected状态
-    AVQuery *startDateQuery = [AVQuery queryWithClassName:@"Praise"];
-    [startDateQuery whereKey:@"starUser" equalTo:[AVUser currentUser]];
     
-    AVQuery *endDateQuery = [AVQuery queryWithClassName:@"Praise"];
-    [endDateQuery whereKey:@"comment" equalTo:_avObj.avObj];
+    BmobQuery *query1 = [BmobQuery queryWithClassName:@"Praise"];
     
-    AVQuery *query2 = [AVQuery andQueryWithSubqueries:[NSArray arrayWithObjects:startDateQuery,endDateQuery,nil]];
+    [query1 whereKey:@"starUser" equalTo:[BmobUser currentUser]];
     
-    [query2 findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+    BmobQuery *query2 = [BmobQuery queryWithClassName:@"Praise"];
+    
+    [query2 whereKey:@"comment" equalTo:_avObj.avObj];
+    
+    BmobQuery *addQuery = [BmobQuery queryWithClassName:@"Praise"];
+    
+    [addQuery add:query1];
+    
+    [addQuery add:query2];
+    
+    [addQuery andOperation];
+    
+    [addQuery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         
-        if (results.count == 0) {
+        if (array.count == 0) {
             
             _starBt.selected = NO;
             
         }else {
+        
             _starBt.selected = YES;
-            
         }
+        
+        
     }];
 
 }
@@ -295,7 +314,7 @@ static NSCalendar *calendar_;
     
     sender.selected = !sender.selected;
     
-    if (![AVUser currentUser]) {
+    if (![BmobUser currentUser]) {
         
         WSILoginViewController *loginVc = [WSILoginViewController new];
         
@@ -303,49 +322,64 @@ static NSCalendar *calendar_;
         
         [vc presentViewController:loginVc animated:YES completion:nil];
       
+        return;
     }
-  
-    AVQuery *one = [AVQuery queryWithClassName:@"Praise"];
-    [one whereKey:@"starUser" equalTo:[AVUser currentUser]];
     
-    AVQuery *one2 = [AVQuery queryWithClassName:@"Praise"];
-    [one2 whereKey:@"comment" equalTo:_avObj.avObj];
+    /**构建查询条件 如已点过赞 将不再增加数据 并将该条数据从后台delete*/
+
+    BmobQuery *query1 = [BmobQuery queryWithClassName:@"Praise"];
     
-    AVQuery *query = [AVQuery andQueryWithSubqueries:[NSArray arrayWithObjects:one,one2,nil]];
+    [query1 whereKey:@"starUser" equalTo:[BmobUser currentUser]];
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-       
-        if (results.count == 0) {
+    BmobQuery *query2 = [BmobQuery queryWithClassName:@"Praise"];
+    
+    [query2 whereKey:@"comment" equalTo:_avObj.avObj];
+    
+    BmobQuery *query = [BmobQuery queryWithClassName:@"Praise"];
+    
+    [query add:query1];
+    
+    [query add:query2];
+    
+    [query andOperation];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        if (array.count == 0) {
             
-            AVObject *obj = [AVObject objectWithClassName:@"Praise"];
+            BmobObject *obj = [BmobObject objectWithClassName:@"Praise"];
             
-            [obj setObject:[AVUser currentUser] forKey:@"starUser"];
-            [obj setObject:_avObj.avObj   forKey:@"comment"];
-            [obj setObject:_avObj.user forKey:@"beStarUser"];
-            
-            [obj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                
-                if (succeeded) {
-                    
-                    NSLog(@"点赞成功");
-                    [_likeCount setText:[NSString stringWithFormat:@"%ld", _like + 1]];
-                    _like += 1;
-              
+            [obj setObject:[BmobUser currentUser] forKey:@"starUser"];
+            [obj setObject:_avObj.avObj forKey:@"comment"];
+            [obj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+ 
+                    if (isSuccessful) {
+                        
+                        NSLog(@"点赞成功");
+                        [_likeCount setText:[NSString stringWithFormat:@"%ld", _like + 1]];
+                        _like += 1;
+      
                 }else {
                     
-                    NSLog(@"点赞失败");
-                }
-                
-            }];
-            
-        }else {
+                    NSLog(@"点赞失败---%@", error);
                     
-                    [results[0] deleteInBackground];
-                    [_likeCount setText:[NSString stringWithFormat:@"%ld", _like - 1]];
-                    _like -= 1;
+                }
+          
+            }];
+
+
+        }else {
             
+            NSLog(@"已经赞过");
+            [array[0] deleteInBackground];
+            [_likeCount setText:[NSString stringWithFormat:@"%ld", _like - 1]];
+            _like -= 1;
         }
+        
+        
     }];
+    
+
 }
 
 

@@ -38,9 +38,9 @@
 
 -(void)viewWillAppear:(BOOL)animated {
 
-    if ([AVUser currentUser] == nil) {
+    if ([BmobUser currentUser] == nil) {
         
-        UIImage *image = [UIImage imageNamed:@"笑脸 (11)"];
+        UIImage *image = [UIImage imageNamed:@"笑脸 (22)"];
         _headerIv.image = image;
         
     }else {
@@ -67,39 +67,31 @@
  */
 
 -(void)setupHeaderIv {
-    
-    /**
-    _headerIv.layer.borderWidth = 1.5f;
-    _headerIv.layer.borderColor = [UIColor whiteColor].CGColor;
-    _headerIv.layer.shadowColor = [UIColor colorWithRed:237.0/255 green:239.0/255 blue:241.0/255 alpha:1.0].CGColor;
-    _headerIv.layer.shadowOpacity = 1.0;
-    _headerIv.layer.shadowOffset = CGSizeMake(0, 0);
-    _headerIv.layer.shadowRadius = 3.f;
-     */
-    
+
     _headerIv.userInteractionEnabled = YES;
     _bgIv.userInteractionEnabled = YES;
+
+    BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
     
-    [[AVUser currentUser] fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
+    [query getObjectInBackgroundWithId:[BmobUser currentUser].objectId block:^(BmobObject *object, NSError *error) {
         
-        NSString *headerStr = [object objectForKey:@"squareUserHeader"];
+        NSString *headStr = [object objectForKey:@"userHeader"];
         
-        NSURL *headerUrl = [NSURL URLWithString:headerStr];
+        [_headerIv sd_setImageWithURL:[NSURL URLWithString:headStr] placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
         
-        [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"笑脸 (11)"]];
-        
-        NSString *nameStr = [object objectForKey:@"nickName"];
-        [_nickName setText:nameStr];
+        [_nickName setText:[object objectForKey:@"nickName"]];
         
         NSString *signStr = [object objectForKey:@"sign"];
+        
         [_sign setText:signStr];
         
         NSString *bgStr = [object objectForKey:@"bgUrl"];
-        NSURL *bgUrl = [NSURL URLWithString:bgStr];
-        
-        [_bgIv sd_setImageWithURL:bgUrl placeholderImage:nil];
-    }];
     
+        [_bgIv sd_setImageWithURL:[NSURL URLWithString:bgStr] placeholderImage:nil];
+        
+    }];
+
+
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
     [_headerIv addGestureRecognizer:tap];
     

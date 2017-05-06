@@ -2,19 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSExceptionDomains</key>
-        <dict>
-            <key>clouddn.com</key>
-            <dict>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-                <true/>
-            </dict>
-        </dict>
-    </dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -118,19 +110,22 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>"小明同学"想访问您的相机</string>
+	<string>&quot;小明同学&quot;想访问您的相机</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>"小明同学"想访问您的相册</string>
+	<string>&quot;小明同学&quot;想访问您的相册</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>DROI_APP_ID</key>
+	<string>shfvmbzhVv89jEFFo2eUgkuNfTDAB_BdlQAsVQsa</string>
+	<key>DROI_PLATFORM_ID</key>
+	<string>-CtQt67ZSTxWC3vbgGm_jUop3lk8Zl6_jUop3lk8</string>
+	<key>DROI_CHANNEL_NAME</key>
+	<string></string>
+	<key>DROI_APP_SECRET</key>
+	<string>17m095jw</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

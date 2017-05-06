@@ -46,17 +46,18 @@
 
     _model = model;
     
-    [_model.user fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
+    BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
+    
+    [query getObjectInBackgroundWithId:model.user.objectId block:^(BmobObject *object, NSError *error) {
         
-        NSString *headerStr = [object objectForKey:@"userHeader"];
+        NSString *head = [object objectForKey:@"userHeader"];
+
+        [_headerIv sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
         
-        NSURL *headerUrl = [NSURL URLWithString:headerStr];
+        [_nickLabel setText:[object objectForKey:@"nickName"]];
         
-        [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
-        
-        NSString *nameStr = [object objectForKey:@"nickName"];
-        [_nickLabel setText:nameStr];
     }];
+
 }
 
 -(void)setupHeaderIv {

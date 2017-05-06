@@ -24,15 +24,9 @@
 #import "WSICommentViewController.h"
 
 @interface WSIHomeTableViewController ()
-/**数据数组*/
 @property(nonatomic,strong)NSMutableArray *itObjs;
-/** window */
-@property (nonatomic, strong) UIWindow *window;
-/**数据数组*/
 @property(nonatomic,strong)NSMutableArray *moreItobjs;
-
 @property(nonatomic,strong) STPopupController *popupController;
-
 @property (nonatomic,assign)NSInteger cellHeight;
 @property(nonatomic,strong)NSString *thingPath;
 @property(nonatomic,strong)NSString *thingContent;
@@ -53,6 +47,7 @@ static NSString *notiName3 = @"changeTabbar";
    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushVc:) name:notiName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushVc2:) name:notiName2 object:nil];
+ 
 }
 
 -(void)pushVc: (NSNotification*)noti {//接受传过来的Vc 通过tag给对应vc赋值
@@ -155,22 +150,19 @@ static NSString *notiName3 = @"changeTabbar";
  *  设置发布按钮
  */
 -(void)publish: (UIButton*)button {
-    
-    
-    if ([AVUser currentUser]) {
+  
+    if ([BmobUser currentUser]) {
         
         CodeViewController *codeVc = [CodeViewController new];
         [self presentViewController:codeVc animated:YES completion:nil];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"hideButton" object:nil];
+  
     }else {
-        
+
         WSILoginViewController *loginVc = [WSILoginViewController new];
         [self presentViewController:loginVc animated:YES completion:nil];
-
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"hideButton" object:nil];
+      
     }
-    
+   
 }
 
 
@@ -189,7 +181,7 @@ static NSString *notiName3 = @"changeTabbar";
 
 -(void)loadNewTopics {
     
-    AVQuery *query = [AVQuery queryWithClassName:@"WishList"];
+    BmobQuery *query = [BmobQuery queryWithClassName:@"WishList"];
    
     query.limit = 10;
     
@@ -226,13 +218,13 @@ static NSString *notiName3 = @"changeTabbar";
 
 -(void)loadMoreTopics {
     
-    AVQuery *query = [AVQuery queryWithClassName:@"WishList"];
+    BmobQuery *query = [BmobQuery queryWithClassName:@"WishList"];
     
     query.limit = 10;
     
     WishModel *model = self.moreItobjs[self.moreItobjs.count - 1];
     
-    AVObject *obj = model.avObj;
+    BmobObject *obj = model.avObj;
     
     [query whereKey:@"createdAt" lessThan:obj.createdAt];
     

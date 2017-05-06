@@ -54,9 +54,10 @@
 		533F00251EB6EDA5002E0B19 /* WSIHomePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533F00231EB6EDA5002E0B19 /* WSIHomePageViewController.xib */; };
 		533F00291EB6F438002E0B19 /* WMPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 533F00281EB6F438002E0B19 /* WMPanGestureRecognizer.m */; };
 		533F00391EB9ECAE002E0B19 /* WSICommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 533F00371EB9ECAE002E0B19 /* WSICommentViewController.m */; };
-		533F003D1EBAD1C8002E0B19 /* WishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 533F003C1EBAD1C8002E0B19 /* WishModel.m */; };
 		536995481EBB5DE9005379EE /* WSICommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 536995471EBB5DE9005379EE /* WSICommentViewController.xib */; };
 		5369954B1EBB5E07005379EE /* YZInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5369954A1EBB5E07005379EE /* YZInputView.m */; };
+		5369954E1EBB7499005379EE /* commentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5369954D1EBB7499005379EE /* commentModel.m */; };
+		536995511EBC7C3A005379EE /* WishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 536995501EBC7C3A005379EE /* WishModel.m */; };
 		5373E7451E9670A900819DCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7441E9670A900819DCD /* main.m */; };
 		5373E7481E9670A900819DCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7471E9670A900819DCD /* AppDelegate.m */; };
 		5373E7511E9670A900819DCD /* ____.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5373E74F1E9670A900819DCD /* ____.xcdatamodeld */; };
@@ -193,11 +194,13 @@
 		533F00281EB6F438002E0B19 /* WMPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPanGestureRecognizer.m; sourceTree = "<group>"; };
 		533F00361EB9ECAE002E0B19 /* WSICommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSICommentViewController.h; sourceTree = "<group>"; };
 		533F00371EB9ECAE002E0B19 /* WSICommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSICommentViewController.m; sourceTree = "<group>"; };
-		533F003B1EBAD1C8002E0B19 /* WishModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WishModel.h; sourceTree = "<group>"; };
-		533F003C1EBAD1C8002E0B19 /* WishModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WishModel.m; sourceTree = "<group>"; };
 		536995471EBB5DE9005379EE /* WSICommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSICommentViewController.xib; sourceTree = "<group>"; };
 		536995491EBB5E07005379EE /* YZInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZInputView.h; sourceTree = "<group>"; };
 		5369954A1EBB5E07005379EE /* YZInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZInputView.m; sourceTree = "<group>"; };
+		5369954C1EBB7499005379EE /* commentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentModel.h; sourceTree = "<group>"; };
+		5369954D1EBB7499005379EE /* commentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentModel.m; sourceTree = "<group>"; };
+		5369954F1EBC7C3A005379EE /* WishModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WishModel.h; sourceTree = "<group>"; };
+		536995501EBC7C3A005379EE /* WishModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WishModel.m; sourceTree = "<group>"; };
 		5373E7401E9670A900819DCD /* 心愿很忙.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "心愿很忙.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5373E7441E9670A900819DCD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5373E7461E9670A900819DCD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -490,8 +493,10 @@
 				53FB50921E9DD795002B305D /* HUDUtils.m */,
 				5385FAC21EAC830000F283FD /* SizeUtils.h */,
 				5385FAC31EAC830000F283FD /* SizeUtils.m */,
-				533F003B1EBAD1C8002E0B19 /* WishModel.h */,
-				533F003C1EBAD1C8002E0B19 /* WishModel.m */,
+				5369954F1EBC7C3A005379EE /* WishModel.h */,
+				536995501EBC7C3A005379EE /* WishModel.m */,
+				5369954C1EBB7499005379EE /* commentModel.h */,
+				5369954D1EBB7499005379EE /* commentModel.m */,
 				531AEADE1E9A6A0A0037CA16 /* WSIMeViewController.h */,
 				531AEADF1E9A6A0A0037CA16 /* WSIMeViewController.m */,
 				531AEAE01E9A6A0A0037CA16 /* WSIMeViewController.xib */,
@@ -872,7 +877,6 @@
 			files = (
 				5373E79A1E967C0400819DCD /* UIButton+XMGExtension.m in Sources */,
 				53192CCB1EAB34E600C5E5BF /* UIImage+WSIExtension.m in Sources */,
-				533F003D1EBAD1C8002E0B19 /* WishModel.m in Sources */,
 				5374A5981EB080330062B75A /* UIView+SGFrame.m in Sources */,
 				5373E79C1E967C0400819DCD /* NSString+XMGExtension.m in Sources */,
 				5374A5731EB044B50062B75A /* UIView+leoAdd.m in Sources */,
@@ -899,6 +903,7 @@
 				5373E79E1E967C0400819DCD /* NSCalendar+XMGExtension.m in Sources */,
 				531AEB601E9B29E10037CA16 /* MainViewController.m in Sources */,
 				533D2AF51EB4D9030072C98C /* WSICodeViewController.m in Sources */,
+				536995511EBC7C3A005379EE /* WishModel.m in Sources */,
 				532420A81EAA106E0017E25A /* WSIHomeTableViewController.m in Sources */,
 				53192CB81EAAFC6400C5E5BF /* WSIPerosonalViewController.m in Sources */,
 				531AEAE11E9A6A0A0037CA16 /* WSIMeViewController.m in Sources */,
@@ -917,6 +922,7 @@
 				5374A5721EB044B50062B75A /* UINavigationBar+leoAdd.m in Sources */,
 				5374A5DD1EB0D4620062B75A /* UIViewController+SelectPhotoIcon.m in Sources */,
 				5385FB341EAEEC0800F283FD /* JCNavigationController.m in Sources */,
+				5369954E1EBB7499005379EE /* commentModel.m in Sources */,
 				531AEB5F1E9B29E10037CA16 /* CustomCardView.m in Sources */,
 				5385FACC1EADC05B00F283FD /* MJRefreshGifHeader+HeaderRefresh.m in Sources */,
 				5374A5D81EB0D45D0062B75A /* BBInputView.m in Sources */,

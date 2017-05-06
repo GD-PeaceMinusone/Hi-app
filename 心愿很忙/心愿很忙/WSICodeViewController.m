@@ -9,7 +9,7 @@
 #import "WSICodeViewController.h"
 #import "WSIRegisterViewController.h"
 #import "WSIResetViewController.h"
-#import <STPopupController.h>
+#import "STPopupController.h"
 
 @interface WSICodeViewController ()
 /**用户名或手机号*/
@@ -112,7 +112,9 @@
     
     [self.view endEditing:YES];
     
-    [AVUser logInWithUsernameInBackground:_usernameTF.text password:_passwdTF.text block:^(AVUser *user, NSError *error) {
+    
+    [BmobUser loginInbackgroundWithAccount:_usernameTF.text andPassword:_passwdTF.text block:^(BmobUser *user, NSError *error) {
+        
         if (user != nil) {
             
             NSLog(@"登录成功");
@@ -131,7 +133,9 @@
             
             [HUDUtils setupErrorWithStatus:@"登录失败" WithDelay:1.5f completion:nil];
         }
+        
     }];
+    
     
 }
 

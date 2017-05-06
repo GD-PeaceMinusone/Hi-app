@@ -42,8 +42,9 @@
 
 - (IBAction)commitBt:(id)sender {
     
-    [AVUser requestPasswordResetForEmailInBackground:_emialTF.text  block:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
+    [BmobUser requestPasswordResetInBackgroundWithEmail:_emialTF.text block:^(BOOL isSuccessful, NSError *error) {
+        
+        if (isSuccessful) {
             
             [HUDUtils setupSuccessWithStatus:@"重置邮件已发送" WithDelay:1.5f completion:nil];
             
@@ -56,7 +57,9 @@
             
             [HUDUtils setupInfoWithStatus:@"请输入正确的邮箱地址" WithDelay:1.5f completion:nil];
         }
+        
     }];
+   
 }
 
 @end

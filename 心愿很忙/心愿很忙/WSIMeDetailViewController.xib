@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header" translatesAutoresizingMaskIntoConstraints="NO" id="qpX-h4-fbn">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qpX-h4-fbn">
                     <rect key="frame" x="158" y="60" width="59" height="59"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="59" id="Zq5-TF-SHe"/>
@@ -30,7 +30,7 @@
                         <constraint firstAttribute="width" constant="59" id="zDg-vE-lx3"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我还是决定减肥了" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLe-b5-Jje">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLe-b5-Jje">
                     <rect key="frame" x="29" y="129" width="317.5" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="z41-Re-bwD"/>
@@ -101,7 +101,4 @@
             <point key="canvasLocation" x="32.5" y="104.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="header" width="1242" height="1242"/>
-    </resources>
 </document>

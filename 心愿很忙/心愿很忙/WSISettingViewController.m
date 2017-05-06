@@ -35,15 +35,22 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+
+    BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
     
-    [[AVUser currentUser] fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
+    [query getObjectInBackgroundWithId:[BmobUser currentUser].objectId block:^(BmobObject *object, NSError *error) {
         
-        NSString *headerStr = [object objectForKey:@"userHeader"];
+        NSString *sign = [object objectForKey:@"sign"];
+        [_signCell.detailTextLabel setText:sign];
         
-        NSURL *headerUrl = [NSURL URLWithString:headerStr];
-       
-        [_headerIv sd_setImageWithURL:headerUrl placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
+        NSString *nickName = [object objectForKey:@"nickName"];
+        [_nickCell.detailTextLabel setText:nickName];
+        
+        NSString *head = [object objectForKey:@"userHeader"];
+        [_headerIv sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
     }];
+    
+    
 }
 
 #pragma mark - 懒加载
@@ -136,12 +143,12 @@
                 case 0: //头像
                 {
                     cell.textLabel.text = @"头像";
-                    
-                    UIImage *image = [UIImage imageWithIconName:@"头像 (22)" borderImage:nil border:0];
-                    
+              
                     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
                     
-                    _headerIv = [[UIImageView alloc]initWithImage:image];
+                    _headerIv = [[UIImageView alloc]initWithRoundingRectImageView];
+                    
+                    _headerIv.image = [UIImage imageNamed:@"头像 (22)"];
                     
                     _headerIv.userInteractionEnabled = YES;
                     
@@ -278,50 +285,54 @@
     UIImage *editedImage = (UIImage *)info[UIImagePickerControllerEditedImage];
     NSURL *url = info[@"UIImagePickerControllerReferenceURL"];
     NSData *imgData = nil;
-    NSData *imgData2= nil;
     
-    UIImage *image = [UIImage imageWithIcon:editedImage borderImage:nil Border:0];
-    _headerIv.image = image;
+    _headerIv.image = editedImage;
     
     if ([[url description] hasSuffix:@"PNG"]) {
         
-        imgData = UIImagePNGRepresentation(image);
-        imgData2 = UIImagePNGRepresentation(editedImage);
+        imgData = UIImagePNGRepresentation(editedImage);
         
     }else {
         
-        imgData = UIImageJPEGRepresentation(image, 1.0);
-        imgData2 = UIImageJPEGRepresentation(editedImage, 1.0);
+        imgData = UIImageJPEGRepresentation(editedImage, 1.0);
+
     }
     
+    BmobFile *file = [[BmobFile alloc]initWithFileName:@"header.jpg" withFileData:imgData];
     
-    AVFile *file = [AVFile fileWithName:@"header.jpg" data:imgData];
-    AVFile *file2 = [AVFile fileWithName:@"squareHeader.jpg" data:imgData2];
-
-    [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+    [file saveInBackground:^(BOOL isSuccessful, NSError *error) {
         
-        if (succeeded) {
+        if (isSuccessful) {
             
             NSLog(@"上传头像成功");
             
             NSLog(@"%@",file.url);
-
-            [[AVUser currentUser] setObject:file.url forKey:@"userHeader"];
             
-            [[AVUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
+            
+            [query getObjectInBackgroundWithId:[BmobUser currentUser].objectId block:^(BmobObject *object, NSError *error) {
                 
-                if (succeeded) {
-                    
-                    NSLog(@"头像更新成功");
-                    
-                    [HUDUtils setupSuccessWithStatus:@"头像上传成功" WithDelay:1.8f completion:nil];
-                    
-                }else {
+                [object setObject:file.url forKey:@"userHeader"];
                 
-                    [HUDUtils setupErrorWithStatus:@"设置头像失败" WithDelay:1.5f completion:nil];
-                }
+                [object updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                    
+                    if (isSuccessful) {
+                        
+                        NSLog(@"头像更新成功");
+                        
+                        [HUDUtils setupSuccessWithStatus:@"头像上传成功" WithDelay:1.8f completion:nil];
+                        
+                    }else {
+                        
+                        [HUDUtils setupErrorWithStatus:@"设置头像失败" WithDelay:1.5f completion:nil];
+                    }
+                    
+                    
+                }];
                 
             }];
+           
+            
             
         }else {
             
@@ -330,27 +341,13 @@
             [HUDUtils setupErrorWithStatus:@"头像上传失败" WithDelay:1.5f completion:nil];
         }
         
-    } progressBlock:^(NSInteger percentDone) {
         
-        NSLog(@"%lf",percentDone/100.0);
+    } withProgressBlock:^(CGFloat progress) {
         
-        [HUDUtils uploadImgWithProgress:percentDone/100.0 status:@"头像上传中.." completion:nil];
+        NSLog(@"%lf",progress);
         
-    }];
-    
-    
-    [file2 saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        [HUDUtils uploadImgWithProgress:progress status:@"头像上传中.." completion:nil];
         
-        if (succeeded) {
-            
-            [[AVUser currentUser] setObject:file2.url forKey:@"squareUserHeader"];
-            
-            [[AVUser currentUser] saveInBackground];
-            
-        }else {
-        
-            NSLog(@"上传方形头像失败---%@", error);
-        }
         
     }];
 
@@ -413,8 +410,15 @@
         
         _nickCell.detailTextLabel.text = inputContent;
         
-        [[AVUser currentUser] setObject:inputContent forKey:@"nickName"];
-        [[AVUser currentUser] saveInBackground];
+        BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
+        
+        [query getObjectInBackgroundWithId:[BmobUser currentUser].objectId block:^(BmobObject *object, NSError *error) {
+            
+            [object setObject:inputContent forKey:@"nickName"];
+            [object updateInBackground];
+            
+        }];
+  
     
         [self.tableView reloadData];
         
@@ -429,14 +433,21 @@
 -(void)updateSignName{
     
     [BBInput setDescTitle:@"请输入签名"];
-    [BBInput setMaxContentLength:20];
+    [BBInput setMaxContentLength:30];
     [BBInput setNormalContent:_signCell.detailTextLabel.text];
     [BBInput showInput:^(NSString *inputContent) {
         
         _signCell.detailTextLabel.text = inputContent;
         
-        [[AVUser currentUser] setObject:inputContent forKey:@"sign"];
-        [[AVUser currentUser] saveInBackground];
+        BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
+        
+        [query getObjectInBackgroundWithId:[BmobUser currentUser].objectId block:^(BmobObject *object, NSError *error) {
+            
+            [object setObject:inputContent forKey:@"sign"];
+            [object updateInBackground];
+          
+        }];
+  
         [self.tableView reloadData];
         
     }];

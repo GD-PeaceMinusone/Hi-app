@@ -109,21 +109,24 @@
     
     [self.registerView endEditing:YES];
     
-    if([self validateEmail:self.userNameTF.text]){//用户输入的为邮箱
+    if([self validateEmail:_userNameTF.text]){//用户输入的为邮箱
      
      [HUDUtils setupInfoWithStatus:@"请输入用户名或手机号" WithDelay:1.5f completion:nil];
         
 }else {
-    
-
-    AVUser *user = [AVUser user];// 新建 AVUser 对象实例
-    [user setUsername:_userNameTF.text];// 设置用户名
-    [user setPassword:_codeTF.text];// 设置密码
-    [user setEmail:_emailTF.text];
-    
-    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         
-        if (succeeded) {
+    
+    BmobUser *bUser = [[BmobUser alloc] init];
+    
+    [bUser setUsername:_userNameTF.text]; // 新建 User 对象实例
+    
+    [bUser setPassword:_codeTF.text]; // 设置用户名
+    
+    [bUser setEmail:_emailTF.text]; // 设置密码
+    
+    [bUser signUpInBackgroundWithBlock:^ (BOOL isSuccessful, NSError *error){
+        
+        if (isSuccessful) {
             
             NSLog(@"注册成功");
             
@@ -136,25 +139,15 @@
             
         } else {
             
-            NSLog(@"注册失败");
+            NSLog(@"注册失败---%@", error);
             
-            [HUDUtils setupErrorWithStatus:@"此邮箱已注册" WithDelay:1.5f completion:nil];
+            [HUDUtils setupErrorWithStatus:@"注册失败" WithDelay:1.5f completion:nil];
         }
-        
-         }];
+    }];
+    
+
     }
 }
-
-
-
-
-         
-         
-         
-         
-         
-         
-         
-         
+       
 
 @end

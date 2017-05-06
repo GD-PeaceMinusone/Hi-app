@@ -111,19 +111,25 @@
 
 -(void)viewWillAppear:(BOOL)animated {
 
-    [[AVUser currentUser] fetchInBackgroundWithBlock:^(AVObject * _Nullable object, NSError * _Nullable error) {
+    
+    BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
+    
+    [query getObjectInBackgroundWithId:[BmobUser currentUser].objectId block:^(BmobObject *object, NSError *error) {
         
-        NSString *bgStr = [object objectForKey:@"bgUrl"];
-        NSURL *url = [NSURL URLWithString:bgStr];
-        [_bgIv sd_setImageWithURL:url];
         
-        NSString *headStr = [object objectForKey:@"userHeader"];
-        NSURL *headUrl = [NSURL URLWithString:headStr];
-        [_headerIv sd_setImageWithURL:headUrl];
+            NSString *bgStr = [object objectForKey:@"bgUrl"];
+            NSURL *url = [NSURL URLWithString:bgStr];
+                [_bgIv sd_setImageWithURL:url];
         
-        NSString *nickStr = [object objectForKey:@"nickName"];
-        [_nickName setText:nickStr];
+            NSString *headStr = [object objectForKey:@"userHeader"];
+            NSURL *headUrl = [NSURL URLWithString:headStr];
+            [_headerIv sd_setImageWithURL:headUrl];
+        
+            NSString *nickStr = [object objectForKey:@"nickName"];
+            [_nickName setText:nickStr];
+        
     }];
+    
 }
 
 -(void)setupHeaderIv {
@@ -189,6 +195,7 @@
     NSURL *url = info[@"UIImagePickerControllerReferenceURL"];
     NSData *imgData = nil;
     
+     [_bgIv setImage:editedImage];
     
     if ([[url description] hasSuffix:@"PNG"]) {
         
@@ -200,32 +207,41 @@
     }
     
     
-    AVFile *file = [AVFile fileWithName:@"header.jpg" data:imgData];
+    BmobFile *file = [[BmobFile alloc]initWithFileName:@"bg.jpg" withFileData:imgData];
     
-    [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+    [file saveInBackground:^(BOOL isSuccessful, NSError *error) {
         
-        if (succeeded) {
+        if (isSuccessful) {
             
             NSLog(@"更改背景成功");
             
             NSLog(@"%@",file.url);
             
-            [[AVUser currentUser] setObject:file.url forKey:@"bgUrl"];
             
-            [[AVUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
+            
+            [query getObjectInBackgroundWithId:[BmobUser currentUser].objectId block:^(BmobObject *object, NSError *error) {
                 
-                if (succeeded) {
+                [object setObject:file.url forKey:@"bgUrl"];
+                
+                [object updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                     
-                    NSLog(@"背景更新成功");
+                    if (isSuccessful) {
+                        
+                        NSLog(@"背景更新成功");
+                        
+                        [HUDUtils setupSuccessWithStatus:@"背景已更改" WithDelay:1.8f completion:nil];
+                        
+                    }else {
+                        
+                        [HUDUtils setupErrorWithStatus:@"背景设置失败" WithDelay:1.5f completion:nil];
+                    }
                     
-                    [HUDUtils setupSuccessWithStatus:@"背景已更改" WithDelay:1.5f completion:nil];
                     
-                }else {
-                    
-                    [HUDUtils setupErrorWithStatus:@"背景设置失败" WithDelay:1.5f completion:nil];
-                }
+                }];
                 
             }];
+
             
         }else {
             
@@ -234,18 +250,19 @@
             [HUDUtils setupErrorWithStatus:@"背景设置失败" WithDelay:1.5f completion:nil];
         }
         
-    } progressBlock:^(NSInteger percentDone) {
         
-        NSLog(@"%lf",percentDone/100.0);
+    } withProgressBlock:^(CGFloat progress) {
         
-        [HUDUtils uploadImgWithProgress:percentDone/100.0 status:@"正在设置背景" completion:^{
-            [_bgIv setImage:editedImage];
-     
+        NSLog(@"%lf",progress);
+        
+        [HUDUtils uploadImgWithProgress:progress status:@"正在设置背景" completion:^{
+           
+            
         }];
         
     }];
+
    
-    
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 

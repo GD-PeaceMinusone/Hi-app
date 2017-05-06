@@ -14,7 +14,6 @@
 #import <TZImageManager.h>
 #import <HUPhotoBrowser.h>
 #import "HUDUtils.h"
-#import <HorizontalProgressView.h>
 #import "BBInput.h"
 
 
@@ -794,12 +793,13 @@ TZImagePickerControllerDelegate
 -(void)publishWish {
 
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-
+    
     /**上传数据*/
-    AVObject *wishObj = [[AVObject alloc] initWithClassName:@"WishList"];
-    [wishObj setObject:self.textView.text forKey:@"link"];
-    [wishObj setObject:self.tv1.text forKey:@"content"];
-    [wishObj setObject:[AVUser currentUser] forKey:@"wishUser"];
+    BmobObject *wishObj = [BmobObject objectWithClassName:@"WishList"];
+    [wishObj setObject:_textView.text forKey:@"link"];
+    [wishObj setObject:_tv1.text forKey:@"content"];
+    [wishObj setObject:[BmobUser currentUser] forKey:@"wishUser"];
+    
     
     NSData *imgData = nil;
     /**
@@ -813,29 +813,29 @@ TZImagePickerControllerDelegate
             imgData = UIImagePNGRepresentation(self.selectedImage);
             
         }else {
-        
+            
             imgData = UIImageJPEGRepresentation(self.selectedImage, 1.0);
-
+            
         }
         
-        AVFile *file = [AVFile fileWithName:@"picture.jpg" data:imgData];
-
+        BmobFile *file = [[BmobFile alloc]initWithFileName:@"picture.jpg" withFileData:imgData];
+  
         /**
          *  将保存数据回调放在保存文件回调里面 防止异步请求不到数据
          */
         
-        [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        [file saveInBackgroundByDataSharding:^(BOOL isSuccessful, NSError *error) {
             
-            if (succeeded) {
-            
+            if (isSuccessful) {
+                
                 NSLog(@"文件上传成功");
                 NSLog(@"----%@----",file.url);
-              
+                
                 
                 [wishObj setObject:file.url forKey:@"picUrl"];
-                [wishObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                [wishObj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                     
-                    if (succeeded) {
+                    if (isSuccessful) {
                         
                         NSLog(@"清单保存成功");
                         
@@ -847,59 +847,52 @@ TZImagePickerControllerDelegate
                             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                         }];
                         
-                        //将每条用户发的状态关联到该用户
-                        AVRelation *relation = [[AVUser currentUser] relationForKey:@"containedTodos"];
-                        [relation addObject:wishObj];
-                        
-                        [[AVUser currentUser] saveInBackground];
-                  
-            
                     }else {
-                    
+                        
                         NSLog(@"清单保存失败----%@", error);
                         [HUDUtils setupErrorWithStatus:@"清单未生成" WithDelay:1.5f completion:nil];
                     }
                 }];
+                
             }else {
-            
+                
                 NSLog(@"文件上传失败---%@", error);
-                [HUDUtils setupErrorWithStatus:@"网络好像有点问题" WithDelay:1.5f completion:nil];
+                [HUDUtils setupErrorWithStatus:@"图片上传失败" WithDelay:1.5f completion:nil];
             }
             
+        } progressBlock:^(CGFloat progress) {
             
+            NSLog(@"%lf",progress);
             
-        } progressBlock:^(NSInteger percentDone) {
+            [HUDUtils uploadImgWithProgress:progress status:@"心愿清单生成中.." completion:nil];
             
-            NSLog(@"%ld",percentDone);
-            
-            [HUDUtils uploadImgWithProgress:percentDone/100.0 status:@"心愿清单生成中.." completion:nil];
         }];
-            
-    }else {
- 
         
-        [wishObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-           
-            if (succeeded) {
-                
-                NSLog(@"无图片清单上传成功");
-                [HUDUtils setupSuccessWithStatus:@"清单已生成" WithDelay:1.5f completion:^{
-                    
-                    [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
-                    
-                    //网络活动指示器
-                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                }];
-                
-            }else {
+    }else {
             
-                NSLog(@"无图片清单上传失败");
-                [HUDUtils setupErrorWithStatus:@"网络好像有点问题" WithDelay:1.5f completion:nil];
-            }
+            [wishObj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                
+                if (isSuccessful) {
+                    
+                    NSLog(@"无图片清单上传成功");
+                    [HUDUtils setupSuccessWithStatus:@"清单已生成" WithDelay:1.5f completion:^{
+                        
+                        [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
+                        
+                        //网络活动指示器
+                        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                    }];
+                    
+                }else {
+                    
+                    NSLog(@"无图片清单上传失败");
+                    [HUDUtils setupErrorWithStatus:@"网络好像有点问题" WithDelay:1.5f completion:nil];
+                }
+                
+            }];
             
-        }];
-    }
-
+     }
+    
 }
 
 

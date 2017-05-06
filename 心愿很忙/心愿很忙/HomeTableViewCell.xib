@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="406" height="514"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="406" height="513"/>
+                <rect key="frame" x="0.0" y="0.0" width="406" height="513.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChR-Ve-nai">
@@ -27,7 +27,7 @@
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="0.33000000000000002" id="j0J-SG-ejc"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header" translatesAutoresizingMaskIntoConstraints="NO" id="XwU-EG-07k">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XwU-EG-07k">
                         <rect key="frame" x="15" y="15" width="49" height="49"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="49" id="9cF-Py-3GZ"/>
@@ -214,7 +214,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="header" width="1242" height="1242"/>
         <image name="三个圆点" width="128" height="128"/>
         <image name="喜欢" width="130" height="128"/>
         <image name="心电" width="128" height="128"/>

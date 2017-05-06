@@ -28,6 +28,7 @@
     
     [self setupAV];
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+ 
     [self configUSharePlatforms];
     
     [self confitUShareSettings];
@@ -110,9 +111,13 @@
 
 -(void)setupAV {
 
-    [AVOSCloud setApplicationId:@"EdpSxUoPpa8F2QbTLyL6ifHY-gzGzoHsz" clientKey:@"JddhqnXxhIzC0HcaTjzD32oc"];
-    [AVOSCloud setAllLogsEnabled:YES];
+//    [AVOSCloud setApplicationId:@"EdpSxUoPpa8F2QbTLyL6ifHY-gzGzoHsz" clientKey:@"JddhqnXxhIzC0HcaTjzD32oc"];
+//    [AVOSCloud setAllLogsEnabled:YES];
+    
+    [Bmob registerWithAppKey:@"1b06e7519038aac91f3ec8f8437034c9"];
+   
 }
+
 
 
 /**
