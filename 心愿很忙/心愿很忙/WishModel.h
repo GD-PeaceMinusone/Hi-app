@@ -2,12 +2,12 @@
 //  WishModel.h
 //  心愿很忙
 //
-//  Created by Jackeylove on 2017/5/4.
+//  Created by Jackeylove on 2017/5/5.
 //  Copyright © 2017年 Jackeylove. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Bmob.h"
 @interface WishModel : NSObject
 /**配图文字*/
 @property(nonatomic,copy) NSString *comment;
@@ -22,13 +22,17 @@
 /**发表时间*/
 @property(nonatomic,copy) NSString *createdAt;
 /**AVObject*/
-@property(nonatomic,strong)AVObject *avObj;
+@property(nonatomic,strong)BmobObject *avObj;
 /**AVUser*/
-@property(nonatomic,strong)AVUser *user;
+@property(nonatomic,strong)BmobUser *user;
 /**行高*/
 @property (nonatomic,assign) NSInteger cellHeight;
+/**行高*/
+@property (nonatomic,assign) NSInteger comCellHeight;
+/**id*/
+@property(nonatomic,copy) NSString *objectId;
 
--(WishModel*)initWithAvobject: (AVObject*)avObj;
+-(WishModel*)initWithBmobObject: (BmobObject*)avObj;
 
 +(NSArray*)wishObjectArrayFromAvobjectArrary: (NSArray*)array;
 @end

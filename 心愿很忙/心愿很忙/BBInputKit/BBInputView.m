@@ -36,7 +36,7 @@
 -(void)awakeFromNib{
     [super awakeFromNib];
     
-    self.bgView.layer.cornerRadius = 5;
+    self.bgView.layer.cornerRadius = 3;
     self.bgView.layer.borderColor = [UIColor colorWithRed:216/255.0 green:216/255.0 blue:216/255.0 alpha:1.0].CGColor;
     self.bgView.layer.borderWidth = 1.0f;
     

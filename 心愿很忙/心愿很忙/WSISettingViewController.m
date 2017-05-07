@@ -300,7 +300,7 @@
     
     BmobFile *file = [[BmobFile alloc]initWithFileName:@"header.jpg" withFileData:imgData];
     
-    [file saveInBackground:^(BOOL isSuccessful, NSError *error) {
+    [file saveInBackgroundByDataSharding:^(BOOL isSuccessful, NSError *error) {
         
         if (isSuccessful) {
             
@@ -331,7 +331,7 @@
                 }];
                 
             }];
-           
+            
             
             
         }else {
@@ -341,13 +341,14 @@
             [HUDUtils setupErrorWithStatus:@"头像上传失败" WithDelay:1.5f completion:nil];
         }
         
+
         
-    } withProgressBlock:^(CGFloat progress) {
+        
+    } progressBlock:^(CGFloat progress) {
         
         NSLog(@"%lf",progress);
         
         [HUDUtils uploadImgWithProgress:progress status:@"头像上传中.." completion:nil];
-        
         
     }];
 

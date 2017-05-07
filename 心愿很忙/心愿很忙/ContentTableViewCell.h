@@ -10,5 +10,4 @@
 
 @interface ContentTableViewCell : UITableViewCell
 @property(nonatomic,strong)WishModel *avObj;
-@property(nonatomic,strong)commentModel *comModel;
 @end

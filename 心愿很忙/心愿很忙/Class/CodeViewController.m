@@ -73,6 +73,7 @@ TZImagePickerControllerDelegate
 @end
 
 @implementation CodeViewController
+static NSString *notiName = @"refresh";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -825,7 +826,7 @@ TZImagePickerControllerDelegate
          */
         
         [file saveInBackgroundByDataSharding:^(BOOL isSuccessful, NSError *error) {
-            
+ 
             if (isSuccessful) {
                 
                 NSLog(@"文件上传成功");
@@ -842,6 +843,9 @@ TZImagePickerControllerDelegate
                         [HUDUtils setupSuccessWithStatus:@"清单已生成" WithDelay:1.8f completion:^{
                             
                             [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
+                            
+                            //当清单生成后 发送通知 让首页自动刷新
+                            [[NSNotificationCenter defaultCenter] postNotificationName:notiName object:nil];
                             
                             //网络活动指示器
                             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -869,33 +873,36 @@ TZImagePickerControllerDelegate
         }];
         
     }else {
+        
+        [wishObj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
             
-            [wishObj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+            if (isSuccessful) {
                 
-                if (isSuccessful) {
+                NSLog(@"无图片清单上传成功");
+                [HUDUtils setupSuccessWithStatus:@"清单已生成" WithDelay:1.5f completion:^{
                     
-                    NSLog(@"无图片清单上传成功");
-                    [HUDUtils setupSuccessWithStatus:@"清单已生成" WithDelay:1.5f completion:^{
-                        
-                        [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
-                        
-                        //网络活动指示器
-                        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                    }];
+                    [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
                     
-                }else {
+                    //当清单生成后 发送通知 让首页自动刷新
+                    [[NSNotificationCenter defaultCenter] postNotificationName:notiName object:nil];
                     
-                    NSLog(@"无图片清单上传失败");
-                    [HUDUtils setupErrorWithStatus:@"网络好像有点问题" WithDelay:1.5f completion:nil];
-                }
+                    //网络活动指示器
+                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                }];
                 
-            }];
+            }else {
+                
+                NSLog(@"无图片清单上传失败");
+                [HUDUtils setupErrorWithStatus:@"网络好像有点问题" WithDelay:1.5f completion:nil];
+            }
             
+            
+        }];
+     
+        
      }
     
 }
-
-
 
 #pragma mark - CCDraggableContainer Delegate
 

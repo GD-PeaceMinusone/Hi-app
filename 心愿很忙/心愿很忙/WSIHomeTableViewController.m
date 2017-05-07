@@ -26,8 +26,8 @@
 @interface WSIHomeTableViewController ()
 @property(nonatomic,strong)NSMutableArray *itObjs;
 @property(nonatomic,strong)NSMutableArray *moreItobjs;
-@property(nonatomic,strong) STPopupController *popupController;
-@property (nonatomic,assign)NSInteger cellHeight;
+@property(nonatomic,strong)STPopupController *popupController;
+@property(nonatomic,assign)NSInteger cellHeight;
 @property(nonatomic,strong)NSString *thingPath;
 @property(nonatomic,strong)NSString *thingContent;
 @end
@@ -36,6 +36,7 @@
 static NSString *notiName = @"pushVc";
 static NSString *notiName2 = @"comment";
 static NSString *notiName3 = @"changeTabbar";
+static NSString *notiName4 = @"refresh";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,7 +48,7 @@ static NSString *notiName3 = @"changeTabbar";
    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushVc:) name:notiName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushVc2:) name:notiName2 object:nil];
- 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:notiName4 object:nil];
 }
 
 -(void)pushVc: (NSNotification*)noti {//接受传过来的Vc 通过tag给对应vc赋值
@@ -64,6 +65,11 @@ static NSString *notiName3 = @"changeTabbar";
     commentVc.avObj = self.moreItobjs[index];
 }
 
+-(void)refresh {
+
+    [self.tableView beginHeaderRefresh];
+}
+
 -(void)viewDidAppear:(BOOL)animated{//显示tabbar
     
     self.tabBarController.tabBar.hidden = NO;
@@ -77,7 +83,7 @@ static NSString *notiName3 = @"changeTabbar";
 }
 
 -(void)viewWillDisappear:(BOOL)animated {//隐藏tabbar
-   
+ 
     self.tabBarController.tabBar.hidden = YES;
     self.navigationController.navigationBar.hidden = YES;
 }

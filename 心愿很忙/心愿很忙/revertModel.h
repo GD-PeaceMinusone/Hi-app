@@ -1,26 +1,24 @@
 //
-//  commentModel.h
+//  revertModel.h
 //  心愿很忙
 //
-//  Created by Jackeylove on 2017/5/4.
+//  Created by Jackeylove on 2017/5/7.
 //  Copyright © 2017年 Jackeylove. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface commentModel : NSObject
-/**评论时间*/
+@interface revertModel : NSObject
+/**回复时间*/
 @property(nonatomic,copy) NSString *commentTime;
-/**评论内容*/
+/**回复内容*/
 @property(nonatomic,copy) NSString *content;
-/**评论人*/
+/**回复人*/
 @property(nonatomic,strong)BmobUser *user;
 /**高度*/
 @property (nonatomic,assign) NSInteger cellHeight;
-/**object*/
-@property(nonatomic,strong)BmobObject *comObj;
 
--(commentModel*)initWithBmobObject: (BmobObject*)avObj;
+-(revertModel*)initWithBmobObject: (BmobObject*)avObj;
 
-+(NSArray*)commentObjectArrayFromBmobObjArrary: (NSArray*)array;
++(NSArray*)revertObjectArrayFromBmobObjArrary: (NSArray*)array;
 @end

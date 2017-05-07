@@ -31,6 +31,13 @@
 @property (nonatomic,assign) NSInteger like;
 /**vc*/
 @property(nonatomic,strong) STPopupController *popupController;
+
+
+
+
+
+
+
 @end
 
 @implementation ContentTableViewCell

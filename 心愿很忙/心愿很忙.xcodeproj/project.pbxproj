@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		46A0D83662884D971F9FD9E4 /* libPods-心愿很忙.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB92A249E80C0D5ED4ED72A2 /* libPods-心愿很忙.a */; };
+		53131C991EBF10D400A464B5 /* revertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53131C981EBF10D400A464B5 /* revertModel.m */; };
 		53192CB31EAAEDF300C5E5BF /* UIImageView+WSIExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 53192CB21EAAEDF300C5E5BF /* UIImageView+WSIExtension.m */; };
 		53192CB81EAAFC6400C5E5BF /* WSIPerosonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53192CB61EAAFC6400C5E5BF /* WSIPerosonalViewController.m */; };
 		53192CCB1EAB34E600C5E5BF /* UIImage+WSIExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 53192CCA1EAB34E600C5E5BF /* UIImage+WSIExtension.m */; };
@@ -120,6 +121,8 @@
 /* Begin PBXFileReference section */
 		0F8911154D759A039C16C9A8 /* Pods-心愿很忙.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-心愿很忙.debug.xcconfig"; path = "Pods/Target Support Files/Pods-心愿很忙/Pods-心愿很忙.debug.xcconfig"; sourceTree = "<group>"; };
 		114C6E6543F4132BF072B9FE /* Pods-心愿很忙.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-心愿很忙.release.xcconfig"; path = "Pods/Target Support Files/Pods-心愿很忙/Pods-心愿很忙.release.xcconfig"; sourceTree = "<group>"; };
+		53131C971EBF10D400A464B5 /* revertModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = revertModel.h; sourceTree = "<group>"; };
+		53131C981EBF10D400A464B5 /* revertModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = revertModel.m; sourceTree = "<group>"; };
 		53192CB11EAAEDF300C5E5BF /* UIImageView+WSIExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WSIExtension.h"; sourceTree = "<group>"; };
 		53192CB21EAAEDF300C5E5BF /* UIImageView+WSIExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WSIExtension.m"; sourceTree = "<group>"; };
 		53192CB51EAAFC6400C5E5BF /* WSIPerosonalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIPerosonalViewController.h; sourceTree = "<group>"; };
@@ -507,6 +510,8 @@
 				536995501EBC7C3A005379EE /* WishModel.m */,
 				5369954C1EBB7499005379EE /* commentModel.h */,
 				5369954D1EBB7499005379EE /* commentModel.m */,
+				53131C971EBF10D400A464B5 /* revertModel.h */,
+				53131C981EBF10D400A464B5 /* revertModel.m */,
 				531AEADE1E9A6A0A0037CA16 /* WSIMeViewController.h */,
 				531AEADF1E9A6A0A0037CA16 /* WSIMeViewController.m */,
 				531AEAE01E9A6A0A0037CA16 /* WSIMeViewController.xib */,
@@ -914,6 +919,7 @@
 				5374A5761EB0504D0062B75A /* EditingNaviBarView.m in Sources */,
 				53FB50931E9DD795002B305D /* HUDUtils.m in Sources */,
 				5374A5971EB080330062B75A /* SGPageTitleView.m in Sources */,
+				53131C991EBF10D400A464B5 /* revertModel.m in Sources */,
 				533F00241EB6EDA5002E0B19 /* WSIHomePageViewController.m in Sources */,
 				531AEB701E9B29E10037CA16 /* CCDraggableContainer.m in Sources */,
 				53A46FAC1EA891820049FE2C /* MCNewCustomLayer.m in Sources */,
