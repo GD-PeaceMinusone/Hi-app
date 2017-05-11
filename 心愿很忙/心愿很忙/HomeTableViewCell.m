@@ -241,6 +241,11 @@ static NSCalendar *calendar_;
 
     _avObj = avObj;
     
+    if (!avObj) {
+        
+        return;
+    }
+    
     [_contentLabel setText:avObj.comment]; //设置配图内容
     
     [_currentTime setText:avObj.createdAt]; //设置发表时间

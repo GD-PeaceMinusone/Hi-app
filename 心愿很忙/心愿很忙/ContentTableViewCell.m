@@ -100,6 +100,11 @@ static NSString *notiName = @"pushVc";
 
     _avObj = avObj;
     
+    if (!avObj) {
+        
+        return;
+    }
+    
     [_content setText:avObj.comment]; //设置配图内容
     
     [_Time setText:avObj.createdAt]; //设置发表时间

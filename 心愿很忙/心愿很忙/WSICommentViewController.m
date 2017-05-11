@@ -122,16 +122,16 @@ static NSString *notiName = @"pushVc";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self setupSectionHeight];
     [self setupInput];
     [self registerCell];
-    
+    [self setupRefresh];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushVc:) name:notiName object:nil];
 
 }
 
--(void)pushVc: (NSNotification*)noti {//接受传过来的Vc 通过tag给对应vc赋值
+-(void)pushVc: (NSNotification*)noti { //接受传过来的Vc 通过tag给对应vc赋值
     
     NSInteger index = [noti.object[0] integerValue];
     WSIMeDetailViewController *detailVc = noti.object[1];
@@ -139,10 +139,13 @@ static NSString *notiName = @"pushVc";
 }
 
 
--(void)viewWillAppear:(BOOL)animated {
-
-    [self setupRefresh];
+-(void)viewWillAppear:(BOOL)animated { //view即将显示时先将评论数组置空 防止评论页面混乱
+    
+     _comArr = nil;
+    [self loadNewTopics];
     [self.tableView reloadData];
+  
+    NSLog(@"---comarr:%ld", _comArr.count);
 }
 
 -(void)setupRefresh {
@@ -184,6 +187,13 @@ static NSString *notiName = @"pushVc";
             }];
         }{
             
+            if (_comArr.count != objects.count) {
+                
+                _comArr = nil;
+            }
+            
+            NSLog(@"---objects:%ld", objects.count);
+  
             if (objects.count == 0) {
                 
                 [_tableView.mj_footer endRefreshingWithNoMoreData]; //当没有数据返回时 显示加载完毕状态
@@ -274,7 +284,7 @@ static NSString *notiName = @"pushVc";
 
 -(void)registerCell {
     
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([CommentTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"comment"];
+//    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([CommentTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"comment"];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([ContentTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"content"];
 }
 
@@ -320,6 +330,7 @@ static NSString *notiName = @"pushVc";
             NSLog(@"评论成功");
   
             [self loadNewTopics];
+            [_tableView setContentOffset:CGPointMake(0, _avObj.cellHeight - 130) animated:YES];
             _bottomHCons.constant = 43.0f;
             _bottomCons.constant = 0;
             [_inputView setText:nil];
@@ -345,12 +356,12 @@ static NSString *notiName = @"pushVc";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (!_isScroll) {
+    if (self.isScroll == NO) {
         
         //让页面加载时 直接到评论界面
         
         [_tableView setContentOffset:CGPointMake(0, _avObj.cellHeight - 130) animated:YES];
-        
+        _isScroll = YES;
     }
 
     if (section == 0) {
@@ -376,8 +387,13 @@ static NSString *notiName = @"pushVc";
       
     }else {
 
-        CommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"comment" ];
+        CommentTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
+        if (cell == nil) {
+            
+            cell= (CommentTableViewCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"CommentTableViewCell" owner:self options:nil]  lastObject];
+        }
+  
         cell.comModel = _comArr[indexPath.row];
         
         cell.headerIv.tag = indexPath.row;

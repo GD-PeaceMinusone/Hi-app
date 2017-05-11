@@ -83,6 +83,10 @@ static NSString *notiName = @"pushVc";
   
     [self setupGesture];
     
+    // 设置button中图片尺寸
+    
+    [_starBt setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+    
     [_comHead circleHeader:_comHead withBorderWidth:0 andBorderColor:nil];
    
 }
@@ -130,16 +134,24 @@ static NSString *notiName = @"pushVc";
 
 -(NSMutableAttributedString*)setupAttributeWithnickName: (NSString*)nickName {
     
-    _contentT = [[NSMutableAttributedString alloc]initWithString:nickName];
-    
-    [_contentT setYy_font:[UIFont systemFontOfSize:14.0f]];
-    
-    [_contentT yy_setTextHighlightRange:NSMakeRange(0,nickName.length) color:HiBlueColor backgroundColor:[UIColor colorWithRed:202/255.0 green:202/255.0 blue:202/255.0 alpha:1.0f] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+    if (nickName != nil) { //容错处理 防止程序崩溃
         
-        [[UIViewController getNavi] pushViewController:self.personVc animated:YES];
+        _contentT = [[NSMutableAttributedString alloc]initWithString:nickName];
         
-    }];
-  
+        [_contentT setYy_font:[UIFont systemFontOfSize:14.0f]];
+        
+        [_contentT yy_setTextHighlightRange:NSMakeRange(0,nickName.length) color:HiBlueColor backgroundColor:[UIColor colorWithRed:202/255.0 green:202/255.0 blue:202/255.0 alpha:1.0f] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+            
+            [[UIViewController getNavi] pushViewController:self.personVc animated:YES];
+            
+        }];
+        
+    } else {
+    
+    
+    }
+    
+    
     return _contentT;
 }
 
@@ -183,6 +195,11 @@ static NSString *notiName = @"pushVc";
         
         _like = number;
         [_likeCount setText:[NSString stringWithFormat:@"%d", number]];
+        
+        if ([_likeCount.text integerValue] == -1) {
+            
+             [_likeCount setText:[NSString stringWithFormat:@"%d", 0]];
+        }
         
     }];
     
