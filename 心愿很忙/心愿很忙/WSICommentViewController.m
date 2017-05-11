@@ -54,6 +54,7 @@
 
 @implementation WSICommentViewController
 static NSString *ID = @"commentCell";
+static NSString *notiName = @"pushVc";
 
 #pragma mark - 懒加载
 
@@ -126,12 +127,22 @@ static NSString *ID = @"commentCell";
     [self setupInput];
     [self registerCell];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushVc:) name:notiName object:nil];
+
 }
+
+-(void)pushVc: (NSNotification*)noti {//接受传过来的Vc 通过tag给对应vc赋值
+    
+    NSInteger index = [noti.object[0] integerValue];
+    WSIMeDetailViewController *detailVc = noti.object[1];
+    detailVc.model = _comArr[index];
+}
+
 
 -(void)viewWillAppear:(BOOL)animated {
 
     [self setupRefresh];
- 
+    [self.tableView reloadData];
 }
 
 -(void)setupRefresh {
@@ -149,6 +160,8 @@ static NSString *ID = @"commentCell";
 }
 
 -(void)loadNewTopics {
+    
+    [_tableView.mj_footer resetNoMoreData]; // 重置没有加载完毕状态
     
     BmobQuery *query = [BmobQuery queryWithClassName:@"Comment"];
     
@@ -170,22 +183,74 @@ static NSString *ID = @"commentCell";
                 
             }];
         }{
+            
+            if (objects.count == 0) {
+                
+                [_tableView.mj_footer endRefreshingWithNoMoreData]; //当没有数据返回时 显示加载完毕状态
+                
+                WSIWeakSelf
+                [weakSelf.tableView endHeaderRefresh];
+                
+                return;
+            }
           
             _comArr = [[commentModel commentObjectArrayFromBmobObjArrary:objects]mutableCopy];
-            [self.tableView reloadData];
+            
             _moreComArr = [[commentModel commentObjectArrayFromBmobObjArrary:objects]mutableCopy];
-        
-     
+            
             WSIWeakSelf
             [weakSelf.tableView endHeaderRefresh];
-            
+            [self.tableView reloadData];
         }
     }];
-
-     
+  
 }
 
 -(void)loadMoreTopics {
+    
+    BmobQuery *query = [BmobQuery queryWithClassName:@"Comment"];
+    
+    [query whereKey:@"comment" equalTo:_avObj.avObj];
+    
+    query.limit = 20;
+    
+    commentModel *model = _moreComArr[_moreComArr.count - 1];
+    
+    BmobObject *obj = model.comObj;
+    
+    [query whereKey:@"createdAt" lessThan:obj.createdAt];
+    
+    [query orderByDescending:@"createdAt"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        
+        if (error) {
+            
+            [HUDUtils setupErrorWithStatus:@"加载失败" WithDelay:1.5f completion:^{
+                
+                WSIWeakSelf
+                [weakSelf.tableView endFooterRefresh];
+                
+            }];
+        }{
+            if (objects.count == 0) {
+                
+                [_tableView.mj_footer endRefreshingWithNoMoreData]; //当没有数据返回时 显示加载完毕状态
+                
+                return;
+            }
+            
+            [_comArr addObjectsFromArray:[commentModel commentObjectArrayFromBmobObjArrary:objects]];
+            [_moreComArr addObjectsFromArray:[commentModel commentObjectArrayFromBmobObjArrary:objects]];
+
+            [self.tableView reloadData];
+            
+            WSIWeakSelf
+            [weakSelf.tableView endFooterRefresh];
+            
+        }
+        
+    }];
 
     
 }
@@ -196,6 +261,7 @@ static NSString *ID = @"commentCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
     [_inputView setPlaceholder:@"来,说两句"];
+    
     [_inputView setPlaceholderColor:[UIColor grayColor]];
     
     _inputView.yz_textHeightChangeBlock = ^(NSString *text,CGFloat textHeight){
@@ -246,14 +312,14 @@ static NSString *ID = @"commentCell";
     [wishObj setObject:_inputView.text forKey:@"content"]; //评论内容
     [wishObj setObject:_avObj.avObj forKey:@"comment"]; //评论的对应的状态
     [wishObj setObject:[BmobUser currentUser] forKey:@"wishUser"]; //评论人
-    
+
     [wishObj saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         
         if (isSuccessful) {
             
             NSLog(@"评论成功");
-            
-            [self.tableView reloadData];
+  
+            [self loadNewTopics];
             _bottomHCons.constant = 43.0f;
             _bottomCons.constant = 0;
             [_inputView setText:nil];
@@ -278,8 +344,15 @@ static NSString *ID = @"commentCell";
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     
+    if (!_isScroll) {
+        
+        //让页面加载时 直接到评论界面
+        
+        [_tableView setContentOffset:CGPointMake(0, _avObj.cellHeight - 130) animated:YES];
+        
+    }
+
     if (section == 0) {
         
         return 1;
@@ -306,6 +379,8 @@ static NSString *ID = @"commentCell";
         CommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"comment" ];
         
         cell.comModel = _comArr[indexPath.row];
+        
+        cell.headerIv.tag = indexPath.row;
 
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 
@@ -318,9 +393,14 @@ static NSString *ID = @"commentCell";
     if (indexPath.section == 0) {
         
         return _avObj.comCellHeight;
-    }
+        
+    }else {
     
-    return 300;
+    commentModel *model = _comArr[indexPath.row];
+    
+    return model.cellHeight;
+        
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -331,6 +411,7 @@ static NSString *ID = @"commentCell";
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
 
     [self.view endEditing:YES];
+    
 }
 
 

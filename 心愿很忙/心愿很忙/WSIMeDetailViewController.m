@@ -60,6 +60,23 @@
 
 }
 
+-(void)setComModel:(commentModel *)comModel {
+
+    _comModel = comModel;
+    
+    BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
+    
+    [query getObjectInBackgroundWithId:comModel.user.objectId block:^(BmobObject *object, NSError *error) {
+        
+        NSString *head = [object objectForKey:@"userHeader"];
+        
+        [_headerIv sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"头像 (22)"]];
+        
+        [_nickLabel setText:[object objectForKey:@"nickName"]];
+        
+    }];
+}
+
 -(void)setupHeaderIv {
     
     [_headerIv circleHeader:_headerIv withBorderWidth:1.5f andBorderColor:[UIColor whiteColor]];

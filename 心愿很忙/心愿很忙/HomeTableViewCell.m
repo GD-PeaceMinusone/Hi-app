@@ -23,6 +23,7 @@
 #import "REFrostedViewController.h"
 #import "WSICommentViewController.h"
 
+
 #define ifHTTP !([link rangeOfString:@"http"].location == NSNotFound)
 #define ifType(type) !([self.itObj.link rangeOfString:type].location == NSNotFound)
 @interface HomeTableViewCell ()<WKNavigationDelegate>
@@ -91,6 +92,8 @@ static NSCalendar *calendar_;
         [_nickName setText:[object objectForKey:@"nickName"]]; //设置昵称
         
     }];
+
+
 }
 
 
@@ -380,8 +383,6 @@ static NSCalendar *calendar_;
     
 
 }
-
-
 
 
 - (IBAction)commentBt:(id)sender {

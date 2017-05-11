@@ -10,5 +10,6 @@
 
 @interface CommentTableViewCell : UITableViewCell
 @property(nonatomic,strong)commentModel *comModel;
+@property (weak, nonatomic) IBOutlet UIImageView *headerIv;
 
 @end

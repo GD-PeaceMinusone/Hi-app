@@ -49,20 +49,21 @@ static NSString *notiName4 = @"refresh";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushVc:) name:notiName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushVc2:) name:notiName2 object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:notiName4 object:nil];
+  
 }
 
 -(void)pushVc: (NSNotification*)noti {//接受传过来的Vc 通过tag给对应vc赋值
     
     NSInteger index = [noti.object[0] integerValue];
     WSIMeDetailViewController *detailVc = noti.object[1];
-    detailVc.model = self.moreItobjs[index];
+    detailVc.model = self.itObjs[index];
 }
 
 -(void)pushVc2: (NSNotification*)noti {//接受传过来的Vc 通过tag给对应vc赋值
     
     NSInteger index = [noti.object[0] integerValue];
     WSICommentViewController *commentVc = noti.object[1];
-    commentVc.avObj = self.moreItobjs[index];
+    commentVc.avObj = self.itObjs[index];
 }
 
 -(void)refresh {
@@ -187,6 +188,8 @@ static NSString *notiName4 = @"refresh";
 
 -(void)loadNewTopics {
     
+    [self.tableView.mj_footer resetNoMoreData]; // 重置没有加载完毕状态
+    
     BmobQuery *query = [BmobQuery queryWithClassName:@"WishList"];
    
     query.limit = 10;
@@ -206,6 +209,16 @@ static NSString *notiName4 = @"refresh";
                 
             }];
         }{
+            
+            if (objects.count == 0) {
+                
+                [self.tableView.mj_footer endRefreshingWithNoMoreData]; //当没有数据返回时 显示加载完毕状态
+                
+                WSIWeakSelf
+                [weakSelf.tableView endHeaderRefresh];
+                
+                return;
+            }
                 
             self.itObjs = [[WishModel wishObjectArrayFromAvobjectArrary:objects] mutableCopy];
             [self.tableView reloadData];
@@ -213,7 +226,6 @@ static NSString *notiName4 = @"refresh";
             
             WSIWeakSelf
             [weakSelf.tableView endHeaderRefresh];
-            
         }
         
     }];
@@ -247,7 +259,12 @@ static NSString *notiName4 = @"refresh";
                 
             }];
         }{
-            
+            if (objects.count == 0) {
+                
+                [self.tableView.mj_footer endRefreshingWithNoMoreData]; //当没有数据返回时 显示加载完毕状态
+                
+                return;
+            }
             
             [self.itObjs addObjectsFromArray:[WishModel wishObjectArrayFromAvobjectArrary:objects]];
             [self.moreItobjs addObjectsFromArray:[WishModel wishObjectArrayFromAvobjectArrary:objects]];
@@ -314,6 +331,7 @@ static NSString *notiName4 = @"refresh";
     
     homeCell.avObj = self.itObjs[indexPath.row];
     homeCell.headerIv.tag = indexPath.row;
+
     
     return homeCell;
 }

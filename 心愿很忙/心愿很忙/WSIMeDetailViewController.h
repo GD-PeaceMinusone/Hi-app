@@ -12,4 +12,5 @@
 @interface WSIMeDetailViewController : UIViewController
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)WishModel *model;
+@property(nonatomic,strong)commentModel *comModel;
 @end

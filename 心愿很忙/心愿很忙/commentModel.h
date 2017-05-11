@@ -17,7 +17,7 @@
 @property(nonatomic,strong)BmobUser *user;
 /**高度*/
 @property (nonatomic,assign) NSInteger cellHeight;
-/**object*/
+/**被评论的状态*/
 @property(nonatomic,strong)BmobObject *comObj;
 
 -(commentModel*)initWithBmobObject: (BmobObject*)avObj;

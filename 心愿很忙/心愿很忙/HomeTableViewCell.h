@@ -19,5 +19,4 @@
 /** 头像 */
 @property (weak, nonatomic) IBOutlet UIImageView *headerIv;
 
-
 @end

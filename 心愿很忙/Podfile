@@ -27,4 +27,6 @@ pod 'WMPageController'
 pod 'SCAvatarBrowser'
 pod 'ZYCornerRadius'
 pod 'BmobSDK'
+pod 'YYText'
+pod 'SVPullToRefresh'
 end

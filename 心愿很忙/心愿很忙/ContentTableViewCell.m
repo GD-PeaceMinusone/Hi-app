@@ -22,7 +22,7 @@
 /**配图*/
 @property (weak, nonatomic) IBOutlet UIImageView *contentIv;
 /**配图文字*/
-@property (weak, nonatomic) IBOutlet UILabel *content;
+@property (weak, nonatomic) IBOutlet YYLabel *content;
 /**总赞数*/
 @property (weak, nonatomic) IBOutlet UILabel *likeCount;
 /**心愿详情*/
@@ -31,12 +31,6 @@
 @property (nonatomic,assign) NSInteger like;
 /**vc*/
 @property(nonatomic,strong) STPopupController *popupController;
-
-
-
-
-
-
 
 @end
 
@@ -48,6 +42,7 @@ static NSString *notiName = @"pushVc";
     
     [self setupBt];
     [self setupIv];
+
 }
 
 -(void)setupBt {
