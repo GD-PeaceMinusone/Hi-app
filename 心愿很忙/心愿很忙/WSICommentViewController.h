@@ -6,8 +6,8 @@
 //  Copyright © 2017年 Jackeylove. All rights reserved.
 //
 
-#import "JCNaviSubViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface WSICommentViewController : JCNaviSubViewController
+@interface WSICommentViewController : UIViewController
 @property(nonatomic,strong)WishModel *avObj;
 @end

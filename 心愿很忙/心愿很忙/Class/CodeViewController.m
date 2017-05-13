@@ -647,10 +647,10 @@ static NSString *notiName = @"refresh";
         
         _textView.text = inputContent;
         
-        AVObject *obj = [AVObject objectWithClassName:@"WishList"];
-        
-        [obj setObject:inputContent forKey:@"link"];
-        [obj saveInBackground];
+//        AVObject *obj = [AVObject objectWithClassName:@"WishList"];
+//        
+//        [obj setObject:inputContent forKey:@"link"];
+//        [obj saveInBackground];
     
     }];
     
@@ -665,10 +665,10 @@ static NSString *notiName = @"refresh";
         
         _tv1.text = inputContent;
         
-        AVObject *obj = [AVObject objectWithClassName:@"WishList"];
-        
-        [obj setObject:inputContent forKey:@"content"];
-        [obj saveInBackground];
+//        AVObject *obj = [AVObject objectWithClassName:@"WishList"];
+//        
+//        [obj setObject:inputContent forKey:@"content"];
+//        [obj saveInBackground];
         
     }];
     

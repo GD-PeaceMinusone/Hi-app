@@ -9,7 +9,6 @@
 #import "WSIHomePageViewController.h"
 #import "UIViewController+SelectPhotoIcon.m"
 #import "WMPanGestureRecognizer.h"
-#import "EditingNaviBarView.h"
 #import "SCAvatarBrowser.h"
 #import "SRActionSheet.h"
 #import <UIImageView+WebCache.h>
@@ -17,11 +16,10 @@
 #import "WSIChildVcTwo.h"
 #import "WSIChildVcThree.h"
 #import "SGPageView.h"
-
+#import "WSISettingViewController.h"
 
 
 @interface WSIHomePageViewController () <SGPageTitleViewDelegate, SGPageContentViewDelegare>
-@property (nonatomic, strong) EditingNaviBarView *barView;
 /**背景*/
 @property (weak, nonatomic) IBOutlet UIImageView *bgIv;
 /**头像*/
@@ -37,9 +35,79 @@
 /**page*/
 @property (nonatomic, strong) SGPageContentView *pageContentView;
 
+@property(nonatomic,strong)UIButton *leftBt;
+
+@property(nonatomic,strong)UIButton *rightBt;
+
+@property(nonatomic,strong)UIBarButtonItem *left;
+
+@property(nonatomic,strong)UIBarButtonItem *right;
+
+@property(nonatomic,strong)WSISettingViewController *setVc;
 @end
 
 @implementation WSIHomePageViewController
+
+-(WSISettingViewController *)setVc {
+
+    if (!_setVc) {
+        
+        _setVc = [WSISettingViewController new];
+    }
+    
+    return _setVc;
+}
+
+-(UIButton *)leftBt {
+
+    if (!_leftBt) {
+        
+        _leftBt = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_leftBt addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        _leftBt.frame = CGRectMake(0, 0, 25, 25);
+        [_leftBt setImage:[UIImage imageNamed:@"返回"] forState:UIControlStateNormal];
+ 
+    }
+    
+    return _leftBt;
+}
+
+-(UIButton *)rightBt {
+
+    if (!_rightBt) {
+        
+        _rightBt = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_rightBt addTarget:self action:@selector(setting) forControlEvents:UIControlEventTouchUpInside];
+        _rightBt.frame = CGRectMake(0, 0, 25, 25);
+        [_rightBt setImage:[UIImage imageNamed:@"设置"] forState:UIControlStateNormal];
+ 
+    }
+    
+    return _rightBt;
+}
+
+-(UIBarButtonItem *)left {
+
+    if (!_left) {
+        
+        _left = [[UIBarButtonItem alloc]initWithCustomView:self.leftBt];
+       
+  
+    }
+    
+    return _left;
+}
+
+-(UIBarButtonItem *)right {
+
+    if (!_right) {
+        
+       _right = [[UIBarButtonItem alloc]initWithCustomView:self.rightBt];
+        
+    }
+    
+    return _right;
+}
 
 -(SGPageContentView *)pageContentView {
 
@@ -99,18 +167,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _barView = [EditingNaviBarView createNaviBarViewFromXIB];
-    [self replaceNaviBarView:_barView];
+    [self setupNavi];
     [self setupHeaderIv];
     [self setupBgIv];
     
     [self.view addSubview:self.pageContentView];
-    
     [self.view addSubview:self.pageTitleView];
   }
 
 -(void)viewWillAppear:(BOOL)animated {
 
+    [[self.navigationController.navigationBar.subviews firstObject] setHidden:YES];
     
     BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
     
@@ -130,6 +197,22 @@
         
     }];
     
+}
+
+-(void)setupNavi {
+    
+     self.navigationItem.leftBarButtonItem = self.left;
+     self.navigationItem.rightBarButtonItem = self.right;
+}
+
+-(void)back {
+
+    [[UIViewController getNavi] popViewControllerAnimated:YES];
+}
+
+-(void)setting {
+
+    [[UIViewController getNavi] pushViewController:self.setVc animated:YES];
 }
 
 -(void)setupHeaderIv {

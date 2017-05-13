@@ -22,10 +22,8 @@
 #import "SizeUtils.h"
 #import "HUDUtils.h"
 #import "UIImage+WSIExtension.h"
-#import "JCNaviSubViewController.h"
 #import "UIViewController+Extension.h"
 #import "Masonry.h"
-#import <AVOSCloud/AVOSCloud.h>
 #import "UIImageView+CornerRadius.h"
 #import "WishModel.h"
 #import "UIImageView+WebCache.h"
@@ -33,6 +31,8 @@
 #import "commentModel.h"
 #import "revertModel.h"
 #import <YYText/YYText.h>
+#import <RongIMKit/RongIMKit.h>
+#import "RTRootNavigationController.h"
 
 /*** 将服务器返回的数据写入plist文件 ***/
 #define XMGWriteToPlist(data,fileName) [data writeToFile:[NSString stringWithFormat:@"/Users/jackeylove/Desktop/%@.plist",fileName] atomically:YES];

@@ -18,7 +18,6 @@
 #import "AppDelegate.h"
 #import "MJRefreshGifHeader+HeaderRefresh.h"
 #import "UIScrollView+Refresh.h"
-#import <AVOSCloud/AVOSCloud.h>
 #import "STPopupController.h"
 #import "WSIMeDetailViewController.h"
 #import "WSICommentViewController.h"
@@ -49,7 +48,7 @@ static NSString *notiName4 = @"refresh";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushVc:) name:notiName object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushVc2:) name:notiName2 object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:notiName4 object:nil];
-  
+    
 }
 
 -(void)pushVc: (NSNotification*)noti {//接受传过来的Vc 通过tag给对应vc赋值
@@ -71,22 +70,21 @@ static NSString *notiName4 = @"refresh";
     [self.tableView beginHeaderRefresh];
 }
 
+-(void)setupNavi {
+
+     self.navigationController.navigationBar.hidden = NO;
+}
+
 -(void)viewDidAppear:(BOOL)animated{//显示tabbar
     
     self.tabBarController.tabBar.hidden = NO;
     NSLog(@"111");
 }
 
--(void)viewWillAppear:(BOOL)animated {
-
-    self.navigationController.navigationBar.hidden = NO;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"showButton" object:nil];
-}
-
 -(void)viewWillDisappear:(BOOL)animated {//隐藏tabbar
  
     self.tabBarController.tabBar.hidden = YES;
-    self.navigationController.navigationBar.hidden = YES;
+
 }
 
 /**
@@ -145,7 +143,7 @@ static NSString *notiName4 = @"refresh";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage: image2 style:UIBarButtonItemStylePlain target:self action:@selector(publish:)];
 
-    [self.navigationController.navigationBar.subviews firstObject].hidden = YES;
+//    [self.navigationController.navigationBar.subviews firstObject].hidden = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(publish:) name:@"showPublish" object:nil];
     

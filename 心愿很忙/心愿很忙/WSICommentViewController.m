@@ -328,9 +328,9 @@ static NSString *notiName = @"pushVc";
         if (isSuccessful) {
             
             NSLog(@"评论成功");
-  
+            [HUDUtils setupSuccessWithStatus:@"评论成功" WithDelay:1.2f completion:nil];
             [self loadNewTopics];
-            [_tableView setContentOffset:CGPointMake(0, _avObj.cellHeight - 130) animated:YES];
+            
             _bottomHCons.constant = 43.0f;
             _bottomCons.constant = 0;
             [_inputView setText:nil];

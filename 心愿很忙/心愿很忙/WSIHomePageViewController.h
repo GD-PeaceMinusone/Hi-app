@@ -8,6 +8,6 @@
 
 #import <WMPageController/WMPageController.h>
 
-@interface WSIHomePageViewController : JCNaviSubViewController
+@interface WSIHomePageViewController : UIViewController
 
 @end

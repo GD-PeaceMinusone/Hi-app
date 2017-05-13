@@ -22,7 +22,7 @@
 #import "WSILoginViewController.h"
 #import "REFrostedViewController.h"
 #import "WSICommentViewController.h"
-
+#import "WSIChatViewController.h"
 
 #define ifHTTP !([link rangeOfString:@"http"].location == NSNotFound)
 #define ifType(type) !([self.itObj.link rangeOfString:type].location == NSNotFound)
@@ -52,6 +52,8 @@
 @property(nonatomic,strong)NSDate *date;
 /**vc*/
 @property(nonatomic,strong)WSICommentViewController *commentVc;
+
+@property(nonatomic,strong)WSIChatViewController *chatVc;
 @end
 
 
@@ -70,6 +72,29 @@ static NSCalendar *calendar_;
     }
     
     return _commentVc;
+}
+
+-(WSIChatViewController *)chatVc {
+
+    if (!_chatVc) {
+        
+        _chatVc = [[WSIChatViewController alloc]init];
+        [_chatVc setConversationType:ConversationType_PRIVATE];
+        
+        BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
+        
+        [query getObjectInBackgroundWithId:_avObj.user.objectId block:^(BmobObject *object, NSError *error) {
+            
+              [_chatVc setTitle:[object objectForKey:@"nickName"]];
+            
+              [_chatVc setTargetId:[object objectForKey:@"userId"]];
+            
+        }];
+
+        
+    }
+    
+    return _chatVc;
 }
 
 - (void)awakeFromNib {
@@ -95,6 +120,53 @@ static NSCalendar *calendar_;
 
 
 }
+
+
+
+
+/**
+ *  弹出选择菜单
+ */
+- (IBAction)giftButton:(id)sender {
+    
+    SRActionSheet *actionSheet = [SRActionSheet sr_actionSheetViewWithTitle:@"选择"
+                                                                cancelTitle:@"取消"
+                                                           destructiveTitle:nil
+                                                                otherTitles:@[@"心愿详情", @"帮她/他实现心愿"]
+                                                                otherImages:nil
+                                                           selectSheetBlock:^(SRActionSheet *actionSheetView, NSInteger index) {
+                                                               
+                                                               switch (index) {
+                                                                   case 0:{
+                                                                       
+                                                                       //                    [self getLink];
+                                                                       
+                                                                   }
+                                                                       break;
+                                                                       
+                                                                   case 1:
+                                                                       
+                                                                   {
+                                                                   
+                                                                       
+                                                                    [[UINavigationController getNavi] pushViewController:self.chatVc animated:YES];
+                                                                       
+                                                                   }
+                                                                       
+                                                                       break;
+                                                                       
+                                                                   default:
+                                                                       break;
+                                                               }
+                                                               
+                                                           }];
+    
+    [actionSheet show];
+    
+    
+}
+
+
 
 
 /**
@@ -418,42 +490,6 @@ static NSCalendar *calendar_;
     [super setFrame:frame];
 }
 
-/**
- *  弹出选择菜单
- */
-- (IBAction)giftButton:(id)sender {
- 
-    SRActionSheet *actionSheet = [SRActionSheet sr_actionSheetViewWithTitle:@"选择"
-        cancelTitle:@"取消"
-        destructiveTitle:nil
-        otherTitles:@[@"查看详情", @"帮她/他实现心愿"]
-        otherImages:nil
-        selectSheetBlock:^(SRActionSheet *actionSheetView, NSInteger index) {
-            
-            switch (index) {
-                case 0:{
- 
-//                    [self getLink];
-
-                }
-                    break;
-                    
-                case 1:
-                    
-                    NSLog(@"2");
-                    
-                    break;
-                    
-                default:
-                    break;
-            }
-            
-            }];
-    
-    [actionSheet show];
-  
-    
-}
 
 - (void)shareWithUI {
     

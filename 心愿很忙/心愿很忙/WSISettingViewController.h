@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WSISettingViewController : JCNaviSubViewController
+@interface WSISettingViewController : UIViewController
 
 @end

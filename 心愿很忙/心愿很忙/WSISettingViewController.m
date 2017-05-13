@@ -8,31 +8,70 @@
 
 #import "WSISettingViewController.h"
 #import "UIViewController+SelectPhotoIcon.m"
-#import "SettingNaviBarView.h"
 #import "SRActionSheet.h"
 #import "BBInput.h"
 #import <UIImageView+WebCache.h>
 
 @interface WSISettingViewController () <UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic, strong) SettingNaviBarView *barView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,strong)UIButton *button;
 @property(nonatomic,strong)UIImageView *headerIv;
 @property(nonatomic,strong)UITableViewCell *nickCell;
 @property(nonatomic,strong)UITableViewCell *signCell;
+@property(nonatomic,strong)UIButton *leftBt;
+@property(nonatomic,strong)UIBarButtonItem *left;
 @end
 
 @implementation WSISettingViewController
 
+-(UIButton *)leftBt {
+    
+    if (!_leftBt) {
+        
+        _leftBt = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_leftBt addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        _leftBt.frame = CGRectMake(0, 0, 25, 25);
+        [_leftBt setImage:[UIImage imageNamed:@"返回 (3)"] forState:UIControlStateNormal];
+        
+    }
+    
+    return _leftBt;
+}
+
+
+-(UIBarButtonItem *)left {
+    
+    if (!_left) {
+        
+        _left = [[UIBarButtonItem alloc]initWithCustomView:self.leftBt];
+        
+    }
+    
+    return _left;
+}
+
+-(void)back {
+
+    [[UIViewController getNavi] popViewControllerAnimated:YES];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    _barView = [SettingNaviBarView createNaviBarViewFromXIB];
-    [self replaceNaviBarView:_barView];
-    
+
+    [self setupNavi];
     _headerIv.contentMode = UIViewContentModeScaleAspectFill;
     _headerIv.clipsToBounds = YES;
+    
 }
+
+-(void)setupNavi {
+
+    self.navigationItem.leftBarButtonItem = self.left;
+    self.navigationItem.title = @"设置";
+    
+}
+
 
 -(void)viewWillAppear:(BOOL)animated {
 
@@ -86,8 +125,8 @@
                                                                
                                                                if (index == 0) {
                                                                    
-                                                                   [AVUser logOut];
-                                                                   
+                                                                   [BmobUser logout];
+                                                               
                                                                    [HUDUtils setupSuccessWithStatus:@"已退出" WithDelay:1.8f completion:^{
                                                                        
                                                                     [[UIViewController getNavi] popToRootViewControllerAnimated:YES];

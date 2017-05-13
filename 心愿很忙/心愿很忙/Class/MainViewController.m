@@ -42,8 +42,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (!indexPath.row) {
+        
         CodeViewController *codeVc = [[CodeViewController alloc] init];
-        [self.navigationController pushViewController:codeVc animated:YES];
+        [self.rt_navigationController pushViewController:codeVc animated:YES complete:nil];
+        
     } else {
         // XibViewController *xibVc = [[XibViewController alloc] initWithNibName:@"XibViewController" bundle:nil];
         // [self.navigationController pushViewController:xibVc animated:YES];

@@ -9,6 +9,8 @@
 #import "WSIRegisterViewController.h"
 #import <SVProgressHUD.h>
 #import "HUDUtils.h"
+#import "AFNetworking.h"
+#import<CommonCrypto/CommonDigest.h>
 
 @interface WSIRegisterViewController ()
 /**注册按钮*/
@@ -29,6 +31,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *resetBt;
 /**邮箱*/
 @property (weak, nonatomic) IBOutlet UITextField *emailTF;
+/**用户*/
+@property(nonatomic,strong)BmobUser *bUser;
 @end
 
 @implementation WSIRegisterViewController
@@ -109,6 +113,11 @@
     
     [self.registerView endEditing:YES];
     
+    if (_emailTF.text == nil) {
+        
+        [HUDUtils setupInfoWithStatus:@"请输入邮箱" WithDelay:1.5f completion:nil];
+    }
+    
     if([self validateEmail:_userNameTF.text]){//用户输入的为邮箱
      
      [HUDUtils setupInfoWithStatus:@"请输入用户名或手机号" WithDelay:1.5f completion:nil];
@@ -116,15 +125,15 @@
 }else {
         
     
-    BmobUser *bUser = [[BmobUser alloc] init];
+    _bUser = [[BmobUser alloc] init];
     
-    [bUser setUsername:_userNameTF.text]; // 新建 User 对象实例
+    [_bUser setUsername:_userNameTF.text]; // 设置用户名
     
-    [bUser setPassword:_codeTF.text]; // 设置用户名
+    [_bUser setPassword:_codeTF.text]; // 设置密码
     
-    [bUser setEmail:_emailTF.text]; // 设置密码
+    [_bUser setEmail:_emailTF.text]; // 设置邮箱
     
-    [bUser signUpInBackgroundWithBlock:^ (BOOL isSuccessful, NSError *error){
+    [_bUser signUpInBackgroundWithBlock:^ (BOOL isSuccessful, NSError *error){
         
         if (isSuccessful) {
             
@@ -137,6 +146,8 @@
                 [self dismissViewControllerAnimated:YES completion:nil];
             });
             
+            [self getToken];
+            
         } else {
             
             NSLog(@"注册失败---%@", error);
@@ -147,7 +158,96 @@
     
 
     }
+   
 }
-       
+
+/** 获取融云token */
+
+- (void)getToken {
+    
+    NSString *userId = _userNameTF.text;
+    NSString *userName = _userNameTF.text;
+    
+    [[NSUserDefaults standardUserDefaults] setObject:userId forKey:@"userId"];
+    [[NSUserDefaults standardUserDefaults] setObject:userName forKey:@"userName"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSDictionary *params = @{@"userId":userId, @"name":userName, @"protraitUrl":@""};
+ 
+    NSString *url = @"http://api.cn.ronghub.com/user/getToken.json";
+    
+    AFHTTPSessionManager* mgr = [AFHTTPSessionManager manager];  // 创建请求管理者
+    
+    NSString *nonce = [NSString stringWithFormat:@"%d", rand()];
+    NSString *appKey = @"8luwapkv8txcl";
+    NSString *appsecret = @"P8JFN2VmfC";
+    long timestamp = (long)[[NSDate date] timeIntervalSince1970];
+    
+    NSString *unionString = [NSString stringWithFormat:@"%@%@%ld", appsecret, nonce, timestamp];
+    const char *cstr = [unionString cStringUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [NSData dataWithBytes:cstr length:unionString.length];
+    uint8_t digest[CC_SHA1_DIGEST_LENGTH];
+    
+    CC_SHA1(data.bytes, (unsigned int)data.length, digest);
+    
+    NSMutableString* output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
+    
+    for(int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++) {
+        [output appendFormat:@"%02x", digest[i]];
+    }
+    
+#ifdef ContentType
+    
+    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObject:ContentType];
+    
+#endif
+    
+    mgr.requestSerializer.HTTPShouldHandleCookies = YES;
+    
+    NSString *timestampStr = [NSString stringWithFormat:@"%ld", timestamp];
+    [mgr.requestSerializer setValue:appKey forHTTPHeaderField:@"App-Key"];
+    [mgr.requestSerializer setValue:nonce forHTTPHeaderField:@"Nonce"];
+    [mgr.requestSerializer setValue:timestampStr forHTTPHeaderField:@"Timestamp"];
+    [mgr.requestSerializer setValue:output forHTTPHeaderField:@"Signature"];
+   
+    
+    [mgr POST:url parameters:params constructingBodyWithBlock:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"成功获取token---%@",responseObject);
+        NSNumber *code = responseObject[@"code"];
+        
+        if (code.intValue == 200) {
+            NSString *token = responseObject[@"token"];
+            NSString *userId = responseObject[@"userId"];
+
+            [_bUser setObject:token forKey:@"token"];
+            [_bUser setObject:userId forKey:@"userId"];
+            
+            [_bUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                
+                if (isSuccessful) {
+                    
+                    NSLog(@"保存token成功");
+                    
+                }else {
+                    
+                    NSLog(@"保存token失败---%@", error);
+                }
+                
+            }];
+            
+        } else {
+            
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"获取token失败---%@", error);
+    }];
+    
+    
+}
+
+
 
 @end

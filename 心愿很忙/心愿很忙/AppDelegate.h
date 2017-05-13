@@ -20,8 +20,5 @@
 
 @property(nonatomic,strong)UIButton *publishButton;
 
-- (void)saveContext;
-
-
 @end
 
