@@ -18,13 +18,12 @@
 @interface AppDelegate ()<RCIMUserInfoDataSource>
 @property(nonatomic,strong)REFrostedViewController *frostedViewController;
 @property(nonatomic, weak) id<RCIMReceiveMessageDelegate> receiveMessageDelegate;
-@property(nonatomic,strong)NSString *userId;
-@property(nonatomic,strong)NSString *name;
-@property(nonatomic,strong)NSString *head;
+@property(nonatomic,strong)NSString *nickName;
 @end
 
 @implementation AppDelegate
 static NSString *notiName = @"passUser";
+static NSString *dbName = @"list_Info.sqlite";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
@@ -39,13 +38,13 @@ static NSString *notiName = @"passUser";
     [self setupUshare];
     
     [self setupRongyun];
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(passUser:) name:notiName object:nil];
     
     return YES;
 }
 
--(void)passUser: (NSNotification*)notification {
+-(void)passUser:(NSNotification*)notification {
 
     WishModel *model = notification.object;
     
@@ -53,14 +52,10 @@ static NSString *notiName = @"passUser";
     
     [q getObjectInBackgroundWithId:model.user.objectId block:^(BmobObject *object, NSError *error) {
         
-        _userId = [object objectForKey:@"userId"];
-        _name = [object objectForKey:@"nickName"];
-        _head = [object objectForKey:@"userHeader"];
-
+        _nickName = [object objectForKey:@"nickName"];
         
     }];
 }
-
 
 -(void)setupRongyun {
     
@@ -93,10 +88,37 @@ static NSString *notiName = @"passUser";
 
     RCUserInfo *info = [[RCUserInfo alloc]init];
     
-    info.userId = _userId;
-    info.name = _name;
-    info.portraitUri = _head;
+    //1.获得数据库文件的路径
+    NSString *fmdbPath = DocumentPath;
     
+    NSString *fileName = [fmdbPath stringByAppendingPathComponent: dbName];
+    
+    NSLog(@"path:  %@", fileName);
+    
+    //2.获得数据库
+    FMDatabase *db = [FMDatabase databaseWithPath:fileName];
+    
+    if ([db open]) {
+        
+        NSLog(@"数据库已打开");
+        
+        //根据条件查询
+        FMResultSet *resultSet = [db executeQuery:@"select * from list_Info where userId=?;",userId];
+        
+        while ([resultSet next]) {
+            
+            info.userId = userId;
+            info.name = [resultSet stringForColumn:@"name"];
+            info.portraitUri = [resultSet stringForColumn:@"headUrl"];
+            
+            NSLog(@"userId: %@ name: %@ protraitUri: %@", info.userId,info.name,info.portraitUri);
+        }
+        
+    }else {
+    
+        NSLog(@"数据库未打开");
+    }
+
     return completion(info);
 }
 
@@ -222,8 +244,8 @@ static NSString *notiName = @"passUser";
     _frostedViewController.limitMenuViewSize = YES;
     _frostedViewController.menuViewSize = CGSizeMake(meVc.view.frame.size.width, [UIScreen mainScreen].bounds.size.height);
 
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureRecognized:)];
-    [self.frostedViewController.view addGestureRecognizer:pan];
+//    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureRecognized:)];
+//    [self.frostedViewController.view addGestureRecognizer:pan];
     
     //注册通知 按钮点击时推出侧边栏
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(menu) name:@"clickButton" object:nil];

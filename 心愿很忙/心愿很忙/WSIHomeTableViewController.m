@@ -78,7 +78,7 @@ static NSString *notiName4 = @"refresh";
 -(void)viewDidAppear:(BOOL)animated{//显示tabbar
     
 //    self.tabBarController.tabBar.hidden = NO;
-    NSLog(@"111");
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated {//隐藏tabbar

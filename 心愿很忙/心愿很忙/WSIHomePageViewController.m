@@ -18,6 +18,7 @@
 #import "SGPageView.h"
 #import "WSISettingViewController.h"
 
+
 @interface WSIHomePageViewController () <SGPageTitleViewDelegate, SGPageContentViewDelegare>
 /**背景*/
 @property (weak, nonatomic) IBOutlet UIImageView *bgIv;
@@ -151,8 +152,7 @@
 
     if (!_pageContentView) {
 
-      
-        NSArray *childArr = @[self.wishVc,self.commentVc,self.chatVc];
+        NSArray *childArr = @[self.wishVc,self.commentVc];
         
         _pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, 345, SCREEN_WIDTH, SCREEN_HEIGHT) parentVC:self childVCs:childArr];
         _pageContentView.delegatePageContentView = self;
@@ -167,7 +167,7 @@
     
     if (!_pageTitleView) {
         
-        NSArray *titleArr = @[@"心愿清单",@"评论与喜欢",@"勾搭"];
+        NSArray *titleArr = @[@"心愿清单",@"评论与喜欢"];
         
         _pageTitleView = [SGPageTitleView pageTitleViewWithFrame:CGRectMake(0, 305,SCREEN_WIDTH, 40) delegate:self titleNames:titleArr];
         _pageTitleView.selectedIndex = 0;
@@ -197,7 +197,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [self setupNavi];
+    [self setupNavi];
     [self setupHeaderIv];
     [self setupBgIv];
     

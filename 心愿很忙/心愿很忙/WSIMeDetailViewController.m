@@ -29,6 +29,7 @@
 @implementation WSIMeDetailViewController
 static NSString *notiName = @"hiddenPop";
 static NSString *notiName2 = @"passUser";
+static NSString *dbName = @"list_Info.sqlite";
 
 -(JCAlertController *)alertVc {
     
@@ -58,6 +59,7 @@ static NSString *notiName2 = @"passUser";
             [_chatVc setTitle:[object objectForKey:@"nickName"]];
             
             [_chatVc setTargetId:[object objectForKey:@"userId"]];
+
             
         }];
         
@@ -153,7 +155,7 @@ static NSString *notiName2 = @"passUser";
 - (IBAction)chatBt:(id)sender {
     
     [[NSNotificationCenter defaultCenter] postNotificationName:notiName object:nil];
-    
+
     //如果当前没有用户 调到登录界面
     
     if ([BmobUser currentUser] == nil) {
@@ -176,12 +178,56 @@ static NSString *notiName2 = @"passUser";
         [tabBarVc jc_presentViewController:self.alertVc presentType:JCPresentTypeLIFO presentCompletion:nil dismissCompletion:nil];
         
     } else {
-        
-        //如果满足条件 则可以帮别人实现愿望
    
         [[UINavigationController getNavi] pushViewController:self.chatVc animated:YES];
-        [[NSNotificationCenter defaultCenter] postNotificationName:notiName2 object:_model];
+     
+        /** 给某人发消息时 将消息人数据存入数据库 以便融云会话列表加载*/
         
+        BmobQuery *q = [BmobQuery queryWithClassName:@"_User"];
+        
+        [q getObjectInBackgroundWithId:_model.user.objectId block:^(BmobObject *object, NSError *error) {
+            
+            NSString *userId = [object objectForKey:@"userId"];
+            NSString *name = [object objectForKey:@"nickName"];
+            NSString *headUrl = [object objectForKey:@"userHeader"];
+            
+            
+            //1.获得数据库文件的路径
+            NSString *fmdbPath = DocumentPath;
+            
+            NSString *fileName = [fmdbPath stringByAppendingPathComponent: dbName];
+            
+            NSLog(@"path:  %@", fileName);
+            
+            //2.获得数据库
+            FMDatabase *db = [FMDatabase databaseWithPath:fileName];
+            
+            if ([db open]) {
+                
+                //4.创表
+                BOOL result = [db executeUpdate:@"CREATE TABLE IF NOT EXISTS list_Info (id integer PRIMARY KEY,userId text,name text, headUrl text);"];
+                
+                if (result)
+                {
+                    NSLog(@"创建表成功");
+                    
+                    [db executeUpdate:@"INSERT INTO list_Info (userId,name,headUrl) VALUES (?,?,?);",userId,name,headUrl];
+                    
+                    //查询整个表
+                    FMResultSet *resultSet = [db executeQuery:@"select * from list_Info;"];
+                    
+                    NSLog(@"---%@---", resultSet);
+                    
+                    [db close];
+                    
+                }else {
+                
+                    NSLog(@"创建表失败");
+                }
+            }
+            
+            
+        }];
     }
     
     

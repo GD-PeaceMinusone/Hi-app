@@ -34,6 +34,7 @@
 #import <RongIMLib/RongIMLib.h>
 #import "RTRootNavigationController.h"
 #import "JCAlertController.h"
+#import <FMDB/FMDB.h>
 
 /*** 将服务器返回的数据写入plist文件 ***/
 #define XMGWriteToPlist(data,fileName) [data writeToFile:[NSString stringWithFormat:@"/Users/jackeylove/Desktop/%@.plist",fileName] atomically:YES];
@@ -58,7 +59,7 @@
 /** 当前版本号判断 */
 #define ios(version) ([UIDevice currentDevice].systemVersion.doubleValue >= (version))
 #define ShareApp ((AppDelegate *)[[UIApplication sharedApplication] delegate])
-#define kITObjsPath [NSHomeDirectory() stringByAppendingString:@"/Documents/itobjs.arch"]
+#define DocumentPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES)  lastObject]
 
 /** 当前屏幕宽高 */
 #define  SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width

@@ -109,8 +109,14 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self.navigationController.navigationBar.subviews firstObject] setHidden:YES];
+    self.tabBarController.tabBar.hidden = YES;
 }
 
 
+-(void)viewWillDisappear:(BOOL)animated { //隐藏tabbar
+    
+    self.tabBarController.tabBar.hidden = NO;
+    
+}
 
 @end

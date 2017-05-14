@@ -30,5 +30,5 @@ pod 'RongCloudIM/IMKit', '~> 2.8.3'
 pod 'RTRootNavigationController'
 pod 'JCAlertController'
 pod 'AXWireButton'
-
+pod 'FMDB'
 end
