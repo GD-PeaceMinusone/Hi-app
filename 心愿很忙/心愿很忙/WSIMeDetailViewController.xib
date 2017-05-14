@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WSIMeDetailViewController">
             <connections>
+                <outlet property="chatBt" destination="dug-8E-rv9" id="Itx-vd-BsA"/>
                 <outlet property="headerIv" destination="qpX-h4-fbn" id="bWV-cY-FeZ"/>
                 <outlet property="nickLabel" destination="ZLe-b5-Jje" id="qGF-Nu-CHv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -77,15 +78,24 @@
                     <color key="textColor" red="0.20000000000000001" green="0.23921568630000001" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dug-8E-rv9">
-                    <rect key="frame" x="171" y="165" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="勾搭"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dug-8E-rv9" customClass="AXWireButton">
+                    <rect key="frame" x="147" y="184" width="80" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="Kc5-ie-EIa"/>
+                        <constraint firstAttribute="width" constant="80" id="TCf-5d-tTk"/>
+                    </constraints>
+                    <state key="normal" title="勾搭">
+                        <color key="titleColor" red="0.20000000000000001" green="0.23921568627450979" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="chatBt:" destination="-1" eventType="touchUpInside" id="FgF-B1-Fhf"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="0jc-cG-8si" firstAttribute="leading" secondItem="j5B-tc-ED3" secondAttribute="leading" id="3Vu-Pz-48l"/>
+                <constraint firstItem="dug-8E-rv9" firstAttribute="top" secondItem="ZLe-b5-Jje" secondAttribute="bottom" constant="35" id="6gv-kh-tcE"/>
                 <constraint firstItem="ZLe-b5-Jje" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="6sn-vt-ItW"/>
                 <constraint firstItem="34v-nw-Osu" firstAttribute="leading" secondItem="uxs-7V-87Q" secondAttribute="leading" id="DHi-CY-oK4"/>
                 <constraint firstAttribute="trailing" secondItem="uxs-7V-87Q" secondAttribute="trailing" constant="29" id="EjJ-1m-q2p"/>
@@ -98,6 +108,7 @@
                 <constraint firstItem="uxs-7V-87Q" firstAttribute="top" secondItem="ZLe-b5-Jje" secondAttribute="bottom" constant="36" id="dEV-fj-Gl2"/>
                 <constraint firstItem="ZLe-b5-Jje" firstAttribute="leading" secondItem="j5B-tc-ED3" secondAttribute="leading" id="f1p-29-anf"/>
                 <constraint firstItem="j5B-tc-ED3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="29" id="fAd-WY-0QY"/>
+                <constraint firstItem="dug-8E-rv9" firstAttribute="centerX" secondItem="qpX-h4-fbn" secondAttribute="centerX" id="gJx-N5-wTl"/>
                 <constraint firstItem="ZLe-b5-Jje" firstAttribute="top" secondItem="qpX-h4-fbn" secondAttribute="bottom" constant="10" id="l3n-aw-nHO"/>
                 <constraint firstItem="j5B-tc-ED3" firstAttribute="top" secondItem="ZLe-b5-Jje" secondAttribute="bottom" constant="36" id="rx7-6X-sjS"/>
                 <constraint firstItem="34v-nw-Osu" firstAttribute="trailing" secondItem="uxs-7V-87Q" secondAttribute="trailing" id="w7m-WY-1n5"/>

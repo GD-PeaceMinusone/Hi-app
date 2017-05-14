@@ -53,7 +53,9 @@
 /**vc*/
 @property(nonatomic,strong)WSICommentViewController *commentVc;
 
-@property(nonatomic,strong)WSIChatViewController *chatVc;
+@property (weak, nonatomic) IBOutlet UIButton *meBt;
+
+
 @end
 
 
@@ -61,11 +63,13 @@
 static NSString *notiName = @"pushVc";
 static NSString *notiName2 = @"comment";
 static NSString *notiName3 = @"changeTabbar";
+static NSString *notiName4= @"hiddenPop";
 static NSDateFormatter *fmt_;
 static NSCalendar *calendar_;
 
--(WSICommentViewController *)commentVc {
 
+-(WSICommentViewController *)commentVc {
+    
     if (!_commentVc) {
         
         _commentVc =[[WSICommentViewController alloc]init];
@@ -74,28 +78,6 @@ static NSCalendar *calendar_;
     return _commentVc;
 }
 
--(WSIChatViewController *)chatVc {
-
-    if (!_chatVc) {
-        
-        _chatVc = [[WSIChatViewController alloc]init];
-        [_chatVc setConversationType:ConversationType_PRIVATE];
-        
-        BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
-        
-        [query getObjectInBackgroundWithId:_avObj.user.objectId block:^(BmobObject *object, NSError *error) {
-            
-              [_chatVc setTitle:[object objectForKey:@"nickName"]];
-            
-              [_chatVc setTargetId:[object objectForKey:@"userId"]];
-            
-        }];
-
-        
-    }
-    
-    return _chatVc;
-}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -103,6 +85,7 @@ static NSCalendar *calendar_;
     [_headerIv circleHeader:self.headerIv withBorderWidth:0 andBorderColor:nil];
     [self setupContentLabel];
     [self addGesture];
+    [self setupLabel];
     
     [NSTimer scheduledTimerWithTimeInterval:60.0f target:self selector:@selector(checkingUnRead) userInfo:nil repeats:YES];
     
@@ -117,10 +100,21 @@ static NSCalendar *calendar_;
         [_nickName setText:[object objectForKey:@"nickName"]]; //设置昵称
         
     }];
-
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenPop) name:notiName4 object:nil];
 
 }
 
+-(void)setupLabel {
+
+    [_meBt.layer setCornerRadius:2.4f];
+    
+}
+
+-(void)hiddenPop {
+
+    [_popupController dismiss];
+}
 
 
 
@@ -128,6 +122,34 @@ static NSCalendar *calendar_;
  *  弹出选择菜单
  */
 - (IBAction)giftButton:(id)sender {
+    
+    if ([_avObj.user.objectId isEqualToString:[BmobUser currentUser].objectId]) {
+        
+        SRActionSheet *actionSheet = [SRActionSheet sr_actionSheetViewWithTitle:@"选择"
+                                                                    cancelTitle:@"取消"
+                                                               destructiveTitle:nil
+                                                                    otherTitles:@[@"心愿详情"]
+                                                                    otherImages:nil
+                                                               selectSheetBlock:^(SRActionSheet *actionSheetView, NSInteger index) {
+                                                                   
+                                                                   if (index == 0) { //心愿详情
+                                                                       
+                                                                       
+                                                                   }
+                                                                   
+                                                               }];
+        
+        [actionSheet show];
+ 
+        
+    }else {
+    
+    
+    
+    
+    
+    
+    
     
     SRActionSheet *actionSheet = [SRActionSheet sr_actionSheetViewWithTitle:@"选择"
                                                                 cancelTitle:@"取消"
@@ -147,9 +169,7 @@ static NSCalendar *calendar_;
                                                                    case 1:
                                                                        
                                                                    {
-                                                                   
                                                                        
-                                                                    [[UINavigationController getNavi] pushViewController:self.chatVc animated:YES];
                                                                        
                                                                    }
                                                                        
@@ -166,7 +186,7 @@ static NSCalendar *calendar_;
     
 }
 
-
+}
 
 
 /**
@@ -313,9 +333,18 @@ static NSCalendar *calendar_;
 
     _avObj = avObj;
     
-    if (!avObj) {
+    if (!avObj) { //如果model 为空 则不处理 防止程序crash
         
         return;
+    }
+    
+    if (![_avObj.user.objectId isEqualToString:[BmobUser currentUser].objectId]) { // 判断me标识的隐藏
+        
+        [_meBt setHidden:YES];
+        
+    } else {
+    
+        [_meBt setHidden:NO];
     }
     
     [_contentLabel setText:avObj.comment]; //设置配图内容
@@ -669,5 +698,11 @@ static NSCalendar *calendar_;
 //    
 //
 //}
+
+
+-(void)dealloc {
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

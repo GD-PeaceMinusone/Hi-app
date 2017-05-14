@@ -33,7 +33,7 @@
     [super viewDidLoad];
     
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
+
 }
 
 -(void)viewWillAppear:(BOOL)animated {

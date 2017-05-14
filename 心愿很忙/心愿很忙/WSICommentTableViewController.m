@@ -1,27 +1,22 @@
 //
-//  WSIChildVcOne.m
-//  心愿很忙
+//  WSICommentTableViewController.m
+//  
 //
-//  Created by Jackeylove on 2017/4/26.
-//  Copyright © 2017年 Jackeylove. All rights reserved.
+//  Created by Jackeylove on 2017/5/13.
+//
 //
 
-#import "WSIChildVcOne.h"
+#import "WSICommentTableViewController.h"
 
-@interface WSIChildVcOne ()
+@interface WSICommentTableViewController ()
 
 @end
 
-@implementation WSIChildVcOne
+@implementation WSICommentTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,6 +77,22 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
+}
+*/
+
+/*
+#pragma mark - Table view delegate
+
+// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Navigation logic may go here, for example:
+    // Create the next view controller.
+    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+    
+    // Pass the selected object to the new view controller.
+    
+    // Push the view controller.
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 */
 

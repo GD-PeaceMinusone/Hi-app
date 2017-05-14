@@ -12,12 +12,11 @@
 #import "SCAvatarBrowser.h"
 #import "SRActionSheet.h"
 #import <UIImageView+WebCache.h>
-#import "WSIChildVcOne.h"
-#import "WSIChildVcTwo.h"
-#import "WSIChildVcThree.h"
+#import "WSIChattingViewController.h"
+#import "WSIWishListTableViewController.h"
+#import "WSICommentTableViewController.h"
 #import "SGPageView.h"
 #import "WSISettingViewController.h"
-
 
 @interface WSIHomePageViewController () <SGPageTitleViewDelegate, SGPageContentViewDelegare>
 /**背景*/
@@ -44,6 +43,12 @@
 @property(nonatomic,strong)UIBarButtonItem *right;
 
 @property(nonatomic,strong)WSISettingViewController *setVc;
+
+@property(nonatomic,strong)WSIChattingViewController *chatVc;
+
+@property(nonatomic,strong)WSIWishListTableViewController *wishVc;
+
+@property(nonatomic,strong)WSICommentTableViewController *commentVc;
 @end
 
 @implementation WSIHomePageViewController
@@ -109,20 +114,45 @@
     return _right;
 }
 
+-(WSIChattingViewController *)chatVc {
+
+    if (!_chatVc) {
+        
+        _chatVc = [[WSIChattingViewController alloc]init];
+    
+    }
+    
+    return _chatVc;
+}
+
+
+-(WSIWishListTableViewController *)wishVc {
+
+    if (!_wishVc) {
+        
+        _wishVc = [WSIWishListTableViewController new];
+    }
+    
+    return _wishVc;
+}
+
+-(WSICommentTableViewController *)commentVc {
+
+    if (!_commentVc) {
+        
+        _commentVc = [WSICommentTableViewController new];
+        
+    }
+    
+    return _commentVc;
+}
+
 -(SGPageContentView *)pageContentView {
 
     if (!_pageContentView) {
 
-        WSIChildVcOne *childOne = [WSIChildVcOne new];
-        childOne.tableView.backgroundColor = XMGRandomColor;
-
-        WSIChildVcTwo *childTwo = [WSIChildVcTwo new];
-        childTwo.tableView.backgroundColor = XMGRandomColor;
-
-        WSIChildVcThree *childThree = [WSIChildVcThree new];
-        childThree.tableView.backgroundColor = XMGRandomColor;
-
-        NSArray *childArr = @[childOne,childTwo,childThree];
+      
+        NSArray *childArr = @[self.wishVc,self.commentVc,self.chatVc];
         
         _pageContentView = [[SGPageContentView alloc] initWithFrame:CGRectMake(0, 345, SCREEN_WIDTH, SCREEN_HEIGHT) parentVC:self childVCs:childArr];
         _pageContentView.delegatePageContentView = self;
@@ -167,12 +197,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setupNavi];
+//    [self setupNavi];
     [self setupHeaderIv];
     [self setupBgIv];
     
     [self.view addSubview:self.pageContentView];
     [self.view addSubview:self.pageTitleView];
+
+    
   }
 
 -(void)viewWillAppear:(BOOL)animated {

@@ -30,9 +30,24 @@
 @property(nonatomic,strong)NSString *userId;
 
 @property(nonatomic,strong)NSString *userName;
+
+@property(nonatomic,strong)JCAlertController *alertVc;
 @end
 
 @implementation WSICodeViewController
+
+-(JCAlertController *)alertVc {
+
+    if (!_alertVc) {
+        
+        _alertVc = [JCAlertController alertWithTitle:@"提示" message:@"聊天功能开启失败 将在下次应用开启时自动进行处理" type:JCAlertTypeNormal];
+        
+        [_alertVc addButtonWithTitle:@"确定" type:JCButtonTypeNormal clicked:nil];
+       
+    }
+    
+    return _alertVc;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -146,11 +161,11 @@
                  
                                             success:^(NSString *userId) {
                     
-                    NSLog(@"登陆成功。当前登录的用户ID：%@", userId);
+                    NSLog(@"融云登陆成功。当前登录的用户ID：%@", userId);
                     
                 } error:^(RCConnectErrorCode status) {
-                    
-                    NSLog(@"登陆的错误码为:%ld", status);
+                
+                    NSLog(@"融云登陆的错误码为:%ld", (long)status);
                     
                 } tokenIncorrect:^{
                     //token过期或者不正确。
@@ -244,6 +259,7 @@
         NSNumber *code = responseObject[@"code"];
         
         if (code.intValue == 200) {
+            
             NSString *token = responseObject[@"token"];
             NSString *userId = responseObject[@"userId"];
             
@@ -256,9 +272,45 @@
                     
                     NSLog(@"保存token成功");
                     
+                    // 再次尝试用新的token进行连接
+                    
+                    BmobQuery *query = [BmobQuery queryWithClassName:@"_User"];
+                    
+                    [query getObjectInBackgroundWithId:_bUser.objectId block:^(BmobObject *object, NSError *error) {
+                        
+                        [[RCIM sharedRCIM] connectWithToken:[object objectForKey:@"token"] success:^(NSString *userId) {
+                            
+                            NSLog(@"再次连接融云成功");
+                            
+                        } error:^(RCConnectErrorCode status) {
+                            
+                            NSLog(@"再次连接融云失败");
+                            
+                        } tokenIncorrect:^{
+                            
+                            NSLog(@"再次获取token失败");
+                            
+                            [self jc_presentViewController:self.alertVc presentType:JCPresentTypeLIFO presentCompletion:nil dismissCompletion:nil];
+                            
+                            // 假如再次连接融云失败 给该用户的bmob字段存一个值 表示聊天功能不可用
+                            
+                            [_bUser setObject:@(NO) forKey:@"isToken"];
+                            
+                            [_bUser updateInBackground];
+                        }];
+                        
+                    }];
+                    
+                    
                 }else {
                     
                     NSLog(@"保存token失败---%@", error);
+                    
+                    // 假如再次连接融云失败 给该用户的bmob字段存一个值 表示聊天功能不可用
+                   
+                    [_bUser setObject:@(NO) forKey:@"isToken"];
+                    
+                    [_bUser updateInBackground];
                 }
                 
             }];

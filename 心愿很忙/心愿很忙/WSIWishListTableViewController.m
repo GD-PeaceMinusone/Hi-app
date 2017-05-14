@@ -1,18 +1,18 @@
 //
-//  WSIChildVcTwo.m
+//  WSIWishListTableViewController.m
 //  心愿很忙
 //
-//  Created by Jackeylove on 2017/4/26.
+//  Created by Jackeylove on 2017/5/13.
 //  Copyright © 2017年 Jackeylove. All rights reserved.
 //
 
-#import "WSIChildVcTwo.h"
+#import "WSIWishListTableViewController.h"
 
-@interface WSIChildVcTwo ()
+@interface WSIWishListTableViewController ()
 
 @end
 
-@implementation WSIChildVcTwo
+@implementation WSIWishListTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -82,6 +82,22 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
+}
+*/
+
+/*
+#pragma mark - Table view delegate
+
+// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Navigation logic may go here, for example:
+    // Create the next view controller.
+    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+    
+    // Pass the selected object to the new view controller.
+    
+    // Push the view controller.
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 */
 

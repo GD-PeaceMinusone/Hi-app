@@ -33,9 +33,6 @@
 		533D2ABA1EB322F50072C98C /* PersonalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 533D2AB81EB322F50072C98C /* PersonalTableViewCell.m */; };
 		533D2ABB1EB322F50072C98C /* PersonalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533D2AB91EB322F50072C98C /* PersonalTableViewCell.xib */; };
 		533D2ABF1EB324560072C98C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 533D2ABE1EB324560072C98C /* Images.xcassets */; };
-		533D2AEB1EB331990072C98C /* WSIChildVcOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 533D2AE61EB331990072C98C /* WSIChildVcOne.m */; };
-		533D2AEC1EB331990072C98C /* WSIChildVcThree.m in Sources */ = {isa = PBXBuildFile; fileRef = 533D2AE81EB331990072C98C /* WSIChildVcThree.m */; };
-		533D2AED1EB331990072C98C /* WSIChildVcTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 533D2AEA1EB331990072C98C /* WSIChildVcTwo.m */; };
 		533D2AF11EB431BC0072C98C /* SRActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 533D2AF01EB431BC0072C98C /* SRActionSheet.m */; };
 		533D2AF51EB4D9030072C98C /* WSICodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 533D2AF31EB4D9030072C98C /* WSICodeViewController.m */; };
 		533D2AF61EB4D9030072C98C /* WSICodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533D2AF41EB4D9030072C98C /* WSICodeViewController.xib */; };
@@ -101,6 +98,11 @@
 		53BC825A1EA5086000E95834 /* WSIRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BC82581EA5086000E95834 /* WSIRefreshFooter.m */; };
 		53BC82CC1EA5F56E00E95834 /* yw_1222.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 53BC82CB1EA5F56E00E95834 /* yw_1222.jpg */; };
 		53D747F51EC5E8620084F840 /* WSIChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D747F41EC5E8620084F840 /* WSIChatViewController.m */; };
+		53D747F81EC6F36D0084F840 /* WSIChattingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D747F71EC6F36D0084F840 /* WSIChattingViewController.m */; };
+		53D747FC1EC6F3820084F840 /* WSIWishListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D747FA1EC6F3820084F840 /* WSIWishListTableViewController.m */; };
+		53D747FD1EC6F3820084F840 /* WSIWishListTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53D747FB1EC6F3820084F840 /* WSIWishListTableViewController.xib */; };
+		53D748011EC6F4150084F840 /* WSICommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D747FF1EC6F4150084F840 /* WSICommentTableViewController.m */; };
+		53D748021EC6F4150084F840 /* WSICommentTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53D748001EC6F4150084F840 /* WSICommentTableViewController.xib */; };
 		53FB50931E9DD795002B305D /* HUDUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 53FB50921E9DD795002B305D /* HUDUtils.m */; };
 /* End PBXBuildFile section */
 
@@ -147,12 +149,6 @@
 		533D2AB81EB322F50072C98C /* PersonalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalTableViewCell.m; sourceTree = "<group>"; };
 		533D2AB91EB322F50072C98C /* PersonalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalTableViewCell.xib; sourceTree = "<group>"; };
 		533D2ABE1EB324560072C98C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		533D2AE51EB331990072C98C /* WSIChildVcOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIChildVcOne.h; sourceTree = "<group>"; };
-		533D2AE61EB331990072C98C /* WSIChildVcOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIChildVcOne.m; sourceTree = "<group>"; };
-		533D2AE71EB331990072C98C /* WSIChildVcThree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIChildVcThree.h; sourceTree = "<group>"; };
-		533D2AE81EB331990072C98C /* WSIChildVcThree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIChildVcThree.m; sourceTree = "<group>"; };
-		533D2AE91EB331990072C98C /* WSIChildVcTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIChildVcTwo.h; sourceTree = "<group>"; };
-		533D2AEA1EB331990072C98C /* WSIChildVcTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIChildVcTwo.m; sourceTree = "<group>"; };
 		533D2AEF1EB431BC0072C98C /* SRActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRActionSheet.h; sourceTree = "<group>"; };
 		533D2AF01EB431BC0072C98C /* SRActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRActionSheet.m; sourceTree = "<group>"; };
 		533D2AF21EB4D9030072C98C /* WSICodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSICodeViewController.h; sourceTree = "<group>"; };
@@ -304,6 +300,14 @@
 		53BC82CB1EA5F56E00E95834 /* yw_1222.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yw_1222.jpg; sourceTree = "<group>"; };
 		53D747F31EC5E8620084F840 /* WSIChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIChatViewController.h; sourceTree = "<group>"; };
 		53D747F41EC5E8620084F840 /* WSIChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIChatViewController.m; sourceTree = "<group>"; };
+		53D747F61EC6F36D0084F840 /* WSIChattingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIChattingViewController.h; sourceTree = "<group>"; };
+		53D747F71EC6F36D0084F840 /* WSIChattingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIChattingViewController.m; sourceTree = "<group>"; };
+		53D747F91EC6F3820084F840 /* WSIWishListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSIWishListTableViewController.h; sourceTree = "<group>"; };
+		53D747FA1EC6F3820084F840 /* WSIWishListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSIWishListTableViewController.m; sourceTree = "<group>"; };
+		53D747FB1EC6F3820084F840 /* WSIWishListTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSIWishListTableViewController.xib; sourceTree = "<group>"; };
+		53D747FE1EC6F4150084F840 /* WSICommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSICommentTableViewController.h; sourceTree = "<group>"; };
+		53D747FF1EC6F4150084F840 /* WSICommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSICommentTableViewController.m; sourceTree = "<group>"; };
+		53D748001EC6F4150084F840 /* WSICommentTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSICommentTableViewController.xib; sourceTree = "<group>"; };
 		53FB50911E9DD795002B305D /* HUDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDUtils.h; sourceTree = "<group>"; };
 		53FB50921E9DD795002B305D /* HUDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDUtils.m; sourceTree = "<group>"; };
 		AB92A249E80C0D5ED4ED72A2 /* libPods-心愿很忙.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-心愿很忙.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -479,6 +483,14 @@
 				533F00211EB6EDA5002E0B19 /* WSIHomePageViewController.h */,
 				533F00221EB6EDA5002E0B19 /* WSIHomePageViewController.m */,
 				533F00231EB6EDA5002E0B19 /* WSIHomePageViewController.xib */,
+				53D747F61EC6F36D0084F840 /* WSIChattingViewController.h */,
+				53D747F71EC6F36D0084F840 /* WSIChattingViewController.m */,
+				53D747F91EC6F3820084F840 /* WSIWishListTableViewController.h */,
+				53D747FA1EC6F3820084F840 /* WSIWishListTableViewController.m */,
+				53D747FB1EC6F3820084F840 /* WSIWishListTableViewController.xib */,
+				53D747FE1EC6F4150084F840 /* WSICommentTableViewController.h */,
+				53D747FF1EC6F4150084F840 /* WSICommentTableViewController.m */,
+				53D748001EC6F4150084F840 /* WSICommentTableViewController.xib */,
 				533F00361EB9ECAE002E0B19 /* WSICommentViewController.h */,
 				533F00371EB9ECAE002E0B19 /* WSICommentViewController.m */,
 				536995471EBB5DE9005379EE /* WSICommentViewController.xib */,
@@ -490,12 +502,6 @@
 				53A16CE91EBDD6AF0089E892 /* ContentTableViewCell.xib */,
 				536995491EBB5E07005379EE /* YZInputView.h */,
 				5369954A1EBB5E07005379EE /* YZInputView.m */,
-				533D2AE51EB331990072C98C /* WSIChildVcOne.h */,
-				533D2AE61EB331990072C98C /* WSIChildVcOne.m */,
-				533D2AE71EB331990072C98C /* WSIChildVcThree.h */,
-				533D2AE81EB331990072C98C /* WSIChildVcThree.m */,
-				533D2AE91EB331990072C98C /* WSIChildVcTwo.h */,
-				533D2AEA1EB331990072C98C /* WSIChildVcTwo.m */,
 				5374A5DE1EB0D5150062B75A /* WSISettingViewController.h */,
 				5374A5DF1EB0D5150062B75A /* WSISettingViewController.m */,
 				5374A5E01EB0D5150062B75A /* WSISettingViewController.xib */,
@@ -739,6 +745,7 @@
 				536995481EBB5DE9005379EE /* WSICommentViewController.xib in Resources */,
 				532420A91EAA106E0017E25A /* WSIHomeTableViewController.xib in Resources */,
 				533D2ABB1EB322F50072C98C /* PersonalTableViewCell.xib in Resources */,
+				53D748021EC6F4150084F840 /* WSICommentTableViewController.xib in Resources */,
 				53A16CE61EBDD5200089E892 /* CommentTableViewCell.xib in Resources */,
 				532420B41EAA395C0017E25A /* WSIMeDetailViewController.xib in Resources */,
 				533F00251EB6EDA5002E0B19 /* WSIHomePageViewController.xib in Resources */,
@@ -753,6 +760,7 @@
 				531AEABC1E9A0C830037CA16 /* Podfile in Resources */,
 				53A16CEB1EBDD6AF0089E892 /* ContentTableViewCell.xib in Resources */,
 				533D2AF61EB4D9030072C98C /* WSICodeViewController.xib in Resources */,
+				53D747FD1EC6F3820084F840 /* WSIWishListTableViewController.xib in Resources */,
 				531D50DC1E98C8A400B17598 /* WSILoginViewController.xib in Resources */,
 				5374A5E21EB0D5150062B75A /* WSISettingViewController.xib in Resources */,
 				531AEAE21E9A6A0A0037CA16 /* WSIMeViewController.xib in Resources */,
@@ -818,8 +826,8 @@
 				53192CCB1EAB34E600C5E5BF /* UIImage+WSIExtension.m in Sources */,
 				5374A5981EB080330062B75A /* UIView+SGFrame.m in Sources */,
 				5373E79C1E967C0400819DCD /* NSString+XMGExtension.m in Sources */,
+				53D748011EC6F4150084F840 /* WSICommentTableViewController.m in Sources */,
 				5374A5731EB044B50062B75A /* UIView+leoAdd.m in Sources */,
-				533D2AEC1EB331990072C98C /* WSIChildVcThree.m in Sources */,
 				5374A5651EAF9C2E0062B75A /* UIViewController+Extension.m in Sources */,
 				53592A181EC4AE20008A6500 /* XibViewController.m in Sources */,
 				5369954B1EBB5E07005379EE /* YZInputView.m in Sources */,
@@ -829,7 +837,6 @@
 				5374A5E11EB0D5150062B75A /* WSISettingViewController.m in Sources */,
 				5385FAC41EAC830000F283FD /* SizeUtils.m in Sources */,
 				5385FACB1EADC05B00F283FD /* UIScrollView+Refresh.m in Sources */,
-				533D2AEB1EB331990072C98C /* WSIChildVcOne.m in Sources */,
 				53592A161EC4AE20008A6500 /* CustomCardView.m in Sources */,
 				53FB50931E9DD795002B305D /* HUDUtils.m in Sources */,
 				5374A5971EB080330062B75A /* SGPageTitleView.m in Sources */,
@@ -862,6 +869,7 @@
 				5385FACC1EADC05B00F283FD /* MJRefreshGifHeader+HeaderRefresh.m in Sources */,
 				5374A5D81EB0D45D0062B75A /* BBInputView.m in Sources */,
 				531D50DB1E98C8A400B17598 /* WSILoginViewController.m in Sources */,
+				53D747F81EC6F36D0084F840 /* WSIChattingViewController.m in Sources */,
 				5374A5711EB044B50062B75A /* LEOHeaderView.m in Sources */,
 				532420B31EAA395C0017E25A /* WSIMeDetailViewController.m in Sources */,
 				53A46FA91EA891820049FE2C /* LYPhoto.m in Sources */,
@@ -875,11 +883,11 @@
 				5373E7481E9670A900819DCD /* AppDelegate.m in Sources */,
 				532420A01EA9A13D0017E25A /* HomeTableViewCell.m in Sources */,
 				53A46FAE1EA891820049FE2C /* MCPercentageDoughnutView.m in Sources */,
-				533D2AED1EB331990072C98C /* WSIChildVcTwo.m in Sources */,
 				531AEB6F1E9B29E10037CA16 /* CCDraggableCardView.m in Sources */,
 				53BC82591EA5086000E95834 /* WSIRefreshHeader.m in Sources */,
 				53A46FAF1EA891820049FE2C /* MCSliceLayer.m in Sources */,
 				531AEA491E992AB90037CA16 /* WSIRegisterViewController.m in Sources */,
+				53D747FC1EC6F3820084F840 /* WSIWishListTableViewController.m in Sources */,
 				53BC825A1EA5086000E95834 /* WSIRefreshFooter.m in Sources */,
 				5373E79D1E967C0400819DCD /* NSDate+XMGExtension.m in Sources */,
 				5373E7451E9670A900819DCD /* main.m in Sources */,

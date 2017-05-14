@@ -12,14 +12,19 @@
 #import <UMSocialCore/UMSocialCore.h>
 #import "REFrostedViewController.h"
 #import <Masonry.h>
+#import "WSIChattingViewController.h"
+#import "WSIHomePageViewController.h"
 
-
-@interface AppDelegate ()
+@interface AppDelegate ()<RCIMUserInfoDataSource>
 @property(nonatomic,strong)REFrostedViewController *frostedViewController;
+@property(nonatomic, weak) id<RCIMReceiveMessageDelegate> receiveMessageDelegate;
+@property(nonatomic,strong)NSString *userId;
+@property(nonatomic,strong)NSString *name;
+@property(nonatomic,strong)NSString *head;
 @end
 
 @implementation AppDelegate
-
+static NSString *notiName = @"passUser";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
@@ -35,26 +40,66 @@
     
     [self setupRongyun];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(passUser:) name:notiName object:nil];
+    
     return YES;
 }
 
+-(void)passUser: (NSNotification*)notification {
+
+    WishModel *model = notification.object;
+    
+    BmobQuery *q = [BmobQuery queryWithClassName:@"_User"];
+    
+    [q getObjectInBackgroundWithId:model.user.objectId block:^(BmobObject *object, NSError *error) {
+        
+        _userId = [object objectForKey:@"userId"];
+        _name = [object objectForKey:@"nickName"];
+        _head = [object objectForKey:@"userHeader"];
+
+        
+    }];
+}
+
+
 -(void)setupRongyun {
+    
+    BmobUser *user = [BmobUser currentUser];
+    
+    NSString *token = [user objectForKey:@"token"];
 
     [[RCIM sharedRCIM] initWithAppKey:@"8luwapkv8txcl"];
     
-    [[RCIM sharedRCIM] connectWithToken:@"XwvNw6j0U6aI0FFCoGNBOeJuqbTS0vKQ77BnNe2fop+k1VZ2WUJe2CLL8o7Dky7rh/LHys3PMCOOmqdpg2vunA==" success:^(NSString *userId) {
+    [[RCIM sharedRCIM] connectWithToken: token success:^(NSString *userId) {
         
         NSLog(@"融云链接成功");
         
+        [[RCIM sharedRCIM] setUserInfoDataSource:self];
+        
     } error:^(RCConnectErrorCode status) {
         
-        NSLog(@"融云链接失败---%ld",status );
+        NSLog(@"融云链接失败---%ld",(long)(long)status);
         
     } tokenIncorrect:^{
         
         NSLog(@"tokenIncorrect");
     }];
+    
+    
 }
+
+
+-(void)getUserInfoWithUserId:(NSString *)userId completion:(void (^)(RCUserInfo *))completion {
+
+    RCUserInfo *info = [[RCUserInfo alloc]init];
+    
+    info.userId = _userId;
+    info.name = _name;
+    info.portraitUri = _head;
+    
+    return completion(info);
+}
+
 
 /**
  *  初始化ALiSDK
@@ -143,15 +188,32 @@
 
     WSIMeViewController *meVc = [[WSIMeViewController alloc]initWithNibName:@"WSIMeViewController" bundle:[NSBundle mainBundle]];
     
-    WSIHomeTableViewController *mainVc = [WSIHomeTableViewController new];
-    
     UITabBarController *tabBarVc = [UITabBarController new];
+    [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
+    [UITabBar appearance].translucent = NO;
     
-    RTRootNavigationController *navigationVc = [[RTRootNavigationController alloc]initWithRootViewController:mainVc];
+    WSIHomeTableViewController *mainVc = [WSIHomeTableViewController new];
+    UINavigationController *navi1 = [[UINavigationController alloc]initWithRootViewController:mainVc];
+    mainVc.tabBarItem.image = [UIImage loadImageWithImgName:@"星球 (7)"];
+    mainVc.tabBarItem.selectedImage = [UIImage loadImageWithImgName:@"星球 (8)"];
+    mainVc.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
     
-    [tabBarVc addChildViewController:navigationVc];
+    WSIChattingViewController *chatVc  = [WSIChattingViewController new];
+    UINavigationController *navi2 = [[UINavigationController alloc]initWithRootViewController:chatVc];
+    chatVc.tabBarItem.image = [UIImage loadImageWithImgName:@"hi 聊天"];
+    chatVc.tabBarItem.selectedImage = [UIImage loadImageWithImgName:@"hi 聊天 (1)"];
+    chatVc.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
     
-    navigationVc.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"bj" style:UIBarButtonItemStyleDone target:self action:nil];
+    WSIHomePageViewController *homeVc = [WSIHomePageViewController new];
+    UINavigationController *navi3 = [[UINavigationController alloc]initWithRootViewController:homeVc];
+    homeVc.tabBarItem.image = [UIImage loadImageWithImgName:@"笑脸 (13)"];
+    homeVc.tabBarItem.selectedImage = [UIImage loadImageWithImgName:@"笑脸 (14)"];
+    homeVc.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+    
+    [tabBarVc addChildViewController:navi1];
+    [tabBarVc addChildViewController:navi2];
+    [tabBarVc addChildViewController:navi3];
+    
 
     _frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:tabBarVc menuViewController:meVc];
     
