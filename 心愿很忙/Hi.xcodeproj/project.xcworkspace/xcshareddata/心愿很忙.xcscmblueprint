@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "2D6E9F6113AEE49B29C19208CFE6B5222727F307",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "2D6E9F6113AEE49B29C19208CFE6B5222727F307" : 9223372036854775807,
+    "19FDF71DAE0BEE109DFDDFA015CD3E88277E4EE4" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B1FC6261-2DB4-4B10-B44D-353C6D4886B3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "2D6E9F6113AEE49B29C19208CFE6B5222727F307" : "%E5%B0%8F%E6%98%8E%E5%90%8C%E5%AD%A6\/",
+    "19FDF71DAE0BEE109DFDDFA015CD3E88277E4EE4" : "BSBDJ\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "心愿很忙",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "心愿很忙\/心愿很忙.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/GD-PeaceMinusone\/ZsProject.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "19FDF71DAE0BEE109DFDDFA015CD3E88277E4EE4"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/GD-PeaceMinusone\/-.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2D6E9F6113AEE49B29C19208CFE6B5222727F307"
+    }
+  ]
+}

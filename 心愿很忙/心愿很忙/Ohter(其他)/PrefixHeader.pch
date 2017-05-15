@@ -1,0 +1,86 @@
+//
+//  PrefixHeader.pch
+//  百思不得姐
+//
+//  Created by Jackeylove on 2017/3/6.
+//  Copyright © 2017年 Jackeylove. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#ifdef __OBJC__
+
+/**分类和其他接口**/
+#import "UIView+XMGExtension.h"
+#import "NSString+XMGExtension.h"
+#import "NSDate+XMGExtension.h"
+#import "NSCalendar+XMGExtension.h"
+#import "UIViewController+STPopup.h"
+#import "UIImageView+WSIExtension.h"
+#import "SizeUtils.h"
+#import "HUDUtils.h"
+#import "UIImage+WSIExtension.h"
+#import "UIViewController+Extension.h"
+#import "Masonry.h"
+#import "UIImageView+CornerRadius.h"
+#import "WishModel.h"
+#import "UIImageView+WebCache.h"
+#import "Bmob.h"
+#import "commentModel.h"
+#import "revertModel.h"
+#import <YYText/YYText.h>
+#import <RongIMKit/RongIMKit.h>
+#import <RongIMLib/RongIMLib.h>
+#import "RTRootNavigationController.h"
+#import "JCAlertController.h"
+#import <FMDB/FMDB.h>
+
+/*** 将服务器返回的数据写入plist文件 ***/
+#define XMGWriteToPlist(data,fileName) [data writeToFile:[NSString stringWithFormat:@"/Users/jackeylove/Desktop/%@.plist",fileName] atomically:YES];
+
+/** 日志 */
+#ifdef DEBUG
+#define XMGLog(...) NSLog(__VA_ARGS__)
+#else
+#define XMGLog(...)
+#endif
+
+#define XMGLogFunc XMGLog(@"%s", __func__);
+/** 颜色 */
+#define XMGColorA(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/255.0]
+#define XMGColor(r,g,b) XMGColorA(r,g,b,255)
+#define XMGRandomColor XMGColor(arc4random_uniform(255),arc4random_uniform(255),arc4random_uniform(255))
+#define XMGCommonBgColor XMGGrayColor(206)
+#define XMGGrayColor(v) XMGColor(v,v,v)
+#define blueColor [UIColor colorWithRed:0/255.0 green:114/255.0 blue:254/255.0 alpha:1.0]
+#define HiBlueColor [UIColor colorWithRed:0/255.0 green:119/255.0 blue:254/255.0 alpha:1.0f]
+
+/** 当前版本号判断 */
+#define ios(version) ([UIDevice currentDevice].systemVersion.doubleValue >= (version))
+#define ShareApp ((AppDelegate *)[[UIApplication sharedApplication] delegate])
+#define DocumentPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES)  lastObject]
+
+/** 当前屏幕宽高 */
+#define  SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define  SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+/** 弱引用 */
+#define WSIWeakSelf __weak typeof(self) weakSelf = self;
+
+#define kCloseCellHeight    179.f
+#define kOpenCellHeight     900.f
+#define kRowsCount          10
+#define WSIMargin 10
+#define WSIMarginDouble 20
+#define screenNormalW 375
+#define screenPlusW 414
+
+#define TextViewSize CGSizeMake(250, 50)
+#define imageViewSize CGSizeMake(10, 10)
+#define buttonSize CGSizeMake(20, 20)
+
+
+
+#endif
+#endif /* PrefixHeader_pch */
