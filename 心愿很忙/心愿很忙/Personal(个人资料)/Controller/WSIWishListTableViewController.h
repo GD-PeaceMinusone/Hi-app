@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 
-@interface WSIWishListTableViewController : UITableViewController
+@interface WSIWishListTableViewController : BaseTableViewController
 
 @end

@@ -53,7 +53,6 @@
 #define XMGRandomColor XMGColor(arc4random_uniform(255),arc4random_uniform(255),arc4random_uniform(255))
 #define XMGCommonBgColor XMGGrayColor(206)
 #define XMGGrayColor(v) XMGColor(v,v,v)
-#define blueColor [UIColor colorWithRed:0/255.0 green:114/255.0 blue:254/255.0 alpha:1.0]
 #define HiBlueColor [UIColor colorWithRed:0/255.0 green:119/255.0 blue:254/255.0 alpha:1.0f]
 
 /** 当前版本号判断 */

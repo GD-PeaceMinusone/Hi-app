@@ -15,6 +15,8 @@
 #import "WSIChatViewController.h"
 #import "AXWireButton.h"
 #import "WSIChattingViewController.h"
+#import "WSIHomeTableViewController.h"
+#import "WSICommentViewController.h"
 
 @interface WSIMeDetailViewController () 
 @property (weak, nonatomic) IBOutlet UIView *popView;
@@ -243,10 +245,24 @@ static NSString *dbName = @"list_Info.sqlite";
 -(void)nextBtnDidTap {
    
     WSIPerosonalViewController *personal = [WSIPerosonalViewController new];
-
-  
-    [[UIViewController getNavi]  pushViewController:personal animated:YES];
     
+    REFrostedViewController *vc = (REFrostedViewController*)[UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    UITabBarController *tabBarVc =(UITabBarController*)vc.contentViewController;
+    
+    UINavigationController *navi =  (UINavigationController*) tabBarVc.selectedViewController;
+
+    /** 判断navi的顶部控制器 分别用不同的navi进行push */
+    
+    if ([navi.topViewController isKindOfClass:[WSIHomeTableViewController class]]) {
+        
+         [[UIViewController getNavi]  pushViewController:personal animated:YES];
+        
+    } else {
+    
+         [[UIViewController getNaviLast]  pushViewController:personal animated:YES];
+    }
+
    
     [self dismissViewControllerAnimated:YES completion:nil];
 }

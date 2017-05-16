@@ -172,8 +172,8 @@
         _pageTitleView = [SGPageTitleView pageTitleViewWithFrame:CGRectMake(0, 305,SCREEN_WIDTH, 40) delegate:self titleNames:titleArr];
         _pageTitleView.selectedIndex = 0;
         [_pageTitleView setTitleColorStateNormal:[UIColor grayColor]];
-        [_pageTitleView setTitleColorStateSelected:blueColor];
-        [_pageTitleView setIndicatorColor:blueColor];
+        [_pageTitleView setTitleColorStateSelected:HiBlueColor];
+        [_pageTitleView setIndicatorColor:HiBlueColor];
         [_pageTitleView setIndicatorStyle:SGIndicatorTypeEqual];
     }
     
@@ -204,7 +204,6 @@
     [self.view addSubview:self.pageContentView];
     [self.view addSubview:self.pageTitleView];
 
-    
   }
 
 -(void)viewWillAppear:(BOOL)animated {

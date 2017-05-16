@@ -12,7 +12,7 @@
 #import "LYPhoto.h"
 #import "LYPhotoBrowser.h"
 #import "WSICommentViewController.h"
-
+#import "REFrostedViewController.h"
 @interface ListTableViewCell ()
 
 /**宝贝链接*/
@@ -36,24 +36,24 @@
 /**date*/
 @property(nonatomic,strong)NSDate *date;
 
-@property(nonatomic,strong)WSICommentViewController *commentVc;
+@property(nonatomic,strong)WSICommentViewController *commentVc2;
 
 @end
 
 
 @implementation ListTableViewCell
 static NSString *dbName = @"Wish_List.sqlite";
-static NSString *notiName2 = @"comment";
+static NSString *notiName2 = @"comment2";
 static NSString *notiName3 = @"changeTabbar";
 
--(WSICommentViewController *)commentVc {
+-(WSICommentViewController *)commentVc2 {
     
-    if (!_commentVc) {
+    if (!_commentVc2) {
         
-        _commentVc =[[WSICommentViewController alloc]init];
+        _commentVc2 =[[WSICommentViewController alloc]init];
     }
     
-    return _commentVc;
+    return _commentVc2;
 }
 
 - (void)awakeFromNib {
@@ -195,9 +195,7 @@ static NSString *notiName3 = @"changeTabbar";
  *  弹出选择菜单
  */
 - (IBAction)giftButton:(id)sender {
-    
-    if ([_avObj.user.objectId isEqualToString:[BmobUser currentUser].objectId]) {
-        
+  
         SRActionSheet *actionSheet = [SRActionSheet sr_actionSheetViewWithTitle:@"选择"
                                                                     cancelTitle:@"取消"
                                                                destructiveTitle:nil
@@ -213,47 +211,7 @@ static NSString *notiName3 = @"changeTabbar";
                                                                }];
         
         [actionSheet show];
-        
-        
-    }else {
 
-        
-        
-        SRActionSheet *actionSheet = [SRActionSheet sr_actionSheetViewWithTitle:@"选择"
-                                                                    cancelTitle:@"取消"
-                                                               destructiveTitle:nil
-                                                                    otherTitles:@[@"心愿详情", @"帮她/他实现心愿"]
-                                                                    otherImages:nil
-                                                               selectSheetBlock:^(SRActionSheet *actionSheetView, NSInteger index) {
-                                                                   
-                                                                   switch (index) {
-                                                                       case 0:{
-                                                                           
-                                                                           //                    [self getLink];
-                                                                           
-                                                                       }
-                                                                           break;
-                                                                           
-                                                                       case 1:
-                                                                           
-                                                                       {
-                                                                           
-                                                                           
-                                                                       }
-                                                                           
-                                                                           break;
-                                                                           
-                                                                       default:
-                                                                           break;
-                                                                   }
-                                                                   
-                                                               }];
-        
-        [actionSheet show];
-        
-        
-    }
-    
 }
 
 
@@ -370,6 +328,8 @@ static NSString *notiName3 = @"changeTabbar";
 
 /**实现点赞功能*/
 - (IBAction)wclButtonAction:(UIButton *)sender {
+    
+    sender.selected = !sender.selected;
 
     /**构建查询条件 如已点过赞 将不再增加数据 并将该条数据从后台delete*/
     
@@ -429,13 +389,16 @@ static NSString *notiName3 = @"changeTabbar";
 }
 
 
-- (IBAction)commentBt:(id)sender {
+- (IBAction)commentBt2:(id)sender {
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:notiName2 object:@[@(_headerIv.tag),self.commentVc]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:notiName2 object:@[@(_headerIv.tag),self.commentVc2]];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:notiName3 object:nil];
     
-    [[UIViewController getNavi] pushViewController:self.commentVc animated:YES];
+    self.commentVc2.hidesBottomBarWhenPushed = YES;
+
+    [[UIViewController getNaviLast] pushViewController:self.commentVc2 animated:YES];
+   
 }
 
 

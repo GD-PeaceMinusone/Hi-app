@@ -14,11 +14,9 @@
 #import <Masonry.h>
 #import "WSIChattingViewController.h"
 #import "WSIHomePageViewController.h"
-#ifdef NSFoundationVersionNumber_iOS_9_x_Max
-#import <UserNotifications/UserNotifications.h>
-#endif
+#import "HomePageViewController.h"
 
-@interface AppDelegate ()<RCIMUserInfoDataSource,RCIMReceiveMessageDelegate,UNUserNotificationCenterDelegate>
+@interface AppDelegate ()<RCIMUserInfoDataSource,RCIMReceiveMessageDelegate>
 @property(nonatomic,strong)REFrostedViewController *frostedViewController;
 @property(nonatomic, weak) id<RCIMReceiveMessageDelegate> receiveMessageDelegate;
 @property(nonatomic,strong)NSString *nickName;
@@ -250,7 +248,7 @@ static NSString *dbName = @"list_Info.sqlite";
     chatVc.tabBarItem.selectedImage = [UIImage loadImageWithImgName:@"hi 聊天 (1)"];
     chatVc.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
     
-    WSIHomePageViewController *homeVc = [WSIHomePageViewController new];
+    HomePageViewController *homeVc = [HomePageViewController new];
     UINavigationController *navi3 = [[UINavigationController alloc]initWithRootViewController:homeVc];
     homeVc.tabBarItem.image = [UIImage loadImageWithImgName:@"笑脸 (13)"];
     homeVc.tabBarItem.selectedImage = [UIImage loadImageWithImgName:@"笑脸 (14)"];

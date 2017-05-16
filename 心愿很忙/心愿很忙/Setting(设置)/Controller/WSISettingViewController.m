@@ -101,7 +101,7 @@
         
         _button = [UIButton buttonWithType:UIButtonTypeCustom];
         [_button setTitle:@"退出登录" forState:UIControlStateNormal];
-        [_button setTitleColor:blueColor forState:UIControlStateNormal];
+        [_button setTitleColor:HiBlueColor forState:UIControlStateNormal];
         [_button setFrame:CGRectMake(0, 12, 100, 40)];
         [_button addTarget:self action:@selector(leaveAccount) forControlEvents:UIControlEventTouchUpInside];
         _button.xmg_centerX = _tableView.xmg_centerX;

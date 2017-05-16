@@ -143,8 +143,17 @@ static NSString *notiName = @"pushVc";
      _comArr = nil;
     [self loadNewTopics];
     [self.tableView reloadData];
-  
+    self.tabBarController.tabBar.hidden = YES; //隐藏tabbar
+
+    
     NSLog(@"---comarr:%ld", _comArr.count);
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated { //显示tabbar
+    
+    self.tabBarController.tabBar.hidden = NO;
+    
 }
 
 -(void)setupRefresh {

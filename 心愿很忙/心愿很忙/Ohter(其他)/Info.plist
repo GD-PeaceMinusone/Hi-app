@@ -2,19 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>&quot;Hi&quot;想获取您手机的录音权限</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -74,6 +63,14 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>DROI_APP_ID</key>
+	<string>shfvmbzhVv89jEFFo2eUgkuNfTDAB_BdlQAsVQsa</string>
+	<key>DROI_APP_SECRET</key>
+	<string>17m095jw</string>
+	<key>DROI_CHANNEL_NAME</key>
+	<string></string>
+	<key>DROI_PLATFORM_ID</key>
+	<string>-CtQt67ZSTxWC3vbgGm_jUop3lk8Zl6_jUop3lk8</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>wxc50ae2152a6995b2</string>
@@ -116,22 +113,25 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>&quot;Hi&quot;想访问您的相机</string>
+	<string>"Hi"想访问您的相机</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string></string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string></string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>"Hi"想获取手机的录音权限</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>&quot;Hi&quot;想访问您的相册</string>
+	<string>"Hi"想访问您的相册</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
-	<key>DROI_APP_ID</key>
-	<string>shfvmbzhVv89jEFFo2eUgkuNfTDAB_BdlQAsVQsa</string>
-	<key>DROI_PLATFORM_ID</key>
-	<string>-CtQt67ZSTxWC3vbgGm_jUop3lk8Zl6_jUop3lk8</string>
-	<key>DROI_CHANNEL_NAME</key>
-	<string></string>
-	<key>DROI_APP_SECRET</key>
-	<string>17m095jw</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

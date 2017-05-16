@@ -74,17 +74,6 @@ static NSString *notiName4 = @"refresh";
      self.navigationController.navigationBar.hidden = NO;
 }
 
--(void)viewDidAppear:(BOOL)animated{//显示tabbar
-    
-//    self.tabBarController.tabBar.hidden = NO;
-    
-}
-
--(void)viewWillDisappear:(BOOL)animated {//隐藏tabbar
- 
-//    self.tabBarController.tabBar.hidden = YES;
-
-}
 
 /**
  *  懒加载
@@ -130,6 +119,7 @@ static NSString *notiName4 = @"refresh";
 /**
  *  设置导航栏样式
  */
+
 -(void)setupNavigationBar {
     
     UIImage *image1 = [UIImage imageNamed:@"列表 "];
@@ -141,8 +131,6 @@ static NSString *notiName4 = @"refresh";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage: image1 style:UIBarButtonItemStylePlain target:self action:@selector(goMe)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage: image2 style:UIBarButtonItemStylePlain target:self action:@selector(publish:)];
-
-//    [self.navigationController.navigationBar.subviews firstObject].hidden = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(publish:) name:@"showPublish" object:nil];
     

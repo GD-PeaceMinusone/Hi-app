@@ -496,7 +496,9 @@ static NSCalendar *calendar_;
     [[NSNotificationCenter defaultCenter] postNotificationName:notiName2 object:@[@(_headerIv.tag),self.commentVc]];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:notiName3 object:nil];
-
+    
+    self.commentVc.hidesBottomBarWhenPushed = YES;
+    
     [[UIViewController getNavi] pushViewController:self.commentVc animated:YES];
 }
 

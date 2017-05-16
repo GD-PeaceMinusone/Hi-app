@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		46A0D83662884D971F9FD9E4 /* libPods-心愿很忙.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB92A249E80C0D5ED4ED72A2 /* libPods-心愿很忙.a */; };
 		53192CB31EAAEDF300C5E5BF /* UIImageView+WSIExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 53192CB21EAAEDF300C5E5BF /* UIImageView+WSIExtension.m */; };
 		53192CCB1EAB34E600C5E5BF /* UIImage+WSIExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 53192CCA1EAB34E600C5E5BF /* UIImage+WSIExtension.m */; };
 		531AEABC1E9A0C830037CA16 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 531AEABB1E9A0C830037CA16 /* Podfile */; };
@@ -22,6 +21,17 @@
 		5373E79E1E967C0400819DCD /* NSCalendar+XMGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5373E7961E967C0400819DCD /* NSCalendar+XMGExtension.m */; };
 		5374A5651EAF9C2E0062B75A /* UIViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5374A5641EAF9C2E0062B75A /* UIViewController+Extension.m */; };
 		5385FACB1EADC05B00F283FD /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5385FAC81EADC05B00F283FD /* UIScrollView+Refresh.m */; };
+		539260E91ECAD2BE00507C8A /* CommualHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 539260C61ECAD2BE00507C8A /* CommualHeaderView.xib */; };
+		539260EA1ECAD2BE00507C8A /* CommualHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 539260C81ECAD2BE00507C8A /* CommualHeaderView.m */; };
+		539260EB1ECAD2BE00507C8A /* ColorUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 539260CB1ECAD2BE00507C8A /* ColorUtility.m */; };
+		539260EC1ECAD2BE00507C8A /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 539260CD1ECAD2BE00507C8A /* HMSegmentedControl.m */; };
+		539260ED1ECAD2BE00507C8A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539260D01ECAD2BE00507C8A /* ViewController.m */; };
+		539260EE1ECAD2BE00507C8A /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539260D21ECAD2BE00507C8A /* HomePageViewController.m */; };
+		539260EF1ECAD2BE00507C8A /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539260D41ECAD2BE00507C8A /* BaseTableViewController.m */; };
+		539260F01ECAD2BE00507C8A /* LeftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539260D61ECAD2BE00507C8A /* LeftTableViewController.m */; };
+		539260F11ECAD2BE00507C8A /* MiddleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539260D81ECAD2BE00507C8A /* MiddleTableViewController.m */; };
+		539260F21ECAD2BE00507C8A /* RightTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539260DA1ECAD2BE00507C8A /* RightTableViewController.m */; };
+		539260F31ECAD2BE00507C8A /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539260DC1ECAD2BE00507C8A /* NavigationController.m */; };
 		539B221D1EC95DBD0022203C /* BBInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 539B215F1EC95DBC0022203C /* BBInput.m */; };
 		539B221E1EC95DBD0022203C /* BBInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 539B21611EC95DBC0022203C /* BBInputView.m */; };
 		539B221F1EC95DBD0022203C /* BBInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 539B21621EC95DBC0022203C /* BBInputView.xib */; };
@@ -105,9 +115,11 @@
 		539B226D1EC95DBD0022203C /* WSIThingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 539B221A1EC95DBD0022203C /* WSIThingViewController.m */; };
 		539B22711EC98B000022203C /* ListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 539B226F1EC98B000022203C /* ListTableViewCell.m */; };
 		539B22721EC98B000022203C /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 539B22701EC98B000022203C /* ListTableViewCell.xib */; };
+		941ED1C36F0F66B49E312D35 /* libPods-Hi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF90EC0CEEB52DA94A7CDBA /* libPods-Hi.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0EF90EC0CEEB52DA94A7CDBA /* libPods-Hi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F8911154D759A039C16C9A8 /* Pods-心愿很忙.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-心愿很忙.debug.xcconfig"; path = "Pods/Target Support Files/Pods-心愿很忙/Pods-心愿很忙.debug.xcconfig"; sourceTree = "<group>"; };
 		114C6E6543F4132BF072B9FE /* Pods-心愿很忙.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-心愿很忙.release.xcconfig"; path = "Pods/Target Support Files/Pods-心愿很忙/Pods-心愿很忙.release.xcconfig"; sourceTree = "<group>"; };
 		53192CB11EAAEDF300C5E5BF /* UIImageView+WSIExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WSIExtension.h"; sourceTree = "<group>"; };
@@ -136,6 +148,27 @@
 		5374A5641EAF9C2E0062B75A /* UIViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extension.m"; sourceTree = "<group>"; };
 		5385FAC71EADC05B00F283FD /* UIScrollView+Refresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Refresh.h"; sourceTree = "<group>"; };
 		5385FAC81EADC05B00F283FD /* UIScrollView+Refresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Refresh.m"; sourceTree = "<group>"; };
+		539260C61ECAD2BE00507C8A /* CommualHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommualHeaderView.xib; sourceTree = "<group>"; };
+		539260C71ECAD2BE00507C8A /* CommualHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommualHeaderView.h; sourceTree = "<group>"; };
+		539260C81ECAD2BE00507C8A /* CommualHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommualHeaderView.m; sourceTree = "<group>"; };
+		539260CA1ECAD2BE00507C8A /* ColorUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ColorUtility.h; path = ../ColorUtility.h; sourceTree = "<group>"; };
+		539260CB1ECAD2BE00507C8A /* ColorUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ColorUtility.m; path = ../ColorUtility.m; sourceTree = "<group>"; };
+		539260CC1ECAD2BE00507C8A /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
+		539260CD1ECAD2BE00507C8A /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
+		539260CF1ECAD2BE00507C8A /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		539260D01ECAD2BE00507C8A /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		539260D11ECAD2BE00507C8A /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
+		539260D21ECAD2BE00507C8A /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
+		539260D31ECAD2BE00507C8A /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseTableViewController.h; path = HMSegmentedControl/BaseTableViewController.h; sourceTree = "<group>"; };
+		539260D41ECAD2BE00507C8A /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseTableViewController.m; path = HMSegmentedControl/BaseTableViewController.m; sourceTree = "<group>"; };
+		539260D51ECAD2BE00507C8A /* LeftTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftTableViewController.h; sourceTree = "<group>"; };
+		539260D61ECAD2BE00507C8A /* LeftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftTableViewController.m; sourceTree = "<group>"; };
+		539260D71ECAD2BE00507C8A /* MiddleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiddleTableViewController.h; sourceTree = "<group>"; };
+		539260D81ECAD2BE00507C8A /* MiddleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiddleTableViewController.m; sourceTree = "<group>"; };
+		539260D91ECAD2BE00507C8A /* RightTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightTableViewController.h; sourceTree = "<group>"; };
+		539260DA1ECAD2BE00507C8A /* RightTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightTableViewController.m; sourceTree = "<group>"; };
+		539260DB1ECAD2BE00507C8A /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
+		539260DC1ECAD2BE00507C8A /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		539B215E1EC95DBC0022203C /* BBInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBInput.h; sourceTree = "<group>"; };
 		539B215F1EC95DBC0022203C /* BBInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBInput.m; sourceTree = "<group>"; };
 		539B21601EC95DBC0022203C /* BBInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBInputView.h; sourceTree = "<group>"; };
@@ -311,6 +344,8 @@
 		53BC82831EA5C08900E95834 /* SGSecurityBody.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SGSecurityBody.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/SGSecurityBody.framework"; sourceTree = "<group>"; };
 		53BC82841EA5C08900E95834 /* UTDID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UTDID.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/UTDID.framework"; sourceTree = "<group>"; };
 		53BC82851EA5C08900E95834 /* UTMini.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UTMini.framework; path = "../../../Downloads/AlibcTradeSDK-3.1.1.96+AlibcTradeBiz-3.1.1.96+AlibcTradeCommon-3.1.1.93+AlibcLinkPartnerSDK-1.1.0.9-FullPackage 3/Frameworks/UTMini.framework"; sourceTree = "<group>"; };
+		5F4B3A6EBC1E23590690DDB7 /* Pods-Hi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hi/Pods-Hi.release.xcconfig"; sourceTree = "<group>"; };
+		95ED722491CC40FD0B5EFD6B /* Pods-Hi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hi/Pods-Hi.debug.xcconfig"; sourceTree = "<group>"; };
 		AB92A249E80C0D5ED4ED72A2 /* libPods-心愿很忙.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-心愿很忙.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -321,7 +356,7 @@
 			files = (
 				531AEB401E9B263E0037CA16 /* libc++abi.tbd in Frameworks */,
 				531AEB3E1E9B20EA0037CA16 /* libMMDrawerController.a in Frameworks */,
-				46A0D83662884D971F9FD9E4 /* libPods-心愿很忙.a in Frameworks */,
+				941ED1C36F0F66B49E312D35 /* libPods-Hi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,11 +402,22 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		4FB2420F279110BEB9D8DC98 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				95ED722491CC40FD0B5EFD6B /* Pods-Hi.debug.xcconfig */,
+				5F4B3A6EBC1E23590690DDB7 /* Pods-Hi.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		5373E7371E9670A900819DCD = {
 			isa = PBXGroup;
 			children = (
 				531AEABB1E9A0C830037CA16 /* Podfile */,
 				5373E7421E9670A900819DCD /* Hi */,
+				4FB2420F279110BEB9D8DC98 /* Pods */,
+				7B4A7273D3766335997EF789 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -443,6 +489,52 @@
 			);
 			name = Categary;
 			path = "../../../BSBDJ/百思不得姐2/百思不得姐/classes/Other/Categary";
+			sourceTree = "<group>";
+		};
+		539260C91ECAD2BE00507C8A /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				539260C61ECAD2BE00507C8A /* CommualHeaderView.xib */,
+				539260C71ECAD2BE00507C8A /* CommualHeaderView.h */,
+				539260C81ECAD2BE00507C8A /* CommualHeaderView.m */,
+			);
+			name = Xib;
+			sourceTree = "<group>";
+		};
+		539260CE1ECAD2BE00507C8A /* Dependence */ = {
+			isa = PBXGroup;
+			children = (
+				539260CA1ECAD2BE00507C8A /* ColorUtility.h */,
+				539260CB1ECAD2BE00507C8A /* ColorUtility.m */,
+				539260CC1ECAD2BE00507C8A /* HMSegmentedControl.h */,
+				539260CD1ECAD2BE00507C8A /* HMSegmentedControl.m */,
+			);
+			name = Dependence;
+			path = HMSegmentedControl;
+			sourceTree = "<group>";
+		};
+		539260E71ECAD2BE00507C8A /* 微博个人主页 */ = {
+			isa = PBXGroup;
+			children = (
+				539260C91ECAD2BE00507C8A /* Xib */,
+				539260CE1ECAD2BE00507C8A /* Dependence */,
+				539260CF1ECAD2BE00507C8A /* ViewController.h */,
+				539260D01ECAD2BE00507C8A /* ViewController.m */,
+				539260D11ECAD2BE00507C8A /* HomePageViewController.h */,
+				539260D21ECAD2BE00507C8A /* HomePageViewController.m */,
+				539260D31ECAD2BE00507C8A /* BaseTableViewController.h */,
+				539260D41ECAD2BE00507C8A /* BaseTableViewController.m */,
+				539260D51ECAD2BE00507C8A /* LeftTableViewController.h */,
+				539260D61ECAD2BE00507C8A /* LeftTableViewController.m */,
+				539260D71ECAD2BE00507C8A /* MiddleTableViewController.h */,
+				539260D81ECAD2BE00507C8A /* MiddleTableViewController.m */,
+				539260D91ECAD2BE00507C8A /* RightTableViewController.h */,
+				539260DA1ECAD2BE00507C8A /* RightTableViewController.m */,
+				539260DB1ECAD2BE00507C8A /* NavigationController.h */,
+				539260DC1ECAD2BE00507C8A /* NavigationController.m */,
+			);
+			name = "微博个人主页";
+			path = "../../../../../../Downloads/WeiboHomepage-master 5/微博个人主页/微博个人主页";
 			sourceTree = "<group>";
 		};
 		539B215C1EC95DBC0022203C /* 3rdparty */ = {
@@ -761,6 +853,7 @@
 		539B21DD1EC95DBD0022203C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				539260E71ECAD2BE00507C8A /* 微博个人主页 */,
 				539B21DE1EC95DBD0022203C /* WSICommentTableViewController.h */,
 				539B21DF1EC95DBD0022203C /* WSICommentTableViewController.m */,
 				539B21E01EC95DBD0022203C /* WSICommentTableViewController.xib */,
@@ -967,6 +1060,14 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		7B4A7273D3766335997EF789 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0EF90EC0CEEB52DA94A7CDBA /* libPods-Hi.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1042,6 +1143,7 @@
 				539B22671EC95DBD0022203C /* WSIMeViewController.xib in Resources */,
 				539B224A1EC95DBD0022203C /* HomeTableViewCell.xib in Resources */,
 				539B22631EC95DBD0022203C /* WSIRegisterViewController.xib in Resources */,
+				539260E91ECAD2BE00507C8A /* CommualHeaderView.xib in Resources */,
 				539B22721EC98B000022203C /* ListTableViewCell.xib in Resources */,
 				539B22651EC95DBD0022203C /* WSIResetViewController.xib in Resources */,
 				539B22561EC95DBD0022203C /* WSIHomePageViewController.xib in Resources */,
@@ -1071,7 +1173,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-心愿很忙/Pods-心愿很忙-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hi/Pods-Hi-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		98EE858BBEF4619B67D2D177 /* [CP] Copy Pods Resources */ = {
@@ -1086,7 +1188,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-心愿很忙/Pods-心愿很忙-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hi/Pods-Hi-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ACA19B8DEDA792A466239700 /* [CP] Check Pods Manifest.lock */ = {
@@ -1112,13 +1214,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				5373E79A1E967C0400819DCD /* UIButton+XMGExtension.m in Sources */,
+				539260EB1ECAD2BE00507C8A /* ColorUtility.m in Sources */,
 				539B22711EC98B000022203C /* ListTableViewCell.m in Sources */,
 				539B224D1EC95DBD0022203C /* ____.xcdatamodeld in Sources */,
+				539260F01ECAD2BE00507C8A /* LeftTableViewController.m in Sources */,
+				539260EE1ECAD2BE00507C8A /* HomePageViewController.m in Sources */,
 				539B224B1EC95DBD0022203C /* PersonalTableViewCell.m in Sources */,
 				53192CCB1EAB34E600C5E5BF /* UIImage+WSIExtension.m in Sources */,
 				539B22331EC95DBD0022203C /* UIView+SGFrame.m in Sources */,
 				539B22231EC95DBD0022203C /* LEOHeaderView.m in Sources */,
 				539B22531EC95DBD0022203C /* WSICommentTableViewController.m in Sources */,
+				539260F11ECAD2BE00507C8A /* MiddleTableViewController.m in Sources */,
 				539B225E1EC95DBD0022203C /* WSICodeViewController.m in Sources */,
 				5373E79C1E967C0400819DCD /* NSString+XMGExtension.m in Sources */,
 				539B223B1EC95DBD0022203C /* WSICommentViewController.m in Sources */,
@@ -1126,13 +1232,16 @@
 				539B226A1EC95DBD0022203C /* HUDUtils.m in Sources */,
 				539B22381EC95DBD0022203C /* YZInputView.m in Sources */,
 				5374A5651EAF9C2E0062B75A /* UIViewController+Extension.m in Sources */,
+				539260EF1ECAD2BE00507C8A /* BaseTableViewController.m in Sources */,
 				539B22371EC95DBD0022203C /* WclEmitterButton.m in Sources */,
+				539260EA1ECAD2BE00507C8A /* CommualHeaderView.m in Sources */,
 				539B22241EC95DBD0022203C /* UINavigationBar+leoAdd.m in Sources */,
 				539B224E1EC95DBD0022203C /* AppDelegate.m in Sources */,
 				539B22201EC95DBD0022203C /* CCDraggableCardView.m in Sources */,
 				539B223A1EC95DBD0022203C /* WSIChatViewController.m in Sources */,
 				539B22521EC95DBD0022203C /* main.m in Sources */,
 				539B22681EC95DBD0022203C /* WSISettingViewController.m in Sources */,
+				539260ED1ECAD2BE00507C8A /* ViewController.m in Sources */,
 				539B22551EC95DBD0022203C /* WSIHomePageViewController.m in Sources */,
 				539B22601EC95DBD0022203C /* WSILoginViewController.m in Sources */,
 				5385FACB1EADC05B00F283FD /* UIScrollView+Refresh.m in Sources */,
@@ -1143,6 +1252,7 @@
 				539B22641EC95DBD0022203C /* WSIResetViewController.m in Sources */,
 				539B22271EC95DBD0022203C /* LYPhotoBrowser.m in Sources */,
 				5373E79E1E967C0400819DCD /* NSCalendar+XMGExtension.m in Sources */,
+				539260F31ECAD2BE00507C8A /* NavigationController.m in Sources */,
 				539B225B1EC95DBD0022203C /* XibViewController.m in Sources */,
 				539B22571EC95DBD0022203C /* WSIWishListTableViewController.m in Sources */,
 				539B226D1EC95DBD0022203C /* WSIThingViewController.m in Sources */,
@@ -1172,11 +1282,13 @@
 				539B22621EC95DBD0022203C /* WSIRegisterViewController.m in Sources */,
 				539B22411EC95DBD0022203C /* ContentTableViewCell.m in Sources */,
 				53192CB31EAAEDF300C5E5BF /* UIImageView+WSIExtension.m in Sources */,
+				539260EC1ECAD2BE00507C8A /* HMSegmentedControl.m in Sources */,
 				539B22391EC95DBD0022203C /* WSIChattingViewController.m in Sources */,
 				539B22471EC95DBD0022203C /* WSIPerosonalViewController.m in Sources */,
 				539B222C1EC95DBD0022203C /* MCSliceLayer.m in Sources */,
 				539B22481EC95DBD0022203C /* WishModel.m in Sources */,
 				539B22281EC95DBD0022203C /* LYZoomingImageView.m in Sources */,
+				539260F21ECAD2BE00507C8A /* RightTableViewController.m in Sources */,
 				539B22491EC95DBD0022203C /* HomeTableViewCell.m in Sources */,
 				539B222F1EC95DBD0022203C /* WSIRefreshHeader.m in Sources */,
 				5373E79D1E967C0400819DCD /* NSDate+XMGExtension.m in Sources */,
@@ -1280,7 +1392,7 @@
 		};
 		5373E75B1E9670A900819DCD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F8911154D759A039C16C9A8 /* Pods-心愿很忙.debug.xcconfig */;
+			baseConfigurationReference = 95ED722491CC40FD0B5EFD6B /* Pods-Hi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1341,7 +1453,7 @@
 		};
 		5373E75C1E9670A900819DCD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 114C6E6543F4132BF072B9FE /* Pods-心愿很忙.release.xcconfig */;
+			baseConfigurationReference = 5F4B3A6EBC1E23590690DDB7 /* Pods-Hi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

@@ -62,7 +62,7 @@
                         <rect key="frame" x="312" y="471" width="22" height="22"/>
                         <state key="normal" image="评论"/>
                         <connections>
-                            <action selector="commentBt:" destination="zOt-eE-ijl" eventType="touchUpInside" id="X7L-Xg-LwG"/>
+                            <action selector="commentBt2:" destination="zOt-eE-ijl" eventType="touchUpInside" id="bi2-d0-F4F"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fw-Ac-pps" customClass="WclEmitterButton">

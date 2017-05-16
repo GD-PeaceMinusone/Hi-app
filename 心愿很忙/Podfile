@@ -2,7 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 source 'http://repo.baichuan-ios.taobao.com/baichuanSDK/AliBCSpecs.git'
 platform :ios, '8.0'
 
-target '心愿很忙' do
+target 'Hi' do
 
 pod 'SVProgressHUD'
 pod 'Masonry'

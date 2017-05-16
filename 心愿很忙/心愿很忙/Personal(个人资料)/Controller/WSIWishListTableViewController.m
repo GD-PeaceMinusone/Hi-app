@@ -9,6 +9,7 @@
 #import "WSIWishListTableViewController.h"
 #import "MJRefresh.h"
 #import "ListTableViewCell.h"
+#import "WSICommentViewController.h"
 
 @interface WSIWishListTableViewController ()
 @property(nonatomic,strong)NSMutableArray *itObjs;
@@ -17,6 +18,7 @@
 @implementation WSIWishListTableViewController
 static NSString *dbName = @"Wish_List.sqlite";
 static NSString *ListCell = @"ListCell";
+static NSString *notiName = @"comment2";
 
 -(NSMutableArray *)itObjs {
 
@@ -34,6 +36,16 @@ static NSString *ListCell = @"ListCell";
     [self setupRefresh];
     [self loadNewTopics];
     [self registerCell];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushVc:) name:notiName object:nil];
+}
+
+
+-(void)pushVc: (NSNotification*)noti {//接受传过来的Vc 通过tag给对应vc赋值
+    
+    NSInteger index = [noti.object[0] integerValue];
+    WSICommentViewController *commentVc = noti.object[1];
+    commentVc.avObj = self.itObjs[index];
 }
 
 -(void)registerCell {
@@ -105,6 +117,11 @@ static NSString *ListCell = @"ListCell";
 
 #pragma mark - Table view data source
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"scroll" object:nil];
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     return _itObjs.count;
@@ -115,6 +132,8 @@ static NSString *ListCell = @"ListCell";
     ListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ListCell];
     
     cell.avObj = _itObjs[indexPath.row];
+    
+    cell.headerIv.tag = indexPath.row;
     
     return cell;
 }
